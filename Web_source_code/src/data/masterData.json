@@ -1,0 +1,299 @@
+{
+    "HouseType": [
+        {
+            "id": 1,
+            "name": "Apartment"
+        },
+        {
+            "id": 2,
+            "name": "Flat"
+        },
+        {
+            "id": 3,
+            "name": "Villa"
+        }
+    ],
+    "NumbersUpto15": [
+        {
+            "id": 1,
+            "name": "1"
+        },
+        {
+            "id": 2,
+            "name": "2"
+        },
+        {
+            "id": 3,
+            "name": "3"
+        },
+        {
+            "id": 4,
+            "name": "4"
+        },
+        {
+            "id": 5,
+            "name": "5"
+        },
+        {
+            "id": 6,
+            "name": "6"
+        },
+        {
+            "id": 7,
+            "name": "7"
+        },
+        {
+            "id": 8,
+            "name": "8"
+        },
+        {
+            "id": 9,
+            "name": "9"
+        },
+        {
+            "id": 10,
+            "name": "10"
+        }
+    ],
+    "ApartmentSize": [
+        {
+            "id": 1,
+            "name": "50-100 (sq. ft)"
+        },
+        {
+            "id": 2,
+            "name": "100-200 (sq. ft)"
+        },
+        {
+            "id": 3,
+            "name": "200-500 (sq. ft)"
+        },
+        {
+            "id": 4,
+            "name": "500-1000 (sq. ft)"
+        },
+        {
+            "id": 5,
+            "name": "1000+ (sq. ft)"
+        }
+    ],
+    "AvailableNotAvailable":[
+        {
+            "id": 1,
+            "name": "Available"
+        },
+        {
+            "id": 2,
+            "name": "Not-Available"
+        }
+    ],
+    "YesNo": [
+        {
+            "id": 1,
+            "name": "Yes"
+        },
+        {
+            "id": 2,
+            "name": "No"
+        }
+    ],
+    "RoomType": [
+        {
+            "id": 1,
+            "name": "Shared"
+        },
+        {
+            "id": 2,
+            "name": "Individual"
+        }
+    ],
+    "Furniture": [
+        {
+            "id": 1,
+            "name": "Fully Furnished"
+        },
+        {
+            "id": 2,
+            "name": "Semi Furnished"
+        },
+        {
+            "id": 3,
+            "name": "Raw"
+        }
+    ],
+    "DietPreference": [
+        {
+            "id": 1,
+            "name": "Vegetarian" 
+        },
+        {
+            "id": 2,
+            "name": "Non-Vegetarian" 
+        },
+        {
+            "id": 3,
+            "name": "Eggetarian" 
+        }
+    ],
+    "AllowNotAllow": [
+        {
+            "id": 1,
+            "name": "Allow"
+        },
+        {
+            "id": 1,
+            "name": "Not-Allow"
+        }
+    ],
+    "AgePreference": [
+        {
+            "id": 1,
+            "name": "15-20"
+        },
+        {
+            "id": 2,
+            "name": "20-25"
+        },
+        {
+            "id": 3,
+            "name": "25-30"
+        },
+        {
+            "id": 4,
+            "name": "30-35"
+        },
+        {
+            "id": 5,
+            "name": "35+"
+        }
+    ],
+    "CommunityType": [
+        {
+            "id": 1,
+            "name": "Student"
+        },
+        {
+            "id": 2,
+            "name": "Self Work"
+        },
+        {
+            "id": 3,
+            "name": "Private Job"
+        }
+    ],
+    "PropertyCommunityType": [
+        {
+            "id": 1,
+            "name": "Property Owner"
+        },
+        {
+            "id": 2,
+            "name": "Agent"
+        }
+    ],
+    "ApartmentAmeneties":[
+        {"id": 1, "name": "Hardwood Floors"},
+        {"id": 2, "name": "Couple Friendly"},
+        {"id": 3, "name": "Fast Wifi"},
+        {"id": 4, "name": "Kitchen"},
+        {"id": 5, "name": "Front patio"},
+        {"id": 6, "name": "Back patio"},
+        {"id": 7, "name": "Cable TV"},
+        {"id": 8, "name": "Dishwasher"},
+        {"id": 9, "name": "Refrigerator"},
+        {"id": 10, "name": "Workspace"},
+        {"id": 11, "name": "Cook Stove"},
+        {"id": 12, "name": "Fully Furnished"},
+        {"id": 13, "name": "Kid Friendly"},
+        {"id": 14, "name": "Closet"},
+        {"id": 15, "name": "Water Heater"}
+    ],
+    "CommunityAmenities": [
+        {"id": 1, "name": "Swimming pool"},
+        {"id": 2, "name": "Billiards/Pool"},
+        {"id": 3, "name": "Wheelchair Friendly"},
+        {"id": 4, "name": "Convenience Stores"},
+        {"id": 5, "name": "Fitness Center"},
+        {"id": 6, "name": "Lounge Room"},
+        {"id": 7, "name": "Walking Trails"},
+        {"id": 8, "name": "Laundry"},
+        {"id": 9, "name": "Library"},
+        {"id": 10, "name": "Movie Nights"},
+        {"id": 11, "name": "Concierge"},
+        {"id": 12, "name": "Storage Space"},
+        {"id": 13, "name": "Garden"},
+        {"id": 14, "name": "Table Tennis"},
+        {"id": 15, "name": "Centralized heating and Cooling"},
+        {"id": 16, "name": "EV Charging"},
+        {"id": 17, "name": "Parking "}
+    ],
+    "Country":[
+        {"id": 1, "name": "Canada"},
+        {"id": 2, "name": "India"}
+    ],
+    "BedroomType": [
+        {"id": 1, "name": "Shared"},
+        {"id": 2, "name": "Single"},
+        {"id": 3, "name": "Family"}
+    ],
+    "Gender": [
+        { "id": 1, "name": "Male"},
+        { "id": 2, "name": "Female"},
+        { "id": 3, "name": "Other"}
+
+    ],
+    "LockType": [
+        {"id": 1, "name": "Smart Lock"},
+        {"id": 2, "name": "Normal Lock"}
+    ],
+    "Parking": [
+        {"id": 1, "name": "In-House Parking"},
+        {"id": 2, "name": "Common Parking"},
+        {"id": 3, "name": "Street Parking"}
+    ],
+    "LanguagePreference": [
+        {"id": 1, "name": "English"},
+        {"id": 2, "name": "Spanish"},
+        {"id": 3, "name": "Hindi"}
+    ],
+    "CoEdTypes": [
+        {"id": 1, "name": "Uncomfortable"},
+        {"id": 2, "name": "Comfortable"}
+    ],
+    "CommunicationType": [
+        {"id": 1, "name": "Introverts"},
+        {"id": 2, "name": "Introverts 2"}
+    ],
+    "MaritalStatus": [
+        {"id": 1, "name": "Unmarried"},
+        {"id": 2, "name": "Married"},
+        {"id": 3, "name": "Divorced"}
+
+    ],
+    "SleepingHabitsTime": [
+        {"id": 1, "name": "12:00 AM"},
+        {"id": 2, "name": "01:00 AM"},
+        {"id": 3, "name": "02:00 AM"},
+        {"id": 4, "name": "03:00 AM"},
+        {"id": 5, "name": "04:00 AM"},
+        {"id": 6, "name": "05:00 AM"},
+        {"id": 7, "name": "06:00 AM"},
+        {"id": 8, "name": "07:00 AM"},
+        {"id": 9, "name": "08:00 AM"},
+        {"id": 10, "name": "09:00 AM"},
+        {"id": 11, "name": "10:00 AM"},
+        {"id": 12, "name": "11:00 AM"},
+        {"id": 13, "name": "12:00 PM"},
+        {"id": 14, "name": "01:00 PM"},
+        {"id": 15, "name": "02:00 PM"},
+        {"id": 16, "name": "03:00 PM"},
+        {"id": 17, "name": "04:00 PM"},
+        {"id": 18, "name": "05:00 PM"},
+        {"id": 19, "name": "06:00 PM"},
+        {"id": 20, "name": "07:00 PM"},
+        {"id": 21, "name": "08:00 PM"},
+        {"id": 22, "name": "09:00 PM"},
+        {"id": 23, "name": "10:00 PM"},
+        {"id": 24, "name": "11:00 PM"}
+    ]
+}
