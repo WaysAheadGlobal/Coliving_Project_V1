@@ -11,6 +11,7 @@ const path = require("path");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const propertyRoutes = require("./routes/propertyOwnerRoutes");
+const commonRoutes = require("./routes/commonRoutes");
 
 dotenv.config();
 
@@ -38,6 +39,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use('/api/user', authenticateToken, userRoutes);
 app.use("/api/property", authenticateToken, propertyRoutes);
+app.use("/api/listing", authenticateToken, commonRoutes);
 
 
 

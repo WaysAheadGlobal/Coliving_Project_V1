@@ -12,6 +12,8 @@ import ThankYou from "./views/PropertyOwner/thank-you";
 
 import Home from './views/Home/Index';
 import Blogs from './views/Blogs/Index';
+import Listing from './views/Home/Listing';
+import ListingDetail from './views/Home/ListingDetail';
 import BlogDetail from './views/Blogs/BlogDetail';
 import Logout from './views/logout';
 
@@ -65,6 +67,14 @@ function App() {
                 {
                     path: "/blogs",
                     element: <Blogs />,
+                },
+                {
+                    path: "/Listing",
+                    element: <Listing />,
+                },
+                {
+                    path: "/ListingDetail/:id",
+                    element: <ListingDetail />,
                 },
                 {
                     path: "/blog-details",
