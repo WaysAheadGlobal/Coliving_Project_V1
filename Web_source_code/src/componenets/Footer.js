@@ -11,15 +11,15 @@ function Footer() {
 					<h4>Co living</h4>
 					<ul className="connectinfo">
 						<li>
-							<i className="fa-solid fa fa-envelope"></i>
+							<i className="fa fa-solid fa fa-envelope"></i>
 							<a href="mailto:coliving@company.ca">coliving@company.ca</a>
 						</li>
 						<li>
-							<i className="fa-solid fa fa-phone"></i>
+							<i className="fa fa-solid fa fa-phone"></i>
 							<a href="tel:+1-416-839-6023">+1-416-839-6023</a>
 						</li>
 						<li>
-							<i className="fa-solid fa fa-map-marker"></i>
+							<i className="fa fa-solid fa fa-map-marker"></i>
 							2366 Merton Street, Toronto <br />Canada
 						</li>
 					</ul>

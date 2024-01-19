@@ -5,7 +5,7 @@ function BookingView() {
             <div class="adminTitle">
                 <h4 class="content-title backitem">
                     <span>Booking Requests View</span>
-                    <span><a href="booking-request.html"><i class="fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
+                    <span><a href="booking-request.html"><i class="fa fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
                 </h4>
             </div>
             <div class="adminCard stayview">

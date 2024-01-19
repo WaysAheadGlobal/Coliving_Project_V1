@@ -209,10 +209,24 @@ async function signupOTPVerify(req, res) {
     else {
       await authModel.updateUserOTP(userid, 0);
       await authModel.updateUserStatus(userid, 1);
-      res
-        .status(200)
-        .json({ message: "Success", getUserDetail, status: 200 });
     }
+    const users = await userModel.getUsersByIDForAdmin(userid);
+    const token = jwt.sign(
+      { userId: users[0].user_id, email: users[0].email },
+      JWT_SECRET,
+      { expiresIn: JWT_EXPIRATION }
+    );
+    // Save the token into the user's record in the database with 1 day expiry as a VARCHAR time string
+    const expiryTime = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(); // Convert to time string
+    await authModel.saveToken(users[0].user_id, token, expiryTime);
+const usr = users[0];
+    const checkuserPersonalDetailsFills = await userModel.checkUserFillPersonalDetail(usr.user_id);
+    const checkuserPropertyFill = await userModel.checkUserFillPropertyDetail(usr.user_id);
+    const IsDetailsFill = checkuserPersonalDetailsFills.length == 0 ? false : true;
+    const IsPropertyFill = checkuserPropertyFill.length == 0 ? false : true;
+    const users1 = await authModel.getUserByEmail(users[0].email);
+    const user1 = users1[0];
+    res.status(200).json({ message: "Login successful", user1, IsDetailsFill: IsDetailsFill,IsPropertyFill: IsPropertyFill,  status: 200 });
   } catch (error) {
     console.error("Error during verify OTP:", error);
     res.status(500).json({ message: "Internal Server Error", status: 500 });
@@ -243,7 +257,7 @@ async function checkUser(req, res) {
     const user = users[0];
     const otp = Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
 
-    //let emailRes = await sendMail.sendLoginOtp(email, otp, user.Fullname);
+    let emailRes = await sendMail.sendLoginOtp(email, otp, user.Fullname);
     await authModel.updateUserOTP(user.user_id, otp)
 
 

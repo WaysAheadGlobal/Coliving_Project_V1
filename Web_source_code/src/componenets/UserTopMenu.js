@@ -28,11 +28,11 @@ const UserTopMenu = () => {
                         </div>
                         <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-2 col-sm-2 col-2">
                             <div class="mobileSearch">
-                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <i class="fa fa-solid fa-magnifying-glass"></i>
                             </div>
                             <div class="headSearch">
                                 <input type="text" name="search" placeholder="Search For Coliving" />
-                                <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                                <div class="icon"><i class="fa fa-solid fa-magnifying-glass"></i></div>
                             </div>
                         </div>
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-5 d-flex justify-content-end">

@@ -4,7 +4,7 @@ function StayView() {
         <div class="content-area proppage">
             <h4 class="content-title backitem">
                 <span>Stay request View</span>
-                <span><a href="stay-request.html"><i class="fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
+                <span><a href="stay-request.html"><i class="fa fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
             </h4>
             <div class="fm-area stayview">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">

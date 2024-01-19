@@ -54,7 +54,7 @@ function ManageProperty() {
                                             <div class="tablebtngrp">
                                                 <button class="eye" onclick="window.location.href='manage-property-view.html'"><i class="fa-regular fa-eye"></i></button>
                                                 <button class="delete"><i class="fa-regular fa-trash-can"></i></button>
-                                                <button class="vDots" data-bs-toggle="modal" data-bs-target="#contacthost"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                                <button class="vDots" data-bs-toggle="modal" data-bs-target="#contacthost"><i class="fa fa-solid fa-ellipsis-vertical"></i></button>
                                             </div>
                                         </td>
                                     </tr>

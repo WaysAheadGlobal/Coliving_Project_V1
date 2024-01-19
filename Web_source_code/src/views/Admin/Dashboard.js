@@ -1,5 +1,48 @@
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import Chart from "react-apexcharts";
 
 function AdminDashboard() {
+    const percentage = 66;
+    const chart1 = {
+        options: {
+          chart: {
+            id: "basic-bar"
+          },
+          xaxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+          }
+        },
+        series: [
+          {
+            name: "Total Booking",
+            data: [30, 40, 45, 50, 49, 60, 70, 75, 80, 81, 80, 70]
+          },
+          {
+            name: "Request for Booking",
+            data: [40, 30, 20, 50, 49, 60, 70, 75, 80, 81, 80, 70]
+          }
+        ]
+      };
+
+      const chart2 = {
+        options: {
+          chart: {
+            id: "line"
+          },
+          xaxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+          }
+        },
+        series: [
+          {
+            name: "Total Booking",
+            data: [30, 40, 45, 50, 49, 60, 70, 75, 80, 81, 80, 70]
+          }
+        ]
+      };
+
+
     return (
         <>
             <div class="adminTitle">
@@ -17,10 +60,11 @@ function AdminDashboard() {
                                     <label>Total User</label>
                                 </div>
                                 <div class="chartArea">
-                                    <div class="circular-progress" data-inner-circle-color="white" data-percentage="50" data-progress-color="#3B4CB8" data-bg-color="#E1E5FF">
+                                    {/* <div class="circular-progress" data-inner-circle-color="white" data-percentage="50" data-progress-color="#3B4CB8" data-bg-color="#E1E5FF">
                                         <div class="inner-circle"></div>
                                         <p class="percentage">0%</p>
-                                    </div>
+                                    </div> */}
+                                    <CircularProgressbar  value={percentage} className='circular-progress' text={`${percentage}%`} />;
                                 </div>
                             </div>
                         </div>
@@ -31,10 +75,15 @@ function AdminDashboard() {
                                     <label>Total Property Owner</label>
                                 </div>
                                 <div class="chartArea">
-                                    <div class="circular-progress" data-inner-circle-color="white" data-percentage="47" data-progress-color="#AB54DB" data-bg-color="#E1E5FF">
+                                    {/* <div class="circular-progress" data-inner-circle-color="white" data-percentage="47" data-progress-color="" data-bg-color="#E1E5FF">
                                         <div class="inner-circle"></div>
                                         <p class="percentage">0%</p>
-                                    </div>
+                                    </div> */}
+                                    <CircularProgressbar styles={buildStyles({
+                                        pathColor: `#000, ${percentage / 100})`,
+                                        textColor: '#f88',
+                                        backgroundColor: '#E1E5FF',
+                                    })} value={percentage} className='circular-progress' text={`${percentage}%`} />
                                 </div>
                             </div>
                         </div>
@@ -45,10 +94,7 @@ function AdminDashboard() {
                                     <label>Total Booking</label>
                                 </div>
                                 <div class="chartArea">
-                                    <div class="circular-progress" data-inner-circle-color="white" data-percentage="45" data-progress-color="#37D159" data-bg-color="#E1E5FF">
-                                        <div class="inner-circle"></div>
-                                        <p class="percentage">0%</p>
-                                    </div>
+                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${percentage}%`} />;
                                 </div>
                             </div>
                         </div>
@@ -59,10 +105,7 @@ function AdminDashboard() {
                                     <label>Total Request For Booking</label>
                                 </div>
                                 <div class="chartArea">
-                                    <div class="circular-progress" data-inner-circle-color="white" data-percentage="34" data-progress-color="#535353" data-bg-color="#E1E5FF">
-                                        <div class="inner-circle"></div>
-                                        <p class="percentage">0%</p>
-                                    </div>
+                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${percentage}%`} />;
                                 </div>
                             </div>
                         </div>
@@ -73,10 +116,7 @@ function AdminDashboard() {
                                     <label>Total Meal</label>
                                 </div>
                                 <div class="chartArea">
-                                    <div class="circular-progress" data-inner-circle-color="white" data-percentage="64" data-progress-color="#00A389" data-bg-color="#E1E5FF">
-                                        <div class="inner-circle"></div>
-                                        <p class="percentage">0%</p>
-                                    </div>
+                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${percentage}%`} />;
                                 </div>
                             </div>
                         </div>
@@ -87,10 +127,7 @@ function AdminDashboard() {
                                     <label>Total User</label>
                                 </div>
                                 <div class="chartArea">
-                                    <div class="circular-progress" data-inner-circle-color="white" data-percentage="52" data-progress-color="#FE5722" data-bg-color="#E1E5FF">
-                                        <div class="inner-circle"></div>
-                                        <p class="percentage">0%</p>
-                                    </div>
+                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${percentage}%`} />;
                                 </div>
                             </div>
                         </div>
@@ -103,7 +140,13 @@ function AdminDashboard() {
                                 <div class="adminCard">
                                     <label class="cardHead mb-4">Booking</label>
                                     <div class="chartArea w-100">
-                                        <div id="booking"></div>
+                                        {/* <div id="booking"></div> */}
+                                        <Chart
+                                            options={chart1.options}
+                                            series={chart1.series}
+                                            type="line"
+                                            
+                                            />
                                     </div>
                                 </div>
                             </div>
@@ -113,7 +156,12 @@ function AdminDashboard() {
                                 <div class="adminCard">
                                     <label class="cardHead">User vs Property</label>
                                     <div class="chartArea w-100">
-                                        <div id="property"></div>
+                                    <Chart
+                                            options={chart2.options}
+                                            series={chart2.series}
+                                            type="bar"
+                                            height={500}
+                                            />
                                     </div>
                                 </div>
                             </div>

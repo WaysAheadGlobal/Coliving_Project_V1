@@ -117,11 +117,41 @@ async function getUserById(userid) {
     }
   }
 
+  async function getAllUsers() {
+    try {
+      const [rows] = await db.query("SELECT * FROM users order by user_id desc");
+      return rows;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function getUsersByIDForAdmin(user_id) {
+    try {
+      const [rows] = await db.query("SELECT * FROM users where user_id=?", [user_id]);
+      return rows;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function getUserDetailByIDForAdmin(user_id) {
+    try {
+      const [rows] = await db.query("SELECT * FROM userdetails where user_id=?", [user_id]);
+      return rows;
+    } catch (error) {
+      throw error;
+    }
+  }
+
 module.exports = {
     updateUserProfile,
     getUserById,
     UpdatePersonalDetails,
     checkUserFillPersonalDetail,
-    checkUserFillPropertyDetail
+    checkUserFillPropertyDetail,
+    getAllUsers,
+    getUsersByIDForAdmin,
+    getUserDetailByIDForAdmin
   };
   

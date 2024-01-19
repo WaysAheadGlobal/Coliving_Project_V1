@@ -15,16 +15,16 @@ export default function AdminLayout() {
                 <div class="adminContent">
                     <div class="adminHeader">
                         <div class="mobileBar">
-                            <span class="hidebar"><i class="fa-solid fa-bars"></i></span>
-                            <span class="showbar"><i class="fa-solid fa-arrow-right-long"></i></span>
+                            <span class="hidebar"><i class="fa fa-solid fa-bars"></i></span>
+                            <span class="showbar"><i class="fa fa-solid fa-arrow-right-long"></i></span>
                         </div>
                         <div class="postuser">
-                            <i class="fa-solid fa-circle-user"></i>
+                            <i class="fa fa-solid fa-circle-user"></i>
                             <span>Admin</span>
-                            <i class="fa-solid fa-caret-down"></i>
+                            <i class="fa fa-solid fa-caret-down"></i>
                             <div class="userdropdown">
                                 <ul>
-                                    <li><a href="#/">Logout</a></li>
+                                    <li><a href="/admin">Logout</a></li>
                                 </ul>
                             </div>
                         </div>

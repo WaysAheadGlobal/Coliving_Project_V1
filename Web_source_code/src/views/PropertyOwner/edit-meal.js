@@ -4,7 +4,7 @@ function AddMeal() {
         <div class="content-area">
             <h4 class="content-title backitem">
                 <span>Add Meal</span>
-                <span><a href="meal.html"><i class="fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
+                <span><a href="meal.html"><i class="fa fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
             </h4>
             <div class="fm-area editmeal addevent profileform">
                 <div class="row g-4 align-items-center">

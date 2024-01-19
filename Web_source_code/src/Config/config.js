@@ -1,4 +1,5 @@
 module.exports = {
-     Url: "http://localhost:9000/",
-      //Url: "https://admin.halahomes.cca/backend-api/api/",
-    };
+     Url: "http://localhost:9001/",
+     ImageUrl: "http://localhost:9001/"
+     //Url: "https://coliving.waysdatalabs.com/",
+};

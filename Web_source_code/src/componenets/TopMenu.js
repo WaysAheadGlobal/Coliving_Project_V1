@@ -261,7 +261,26 @@ const TopMenu = () => {
 				.then((response) => response.json())
 				.then((data) => {
 					if (data.status === 200) {
-						history("/user/profile");
+						localStorage.setItem("usertoken", data.user1.token)
+						localStorage.setItem("username", data.user1.Fullname)
+						if (localStorage.getItem("userType") == "1") {
+							console.log('data', data)
+							if(!data.IsDetailsFill){
+								history("/user/personalDetail");
+							}
+							else{
+								history("/user/profile");
+							}
+						}
+						else {
+							if(!data.IsPropertyFill){
+								history("/owner/filldetails");
+							}
+							else{
+								history("/owner/profile");
+							}
+							
+						}
 					} else {
 						toast.error("data.message", {
 							position: toast.POSITION.TOP_RIGHT,
@@ -318,7 +337,7 @@ const TopMenu = () => {
 		// 			})
 		// 			.catch((error) => {
 		// 				console.error("Error fetching user data:", error);
-		// 			});
+		// 			});	
 		clearRegisterTimer(getDeadTime());
 	}
 
@@ -484,13 +503,13 @@ const TopMenu = () => {
 							</div>
 						</div>
 						<div className="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-8 col-5 d-flex justify-content-end">
-							<div className="userloginbtn" data-bs-toggle="modal" data-bs-target="#signup">
-								<i className="fa-solid fa-user"></i>
+							<div className="userloginbtn"  onClick={modalUserSelectionShow}>
+								<i className="fa fa-solid fa-user"></i>
 							</div>
 							<div className="mobileIcon">
-								<i className="fa-solid fa-bars-staggered"></i>
+							<svg class="svg-inline--fa fa-bars-staggered" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars-staggered" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM64 256c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path></svg>
 							</div>
-							<div className="mobileMenus">
+							<div className="mobileMenus" style={{display: 'block'}}>
 								<div className="logo-m">
 									<a href="index">
 										<img src={require('./../../src/img/logo.png')} alt="Co-living logo missing" title="Co-living" />
@@ -514,15 +533,15 @@ const TopMenu = () => {
 								<div className="connect">
 									<ul>
 										<li>
-											<i className="fa-solid fa-envelope"></i>
+											<i className="fa fa-solid fa-envelope"></i>
 											<a href="mailto:coliving@company.ca">coliving@company.ca</a>
 										</li>
 										<li>
-											<i className="fa-solid fa-phone"></i>
+											<i className="fa fa-solid fa-phone"></i>
 											<a href="tel:+1-416-839-6023">+1-416-839-6023</a>
 										</li>
 										<li>
-											<i className="fa-solid fa-location-dot"></i>
+											<i className="fa fa-solid fa-location-dot"></i>
 											2366 Merton Street, Toronto Canada
 										</li>
 									</ul>
@@ -632,7 +651,7 @@ const TopMenu = () => {
 										<div>
 											<div class="form-group mb-3">
 												<label>Full Name <span className="mandatory">*</span></label>
-												<input type="text" name="Fullname" placeholder="John Mark" class="form-control" id="Fullname" value={formValues.fullName} onChange={handleInputChange} />
+												<input type="text" name="Fullname" placeholder="John Mark" class="form-control" id="Fullname" value={formValues.Fullname} onChange={handleInputChange} />
 												<span className="error">{formErrors.Fullname}</span>
 											</div>
 											<div class="form-group mb-3">

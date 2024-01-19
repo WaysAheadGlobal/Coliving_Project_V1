@@ -14,7 +14,7 @@
 }
 
 *{margin:0; padding:0; box-sizing:border-box;}
-body{font-family:'Poppins', sans-serif !important; background:var(--co-white);}
+body{font-family:'Poppins', sans-serif; background:var(--co-white);}
 
 .padd40{padding:40px 0px;}
 .padd60{padding:60px 0px;}
@@ -282,7 +282,7 @@ ul.links li a:hover{color:var(--co-black);}
 .otpValue > input{color:var(--co-black); font-weight:500;}
 .otpValue > input:focus{background:var(--co-white); outline:none;}
 
-.countdowntime{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-left: 30px;}
+.countdowntime{display:flex; align-items:center; justify-content:space-between; gap:10px;}
 .countdowntime span{color:#A3A3A3; font-size:14px;}
 .countdowntime a{color:#464646; font-size:14px;}
 
@@ -665,6 +665,7 @@ ul.aminew li:last-child:after{content:"";}
 table tr th, table tr td{vertical-align:middle;}
 
 .table-layout1 table{border-collapse:separate; border-spacing:0px 15px;}
+.table-layout1 table tr th{white-space: nowrap;}
 .table-layout1 table tr th{color:#333333; font-size:14px; font-weight:500; border:0px; padding:20px 15px; background-color:#F9F9F9; text-transform:capitalize; font-size:14px;}
 .table-layout1 table tr th:first-child{border-radius:5px 0px 0px 5px;}
 .table-layout1 table tr th:last-child{border-radius:0px 5px 5px 0px;}
@@ -875,6 +876,30 @@ label.cardHead{display:inline-block; font-weight:600; color:#464E5F; font-size:1
         --font-size:1rem;
     }
 }
+
+
+.logintype {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+}
+
+.imgtype {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    padding: 8px;
+}
+
+.imgtype img{
+    border-radius:6px;
+    height: 117px;
+}
+
 .logintype h4 {
     margin-bottom: 0px !important;
     font-size: 15px !important;
@@ -884,6 +909,220 @@ label.cardHead{display:inline-block; font-weight:600; color:#464E5F; font-size:1
 
 .logintype:hover .imgtype{
     border: 2px solid #000;
+}
+
+.logintype.active:hover .imgtype{
+    border: 2px solid #000;
+}
+
+.personaltabs .nav.nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+    gap: 50px;
+    border-bottom: 1px solid #f7f7f7;
+}
+
+.personaltabs .nav.nav-tabs li{
+    position: relative;
+}
+
+.personaltabs .nav.nav-tabs li:after {
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background: transparent;
+    right: -40px;
+    content: "";
+    top: calc(50% - 2px);
+    border-bottom: 2px dashed #F2960D;
+}
+
+.personaltabs .nav.nav-tabs li:last-child:after{
+    content:none;
+}
+
+.personaltabs .nav.nav-tabs li button {
+    border: 2px solid #F2960D;
+    color: #F2960D;
+    font-size: 20px;
+    font-weight: 600;
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.personaltabs .nav.nav-tabs li button.active{
+    background:#F2960D;
+    color: #fff;
+}
+
+.personaltabs .nav.nav-tabs li button:hover{
+    background:#F2960D;
+    color: #fff;
+}
+
+
+/* Verification Pages */
+
+.verHead{width: 100%; height: auto;}
+.verHead h4{color:#232323; font-size:20px; font-weight: 700; margin-bottom: 20px;}
+.verimanage .table-responsive tbody tr{cursor: pointer;}
+.verimanage .table-responsive tbody tr:hover{background:#F2DDBD;}
+
+
+.statuslabel{    position: relative;}
+.eyestatus {    display: flex;    align-items: center;    gap: 10px;    position: absolute;    right: 10px;    bottom: 10px;}
+.eyestatus .viewid {    color: #999999;    display: flex;    align-items: center;    font-size: 15px;    cursor: pointer;}
+.eyestatus .badge {    padding: 0px;    display: flex;    align-items: center;    justify-content: flex-start;    gap:5px;    line-height: normal;   }
+.eyestatus .badge {    border: 1px solid #167CDA;    border-radius: 5px;    padding: 3px 10px 3px 7px;}
+.badge img{    filter: brightness(0) saturate(100%) invert(33%) sepia(64%) saturate(1141%) hue-rotate(176deg) brightness(110%) contrast(93%);}
+.badge label {    margin: 0px !important; color:#167CDA;   line-height: normal;    font-size: 12px !important;    font-weight: 600 !important;    letter-spacing: 0.2px;}
+
+.idmodal {
+    padding: 30px 80px;
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.idmodal .closebtn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 21px;
+    color: #F2960D;
+    cursor: pointer;
+}
+
+
+
+.idpreview {
+    width:fit-content;
+    height: auto;
+    text-align: center;
+    margin: 30px auto 30px;
+    position: relative;
+}
+
+.idpreview img {
+    display:block;
+}
+
+.magnifier {
+    width: 35px;
+    height: 35px;
+    background: #fff;
+    position: absolute;
+    right: 20px;
+    bottom: 24px;
+    border-radius: 31px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    color: #F2960D;
+    cursor: pointer;
+}
+
+.idmodal .form-group textarea {
+    height: 100px;
+    min-height: auto;
+}
+
+.selectionbtn button {
+    background: #366D23;
+    border-color: #366D23;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    border-radius: 40px;
+}
+.selectionbtn button[disabled="disabled"]{
+    opacity: 0.8;
+    background: #366D23;
+    border-color: #366D23;
+}
+
+.tablebtngrp div.dropdown .vDots:after{
+    content: none;
+}
+
+
+.tablebtngrp div.dropdown .dropdown-menu {
+    width: fit-content;
+    min-width: auto;
+    padding: 0px;
+    transform: translate3d(-84px, 35px, 0px) !important;
+}
+
+.tablebtngrp div.dropdown .dropdown-menu a{
+    padding: 10px 20px;
+    color:#1483EA;
+    font-size: 16px;
+    font-weight:600;
+}
+
+.tablebtngrp div.dropdown .dropdown-menu a:focus{
+    background: #1483EA;
+    color: #fff;
+}
+
+.pagi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.pagi .nums {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: rgba(242, 150, 13, 0.2);
+    border-radius: 20px;
+}
+
+.pagi .nums a {
+    width: 60px;
+    height: 50px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #F2960D;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.pagi .nums a:hover, .pagi .nums a.active{
+    background: #F2960D;
+    color: #fff;
+}
+
+.pagi .prev, .pagi .next {
+    line-height: 50px;
+    border: 1px solid #000000;
+    border-radius: 50px;
+    padding: 0px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: 19px;
+    color:#000;
+    cursor: pointer;
+    min-width: 180px;
 }
 .ReactModal__Body--open {
     overflow-y: hidden;
@@ -954,3 +1193,9 @@ ol, ul {
     border: 0px;
     z-index: 9;
 }
+/* .userloginbtn {
+    display: flex !important;
+}
+.mobileIcon {
+    display: flex !important;
+} */

@@ -17,7 +17,7 @@ function Notifications() {
                         <span>Search</span>
                         <div>
                             <input type="text" name="search" placeholder="Search" />
-                                <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                                <span><i class="fa fa-solid fa-magnifying-glass"></i></span>
                         </div>
                     </form>
                 </div>

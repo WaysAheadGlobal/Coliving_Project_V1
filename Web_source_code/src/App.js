@@ -19,6 +19,7 @@ import Logout from './views/logout';
 
 //user pages
 import Profile from './views/User/Profile';
+import Payment from './views/User/Payment';
 import Events from './views/User/events';
 import MealPlan from './views/User/meal-plan';
 import Messages from './views/User/message';
@@ -28,6 +29,7 @@ import WishList from './views/User/wishlist';
 import PersonalDetail from './views/User/personalDetail';
 
 //admin pages
+import AdminLogin from './views/Admin/Login';
 import AdminDashboard from './views/Admin/Dashboard';
 import Communicate from './views/Admin/communicate';
 import AdminNotifications from './views/Admin/notifications';
@@ -83,6 +85,10 @@ function App() {
                 {
                     path: "/logout",
                     element: <Logout />,
+                },
+                {
+                    path: "/admin",
+                    element: <AdminLogin />, 
                 }
             ],
         }, 
@@ -102,6 +108,10 @@ function App() {
                 {
                     path: "/user/personalDetail",
                     element: <PersonalDetail />,
+                },
+                {
+                    path: "/Payment",
+                    element: <Payment />,
                 },
             ],
         }, 

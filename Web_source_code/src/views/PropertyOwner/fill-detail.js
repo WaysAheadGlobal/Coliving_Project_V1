@@ -431,7 +431,7 @@ function FillDetail() {
                                             <div class="imgupitem">
                                                 <div class="imgprev">
                                                     { propertyValues.propertyphoto1 == "" ? null :
-                                                    <img src={`${config.Url}images/Property/` + propertyValues.propertyphoto1} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.Url}api/images/Property/` + propertyValues.propertyphoto1} alt="Room pic" class="img-fluid" />
                                                     }
                                                     <input
                                                         type="file"
@@ -448,7 +448,7 @@ function FillDetail() {
                                             <div class="imgupitem">
                                                 <div class="imgprev">
                                                 { propertyValues.propertyphoto2 == "" ? null :
-                                                    <img src={`${config.Url}images/Property/` + propertyValues.propertyphoto2} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.Url}api/images/Property/` + propertyValues.propertyphoto2} alt="Room pic" class="img-fluid" />
                                                     }
                                                     <input
                                                         type="file"
@@ -465,7 +465,7 @@ function FillDetail() {
                                             <div class="imgupitem">
                                                 <div class="imgprev">
                                                 { propertyValues.propertyphoto3 == "" ? null :
-                                                    <img src={`${config.Url}images/Property/` + propertyValues.propertyphoto3} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.Url}api/images/Property/` + propertyValues.propertyphoto3} alt="Room pic" class="img-fluid" />
                                                     }
                                                     <input
                                                         type="file"
@@ -482,7 +482,7 @@ function FillDetail() {
                                             <div class="imgupitem">
                                                 <div class="imgprev">
                                                 { propertyValues.propertyphoto4 == "" ? null :
-                                                    <img src={`${config.Url}images/Property/` + propertyValues.propertyphoto4} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.Url}api/images/Property/` + propertyValues.propertyphoto4} alt="Room pic" class="img-fluid" />
                                                     }
                                                     <input
                                                         type="file"
@@ -499,7 +499,7 @@ function FillDetail() {
                                             <div class="imgupitem">
                                                 <div class="imgprev">
                                                 { propertyValues.propertyphoto5 == "" ? null :
-                                                    <img src={`${config.Url}images/Property/` + propertyValues.propertyphoto5} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.Url}api/images/Property/` + propertyValues.propertyphoto5} alt="Room pic" class="img-fluid" />
                                                     }
                                                     <input
                                                         type="file"
@@ -529,12 +529,12 @@ function FillDetail() {
                                                 <div class="imgprev">
                                                 { propertyValues.propertyvideo == "" ? null :
                                                 <video width="100%" height="100%" controls>
-                                                <source src={`${config.Url}images/PropertyVideo/` + propertyValues.propertyvideo } type="video/mp4" />
+                                                <source src={`${config.Url}api/images/PropertyVideo/` + propertyValues.propertyvideo } type="video/mp4" />
                                                 Your browser does not support the video tag.
                                                 </video>
                                                 }
                                                     {/* { propertyValues.propertyvideo == "" ? null :
-                                                    <img src={`${config.Url}images/PropertyVideo/` + propertyValues.propertyvideo} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.Url}api/images/PropertyVideo/` + propertyValues.propertyvideo} alt="Room pic" class="img-fluid" />
                                                     } */}
                                                     <input
                                                         type="file"
@@ -568,7 +568,7 @@ function FillDetail() {
                                             <div class="imgupitem">
                                                 <div class="imgprev">
                                                 { result.roomphoto1 == "" ? null :
-                                                    <img src={`${config.Url}images/Property/` + result.roomphoto1} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.Url}api/images/Property/` + result.roomphoto1} alt="Room pic" class="img-fluid" />
                                                     }
                                                     <input
                                                         type="file"
@@ -585,7 +585,7 @@ function FillDetail() {
                                             <div class="imgupitem">
                                             <div class="imgprev">
                                             { result.roomphoto2 == "" ? null :
-                                                    <img src={`${config.Url}images/Property/` + result.roomphoto2} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.Url}api/images/Property/` + result.roomphoto2} alt="Room pic" class="img-fluid" />
                                                     }
                                                 </div>
                                                 <div class="addmorerooms">
@@ -596,7 +596,7 @@ function FillDetail() {
                                             <div class="imgupitem">
                                             <div class="imgprev">
                                                 { result.roomphoto3 == "" ? null :
-                                                    <img src={`${config.Url}images/Property/` + result.roomphoto3} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.Url}api/images/Property/` + result.roomphoto3} alt="Room pic" class="img-fluid" />
                                                     }
                                                 </div>
                                                 <div class="addmorerooms">
@@ -607,7 +607,7 @@ function FillDetail() {
                                             <div class="imgupitem">
                                             <div class="imgprev">
                                                 { result.roomphoto4 == "" ? null :
-                                                    <img src={`${config.Url}images/Property/` + result.roomphoto4} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.Url}api/images/Property/` + result.roomphoto4} alt="Room pic" class="img-fluid" />
                                                     }
                                                 </div>
                                                 <div class="addmorerooms">
@@ -618,7 +618,7 @@ function FillDetail() {
                                             <div class="imgupitem">
                                             <div class="imgprev">
                                                 { result.roomphoto5 == "" ? null :
-                                                    <img src={`${config.Url}images/Property/` + result.roomphoto5} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.Url}api/images/Property/` + result.roomphoto5} alt="Room pic" class="img-fluid" />
                                                     }
                                                 </div>
                                                 <div class="addmorerooms">

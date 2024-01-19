@@ -5,7 +5,7 @@ function ManagePropertyView() {
             <div class="adminTitle">
                 <h4 class="content-title backitem">
                     <span>Manage Property View</span>
-                    <span><a href="/admin/manage-property"><i class="fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
+                    <span><a href="/admin/manage-property"><i class="fa fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
                 </h4>
             </div>
 

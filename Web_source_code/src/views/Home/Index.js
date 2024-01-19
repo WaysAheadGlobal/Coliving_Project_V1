@@ -7,6 +7,34 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 const Home = () => {
+	const options = {
+		margin: 30,
+		responsiveClass: true,
+		nav: true,
+		dots: false,
+		loop: true,
+		autoplay: true,
+		// navText: ["Prev", "Next"],
+		smartSpeed: 1000,
+		responsive: {
+			0: {
+				items: 1,
+			},
+			400: {
+				items: 1,
+			},
+			600: {
+				items: 2,
+			},
+			700: {
+				items: 3,
+			},
+			1000: {
+				items: 3,
+	
+			}
+		},
+	};
 	return (
 		<>
 			<section className="banner homeBanner">
@@ -46,7 +74,7 @@ const Home = () => {
 						<p className="mt-3">Discover the Difference: Our Co-Living Experience Experience a Unique <br />Blend of Comfort, Community, and Convenience.</p>
 					</div>
 
-					<OwlCarousel items={3} margin={8} autoplay={true} loop={true} nav={true} className="whyBlocks owl-carousel" >
+					<OwlCarousel {...options} className="whyBlocks owl-carousel" >
 						<div className="whyItem text-center">
 							<div className="icon">
 								{/* <img src={'/assets/img/housing.svg'} className="img-fluid" alt="why icon missing"/> */}
@@ -102,7 +130,7 @@ const Home = () => {
 						<p className="mt-3">Dive into a wealth of knowledge, trends, and stories that enhance <br />your co-living experience.</p>
 					</div>
 
-					<OwlCarousel items={3} margin={15} autoplay={true} loop={true} nav={true} className="homeBlogs owl-carousel" >
+					<OwlCarousel {...options} className="homeBlogs owl-carousel" >
 						<div className="blogItem">
 							<div className="img">
 								<img src={require('../../../src/img/b1.png')} className="img-fluid" alt="blog img missing" />
@@ -114,7 +142,7 @@ const Home = () => {
 								</div>
 								<h4>The Benefits of Co-Living for Young Professionals</h4>
 								<p>Discuss how co-living can provide affordable and convenient housing solutions for young professionals, emphasizing the sense of community and shared amenities.</p>
-								<a href="#/" className="readmore">Read More &nbsp;<i className="fa-solid fa-arrow-right"></i></a>
+								<a href="#/" className="readmore">Read More &nbsp;<i className="fa fa-solid fa-arrow-right"></i></a>
 							</div>
 						</div>
 						<div className="blogItem">
@@ -128,7 +156,7 @@ const Home = () => {
 								</div>
 								<h4>How to Foster a Positive Co-Living Community</h4>
 								<p>Share strategies for building a supportive and friendly co-living environment, including communication, social events, and conflict resolution.</p>
-								<a href="#/" className="readmore">Read More &nbsp;<i className="fa-solid fa-arrow-right"></i></a>
+								<a href="#/" className="readmore">Read More &nbsp;<i className="fa fa-solid fa-arrow-right"></i></a>
 							</div>
 						</div>
 						<div className="blogItem">
@@ -142,7 +170,7 @@ const Home = () => {
 								</div>
 								<h4>Financial Benefits of Co-Living for Property Owners</h4>
 								<p>Target property owners and investors by explaining how they can benefit from converting properties into co-living spaces.</p>
-								<a href="#/" className="readmore">Read More &nbsp;<i className="fa-solid fa-arrow-right"></i></a>
+								<a href="#/" className="readmore">Read More &nbsp;<i className="fa fa-solid fa-arrow-right"></i></a>
 							</div>
 						</div>
 					</OwlCarousel>
@@ -244,7 +272,7 @@ const Home = () => {
 						</div>
 						<div className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
 
-							<OwlCarousel items={3} margin={15} autoplay={true} loop={true} nav={true} className="teamSlides owl-carousel" >
+							<OwlCarousel {...options} className="teamSlides owl-carousel" >
 								<div className="teamItem">
 									<img src={require('../../../src/img/t1.png')} className="img-fluid" alt="team img missing" />
 									<div className="teambody text-center">

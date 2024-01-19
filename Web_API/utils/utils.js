@@ -2,10 +2,11 @@ const nodemailer = require("nodemailer");
 const sendOtpEmail = async (email, otp, userName) => {
   let Otp = otp.toString();
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    // host: "smtp.office365.com",
+    service: "Outlook365",
     auth: {
-      user: "rohitflexsin123@gmail.com",
-      pass: "mhhxonagyjtyrfni",
+      user: "dev@waysaheadglobal.com",
+      pass: "Singapore@2022",
     },
   });
 
@@ -71,7 +72,7 @@ const sendOtpEmail = async (email, otp, userName) => {
 </html>`;
 
   const mailOptions = {
-    from: "rohitflexsin123@gmail.com",
+    from: "dev@waysaheadglobal.com",
     to: email,
     subject:"Otp verification Email",
     html: HTML,
@@ -90,10 +91,10 @@ const sendOtpEmail = async (email, otp, userName) => {
 const sendLoginOtp = async (email, otp, userName) => {
   let Otp = otp.toString();
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: "Outlook365",
     auth: {
-      user: "rohitflexsin123@gmail.com",
-      pass: "mhhxonagyjtyrfni",
+      user: "dev@waysaheadglobal.com",
+      pass: "Singapore@2022",
     },
   });
 
@@ -159,7 +160,7 @@ const sendLoginOtp = async (email, otp, userName) => {
 </html>`;
 
   const mailOptions = {
-    from: "rohitflexsin123@gmail.com",
+    from: "dev@waysaheadglobal.com",
     to: email,
     subject:"Co-Living: Login Otp",
     html: HTML,

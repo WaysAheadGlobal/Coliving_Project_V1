@@ -6,7 +6,7 @@ function Meals() {
             <div class="profileform">
                 <div class="row">
                     <div class="col-12 text-end mb-2">
-                        <button class="btn btn-primary text-capitalize" onclick="window.location.href='edit-meal.html'"><i class="fa-solid fa-plus"></i>&nbsp; add meal</button>
+                        <button class="btn btn-primary text-capitalize" onclick="window.location.href='edit-meal.html'"><i class="fa fa-solid fa-plus"></i>&nbsp; add meal</button>
                     </div>
                 </div>
                 <div class="table-layout1">

@@ -35,7 +35,7 @@ const Blogs = () => {
 										</div>
 										<h4>{blog.Title}</h4>
 										<p>{blog.ShortDescription}</p>
-										<a href="blog-details.html" class="readmore">Read More &nbsp;<i class="fa-solid fa fa-arrow-right"></i></a>
+										<a href="blog-details.html" class="readmore">Read More &nbsp;<i class="fa fa-solid fa fa-arrow-right"></i></a>
 									</div>
 								</div>
 							</div>

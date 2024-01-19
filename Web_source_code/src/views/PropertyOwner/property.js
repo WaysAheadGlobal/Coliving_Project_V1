@@ -71,7 +71,7 @@ function Property() {
                                 <tr key={index}>
                                 <td class="text-center">
                                     <div class="tbleimg">
-                                        <img src={`${config.Url}images/Property/` + result.propertyphoto1} class="img-fluid" alt="Meal Image" />
+                                        <img src={`${config.Url}api/images/Property/` + result.propertyphoto1} class="img-fluid" alt="Meal Image" />
                                     </div>
                                 </td>
                                 <td class="text-center">

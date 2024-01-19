@@ -1,65 +1,121 @@
-import { Link } from 'react-router-dom';
-
+import master from '../../data/masterData.json'
+import React, { useEffect, useState, useRef } from "react";
+import config from "../../Config/config";
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import UsersList from './manage-users-list';
+import UserProfileView from './manage-user-profileview';
 function ManageUsers() {
+    const history = useNavigate();
+    const [MyUsers, setMyUsers] = useState({});
+    const [CurrentUserInfo, SetCurrentUserInfo] = useState({});
+    const [CurrentUserDetail, SetCurrentUserDetail] = useState({});
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentUserId, setCurrentUserId] = useState(1);
+    const [recordsPerPage] = useState(10);
+    const [viewPage, SetViewPage] = useState(1);
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+
+
+    const currentRecords = MyUsers && MyUsers.length > 0 && MyUsers.slice(indexOfFirstRecord, 
+        indexOfLastRecord);
+
+    const nPages = Math.ceil(MyUsers.length / recordsPerPage)
+        
+    const SetPage = (i) => (e) => {
+        setCurrentPage(i);
+    }
+
+    const HandleViewPage = (i, userid) => (e) => {
+        SetViewPage(i);
+        setCurrentUserId(userid)
+        getUserInfo(userid);
+    }
+
+    useEffect(() => {
+        getUsers()
+    }, []);
+    function getUserInfo(userid) {
+        const apiUrl = `${config.Url}api/admin/UserInfo`;
+        let formData = JSON.stringify({
+            "user_id": userid
+        });
+        fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("usertoken")
+            },
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                if (data.status === 200) {
+                    SetCurrentUserInfo(data.user[0]);
+                    SetCurrentUserDetail(data.detail[0]);
+                } else {
+                    toast.error(data.message, {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                    console.error("Error fetching user data");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+    }
+
+    function getUsers() {
+        const apiUrl = `${config.Url}api/admin/allUsers`;
+        fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("usertoken")
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                if (data.status === 200) {
+                    //this.setState({ postData: data.data });
+                    setMyUsers(data.users);
+                    // setTotalCount(data.users.length);
+                    // setTotalPages(data.users.length / limit)
+                } else {
+                    toast.error(data.message, {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                    console.error("Error fetching user data");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+    }
     return (
         <>
             <div class="adminTitle">
-                <h4 class="content-title">
-                    Manage user
-                </h4>
+            <h4 class="content-title backitem">
+				<span>Manage User</span>
+                {viewPage == 1 ? null :
+				<span><a href="javascript:void(0);" onClick={HandleViewPage(1, 0)}><i class="fa fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
+}
+            </h4>
             </div>
+            {viewPage == 1 ?
             <div class="adminCard">
                 <div class="profileform">
-                    <div class="table-layout1">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">image</th>
-                                        <th class="text-center">User name</th>
-                                        <th class="text-center">Email ID</th>
-                                        <th class="text-center">Mobile Number</th>
-                                        <th class="text-center">community</th>
-                                        <th class="text-center">Location</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="text-center">
-                                            <div class="tbleimg">
-                                                <img src={require('./../../img/icons/usersquare.png')} class="img-fluid" alt="Manage User Icon" />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            John Mark
-                                        </td>
-                                        <td class="text-center">
-                                            john.mark@gmail.com
-                                        </td>
-                                        <td class="text-center">
-                                            60 7234 4327
-                                        </td>
-                                        <td class="text-center">
-                                            Student
-                                        </td>
-                                        <td class="text-center">
-                                            Ontario
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="tablebtngrp">
-
-                                                <button class="eye" onclick="/admin/manage-user-view"><i class="fa-regular fa-eye"></i></button>
-                                                <button class="delete"><i class="fa-regular fa-trash-can"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    <UsersList MyUsers={MyUsers} currentPage={currentPage} recordsPerPage={recordsPerPage} indexOfLastRecord={indexOfLastRecord}
+                      indexOfFirstRecord={indexOfFirstRecord} nPages={nPages} SetPage={SetPage} currentRecords={currentRecords}
+                      HandleViewPage={HandleViewPage} />
                 </div>
             </div>
+            :
+            <UserProfileView CurrentUserInfo={CurrentUserInfo} CurrentUserDetail={CurrentUserDetail} /> }
         </>
     );
 }

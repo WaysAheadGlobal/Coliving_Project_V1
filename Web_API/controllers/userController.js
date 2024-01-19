@@ -49,10 +49,45 @@ async function getUserProfile(req, res) {
       res.status(500).json({ message: "Internal Server Error", status: 500 });
     }
   }
+
+  async function GetAllUsers(req, res) {
+    try {
+      
+  
+      // Check if the email exists
+      const getUserDetail = await userModel.getAllUsers();
+      
+      res
+        .status(200)
+        .json({ message: "Users fetched!!!", users: getUserDetail, status: 200 });
+    } catch (error) {
+      console.error("Error during signup:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
+  async function GetUserDetailById(req, res) {
+    try {
+      
+      const {user_id} = req.body;
+      // Check if the email exists
+      const userinfo = await userModel.getUsersByIDForAdmin(user_id);
+      const userDetailinfo = await userModel.getUserDetailByIDForAdmin(user_id);
+      
+      res
+        .status(200)
+        .json({ message: "Users fetched!!!", user: userinfo, detail: userDetailinfo, status: 200 });
+    } catch (error) {
+      console.error("Error during signup:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
   
 module.exports = {
     getUserProfile,
     updateUserProfile,
-    saveUpdatePersonalDetails
+    saveUpdatePersonalDetails,
+    GetAllUsers,
+    GetUserDetailById
   };
   
