@@ -1,5 +1,65 @@
+import master from '../../data/masterData.json'
+import React, { useEffect, useState, useRef } from "react";
+import config from "../../Config/config";
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import UsersList from './manage-users-list';
+import PropertyList from './manage-property-list';
 
 function ManageProperty() {
+    const history = useNavigate();
+    const [MyPropertyList, setMyPropertyList] = useState({});
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentUserId, setCurrentUserId] = useState(1);
+    const [recordsPerPage] = useState(2);
+    const [viewPage, SetViewPage] = useState(1);
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  
+
+    const currentRecords = MyPropertyList && MyPropertyList.length > 0 && MyPropertyList.slice(indexOfFirstRecord, 
+        indexOfLastRecord);
+
+    const nPages = Math.ceil(MyPropertyList.length / recordsPerPage)
+        
+    const SetPage = (i) => (e) => {
+        setCurrentPage(i);
+    }
+
+    const HandleViewPage = (i, userid) => (e) => {
+        SetViewPage(i);
+        setCurrentUserId(userid)
+    }
+    useEffect(() => {
+        getProperties()
+    }, []);
+    function getProperties() {
+        const apiUrl = `${config.Url}api/admin/PropertyList`;
+        fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("usertoken")
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                if (data.status === 200) {
+                    setMyPropertyList(data.propertyList);
+                } else {
+                    toast.error(data.message, {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                    console.error("Error fetching user data");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+    }
+
     return (
         <>
             <div class="adminTitle">
@@ -7,63 +67,9 @@ function ManageProperty() {
                     Manage Property
                 </h4>
             </div>
-
-            <div class="adminCard">
-                <div class="profileform">
-                    <div class="table-layout1">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">image</th>
-                                        <th class="text-center">Host name</th>
-                                        <th class="text-center">Email ID</th>
-                                        <th class="text-center">Mobile Number</th>
-                                        <th class="text-center">property type</th>
-                                        <th class="text-center">property name</th>
-                                        <th class="text-center">location</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="text-center">
-                                            <div class="tbleimg">
-                                                <img src={require('./../../img/icons/usersquare.png')} class="img-fluid" alt="Manage User Icon" />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            David Oliver
-                                        </td>
-                                        <td class="text-center">
-                                            david.oliver@gmail.com
-                                        </td>
-                                        <td class="text-center">
-                                            +1 85 8963 5523
-                                        </td>
-                                        <td class="text-center">
-                                            Apartment
-                                        </td>
-                                        <td class="text-center">
-                                            Urban Styled
-                                        </td>
-                                        <td class="text-center">
-                                            Ontario
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="tablebtngrp">
-                                                <button class="eye" onclick="window.location.href='manage-property-view.html'"><i class="fa-regular fa-eye"></i></button>
-                                                <button class="delete"><i class="fa-regular fa-trash-can"></i></button>
-                                                <button class="vDots" data-bs-toggle="modal" data-bs-target="#contacthost"><i class="fa fa-solid fa-ellipsis-vertical"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <PropertyList currentPage={currentPage} recordsPerPage={recordsPerPage} indexOfLastRecord={indexOfLastRecord}
+                      indexOfFirstRecord={indexOfFirstRecord} nPages={nPages} SetPage={SetPage} currentRecords={currentRecords}
+                      HandleViewPage={HandleViewPage}/>
         </>
     );
 }

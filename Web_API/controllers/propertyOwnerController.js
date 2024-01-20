@@ -49,9 +49,23 @@ async function savePropertyInfo(req, res) {
       res.status(500).json({ message: "Internal Server Error", status: 500 });
     }
   }
+
+  async function getOwnersPropertyListForAdmin(req, res) {
+    try {
+    //   // Check if the email exists
+      const propertyList = await propertyModel.getOwnersPropertyListForAdmin();
+      res
+        .status(200)
+        .json({ message: 'Success', propertyList: propertyList, status: 200 });
+    } catch (error) {
+      console.error("Error during signup:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
   module.exports = {
     savePropertyInfo,
     getOwnerPropertyInfo,
-    getOwnerPropertyInfoByProertyId
+    getOwnerPropertyInfoByProertyId,
+    getOwnersPropertyListForAdmin
   };
   

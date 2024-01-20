@@ -119,7 +119,7 @@ async function getUserById(userid) {
 
   async function getAllUsers() {
     try {
-      const [rows] = await db.query("SELECT * FROM users order by user_id desc");
+      const [rows] = await db.query("SELECT * FROM colivingappdb.users a join userdetails b on a.user_id = b.user_id where a.isdeleted = 0 order by a.user_id desc");
       return rows;
     } catch (error) {
       throw error;
@@ -144,6 +144,54 @@ async function getUserById(userid) {
     }
   }
 
+  async function updateIdProofDocument(userid, status, remarks) {
+    console.log('asd')
+    try {
+      const [result] = await db.query(
+        "UPDATE userdetails set idproofstatus=?, idproofremark=? where user_id=?",
+        [status, remarks, userid]
+      );
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function updateUniversityIdProofDocument(userid, status, remarks) {
+    try {
+      const [result] = await db.query(
+        "UPDATE userdetails set universityidstatus=?, universityidremarks=? where user_id=?",
+        [status, remarks, userid]
+      );
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function updateUserStatus(userid, status) {
+    try {
+      const [result] = await db.query(
+        "UPDATE users set status=? where user_id=?",
+        [status, userid]
+      );
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+  async function DeleteUser(userid) {
+    try {
+      const [result] = await db.query(
+        "UPDATE users set Isdeleted=1 where user_id=?",
+        [userid]
+      );
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
 module.exports = {
     updateUserProfile,
     getUserById,
@@ -152,6 +200,10 @@ module.exports = {
     checkUserFillPropertyDetail,
     getAllUsers,
     getUsersByIDForAdmin,
-    getUserDetailByIDForAdmin
+    getUserDetailByIDForAdmin,
+    updateIdProofDocument,
+    updateUniversityIdProofDocument,
+    updateUserStatus,
+    DeleteUser
   };
   

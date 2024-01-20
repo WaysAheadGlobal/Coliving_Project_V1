@@ -45,7 +45,7 @@ async function getUserProfile(req, res) {
         .status(200)
         .json({ message: "Profile Updated Successfully.", getUserDetail, status: 200 });
     } catch (error) {
-      console.error("Error during signup:", error);
+      console.error("Error during Profile Update:", error);
       res.status(500).json({ message: "Internal Server Error", status: 500 });
     }
   }
@@ -61,7 +61,7 @@ async function getUserProfile(req, res) {
         .status(200)
         .json({ message: "Users fetched!!!", users: getUserDetail, status: 200 });
     } catch (error) {
-      console.error("Error during signup:", error);
+      console.error("Error during getAllUsers:", error);
       res.status(500).json({ message: "Internal Server Error", status: 500 });
     }
   }
@@ -78,7 +78,71 @@ async function getUserProfile(req, res) {
         .status(200)
         .json({ message: "Users fetched!!!", user: userinfo, detail: userDetailinfo, status: 200 });
     } catch (error) {
-      console.error("Error during signup:", error);
+      console.error("Error during userinfo:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
+  async function updateIDProofDocument(req, res) {
+    try {
+      
+      const {user_id, status, remarks} = req.body;
+      // Check if the email exists
+      await userModel.updateIdProofDocument(user_id, status, remarks);
+      
+      res
+        .status(200)
+        .json({ message: "Document updated!!", status: 200 });
+    } catch (error) {
+      console.error("Error during Document update:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
+  async function updateUniveristyIDProofDocument(req, res) {
+    try {
+      
+      const {user_id, status, remarks} = req.body;
+      // Check if the email exists
+      await userModel.updateUniversityIdProofDocument(user_id, status, remarks);
+      
+      res
+        .status(200)
+        .json({ message: "Document updated!!", status: 200 });
+    } catch (error) {
+      console.error("Error during Document update:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
+  async function updateUserStatus(req, res) {
+    try {
+      
+      const {user_id, status} = req.body;
+      // Check if the email exists
+      await userModel.updateUserStatus(user_id,status);
+      
+      res
+        .status(200)
+        .json({ message: "Document updated!!", status: 200 });
+    } catch (error) {
+      console.error("Error during user update:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
+  async function DeleteUser(req, res) {
+    try {
+      
+      const {user_id} = req.body;
+      // Check if the email exists
+      await userModel.DeleteUser(user_id);
+      
+      res
+        .status(200)
+        .json({ message: "User deleted !!", status: 200 });
+    } catch (error) {
+      console.error("Error during User delete", error);
       res.status(500).json({ message: "Internal Server Error", status: 500 });
     }
   }
@@ -88,6 +152,10 @@ module.exports = {
     updateUserProfile,
     saveUpdatePersonalDetails,
     GetAllUsers,
-    GetUserDetailById
+    GetUserDetailById,
+    updateIDProofDocument,
+    updateUniveristyIDProofDocument,
+    updateUserStatus,
+    DeleteUser
   };
   

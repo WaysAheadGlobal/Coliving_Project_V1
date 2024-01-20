@@ -13,6 +13,17 @@ async function signupUser(Fullname, email, mobileNo, communityType, userType,otp
     throw error;
   }
 }
+async function getUserByEmailWithoutStatus(email) {
+  try {
+    const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [
+      email,
+    ]);
+    console.log('rows------>',rows)
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
 
 async function getUserByEmail(email) {
   try {
@@ -84,7 +95,7 @@ async function clearToken(userId) {
 
 async function getUserByEmailAndType(email, type) {
   try {
-    const [rows] = await db.query("SELECT * FROM users WHERE email = ? and status = 1 and userType = ?", [
+    const [rows] = await db.query("SELECT * FROM users WHERE email = ? and userType = ?", [
       email, type
     ]);
     console.log('rows------>',rows)
@@ -128,5 +139,6 @@ module.exports = {
   getUserOTP,
   getUserByEmailAndType,
   updateUserOTP,
-  updateUserStatus
+  updateUserStatus,
+  getUserByEmailWithoutStatus
 };

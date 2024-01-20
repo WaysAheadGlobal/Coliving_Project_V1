@@ -84,10 +84,10 @@ const PersonalDetail = () => {
         window.scrollTo(0, 0)
         // const err = validate(personalDetail);
         // SetFormErrors(err);
-         alert(selectedTab);
-        if(selectedTab == 4){
-            setTimeout(()=> history("/user/profile"),3000);
-        }
+        //  alert(selectedTab);
+        // if(selectedTab == 4){
+        //     // setTimeout(()=> history("/user/profile"),3000);
+        // }
         if(selectedTab == 3){
             let formData = JSON.stringify(personalDetail);
             const apiUrl = `${config.Url}api/user/savePersonalDetail`;
@@ -264,7 +264,6 @@ const PersonalDetail = () => {
                             <div className="personaldetailform">
                                 <DetailTab1 detail={personalDetail} handleInputChange={handleInputChange} handleChange={handleChange} FormErrors={FormErrors}
                                  handleClick={handleClick} hiddenFileInput={hiddenFileInput} handleDocumentClick={handleDocumentClick} handleDocumentChange={handleDocumentChange} />
-
                             </div>
                         </div>
                         <div className={selectedTab == 2 ? "tab-pane fade show active" : "tab-pane fade"} id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -293,7 +292,7 @@ const PersonalDetail = () => {
                                 <img src={require('./../../img/success.png')} style={{width: '100px', textAlign: 'center'}} />
                             </div>
                             <div className="detail-1 p-detail" style={{textAlign: 'center'}}>
-                                <h4 style={{textAlign: 'center', marginTop: '20px', marginBottom: '20px'}}>Your profile has been successfully created</h4>
+                                <h4 style={{textAlign: 'center', marginTop: '20px', marginBottom: '20px'}}>Your profile has been successfully created <br />and you will get confirmation email once your account will be approved by co-living.</h4>
                             </div>
                         </div>
                     </div>

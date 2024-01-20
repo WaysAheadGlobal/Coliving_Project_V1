@@ -364,7 +364,14 @@ const TopMenu = () => {
 								localStorage.setItem("userid", data.user.user_id)
 							}, 300);
 							clearTimer(getDeadTime());
-						} else {
+						}
+						else if(data.status === 401) {
+							const errors = {};
+
+							errors.email = "Account is not active. Please check with admin.";
+							setFormLoginErrors(errors)
+						}
+						 else {
 							const errors = {};
 
 							errors.email = "Email not found!!";

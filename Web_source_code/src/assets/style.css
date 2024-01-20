@@ -1193,6 +1193,13 @@ ol, ul {
     border: 0px;
     z-index: 9;
 }
+.sideMenu ul li a.active {
+    background: white;
+    color: var(--co-primary);
+}
+.sideMenu ul li a.active img.img-fluid {
+    filter: brightness(0.5) !important;
+}
 /* .userloginbtn {
     display: flex !important;
 }

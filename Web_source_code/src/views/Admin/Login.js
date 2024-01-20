@@ -14,6 +14,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import master from '../../data/masterData.json';
 
 function AdminLogin() {
+	const ref = useRef(null);
+	const ref2 = useRef(null);
+	const ref3 = useRef(null);
+	const ref4 = useRef(null);
 	const history = useNavigate();
 	const options = {
 		margin: 30,
@@ -50,15 +54,27 @@ function AdminLogin() {
 	const modalUserSelectionOpen = () => setuserSelection(true);
 	const [userSelection, setuserSelection] = useState(false);
 	const [ShowOTP, SetShowOTP] = useState(false);
+	
 	const getUserSelection = id => e => {
 		e.preventDefault();
 		setuserSelection(false);
 	}
 	const handleInputChange = (e) => {
-		console.log(e.target);
+		console.log(e.keyCode);
 		const { name, value } = e.target;
 		SetFormValues({ ...formValues, [name]: value });
 		console.log(formValues);
+		if(value != ""){
+		if(name == "otp1"){
+			ref2.current.focus();
+		}
+		if(name == "otp2"){
+			ref3.current.focus();
+		}
+		if(name == "otp3"){
+			ref4.current.focus();
+		}
+	}
 	}
 
 	const CheckLogin = (e) => {
@@ -463,14 +479,14 @@ function AdminLogin() {
 											<div class="form-group mb-4">
 												<div class="optSec" style={{ display: ShowOTP ? "block" : "none" }}>
 													<div class="otpValue">
-														<input type="text" name="otp1" maxlength="1" minlength="1" value={formValues.otp1} onChange={handleInputChange} />
-														<input type="text" name="otp2" maxlength="1" minlength="1" value={formValues.otp2} onChange={handleInputChange} />
-														<input type="text" name="otp3" maxlength="1" minlength="1" value={formValues.otp3} onChange={handleInputChange} />
-														<input type="text" name="otp4" maxlength="1" minlength="1" value={formValues.otp4} onChange={handleInputChange} />
+														<input type="text" name="otp1" ref={ref} maxlength="1" minlength="1" value={formValues.otp1} onChange={handleInputChange} />
+														<input type="text" name="otp2" ref={ref2} maxlength="1" minlength="1" value={formValues.otp2} onChange={handleInputChange} />
+														<input type="text" name="otp3" ref={ref3} maxlength="1" minlength="1" value={formValues.otp3} onChange={handleInputChange} />
+														<input type="text" name="otp4" ref={ref4} maxlength="1" minlength="1" value={formValues.otp4} onChange={handleInputChange} />
 													</div>
 													<span className='error'>{formErrors.otp1}</span>
 													<div class="countdowntime">
-														<span>00:14</span>
+														<span>00:00</span>
 														<a href="#/">Resend OTP</a>
 													</div>
 												</div>

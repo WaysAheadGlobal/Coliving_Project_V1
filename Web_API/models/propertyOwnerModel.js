@@ -8,19 +8,20 @@ async function saveUpdateProperty(req) {
       travelguide, events, propertyphoto1, propertyphoto2, propertyphoto3, propertyphoto4, propertyphoto5, propertyvideo, apartmentamenities, communityamenities,
       country, province, address, landmark, zipcode, markongoogle, cancellantionpolicy, description, host_name, host_emailid,
       host_mobileno, host_dob, host_gender, host_location, host_aboutyourself,
-      roomDetails,
+      roomDetails,host_idproof, host_propertyOwnershopdocument, host_employmentdetails, host_companyidproof
     } = req;
     if (property_id === 0) {
       const [result] = await db.query(
         "INSERT INTO propertymaster (user_id, propertyname, housetype, totalrooms, bathroom, livingroom, kitchen, residants, apartmentsize, evcharger, fireextinguisher," +
         "travelguide, events, propertyphoto1, propertyphoto2, propertyphoto3, propertyphoto4, propertyphoto5, propertyvideo," +
         "apartmentamenities, communityamenities, country, province, address, landmark, zipcode, markongoogle, cancellantionpolicy, description, host_name, host_emailid," +
-        "host_mobileno, host_dob, host_gender, host_location, host_aboutyourself) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?" +
-        ",?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        "host_mobileno, host_dob, host_gender, host_location, host_aboutyourself, host_idproof, host_propertyOwnershopdocument, host_employmentdetails, host_companyidproof) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?" +
+        ",?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?)",
         [user_id, propertyname, housetype, totalrooms, bathroom, livingroom, kitchen, residants, apartmentsize, evcharger, fireextinguisher,
           travelguide, events, propertyphoto1, propertyphoto2, propertyphoto3, propertyphoto4, propertyphoto5, propertyvideo,
           apartmentamenities, communityamenities, country, province, address, landmark, zipcode, markongoogle, cancellantionpolicy, description, host_name, host_emailid,
-          host_mobileno, host_dob, host_gender, host_location, host_aboutyourself]
+          host_mobileno, host_dob, host_gender, host_location, host_aboutyourself, host_idproof, host_propertyOwnershopdocument, 
+          host_employmentdetails, host_companyidproof]
       );
 
       var propertyid = result.insertId;
@@ -39,11 +40,12 @@ async function saveUpdateProperty(req) {
         "UPDATE propertymaster SET propertyname=?, housetype=?, totalrooms=?, bathroom=?, livingroom=?, kitchen=?, residants=?, apartmentsize=?, evcharger=?, fireextinguisher=?," +
         "travelguide=?, events=?, propertyphoto1=?, propertyphoto2=?, propertyphoto3=?, propertyphoto4=?, propertyphoto5=?, propertyvideo=?," +
         "apartmentamenities=?, communityamenities=?, country=?, province=?, address=?, landmark=?, zipcode=?, markongoogle=?, cancellantionpolicy=?, description=?, host_name=?, host_emailid=?," +
-        "host_mobileno=?, host_dob=?, host_gender=?, host_location=?, host_aboutyourself=? WHERE id=?",
+        "host_mobileno=?, host_dob=?, host_gender=?, host_location=?, host_aboutyourself=?, host_idproof=?, host_propertyOwnershopdocument=?,host_employmentdetails=?,host_companyidproof=?   WHERE id=?",
         [propertyname, housetype, totalrooms, bathroom, livingroom, kitchen, residants, apartmentsize, evcharger, fireextinguisher,
           travelguide, events, propertyphoto1, propertyphoto2, propertyphoto3, propertyphoto4, propertyphoto5, propertyvideo,
           apartmentamenities, communityamenities, country, province, address, landmark, zipcode, markongoogle, cancellantionpolicy, description, host_name, host_emailid,
-          host_mobileno, host_dob, host_gender, host_location, host_aboutyourself, property_id]
+          host_mobileno, host_dob, host_gender, host_location, host_aboutyourself, host_idproof, host_propertyOwnershopdocument, 
+          host_employmentdetails, host_companyidproof, property_id]
       );
 
       var propertyid = result.insertId;
@@ -144,9 +146,24 @@ async function getOwnerPropertyRoomInfoUsingPropertyId(property_id) {
   }
 }
 
+async function getOwnersPropertyListForAdmin() {
+  try {
+
+
+    const [result] = await db.query(
+      "SELECT * from propertymaster order by id desc"
+    );
+    return result;
+
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   saveUpdateProperty,
   getOwnerPropertyInfo,
   getOwnerPropertyInfoUsingPropertyId,
-  getOwnerPropertyRoomInfoUsingPropertyId
+  getOwnerPropertyRoomInfoUsingPropertyId,
+  getOwnersPropertyListForAdmin
 };

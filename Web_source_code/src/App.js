@@ -41,7 +41,7 @@ import AdminBookingRequest from './views/Admin/booking-request';
 import AdminBookingRequestView from './views/Admin/booking-view';
 import Filldetail from './views/Admin/Fill-detail';
 
-//user pages
+//Property user pages
 import OwnerStayRequest from './views/PropertyOwner/stay-request';
 import OwnerStayView from './views/PropertyOwner/stay-view';
 import OwnerEvents from './views/PropertyOwner/add-event';
@@ -53,6 +53,7 @@ import OwnerProertyAdd from './views/PropertyOwner/edit-property';
 import OwnerMessages from './views/PropertyOwner/message';
 import OwnerPayments from './views/PropertyOwner/payment';
 import OwnerNotifications from './views/PropertyOwner/notifications';
+import OwnerThankYou from './views/PropertyOwner/thank-you';
 
 function App() {
 
@@ -113,6 +114,10 @@ function App() {
                     path: "/Payment",
                     element: <Payment />,
                 },
+                {
+                    path: "/owner/thanks",
+                    element: <OwnerThankYou />,
+                }
             ],
         }, 
         {

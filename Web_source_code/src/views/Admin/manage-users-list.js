@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router-dom';
 function AllUsers(props) {
     return (
         <div class="table-layout1">
-            {console.log('props', props)}
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -49,7 +48,7 @@ function AllUsers(props) {
                                             <td class="text-center">
                                                 <div class="tablebtngrp">
                                                     <button class="eye" onClick={props.HandleViewPage(2, user.user_id)}><i class="fa fa-regular fa-eye"></i></button>
-                                                    <button class="delete"><i class="fa fa-regular fa-trash"></i></button>
+                                                    <button class="delete" onClick={props.handleDeleteProfile(user.user_id)}><i class="fa fa-regular fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
