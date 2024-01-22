@@ -1,7 +1,6 @@
 import config from "../../Config/config";
 
 const ListingItem =(props) => {
-    console.log('props.item', props.item)
     return (
         <div class="articleItem">
             <div class="row">
@@ -13,7 +12,7 @@ const ListingItem =(props) => {
                                 <div class="badge1">New</div>
                                 <div class="badge2 mt-1">Available</div>
                             </div>
-                            <div class="whishlist">
+                            <div id={`prop`+props.item.id} class={props.item.WaitingId == 1 ? "whishlist nowait" : "whishlist wait"} onClick={()=> props.updateWaitingList(props.item.id)}>
                                 <i class="fa fa-regular fa-heart"></i>
                             </div>
                         </div>

@@ -1,9 +1,6 @@
 import { useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom'; 
 function AdminMenu() {
-    useEffect(() => {
-        console.log('history')
-    }, [])
     return (
         <nav class="sideMenu">
             <ul>

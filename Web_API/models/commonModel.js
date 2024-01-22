@@ -4,17 +4,20 @@ const db = require("../config/dbConfig"); // Replace with your actual database c
 async function getPropertyListing(req) {
   try {
     const {country, moveInDate, apartment, roomtype, kitchen, evcharger, 
-    agepreference, furniture} = req.body;
+    agepreference, furniture,} = req.body;
+    const user_id = req.user.userId;
 
     let query = `
-    SELECT  distinct a.*, MIN(b.roomrent) MinRent  from propertymaster a
-    JOIN property_roommaster b on a.id = b.property_id
+    SELECT  distinct propmaster.*, MIN(roommaster.roomrent) MinRent,
+    ISNULL((select id from user_waitinglist where property_id=propmaster.id and user_id=?)) WaitingId
+    from propertymaster propmaster
+    JOIN property_roommaster roommaster on propmaster.id = roommaster.property_id
     WHERE 1 = 1 
     `;
     
     // Create an array to store the parameters for the query
     const params = [];
-
+    params.push(user_id);
     // Add filter based on filter
     if (country != 0) {
       query += ' AND a.country = ?';
@@ -25,30 +28,30 @@ async function getPropertyListing(req) {
     //   params.push(moveInDate);
     // }
     if (apartment != 0) {
-      query += ' AND a.housetype = ?';
+      query += ' AND roommaster.housetype = ?';
       params.push(apartment);
     }
     if (roomtype != 0) {
-      query += ' AND b.roomtype = ?';
+      query += ' AND roommaster.roomtype = ?';
       params.push(roomtype);
     }
     if (kitchen != 0) {
-      query += ' AND a.kitchen = ?';
+      query += ' AND roommaster.kitchen = ?';
       params.push(kitchen);
     }
     if (evcharger != 0) {
-      query += ' AND a.evcharger = ?';
+      query += ' AND roommaster.evcharger = ?';
       params.push(evcharger);
     }
     if (agepreference != 0) {
-      query += ' AND b.agegrouppreference = ?';
+      query += ' AND roommaster.agegrouppreference = ?';
       params.push(agepreference);
     }
     if (furniture != 0) {
-      query += ' AND b.furniture = ?';
+      query += ' AND roommaster.furniture = ?';
       params.push(furniture);
     }
-    query += ' group by a.id';
+    query += ' group by propmaster.id';
     const [result] = await db.query(query, params);
     return result;
 

@@ -27,6 +27,8 @@ import MyStay from './views/User/my-stay';
 import Notifications from './views/User/notifications';
 import WishList from './views/User/wishlist';
 import PersonalDetail from './views/User/personalDetail';
+import LoyaltyPoints from './views/User/LoyaltyPoints';
+import RewardHistory from './views/User/RewardHistory';
 
 //admin pages
 import AdminLogin from './views/Admin/Login';
@@ -153,7 +155,14 @@ function App() {
                     path: "/user/wishlist",
                     element: <WishList />,
                 },
-               
+                {
+                    path: "/user/loyalty-points",
+                    element: <LoyaltyPoints />,
+                },
+                {
+                    path: "/user/reward-history",
+                    element: <RewardHistory />,
+                },
             ],
         },
         {

@@ -711,6 +711,8 @@ ul.aminew li:last-child:after{content:"";}
 .sidebar ul li a:hover img{filter:brightness(0) saturate(100%) invert(50%) sepia(84%) saturate(765%) hue-rotate(3deg) brightness(107%) contrast(90%);}
 .sidebar ul li.active a{background:rgba(242, 150, 13, 0.10); color:var(--co-primary);}
 .sidebar ul li.active a img{filter:brightness(0) saturate(100%) invert(50%) sepia(84%) saturate(765%) hue-rotate(3deg) brightness(107%) contrast(90%);}
+.sidebar ul li a.active{background:rgba(242, 150, 13, 0.10); color:var(--co-primary);}
+.sidebar ul li a.active img{filter:brightness(0) saturate(100%) invert(50%) sepia(84%) saturate(765%) hue-rotate(3deg) brightness(107%) contrast(90%);}
 
 .content-area{border:1px solid #d3d3d3; border-radius:10px; height:auto;}
 .content-area h4.content-title{background:var(--co-primary); font-size:20px; font-weight:500; margin-top:25px; padding:10px 40px 10px 40px; text-transform:uppercase; letter-spacing:0.5px; color:var(--co-white);}
@@ -1426,3 +1428,10 @@ ol, ul {
     display: flex !important;
 } */
 .b-body p{text-align :justify !important;}
+button.btn.btn-primary {
+    background: var(--co-primary);
+    border: var(--co-primary);
+}
+.wait i.fa.fa-regular.fa-heart {
+    color: red;
+}

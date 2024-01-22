@@ -219,7 +219,7 @@ function Profile() {
                         <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-xxl-0 mb-xl-0 mb-lg-0 mb-md-3 mb-sm-3 mb-3">
                             <div class="userimglg">
                                 {formValues.profilePic == "" ? null :
-                                <img src={`${config.Url}api/images/users/` + formValues.profilePic} class="img-fluid" alt="User uploaded image" />
+                                <img src={`${config.ImageUrl}images/users/` + formValues.profilePic} class="img-fluid" alt="User uploaded image" />
                                 }
                             </div>
                         </div>

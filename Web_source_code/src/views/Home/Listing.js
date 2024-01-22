@@ -65,9 +65,53 @@ const Listing = () => {
             });
 	}
 
+	function updateWaitingList(property_id) {
+		const apiUrl = `${config.Url}api/property/AddRemovePropertyToWaitingList`;
+		let formData = JSON.stringify({
+			"property_id": property_id
+		});
+
+        fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("usertoken")
+            },
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.resp === 0) {
+                    const element = document.getElementById('prop'+property_id);
+					if (element) {
+						element.classList.add('wait');
+						toast.success('Property removed from waiting list.', {
+							position: toast.POSITION.TOP_RIGHT,
+						});
+					  }
+                } else {
+					const element = document.getElementById('prop'+property_id);
+					if (element) {
+						element.classList.remove('wait');
+						toast.success('Property removed from waiting list.', {
+							position: toast.POSITION.TOP_RIGHT,
+						});
+					  }
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+	}
+
 	return (
         
 		<section class="padd80 page colivingpage mt-5">
+			<ToastContainer />
+				<link
+					rel="stylesheet"
+					href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap"
+				></link>
 	<div class="container">
 		<div  class="heading1 mb-4 text-start">
 			<h2>Coliving in Canada</h2>
@@ -130,7 +174,7 @@ const Listing = () => {
 			<div class="col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
 				<div class="allsideArticle">
 					{currentRecords && currentRecords.length > 0 && currentRecords.map((item, index)=> (
-                        <ListItem  item={item} />
+                        <ListItem  item={item} updateWaitingList= {updateWaitingList} />
                     ))}
 				</div>
 				<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-5 text-center">

@@ -160,10 +160,69 @@ async function getOwnersPropertyListForAdmin() {
   }
 }
 
+async function AddRemovePropertyToWaitingList(user_id, property_id) {
+  try {
+
+
+    const [checkExists] = await db.query(
+      "SELECT * from user_waitinglist where user_id=? and property_id=?"
+    , [user_id, property_id]);
+
+    if(checkExists.length == 0){
+
+    
+    const [result] = await db.query(
+      "INSERT INTO user_waitinglist (user_id, property_id) values (?,?)", [user_id, property_id]
+    );
+    return 0;
+
+    }
+    else{
+      const [result] = await db.query(
+        "DELETE FROM user_waitinglist where user_id=? and property_id=?"
+    , [user_id, property_id]);
+
+      return 1;
+    }
+
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getWaitingListPropertyListing(req) {
+  try {
+    const user_id = req.user.userId;
+
+    let query = `
+    SELECT  distinct propmaster.*, MIN(roommaster.roomrent) MinRent,
+    ISNULL((select id from user_waitinglist where property_id=propmaster.id and user_id=?)) WaitingId
+    from propertymaster propmaster
+    JOIN property_roommaster roommaster on propmaster.id = roommaster.property_id
+    JOIN user_waitinglist wait on propmaster.id = wait.property_id
+    WHERE 1 = 1 and wait.user_id=?
+    `;
+    
+    // Create an array to store the parameters for the query
+    const params = [];
+    params.push(user_id);
+    params.push(user_id);
+    
+    query += ' group by propmaster.id';
+    const [result] = await db.query(query, params);
+    return result;
+
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   saveUpdateProperty,
   getOwnerPropertyInfo,
   getOwnerPropertyInfoUsingPropertyId,
   getOwnerPropertyRoomInfoUsingPropertyId,
-  getOwnersPropertyListForAdmin
+  getOwnersPropertyListForAdmin,
+  AddRemovePropertyToWaitingList,
+  getWaitingListPropertyListing
 };

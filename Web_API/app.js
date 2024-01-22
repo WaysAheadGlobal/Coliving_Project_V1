@@ -27,7 +27,7 @@ const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
-  origin: 'http://localhost:3000'
+  origin: 'https://coliving.waysdatalabs.com/'
 };
 
 app.use(cors(corsOptions));

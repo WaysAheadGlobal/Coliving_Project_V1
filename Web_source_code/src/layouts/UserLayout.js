@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, Link, NavLink } from "react-router-dom"
 import UserTopMenu from './../componenets/UserTopMenu';
 
 export default function UserLayout() {
@@ -12,53 +12,63 @@ export default function UserLayout() {
                             <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                                 <div class="sidebar">
                                     <ul>
-                                        <li class="active">
-                                            <a href="/user/profile">
+                                        <li>
+                                            <NavLink exact activeClassName="active" to='/user/profile' >
                                                 <img src={require('./../../src/img/icons/usericon.png')} alt="user icon" />
-                                                    Profile
-                                            </a>
+                                                <span>Profile</span>
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <a href="/user/my-stay">
+                                            <NavLink exact activeClassName="active" to='/user/my-stay' >
                                                 <img src={require('./../../src/img/icons/stay.png')} class="img-fluid" alt="Stay" />
-                                                    My Stay
-                                            </a>
+                                                My Stay
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <a href="/user/events">
+                                            <NavLink exact activeClassName="active" to='/user/events' >
                                                 <img src={require('./../../src/img/icons/events.png')} class="img-fluid" alt="Event" />
-                                                    Event
-                                            </a>
+                                                Event
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <a href="/user/meal-plan">
+                                            <NavLink exact activeClassName="active" to='/user/meal-plan' >
                                                 <img src={require('./../../src/img/icons/meal.png')} class="img-fluid" alt="Meal" />
-                                                    Meal Plan
-                                            </a>
+                                                Meal Plan
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <a href="/user/messages">
+                                            <NavLink exact activeClassName="active" to='/user/messages' >
                                                 <img src={require('./../../src/img/icons/msg.png')} class="img-fluid" alt="Message" />
-                                                    Message
+                                                Message
+                                            </NavLink>
+                                            <a href="">
+
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/user/wishlist">
+                                            <NavLink exact activeClassName="active" to='/user/wishlist' >
                                                 <img src={require('./../../src/img/icons/wishlist.png')} class="img-fluid" alt="Wishlist" />
-                                                    Wishlist
-                                            </a>
+                                                Wishlist
+                                            </NavLink>
                                         </li>
+                                        
                                         <li>
-                                            <a href="/user/notifications">
+                                            <NavLink exact activeClassName="active" to='/user/notifications' >
                                                 <img src={require('./../../src/img/icons/bell.png')} class="img-fluid" alt="notifications" />
-                                                    notifications
-                                            </a>
+                                                notifications
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <a href="/logout">
-                                                <img  src={require('./../../src/img/icons/logout.png')} class="img-fluid" alt="logout" />
-                                                    Logout
-                                            </a>
+                                            <NavLink exact activeClassName="active" to='/user/loyalty-points' >
+                                            <img src={require('./../../src/img/icons/points.png')} class="img-fluid" alt="notifications" />
+                                            Loyalty Points
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink exact activeClassName="active" to='/logout' >
+                                                <img src={require('./../../src/img/icons/logout.png')} class="img-fluid" alt="logout" />
+                                                Logout
+                                            </NavLink>
                                         </li>
                                     </ul>
                                 </div>
@@ -71,7 +81,7 @@ export default function UserLayout() {
                 </div>
             </section>
             <main>
-                
+
             </main>
         </>
     )
