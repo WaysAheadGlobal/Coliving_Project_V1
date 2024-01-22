@@ -26,7 +26,7 @@ const Blogs = () => {
 								<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div class="blogItem">
 									<div class="img">
-										<img src={require('./../../img/b11.png')} class="img-fluid" alt="blog img" />
+										<img src={require(`../../../src/img/`+blog.Image)} class="img-fluid" alt="blog img" />
 									</div>
 									<div class="b-body">
 										<div class="date">
@@ -35,7 +35,7 @@ const Blogs = () => {
 										</div>
 										<h4>{blog.Title}</h4>
 										<p>{blog.ShortDescription}</p>
-										<a href="blog-details.html" class="readmore">Read More &nbsp;<i class="fa fa-solid fa fa-arrow-right"></i></a>
+										<a href={`/blog-details/`+ blog.Slug} class="readmore">Read More &nbsp;<i class="fa fa-solid fa fa-arrow-right"></i></a>
 									</div>
 								</div>
 							</div>

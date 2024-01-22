@@ -4,18 +4,19 @@ import master from '../../data/masterData.json'
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import ListItem from './ListingItem';
-import { Link, useNavigate, useParams  } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
 const ListingDetail = () => {
     const [PropertyInfo, SetPropertyListing] = useState({});
+    const [RoomInfo, SetRoomInfo] = useState([]);
     const params = useParams();
     const history = useNavigate();
-    useEffect(()=> {
-        if(params.id != "0"){
+    useEffect(() => {
+        if (params.id != "0") {
             getpropertyInfo();
         }
-        else{
+        else {
             history("/");
         }
     }, []);
@@ -35,7 +36,8 @@ const ListingDetail = () => {
             .then((response) => response.json())
             .then((data) => {
                 if (data.status === 200) {
-                    SetPropertyListing(data.listing)
+                    SetPropertyListing(data.listing);
+                    SetRoomInfo(data.roominfo);
                 } else {
                     toast.error(data.message, {
                         position: toast.POSITION.TOP_RIGHT,
@@ -49,13 +51,13 @@ const ListingDetail = () => {
     }
     return (
         <section class="page articledesc padd80 mt-5" id="photos">
-            {console.log('PropertyInfo', PropertyInfo)}
+            {console.log('PropertyInfo', RoomInfo)}
             <div class="container">
                 <div class="artical-gal">
                     <div class="row g-3">
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="artImgGal">
-                                <img src={`${config.Url}api/images/Property/` + PropertyInfo.propertyphoto1} alt="Article img" class="img-fluid" />
+                                <img src={`${config.Url}images/Property/` + PropertyInfo.propertyphoto1} alt="Article img" class="img-fluid" />
                             </div>
                         </div>
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -63,29 +65,29 @@ const ListingDetail = () => {
                                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="artImgGal">
                                         {PropertyInfo.propertyphoto2 ?
-                                        <img src={`${config.Url}api/images/Property/` + PropertyInfo.propertyphoto2} alt="Article img" class="img-fluid" />
-                                        : null }
+                                            <img src={`${config.Url}api/images/Property/` + PropertyInfo.propertyphoto2} alt="Article img" class="img-fluid" />
+                                            : null}
                                     </div>
                                 </div>
                                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="artImgGal">
-                                    {PropertyInfo.propertyphoto3 ?
-                                        <img src={`${config.Url}api/images/Property/` + PropertyInfo.propertyphoto3} alt="Article img" class="img-fluid" />
-                                        : null }
+                                        {PropertyInfo.propertyphoto3 ?
+                                            <img src={`${config.Url}api/images/Property/` + PropertyInfo.propertyphoto3} alt="Article img" class="img-fluid" />
+                                            : null}
                                     </div>
                                 </div>
                                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="artImgGal">
-                                    {PropertyInfo.propertyphoto4 ?
-                                        <img src={`${config.Url}api/images/Property/` + PropertyInfo.propertyphoto4} alt="Article img" class="img-fluid" />
-                                        : null }
+                                        {PropertyInfo.propertyphoto4 ?
+                                            <img src={`${config.Url}api/images/Property/` + PropertyInfo.propertyphoto4} alt="Article img" class="img-fluid" />
+                                            : null}
                                     </div>
                                 </div>
                                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="artImgGal">
-                                    {PropertyInfo.propertyphoto5 ?
-                                        <img src={`${config.Url}api/images/Property/` + PropertyInfo.propertyphoto5} alt="Article img" class="img-fluid" />
-                                        : null }
+                                        {PropertyInfo.propertyphoto5 ?
+                                            <img src={`${config.Url}api/images/Property/` + PropertyInfo.propertyphoto5} alt="Article img" class="img-fluid" />
+                                            : null}
                                     </div>
                                 </div>
                             </div>
@@ -225,190 +227,45 @@ const ListingDetail = () => {
                                     {/* <!-- <button class="btn btn-primary">Add your dates</button> --> */}
                                 </div>
                                 <div class="typelist mt-4">
-                                    <div class="articleItem mb-4">
-                                        <div class="row">
-                                            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 pe-xxl-0 pe-xl-0 pe-lg-0">
-                                                <div class="aImg">
-                                                    <img src={require('./../../img/article/type1.png')} alt="artical img" class="img-fluid" />
-                                                </div>
-                                            </div>
-                                            <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
-                                                <div class="typerommi">
-                                                    <div class="tleft">
-                                                        <h3>#101 Twin Bedroom</h3>
-                                                        <ul class="aminew">
-                                                            <li>Shared room</li>
-                                                            <li>74 sqft</li>
-                                                            <li>Twin bed</li>
-                                                            <li>Shared Bathroom</li>
-                                                        </ul>
-                                                        <ul class="aminew aminew1 mt-2">
-                                                            <li>Full Furnished</li>
-                                                            <li>WiFi</li>
-                                                        </ul>
+                                    {RoomInfo && RoomInfo.length > 0 && RoomInfo.map((item, index) => (
+                                        <div class="articleItem mb-4">
+                                            <div class="row">
+                                                <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 pe-xxl-0 pe-xl-0 pe-lg-0">
+                                                    <div class="aImg">
+                                                        <img src={`${config.Url}images/Property/` + item.roomphoto1} alt="artical img" class="img-fluid" />
                                                     </div>
-                                                    <div class="tright">
-                                                        <div class="d-block">
-                                                            <div class="artPrice mb-2">
-                                                                <span>From $2,175</span> /month
-                                                            </div>
-                                                            <div class="availItem mb-3">
-                                                                Available now
-                                                            </div>
-                                                            <button class="btn btn-secondary" onclick="window.location.href='payment.html'">Select</button>
+                                                </div>
+                                                <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
+                                                    <div class="typerommi">
+                                                        <div class="tleft">
+                                                            <h3>{item.roomname}</h3>
+                                                            <ul class="aminew">
+                                                                <li>Shared room</li>
+                                                                <li>74 sqft</li>
+                                                                <li>Twin bed</li>
+                                                                <li>Shared Bathroom</li>
+                                                            </ul>
+                                                            <ul class="aminew aminew1 mt-2">
+                                                                <li>Full Furnished</li>
+                                                                <li>WiFi</li>
+                                                            </ul>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="articleItem mb-4">
-                                        <div class="row">
-                                            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 pe-xxl-0 pe-xl-0 pe-lg-0">
-                                                <div class="aImg">
-                                                    <img src={require('./../../img/article/type1.png')} alt="artical img" class="img-fluid" />
-                                                </div>
-                                            </div>
-                                            <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
-                                                <div class="typerommi">
-                                                    <div class="tleft">
-                                                        <h3>#101 Twin Bedroom</h3>
-                                                        <ul class="aminew">
-                                                            <li>Shared room</li>
-                                                            <li>74 sqft</li>
-                                                            <li>Twin bed</li>
-                                                            <li>Shared Bathroom</li>
-                                                        </ul>
-                                                        <ul class="aminew aminew1 mt-2">
-                                                            <li>Full Furnished</li>
-                                                            <li>WiFi</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="tright">
-                                                        <div class="d-block">
-                                                            <div class="artPrice mb-2">
-                                                                <span>From $2,175</span> /month
-                                                            </div>
-                                                            <div class="availItem mb-3">
-                                                                Available now
-                                                            </div>
-                                                            <button class="btn btn-secondary" onclick="window.location.href='payment.html'">Select</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="articleItem mb-4">
-                                        <div class="row">
-                                            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 pe-xxl-0 pe-xl-0 pe-lg-0">
-                                                <div class="aImg">
-                                                    <img src={require('./../../img/article/type1.png')} alt="artical img" class="img-fluid" />
-                                                </div>
-                                            </div>
-                                            <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
-                                                <div class="typerommi">
-                                                    <div class="tleft">
-                                                        <h3>#101 Twin Bedroom</h3>
-                                                        <ul class="aminew">
-                                                            <li>Shared room</li>
-                                                            <li>74 sqft</li>
-                                                            <li>Twin bed</li>
-                                                            <li>Shared Bathroom</li>
-                                                        </ul>
-                                                        <ul class="aminew aminew1 mt-2">
-                                                            <li>Full Furnished</li>
-                                                            <li>WiFi</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="tright">
-                                                        <div class="d-block">
-                                                            <div class="artPrice mb-2">
-                                                                <span>From $2,175</span> /month
-                                                            </div>
-                                                            <div class="availItem mb-3">
-                                                                Available now
-                                                            </div>
-                                                            <button class="btn btn-secondary" onclick="window.location.href='payment.html'">Select</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="articleItem mb-4">
-                                        <div class="row">
-                                            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 pe-xxl-0 pe-xl-0 pe-lg-0">
-                                                <div class="aImg">
-                                                    <img src={require('./../../img/article/type1.png')} alt="artical img" class="img-fluid" />
-                                                </div>
-                                            </div>
-                                            <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
-                                                <div class="typerommi">
-                                                    <div class="tleft">
-                                                        <h3>#101 Twin Bedroom</h3>
-                                                        <ul class="aminew">
-                                                            <li>Shared room</li>
-                                                            <li>74 sqft</li>
-                                                            <li>Twin bed</li>
-                                                            <li>Shared Bathroom</li>
-                                                        </ul>
-                                                        <ul class="aminew aminew1 mt-2">
-                                                            <li>Full Furnished</li>
-                                                            <li>WiFi</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="tright">
-                                                        <div class="d-block">
-                                                            <div class="artPrice mb-2">
-                                                                <span>From $2,175</span> /month
-                                                            </div>
-                                                            <div class="availItem mb-3">
-                                                                Available now
-                                                            </div>
-                                                            <button class="btn btn-secondary" onclick="window.location.href='payment.html'">Select</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="articleItem">
-                                        <div class="row">
-                                            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 pe-xxl-0 pe-xl-0 pe-lg-0">
-                                                <div class="aImg">
-                                                    <img src={require('./../../img/article/type1.png')} alt="artical img" class="img-fluid" />
-                                                </div>
-                                            </div>
-                                            <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
-                                                <div class="typerommi">
-                                                    <div class="tleft">
-                                                        <h3>#101 Twin Bedroom</h3>
-                                                        <ul class="aminew">
-                                                            <li>Shared room</li>
-                                                            <li>74 sqft</li>
-                                                            <li>Twin bed</li>
-                                                            <li>Shared Bathroom</li>
-                                                        </ul>
-                                                        <ul class="aminew aminew1 mt-2">
-                                                            <li>Full Furnished</li>
-                                                            <li>WiFi</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="tright">
-                                                        <div class="d-block">
-                                                            <div class="artPrice mb-2">
-                                                                <span>From $2,175</span> /month
-                                                            </div>
-                                                            <div class="availItem">
-                                                                Available now
+                                                        <div class="tright">
+                                                            <div class="d-block">
+                                                                <div class="artPrice mb-2">
+                                                                    <span>${item.roomrent}</span> /month
+                                                                </div>
+                                                                <div class="availItem mb-3">
+                                                                    Available now
+                                                                </div>
+                                                                <button class="btn btn-secondary" onclick="window.location.href='payment.html'">Select</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    ))}
                                 </div>
                             </div>
                             <div class="cardsec mb-4" id="reviews">
@@ -598,7 +455,10 @@ const ListingDetail = () => {
                             </div>
                             <div class="form-group mb-3">
                                 <label>Room Type</label>
-                                <input type="text" name="roomtype" placeholder="Room Type" />
+                                <select>
+                                    <option value={0}>Select</option>
+                                    {master.NumbersUpto15.map((result) => (<option value={result.id}>{result.name}</option>))}
+                                </select>
                             </div>
                             <ul class="secrutiydep mb-4">
                                 <li>

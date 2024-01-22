@@ -26,92 +26,92 @@ const TopMenu = () => {
 	const ref3 = useRef(null);
 	const ref4 = useRef(null);
 	const getTimeRemaining = (e) => {
-        const total =
-            Date.parse(e) - Date.parse(new Date());
-        const seconds = Math.floor((total / 1000) % 60);
-        const minutes = Math.floor(
-            (total / 1000 / 60) % 60
-        );
-        const hours = Math.floor(
-            (total / 1000 / 60 / 60) % 24
-        );
-        return {
-            total,
-            hours,
-            minutes,
-            seconds,
-        };
-    };
+		const total =
+			Date.parse(e) - Date.parse(new Date());
+		const seconds = Math.floor((total / 1000) % 60);
+		const minutes = Math.floor(
+			(total / 1000 / 60) % 60
+		);
+		const hours = Math.floor(
+			(total / 1000 / 60 / 60) % 24
+		);
+		return {
+			total,
+			hours,
+			minutes,
+			seconds,
+		};
+	};
 	const startTimer = (e) => {
-        let { total, hours, minutes, seconds } =
-            getTimeRemaining(e);
-        if (total >= 0) {
-            // update the timer
-            // check if less than 10 then we need to
-            // add '0' at the beginning of the variable
-            setTimer(
-                (minutes > 9
-                    ? minutes
-                    : "0" + minutes) +
-                ":" +
-                (seconds > 9 ? seconds : "0" + seconds)
-            );
-        }
-    };
+		let { total, hours, minutes, seconds } =
+			getTimeRemaining(e);
+		if (total >= 0) {
+			// update the timer
+			// check if less than 10 then we need to
+			// add '0' at the beginning of the variable
+			setTimer(
+				(minutes > 9
+					? minutes
+					: "0" + minutes) +
+				":" +
+				(seconds > 9 ? seconds : "0" + seconds)
+			);
+		}
+	};
 	const startRegisterTimer = (e) => {
-        let { total, hours, minutes, seconds } =
-            getTimeRemaining(e);
-        if (total >= 0) {
-            // update the timer
-            // check if less than 10 then we need to
-            // add '0' at the beginning of the variable
-            setRegisterTimer(
-                (minutes > 9
-                    ? minutes
-                    : "0" + minutes) +
-                ":" +
-                (seconds > 9 ? seconds : "0" + seconds)
-            );
-        }
-    };
+		let { total, hours, minutes, seconds } =
+			getTimeRemaining(e);
+		if (total >= 0) {
+			// update the timer
+			// check if less than 10 then we need to
+			// add '0' at the beginning of the variable
+			setRegisterTimer(
+				(minutes > 9
+					? minutes
+					: "0" + minutes) +
+				":" +
+				(seconds > 9 ? seconds : "0" + seconds)
+			);
+		}
+	};
 	const clearTimer = (e) => {
-        // If you adjust it you should also need to
-        // adjust the Endtime formula we are about
-        // to code next
-        setTimer("00:30");
- 
-        // If you try to remove this line the
-        // updating of timer Variable will be
-        // after 1000ms or 1sec
-        if (Ref.current) clearInterval(Ref.current);
-        const id = setInterval(() => {
-            startTimer(e);
-        }, 1000);
-        Ref.current = id;
-    };
+		// If you adjust it you should also need to
+		// adjust the Endtime formula we are about
+		// to code next
+		setTimer("00:30");
+
+		// If you try to remove this line the
+		// updating of timer Variable will be
+		// after 1000ms or 1sec
+		if (Ref.current) clearInterval(Ref.current);
+		const id = setInterval(() => {
+			startTimer(e);
+		}, 1000);
+		Ref.current = id;
+	};
 	const clearRegisterTimer = (e) => {
-        // If you adjust it you should also need to
-        // adjust the Endtime formula we are about
-        // to code next
-        setRegisterTimer("00:30");
- 
-        // If you try to remove this line the
-        // updating of timer Variable will be
-        // after 1000ms or 1sec
-        if (Ref.current) clearInterval(Ref.current);
-        const id = setInterval(() => {
-            startTimer(e);
-        }, 1000);
-        Ref.current = id;
-    };
+		// If you adjust it you should also need to
+		// adjust the Endtime formula we are about
+		// to code next
+		setRegisterTimer("00:30");
+
+		// If you try to remove this line the
+		// updating of timer Variable will be
+		// after 1000ms or 1sec
+		if (Ref.current) clearInterval(Ref.current);
+		const id = setInterval(() => {
+			startTimer(e);
+		}, 1000);
+		Ref.current = id;
+	};
 	const getDeadTime = () => {
-        let deadline = new Date();
- 
-        // This is where you need to adjust if
-        // you entend to add more time
-        deadline.setSeconds(deadline.getSeconds() + 30);
-        return deadline;
-    };
+		let deadline = new Date();
+
+		// This is where you need to adjust if
+		// you entend to add more time
+		deadline.setSeconds(deadline.getSeconds() + 30);
+		return deadline;
+	};
 	const [show, setShow] = useState(false);
 	const [SignUpshow, setSignUpshow] = useState(false);
 	const [userSelection, setuserSelection] = useState(false);
@@ -121,7 +121,14 @@ const TopMenu = () => {
 	const [LoginOTPSent, setLoginOTPSent] = useState(false);
 	const [SelectedUserType, SetSelectedUserType] = useState(0);
 	// const [userName, setUserName] = useState('');
-
+	const gotoListing = (e) => {
+		if (localStorage.getItem("usertoken") != "" && localStorage.getItem("usertoken") != null) {
+			history("/listing");
+		}
+		else {
+			setuserSelection(true);
+		}
+	}
 
 	const modalClose = () => setShow(false);
 	const modalShow = (e) => {
@@ -186,13 +193,13 @@ const TopMenu = () => {
 		console.log(e.target);
 		const { name, value } = e.target;
 		setFormLoginValues({ ...formLoginValues, [name]: value });
-		if(name == "Lotp1"){
+		if (name == "Lotp1") {
 			ref2.current.focus();
 		}
-		if(name == "Lotp2"){
+		if (name == "Lotp2") {
 			ref3.current.focus();
 		}
-		if(name == "Lotp3"){
+		if (name == "Lotp3") {
 			ref4.current.focus();
 		}
 	}
@@ -265,21 +272,21 @@ const TopMenu = () => {
 						localStorage.setItem("username", data.user1.Fullname)
 						if (localStorage.getItem("userType") == "1") {
 							console.log('data', data)
-							if(!data.IsDetailsFill){
+							if (!data.IsDetailsFill) {
 								history("/user/personalDetail");
 							}
-							else{
+							else {
 								history("/user/profile");
 							}
 						}
 						else {
-							if(!data.IsPropertyFill){
+							if (!data.IsPropertyFill) {
 								history("/owner/filldetails");
 							}
-							else{
+							else {
 								history("/owner/profile");
 							}
-							
+
 						}
 					} else {
 						toast.error("data.message", {
@@ -293,12 +300,12 @@ const TopMenu = () => {
 				});
 		}
 	}
-	const ClickGetUserOTP =(e) => {
+	const ClickGetUserOTP = (e) => {
 		e.preventDefault();
 		getOTP();
 	}
 
-	const ClickGetRegisterUserOTP =(e) => {
+	const ClickGetRegisterUserOTP = (e) => {
 		e.preventDefault();
 		// const val = localStorage.getItem("userType")
 		// 		let formData = JSON.stringify({
@@ -343,44 +350,44 @@ const TopMenu = () => {
 
 	function getOTP() {
 		const val = localStorage.getItem("userType")
-				let formData = JSON.stringify({
-					"email": formLoginValues.email,
-					"usertype": val
-				});
-				const apiUrl = `${config.Url}api/auth/checkuser`;
-				fetch(apiUrl, {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: formData,
-				})
-					.then((response) => response.json())
-					.then((data) => {
-						console.log(data)
-						if (data.status === 200) {
-							setTimeout(() => {
-								setLoginOTPSent(true);
-								localStorage.setItem("userid", data.user.user_id)
-							}, 300);
-							clearTimer(getDeadTime());
-						}
-						else if(data.status === 401) {
-							const errors = {};
+		let formData = JSON.stringify({
+			"email": formLoginValues.email,
+			"usertype": val
+		});
+		const apiUrl = `${config.Url}api/auth/checkuser`;
+		fetch(apiUrl, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: formData,
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data)
+				if (data.status === 200) {
+					setTimeout(() => {
+						setLoginOTPSent(true);
+						localStorage.setItem("userid", data.user.user_id)
+					}, 300);
+					clearTimer(getDeadTime());
+				}
+				else if (data.status === 401) {
+					const errors = {};
 
-							errors.email = "Account is not active. Please check with admin.";
-							setFormLoginErrors(errors)
-						}
-						 else {
-							const errors = {};
+					errors.email = "Account is not active. Please check with admin.";
+					setFormLoginErrors(errors)
+				}
+				else {
+					const errors = {};
 
-							errors.email = "Email not found!!";
-							setFormLoginErrors(errors)
-						}
-					})
-					.catch((error) => {
-						console.error("Error fetching user data:", error);
-					});
+					errors.email = "Email not found!!";
+					setFormLoginErrors(errors)
+				}
+			})
+			.catch((error) => {
+				console.error("Error fetching user data:", error);
+			});
 	}
 
 	const CheckUserLogin = (e) => {
@@ -412,21 +419,21 @@ const TopMenu = () => {
 						localStorage.setItem("username", data.user1.Fullname)
 						if (localStorage.getItem("userType") == "1") {
 							console.log('data', data)
-							if(!data.IsDetailsFill){
+							if (!data.IsDetailsFill) {
 								history("/user/personalDetail");
 							}
-							else{
+							else {
 								history("/user/profile");
 							}
 						}
 						else {
-							if(!data.IsPropertyFill){
+							if (!data.IsPropertyFill) {
 								history("/owner/filldetails");
 							}
-							else{
+							else {
 								history("/owner/profile");
 							}
-							
+
 						}
 					} else {
 						toast.error("data.message", {
@@ -455,7 +462,7 @@ const TopMenu = () => {
 			SetErrorAvailable(true);
 
 		}
-		else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)){
+		else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
 			errors.email = 'Invalid email address';
 			SetErrorAvailable(true);
 		}
@@ -486,7 +493,7 @@ const TopMenu = () => {
 			errors.email = "Email is required!";
 			SetLoginErrorAvailable(true);
 		}
-		else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)){
+		else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
 			errors.email = 'Invalid email address';
 			SetLoginErrorAvailable(true);
 		}
@@ -510,13 +517,13 @@ const TopMenu = () => {
 							</div>
 						</div>
 						<div className="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-8 col-5 d-flex justify-content-end">
-							<div className="userloginbtn"  onClick={modalUserSelectionShow}>
+							<div className="userloginbtn" onClick={modalUserSelectionShow}>
 								<i className="fa fa-solid fa-user"></i>
 							</div>
 							<div className="mobileIcon">
-							<svg class="svg-inline--fa fa-bars-staggered" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars-staggered" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM64 256c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path></svg>
+								<svg class="svg-inline--fa fa-bars-staggered" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars-staggered" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM64 256c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path></svg>
 							</div>
-							<div className="mobileMenus" style={{display: 'block'}}>
+							<div className="mobileMenus" style={{ display: 'block' }}>
 								<div className="logo-m">
 									<a href="index">
 										<img src={require('./../../src/img/logo.png')} alt="Co-living logo missing" title="Co-living" />
@@ -529,6 +536,9 @@ const TopMenu = () => {
 										</Link>
 									</li>
 									<li><a href="#whyus">Why Us</a></li>
+									<li><Link to={"/listing"}>
+										Find my Home
+									</Link></li>
 									<li><Link to={"/blogs"}>
 										Blogs
 									</Link></li>
@@ -559,11 +569,50 @@ const TopMenu = () => {
 								<ul>
 									<li><a href="/#aboutus">About Us</a></li>
 									<li><a href="/#whyus">Why Us</a></li>
+									<li><a href="javascript:(0);" onClick={gotoListing}>
+										Find my Home
+									</a></li>
 									<li><a href="/blogs">Blogs</a></li>
 									<li><a href="/#team">Team</a></li>
 									<li><a href="/#faq">Faq</a></li>
 									<li><a href="/#cta">Contact</a></li>
-									<li className="lastnavbtn"><a href="javascript:void(0);" onClick={modalUserSelectionShow}><span>Login/Signup</span></a></li>
+									<li className="lastnavbtn2">
+										{localStorage.getItem("username") == "" ?
+											<a href="javascript:void(0);" onClick={modalUserSelectionShow}><span>Login/Signup</span></a> :
+											<div class="postuser">
+												<i class="fa fa-solid  fa-circle-user"></i>
+												<span>{localStorage.getItem("username")}</span>
+												<i class="fa fa-solid fa-caret-down"></i>
+												<div class="userdropdown">
+													<ul>
+														{localStorage.getItem("userType") == 1 ?
+															<>
+																<li class=""><a href="/user/profile">Profile</a></li>
+																<li><a href="/user/my-stay">My Stay</a></li>
+																<li><a href="/user/events">Event</a></li>
+																<li><a href="/user/meal-plan">Meal Plan</a></li>
+																<li><a href="/user/messages">Message</a></li>
+																<li><a href="/user/wishlist">Wishlist</a></li>
+																<li><a href="/user/notifications">Notification</a></li>
+																<li><a href="/logout">Logout</a></li>
+															</>
+															:
+															<>
+																<li class=""><a href="/owner/profile">Profile</a></li>
+																<li><a href="/owner/stay-request">Stay Request</a></li>
+																<li><a href="/owner/events">Event</a></li>
+																<li><a href="/owner/meals">Meals</a></li>
+																<li><a href="/owner/property">Property</a></li>
+																<li><a href="/owner/messages">Message</a></li>
+																<li><a href="/owner/payments">Payments</a></li>
+																<li><a href="/owner/notifications">Notification</a></li>
+																<li><a href="/logout">Logout</a></li>
+															</>}
+
+													</ul>
+												</div>
+											</div>
+										}</li>
 								</ul>
 							</nav>
 						</div>
@@ -612,12 +661,12 @@ const TopMenu = () => {
 														<input type="text" ref={ref3} name="Lotp3" id="Lotp3" value={formLoginValues.Lotp3} maxlength="1" minlength="1" onChange={handleLoginInputChange} />
 														<input type="text" ref={ref4} name="Lotp4" id="Lotp4" value={formLoginValues.Lotp4} maxlength="1" minlength="1" onChange={handleLoginInputChange} />
 														<div class="countdowntime">
-														<span>{timer}</span>
-														{timer == "00:00" ? 
-														<a href="#/" onClick={ClickGetUserOTP}>Resend OTP</a>: null }
+															<span>{timer}</span>
+															{timer == "00:00" ?
+																<a href="#/" onClick={ClickGetUserOTP}>Resend OTP</a> : null}
+														</div>
 													</div>
-													</div>
-													
+
 												</div>
 											</div>
 											<div class="form-group mb-3">
@@ -671,23 +720,23 @@ const TopMenu = () => {
 												<input type="text" name="mobileNo" placeholder="Mobile Number" class="form-control" id="mobileNo" value={formValues.mobileNo} onChange={handleInputChange} />
 												<span className="error">{formErrors.mobileNo}</span>
 											</div>
-											{SelectedUserType == 1 ? 
-											<div class="form-group mb-4">
-												<label>Community Type <span className="mandatory">*</span></label>
-												<select name="communityType" value={formValues.communityType} onChange={handleInputChange}>
-													<option value={0}>Select</option>
-													{master.CommunityType.map((result) => (<option value={result.id}>{result.name}</option>))}
-												</select>
-												<span className="error">{formErrors.communityType}</span>
-											</div>:
-											<div class="form-group mb-4">
-											<label>Community Type</label>
-											<select name="communityType" value={formValues.communityType} onChange={handleInputChange}>
-												<option value={0}>Select</option>
-												{master.PropertyCommunityType.map((result) => (<option value={result.id}>{result.name}</option>))}
-											</select>
-											<span className="error">{formErrors.communityType}</span>
-										</div> }
+											{SelectedUserType == 1 ?
+												<div class="form-group mb-4">
+													<label>Community Type <span className="mandatory">*</span></label>
+													<select name="communityType" value={formValues.communityType} onChange={handleInputChange}>
+														<option value={0}>Select</option>
+														{master.CommunityType.map((result) => (<option value={result.id}>{result.name}</option>))}
+													</select>
+													<span className="error">{formErrors.communityType}</span>
+												</div> :
+												<div class="form-group mb-4">
+													<label>Community Type</label>
+													<select name="communityType" value={formValues.communityType} onChange={handleInputChange}>
+														<option value={0}>Select</option>
+														{master.PropertyCommunityType.map((result) => (<option value={result.id}>{result.name}</option>))}
+													</select>
+													<span className="error">{formErrors.communityType}</span>
+												</div>}
 											<div class="form-group mb-4">
 												<div class="optSec" style={{ display: showRegisterOTP ? "block" : "none" }}>
 													<div class="otpValue">
@@ -696,10 +745,10 @@ const TopMenu = () => {
 														<input type="text" name="otp3" id="otp3" value={formValues.otp3} maxlength="1" minlength="1" onChange={handleInputChange} />
 														<input type="text" name="otp4" id="otp4" value={formValues.otp4} maxlength="1" minlength="1" onChange={handleInputChange} />
 														<div class="countdowntime">
-														<span>{Registertimer}</span>
-														{Registertimer == "00:00" ? 
-														<a href="#/" onClick={ClickGetRegisterUserOTP}>Resend OTP</a>: null }
-													</div>
+															<span>{Registertimer}</span>
+															{Registertimer == "00:00" ?
+																<a href="#/" onClick={ClickGetRegisterUserOTP}>Resend OTP</a> : null}
+														</div>
 													</div>
 												</div>
 											</div>

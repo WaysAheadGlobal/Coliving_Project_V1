@@ -1,6 +1,7 @@
 import './../../../src/assets/style.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import BlogsAPI from '../../data/blogs.json'
 
 
 import OwlCarousel from 'react-owl-carousel';
@@ -131,48 +132,25 @@ const Home = () => {
 					</div>
 
 					<OwlCarousel {...options} className="homeBlogs owl-carousel" >
-						<div className="blogItem">
-							<div className="img">
-								<img src={require('../../../src/img/b1.png')} className="img-fluid" alt="blog img missing" />
-							</div>
-							<div className="b-body">
-								<div className="date">
-									<i className="fa-regular fa-clock"></i>&nbsp;&nbsp;
-									16, Aug 2023
+					{
+						BlogsAPI && BlogsAPI.length > 0 && BlogsAPI.map((blog, index) => {
+							return(
+								<div className="blogItem">
+									<div className="img">
+										<img src={require(`../../../src/img/`+blog.Image)} className="img-fluid" alt="blog img missing" />
+									</div>
+									<div className="b-body">
+										<div className="date">
+											<i className="fa fa-regular fa-clock"></i>&nbsp;&nbsp;
+											{blog.BlogDate}
+										</div>
+										<h4>{blog.Title}</h4>
+										<p>{blog.ShortDescription}</p>
+										<a href={`/blog-details/`+ blog.Slug} className="readmore">Read More &nbsp;<i className="fa fa-solid fa-arrow-right"></i></a>
+									</div>
 								</div>
-								<h4>The Benefits of Co-Living for Young Professionals</h4>
-								<p>Discuss how co-living can provide affordable and convenient housing solutions for young professionals, emphasizing the sense of community and shared amenities.</p>
-								<a href="#/" className="readmore">Read More &nbsp;<i className="fa fa-solid fa-arrow-right"></i></a>
-							</div>
-						</div>
-						<div className="blogItem">
-							<div className="img">
-								<img src={require('../../../src/img/b2.png')} className="img-fluid" alt="blog img missing" />
-							</div>
-							<div className="b-body">
-								<div className="date">
-									<i className="fa-regular fa-clock"></i>&nbsp;&nbsp;
-									16, Aug 2023
-								</div>
-								<h4>How to Foster a Positive Co-Living Community</h4>
-								<p>Share strategies for building a supportive and friendly co-living environment, including communication, social events, and conflict resolution.</p>
-								<a href="#/" className="readmore">Read More &nbsp;<i className="fa fa-solid fa-arrow-right"></i></a>
-							</div>
-						</div>
-						<div className="blogItem">
-							<div className="img">
-								<img src={require('../../../src/img/b3.png')} className="img-fluid" alt="blog img missing" />
-							</div>
-							<div className="b-body">
-								<div className="date">
-									<i className="fa-regular fa-clock"></i>&nbsp;&nbsp;
-									16, Aug 2023
-								</div>
-								<h4>Financial Benefits of Co-Living for Property Owners</h4>
-								<p>Target property owners and investors by explaining how they can benefit from converting properties into co-living spaces.</p>
-								<a href="#/" className="readmore">Read More &nbsp;<i className="fa fa-solid fa-arrow-right"></i></a>
-							</div>
-						</div>
+							)})
+					}
 					</OwlCarousel>
 				</div>
 			</section>

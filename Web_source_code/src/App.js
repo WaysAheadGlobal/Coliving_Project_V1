@@ -80,7 +80,7 @@ function App() {
                     element: <ListingDetail />,
                 },
                 {
-                    path: "/blog-details",
+                    path: "/blog-details/:id",
                     element: <BlogDetail />,
                 },
                 {

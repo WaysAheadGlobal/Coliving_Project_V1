@@ -11,7 +11,7 @@ const UserTopMenu = () => {
 			setUserinfo(localStorage.getItem("username"));
 		}
         if(localStorage.getItem("userType") != null){
-            setUserType(localStorage.getItem("username"));
+            setUserType(localStorage.getItem("userType"));
         }
 	})
     return (

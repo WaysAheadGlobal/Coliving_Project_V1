@@ -4,7 +4,7 @@ const propertyModel = require("../models/propertyOwnerModel");
 async function getPropertyListing(req, res) {
     try {
       // Check if the email exists
-      const listing = await commonModel.getPropertyListing();
+      const listing = await commonModel.getPropertyListing(req);
       
       res
         .status(200)

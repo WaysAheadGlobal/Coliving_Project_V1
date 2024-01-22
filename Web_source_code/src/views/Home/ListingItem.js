@@ -7,7 +7,7 @@ const ListingItem =(props) => {
             <div class="row">
                 <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 pe-xxl-0 pe-xl-0 pe-lg-0">
                     <div class="aImg">
-                        <img src={`${config.Url}api/images/Property/` + props.item.propertyphoto1} alt="artical img" class="img-fluid" />
+                        <img src={`${config.Url}images/Property/` + props.item.propertyphoto1} alt="artical img" class="img-fluid" />
                         <div class="imgOvertext">
                             <div class="status">
                                 <div class="badge1">New</div>
@@ -23,7 +23,7 @@ const ListingItem =(props) => {
                     <div class="articalBody">
                         <div>
                             <label>{props.item.province}</label>
-                            <h4><a href="description.html">{props.item.propertyname}</a></h4>
+                            <h4><a href={`ListingDetail/`+props.item.id}>{props.item.propertyname}</a></h4>
                             <ul>
                                 <li>4 Bedroom</li>
                                 <li>1 shared Bathroom</li>
@@ -36,7 +36,7 @@ const ListingItem =(props) => {
                                 5.0
                             </div>
                             <div class="artPrice">
-                                From <span>$2,175</span> /month
+                                From <span>${props.item.MinRent}</span> /month
                             </div>
                         </div>
                     </div>
