@@ -7,7 +7,7 @@ const ListingItem =(props) => {
             <div class="row">
                 <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 pe-xxl-0 pe-xl-0 pe-lg-0">
                     <div class="aImg">
-                        <img src={`${config.Url}images/Property/` + props.item.propertyphoto1} alt="artical img" class="img-fluid" />
+                        <img src={`${config.ImageUrl}images/Property/` + props.item.propertyphoto1} alt="artical img" class="img-fluid" />
                         <div class="imgOvertext">
                             <div class="status">
                                 <div class="badge1">New</div>

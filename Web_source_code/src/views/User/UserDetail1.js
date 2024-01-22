@@ -16,7 +16,7 @@ function DetailTab1(props) {
                             <div class="imgupitem">
                                 <div class="imgprev" onClick={props.handleClick}>
                                     {!props.detail.profilePic ? null :
-                                        <img src={`${config.Url}images/users/` + props.detail.profilePic} alt="Room pic" class="img-fluid" />
+                                        <img src={`${config.ImageUrl}images/users/` + props.detail.profilePic} alt="Room pic" class="img-fluid" />
                                     }
                                     <input
                                         type="file"

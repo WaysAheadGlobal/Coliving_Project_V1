@@ -57,7 +57,7 @@ const ListingDetail = () => {
                     <div class="row g-3">
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="artImgGal">
-                                <img src={`${config.Url}images/Property/` + PropertyInfo.propertyphoto1} alt="Article img" class="img-fluid" />
+                                <img src={`${config.ImageUrl}images/Property/` + PropertyInfo.propertyphoto1} alt="Article img" class="img-fluid" />
                             </div>
                         </div>
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -65,28 +65,28 @@ const ListingDetail = () => {
                                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="artImgGal">
                                         {PropertyInfo.propertyphoto2 ?
-                                            <img src={`${config.Url}api/images/Property/` + PropertyInfo.propertyphoto2} alt="Article img" class="img-fluid" />
+                                            <img src={`${config.ImageUrl}images/Property/` + PropertyInfo.propertyphoto2} alt="Article img" class="img-fluid" />
                                             : null}
                                     </div>
                                 </div>
                                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="artImgGal">
                                         {PropertyInfo.propertyphoto3 ?
-                                            <img src={`${config.Url}api/images/Property/` + PropertyInfo.propertyphoto3} alt="Article img" class="img-fluid" />
+                                            <img src={`${config.ImageUrl}images/Property/` + PropertyInfo.propertyphoto3} alt="Article img" class="img-fluid" />
                                             : null}
                                     </div>
                                 </div>
                                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="artImgGal">
                                         {PropertyInfo.propertyphoto4 ?
-                                            <img src={`${config.Url}api/images/Property/` + PropertyInfo.propertyphoto4} alt="Article img" class="img-fluid" />
+                                            <img src={`${config.ImageUrl}images/Property/` + PropertyInfo.propertyphoto4} alt="Article img" class="img-fluid" />
                                             : null}
                                     </div>
                                 </div>
                                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="artImgGal">
                                         {PropertyInfo.propertyphoto5 ?
-                                            <img src={`${config.Url}api/images/Property/` + PropertyInfo.propertyphoto5} alt="Article img" class="img-fluid" />
+                                            <img src={`${config.ImageUrl}images/Property/` + PropertyInfo.propertyphoto5} alt="Article img" class="img-fluid" />
                                             : null}
                                     </div>
                                 </div>
@@ -232,7 +232,7 @@ const ListingDetail = () => {
                                             <div class="row">
                                                 <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 pe-xxl-0 pe-xl-0 pe-lg-0">
                                                     <div class="aImg">
-                                                        <img src={`${config.Url}images/Property/` + item.roomphoto1} alt="artical img" class="img-fluid" />
+                                                        <img src={`${config.ImageUrl}images/Property/` + item.roomphoto1} alt="artical img" class="img-fluid" />
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">

@@ -513,7 +513,7 @@ function AddProperty() {
                                         <div class="imgupitem">
                                         <div class="imgprev">
                                                     { propertyValues && propertyValues.propertyphoto1 == "" ? null :
-                                                    <img src={`${config.Url}api/images/Property/` + propertyValues.propertyphoto1} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.ImageUrl}images/Property/` + propertyValues.propertyphoto1} alt="Room pic" class="img-fluid" />
                                                     }
                                                     <input
                                                         type="file"
@@ -530,7 +530,7 @@ function AddProperty() {
                                         <div class="imgupitem">
                                         <div class="imgprev">
                                                 { propertyValues && propertyValues.propertyphoto2 == "" ? null :
-                                                    <img src={`${config.Url}api/images/Property/` + propertyValues.propertyphoto2} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.ImageUrl}images/Property/` + propertyValues.propertyphoto2} alt="Room pic" class="img-fluid" />
                                                     }
                                                     <input
                                                         type="file"
@@ -547,7 +547,7 @@ function AddProperty() {
                                         <div class="imgupitem">
                                         <div class="imgprev">
                                                 { propertyValues && propertyValues.propertyphoto3 == "" ? null :
-                                                    <img src={`${config.Url}api/images/Property/` + propertyValues.propertyphoto3} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.ImageUrl}images/Property/` + propertyValues.propertyphoto3} alt="Room pic" class="img-fluid" />
                                                     }
                                                     <input
                                                         type="file"
@@ -564,7 +564,7 @@ function AddProperty() {
                                         <div class="imgupitem">
                                         <div class="imgprev">
                                                 { propertyValues && propertyValues.propertyphoto4 == "" ? null :
-                                                    <img src={`${config.Url}api/images/Property/` + propertyValues.propertyphoto4} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.ImageUrl}images/Property/` + propertyValues.propertyphoto4} alt="Room pic" class="img-fluid" />
                                                     }
                                                     <input
                                                         type="file"
@@ -581,7 +581,7 @@ function AddProperty() {
                                         <div class="imgupitem">
                                         <div class="imgprev">
                                                 { propertyValues && propertyValues.propertyphoto5 == "" ? null :
-                                                    <img src={`${config.Url}api/images/Property/` + propertyValues.propertyphoto5} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.ImageUrl}images/Property/` + propertyValues.propertyphoto5} alt="Room pic" class="img-fluid" />
                                                     }
                                                     <input
                                                         type="file"
@@ -616,7 +616,7 @@ function AddProperty() {
                                                 </video>
                                                 }
                                                     {/* { propertyValues.propertyvideo == "" ? null :
-                                                    <img src={`${config.Url}api/images/PropertyVideo/` + propertyValues.propertyvideo} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.ImageUrl}images/PropertyVideo/` + propertyValues.propertyvideo} alt="Room pic" class="img-fluid" />
                                                     } */}
                                                     <input
                                                         type="file"
@@ -647,7 +647,7 @@ function AddProperty() {
                                     <div class="imgupitem">
                                                 <div class="imgprev">
                                                 { result.roomphoto1 == "" ? null :
-                                                    <img src={`${config.Url}api/images/Property/` + result.roomphoto1} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.ImageUrl}images/Property/` + result.roomphoto1} alt="Room pic" class="img-fluid" />
                                                     }
                                                     <input
                                                         type="file"
@@ -664,7 +664,7 @@ function AddProperty() {
                                             <div class="imgupitem">
                                             <div class="imgprev">
                                             { result.roomphoto2 == "" ? null :
-                                                    <img src={`${config.Url}api/images/Property/` + result.roomphoto2} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.ImageUrl}images/Property/` + result.roomphoto2} alt="Room pic" class="img-fluid" />
                                                     }
                                                 </div>
                                                 <div class="addmorerooms">
@@ -675,7 +675,7 @@ function AddProperty() {
                                             <div class="imgupitem">
                                             <div class="imgprev">
                                                 { result.roomphoto3 == "" ? null :
-                                                    <img src={`${config.Url}api/images/Property/` + result.roomphoto3} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.ImageUrl}images/Property/` + result.roomphoto3} alt="Room pic" class="img-fluid" />
                                                     }
                                                 </div>
                                                 <div class="addmorerooms">
@@ -686,7 +686,7 @@ function AddProperty() {
                                             <div class="imgupitem">
                                             <div class="imgprev">
                                                 { result.roomphoto4 == "" ? null :
-                                                    <img src={`${config.Url}api/images/Property/` + result.roomphoto4} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.ImageUrl}images/Property/` + result.roomphoto4} alt="Room pic" class="img-fluid" />
                                                     }
                                                 </div>
                                                 <div class="addmorerooms">
@@ -697,7 +697,7 @@ function AddProperty() {
                                             <div class="imgupitem">
                                             <div class="imgprev">
                                                 { result.roomphoto5 == "" ? null :
-                                                    <img src={`${config.Url}api/images/Property/` + result.roomphoto5} alt="Room pic" class="img-fluid" />
+                                                    <img src={`${config.ImageUrl}images/Property/` + result.roomphoto5} alt="Room pic" class="img-fluid" />
                                                     }
                                                 </div>
                                                 <div class="addmorerooms">

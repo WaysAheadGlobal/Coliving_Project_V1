@@ -45,7 +45,7 @@ function UserProfileView(props) {
                                     <td class="text-center">
                                         <div class="tbleimg">
                                             {props.CurrentUserInfo && props.CurrentUserInfo.profilePic != '' ?
-                                                <img src={`${config.Url}images/users/` + props.CurrentUserInfo.profilePic} class="img-fluid" alt="Manage User Icon" />
+                                                <img src={`${config.ImageUrl}images/users/` + props.CurrentUserInfo.profilePic} class="img-fluid" alt="Manage User Icon" />
                                                 :
                                                 <img src={require('../../img/icons/usersquare.png')} class="img-fluid" alt="Manage User Icon" />}
                                         </div>

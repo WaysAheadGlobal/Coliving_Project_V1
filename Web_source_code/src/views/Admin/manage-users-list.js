@@ -25,7 +25,7 @@ function AllUsers(props) {
                                             <td class="text-center">
                                                 <div class="tbleimg">
                                                     {user.profilePic != '' ?
-                                                    <img src={`${config.Url}images/users/` + user.profilePic} class="img-fluid" alt="Manage User Icon" />
+                                                    <img src={`${config.ImageUrl}images/users/` + user.profilePic} class="img-fluid" alt="Manage User Icon" />
                                                     :
                                                     <img src={require('../../img/icons/usersquare.png')} class="img-fluid" alt="Manage User Icon" /> }
                                                 </div>
