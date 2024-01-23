@@ -1,5 +1,6 @@
 // models/authModel.js
 const db = require("../config/dbConfig"); // Replace with your actual database connection
+const commonModel = require("../models/commonModel");
 
 // Function to signup a user
 async function saveUpdateProperty(req) {
@@ -226,8 +227,11 @@ var date = nowDate.getFullYear()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getDate(
       const [result] = await db.query(
         "INSERT INTO userbooking (user_id, property_id, room_id, createdate, amount, paymentmode, monthlyrent, bookingfrom, bookingto)" +
         " values (?,?,?,?,?,'VISA',?,?,?)",
-        [user_id, property_id, room_id, date, amount, monthlyrent, bookingfrom, bookingto]
+        [user_id, property_id, room_id, date, (amount/2), monthlyrent, bookingfrom, bookingto]
       );
+
+      commonModel.AddUserNotifications(user_id, "New Stay request booked Successfully.");
+      commonModel.AddUserNotifications(user_id, "$" + (amount/2) + " paid successfully.");
       return result;
 
   } catch (error) {
@@ -240,9 +244,9 @@ async function getMyStayRequests(req) {
     const user_id = req.user.userId;
 
     let query = `
-    SELECT  distinct propmaster.*
+    SELECT  propmaster.*
     from propertymaster propmaster
-    JOIN userbooking booking on propmaster.id = booking.property_id
+    LEFT JOIN userbooking booking on propmaster.id = booking.property_id
     WHERE 1 = 1 and booking.user_id=?
     `;
     

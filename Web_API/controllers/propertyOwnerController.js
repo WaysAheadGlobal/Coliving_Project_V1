@@ -1,4 +1,5 @@
 const propertyModel = require("../models/propertyOwnerModel");
+const commonModel = require("../models/commonModel");
 const sendMail = require("../utils/utils");
 
 async function savePropertyInfo(req, res) {

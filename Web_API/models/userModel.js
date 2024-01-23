@@ -192,6 +192,25 @@ async function getUserById(userid) {
     }
   }
 
+  async function getMyNotifications(req) {
+    try {
+      const user_id = req.user.userId;
+  
+      let query = `
+      SELECT * FROM user_notifications where user_id = ? ORDER BY id desc`;
+      
+      // Create an array to store the parameters for the query
+      const params = [];
+      params.push(user_id);
+      
+      const [result] = await db.query(query, params);
+      return result;
+  
+    } catch (error) {
+      throw error;
+    }
+  }
+
 module.exports = {
     updateUserProfile,
     getUserById,
@@ -204,6 +223,7 @@ module.exports = {
     updateIdProofDocument,
     updateUniversityIdProofDocument,
     updateUserStatus,
-    DeleteUser
+    DeleteUser,
+    getMyNotifications
   };
   

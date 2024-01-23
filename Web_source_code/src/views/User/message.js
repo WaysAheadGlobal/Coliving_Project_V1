@@ -2,7 +2,7 @@
 function Messages() {
     return (
         <div class="content-area">
-            <h4 class="content-title">Event</h4>
+            <h4 class="content-title">Messages</h4>
             <div class="profileform msgpage">
                 <div class="messageItem">
                     <div class="detleft">

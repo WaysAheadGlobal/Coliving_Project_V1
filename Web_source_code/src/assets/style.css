@@ -39,9 +39,9 @@ p{color:var(--co-grey); line-height:27px; font-size:16px;}
 .btn-primary:hover{border-color:var(--co-primary); color:var(--co-primary); background:var(--co-white);}
 .btn-primary:focus, .btn-primary:active:focus{outline:none; box-shadow:none; border-color:var(--co-primary); color:var(--co-primary); background:var(--co-white);}
 
-.btn-secondary{background:var(--co-white); color:var(--co-primary); border:2px solid var(--co-primary); line-height:45px;}
-.btn-secondary{padding:0px 25px; font-size:15px; font-weight:500; letter-spacing:0px;}
-.btn-secondary:hover{background:var(--co-primary); color:var(--co-white); border-color:var(--co-primary);}
+.btn-secondary{background:white !important; color:var(--co-primary) !important; border:2px solid var(--co-primary) !important; line-height:35px !important;}
+.btn-secondary{padding:0px 25px !important; font-size:15px; font-weight:500; letter-spacing:0px;}
+.btn-secondary:hover{background:var(--co-primary) !important; color:var(--co-white) !important; border-color:var(--co-primary) !important;}
 .btn-secondary:focus, .btn-secondary:active:focus{outline:none; box-shadow:none; background:var(--co-primary); color:var(--co-white); border-color:var(--co-primary);}
 
 .btn-text{background:var(--co-white); color:#FF0000; border:2px solid transparent; line-height:45px;}

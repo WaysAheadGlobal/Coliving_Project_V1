@@ -8,5 +8,6 @@ router.post('/updateProfile', userController.updateUserProfile);
 router.post('/savePersonalDetail', userController.saveUpdatePersonalDetails);
 router.post('/myWaitingList', propertyController.getWaitingListPropertyListing);
 router.post('/getMyStayRequests', propertyController.getMyStayRequests);
+router.post('/GetMyNotifications', userController.GetMyNotifications);
 router.post('/saveBookingInfo', propertyController.saveBookingInfo);
 module.exports = router;

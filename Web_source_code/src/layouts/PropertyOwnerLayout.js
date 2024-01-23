@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, NavLink } from "react-router-dom"
 import UserTopMenu from './../componenets/UserTopMenu';
 
 export default function PropertyOwnerLayout() {
@@ -13,52 +13,52 @@ export default function PropertyOwnerLayout() {
                                 <div class="sidebar">
                                     <ul>
                                         <li>
-                                            <a href="/owner/stay-request">
+                                            <NavLink exact activeClassName="active" to='/owner/stay-request' >
                                                 <img src={require('./../../src/img/icons/stayrequest.png')} class="img-fluid" alt="Stay" />
                                                 Stay Request
-                                            </a>
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <a href="/owner/events">
-                                                <img src={require('./../../src/img/icons/events.png')} class="img-fluid" alt="Event" />
+                                        <NavLink exact activeClassName="active" to='/owner/events' >
+                                        <img src={require('./../../src/img/icons/events.png')} class="img-fluid" alt="Event" />
                                                 Events
-                                            </a>
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <a href="/owner/meals">
-                                                <img src={require('./../../src/img/icons/meal.png')} class="img-fluid" alt="Meal" />
+                                        <NavLink exact activeClassName="active" to='/owner/meals' >
+                                        <img src={require('./../../src/img/icons/meal.png')} class="img-fluid" alt="Meal" />
                                                 Meals
-                                            </a>
+                                            </NavLink>
                                         </li>
-                                        <li class="active">
-                                            <a href="/owner/property">
-                                                <img src={require('./../../src/img/icons/property.png')} alt="user icon" />
-                                                Property    
-                                            </a>
+                                        <li >
+                                        <NavLink exact activeClassName="active" to='/owner/property' >
+                                        <img src={require('./../../src/img/icons/property.png')} alt="user icon" />
+                                                Property  
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <a href="/owner/messages">
-                                                <img src={require('./../../src/img/icons/msg.png')} class="img-fluid" alt="Message" />
+                                        <NavLink exact activeClassName="active" to='/owner/messages' >
+                                        <img src={require('./../../src/img/icons/msg.png')} class="img-fluid" alt="Message" />
                                                     Message
-                                            </a>
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <a href="/owner/payments">
-                                                <img src={require('./../../src/img/icons/payment.png')} class="img-fluid" alt="Wishlist" />
+                                        <NavLink exact activeClassName="active" to='/owner/payments' >
+                                        <img src={require('./../../src/img/icons/payment.png')} class="img-fluid" alt="Wishlist" />
                                                     Payment
-                                            </a>
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <a href="/owner/notifications">
-                                                <img src={require('./../../src/img/icons/bell.png')} class="img-fluid" alt="notifications" />
+                                        <NavLink exact activeClassName="active" to='/owner/notifications' >
+                                        <img src={require('./../../src/img/icons/bell.png')} class="img-fluid" alt="notifications" />
                                                     notifications
-                                            </a>
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <a href="/logout">
-                                                <img  src={require('./../../src/img/icons/logout.png')} class="img-fluid" alt="logout" />
+                                        <NavLink exact activeClassName="active" to='/logout' >
+                                        <img  src={require('./../../src/img/icons/logout.png')} class="img-fluid" alt="logout" />
                                                     Logout
-                                            </a>
+                                            </NavLink>
                                         </li>
                                     </ul>
                                 </div>

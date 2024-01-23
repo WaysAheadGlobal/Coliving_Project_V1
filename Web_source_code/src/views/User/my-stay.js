@@ -109,9 +109,9 @@ function MyStay() {
                     <div class="stayItem">
                         <div class="imgblock">
                             <img src={`${config.ImageUrl}images/Property/` + item.propertyphoto1} alt="My Stay" class="img-fluid" />
-                                <div class="icon" onClick={()=> removeFromList(item.id)}>
+                                {/* <div class="icon" onClick={()=> removeFromList(item.id)}>
                                     <img src={require('../../img/icons/delete.png')} class="img-fluid" alt="delete" />
-                                </div>
+                                </div> */}
                         </div>
                         <div class="bodydet">
                             <label>{item.province}</label>
@@ -129,6 +129,30 @@ function MyStay() {
                 </div>
                 ))}
                 </div>
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-5 text-center">
+                            <div class="pagi">
+                              
+                                {nPages > 1 && currentPage > 1 ?
+                                <div class="prev" onClick={SetPage(currentPage - 1)}><i class="fa fa-solid fa-angles-left"></i> <label>Previous</label></div>
+                                : null}
+                                <div class="nums">
+                                {(function (rows, i, len) {
+                                    while (++i <= len) {
+                                    rows.push(<a onClick={SetPage(i)} class={i == currentPage ? "active": ""} href="javascript:void(0)">{i}</a>)
+                                    }
+                                    return rows;
+                                })([], 0, nPages)}
+                                    {/* <a class="active" href="javascript:void(0)">1</a>
+                                    <a href="javascript:void(0)">2</a>
+                                    <a href="javascript:void(0)">3</a>
+                                    <a href="javascript:void(0)">4</a> */}
+                                </div>
+                                {nPages > currentPage ?
+                                <div class="next" onClick={SetPage(currentPage + 1)}><label>Next</label> <i class="fa fa-solid fa-angles-right"></i></div>
+                                : null}
+                                
+                            </div>
+                        </div>
             </div>
         </div>
     );

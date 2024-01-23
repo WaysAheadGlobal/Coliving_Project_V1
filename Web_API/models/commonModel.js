@@ -75,11 +75,24 @@ async function getPropertyDetail(property_id) {
   }
 }
 
-
+async function AddUserNotifications(userid, messgae) {
+  try {
+    var nowDate = new Date(); 
+    var date = nowDate.getFullYear()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getDate();
+    const [result] = await db.query(
+      "INSERT INTO user_notifications (noti_date, message, user_id) values (?,?,?)",
+      [date, messgae, userid]
+    );
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
 
 
 
 module.exports = {
     getPropertyListing,
-    getPropertyDetail
+    getPropertyDetail,
+    AddUserNotifications
 };

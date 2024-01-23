@@ -146,6 +146,20 @@ async function getUserProfile(req, res) {
       res.status(500).json({ message: "Internal Server Error", status: 500 });
     }
   }
+
+  async function GetMyNotifications(req, res) {
+    try {
+      
+      const result = await userModel.getMyNotifications(req);
+      
+      res
+        .status(200)
+        .json({ message: "Users fetched!!!", res: result, status: 200 });
+    } catch (error) {
+      console.error("Error during userinfo:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
   
 module.exports = {
     getUserProfile,
@@ -156,6 +170,7 @@ module.exports = {
     updateIDProofDocument,
     updateUniveristyIDProofDocument,
     updateUserStatus,
-    DeleteUser
+    DeleteUser,
+    GetMyNotifications
   };
   

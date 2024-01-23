@@ -1,8 +1,22 @@
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function MealPlans() {
+	const confirm = (e) => {
+        toast.success('Meal Plan Booked Successfully.', {
+            position: toast.POSITION.TOP_RIGHT,
+        });
+    }
+
     return(
         <div class="content-area">
-				<h4 class="content-title">Event</h4>
+			<ToastContainer />
+				<link
+					rel="stylesheet"
+					href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap"
+				></link>
+				<h4 class="content-title">Meal Plans</h4>
 				<div class="profileform">
 					<div class="table-layout1">
 						<div class="table-responsive">
@@ -37,7 +51,7 @@ function MealPlans() {
 											$12/month
 										</td>
 										<td class="text-center">
-											<button class="btn btn-sm btn-secondary">Book</button>
+											<button class="btn btn-sm btn-secondary" onClick={confirm}>Book</button>
 										</td>
 									</tr>
 									<tr>
@@ -56,10 +70,10 @@ function MealPlans() {
 											7-8 am
 										</td>
 										<td class="text-center">
-											$12/month
+											$14/month
 										</td>
 										<td class="text-center">
-											<button class="btn btn-sm btn-secondary">Book</button>
+											<button class="btn btn-sm btn-secondary" onClick={confirm}>Book</button>
 										</td>
 									</tr>
 									<tr>
@@ -78,10 +92,10 @@ function MealPlans() {
 											7-8 am
 										</td>
 										<td class="text-center">
-											$12/month
+											$16/month
 										</td>
 										<td class="text-center">
-											<button class="btn btn-sm btn-secondary">Book</button>
+											<button class="btn btn-sm btn-secondary" onClick={confirm}>Book</button>
 										</td>
 									</tr>
 									<tr>
@@ -100,10 +114,10 @@ function MealPlans() {
 											7-8 am
 										</td>
 										<td class="text-center">
-											$12/month
+											$18/month
 										</td>
 										<td class="text-center">
-											<button class="btn btn-sm btn-secondary">Book</button>
+											<button class="btn btn-sm btn-secondary" onClick={confirm}>Book</button>
 										</td>
 									</tr>
 								</tbody>
