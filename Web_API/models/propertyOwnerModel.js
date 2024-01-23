@@ -217,6 +217,49 @@ async function getWaitingListPropertyListing(req) {
   }
 }
 
+async function saveBookingInfo(req) {
+  try {
+    const {property_id, room_id, amount, monthlyrent, bookingfrom, bookingto} = req.body;
+    const user_id = req.user.userId;
+    var nowDate = new Date(); 
+var date = nowDate.getFullYear()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getDate();
+      const [result] = await db.query(
+        "INSERT INTO userbooking (user_id, property_id, room_id, createdate, amount, paymentmode, monthlyrent, bookingfrom, bookingto)" +
+        " values (?,?,?,?,?,'VISA',?,?,?)",
+        [user_id, property_id, room_id, date, amount, monthlyrent, bookingfrom, bookingto]
+      );
+      return result;
+
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getMyStayRequests(req) {
+  try {
+    const user_id = req.user.userId;
+
+    let query = `
+    SELECT  distinct propmaster.*
+    from propertymaster propmaster
+    JOIN userbooking booking on propmaster.id = booking.property_id
+    WHERE 1 = 1 and booking.user_id=?
+    `;
+    
+    // Create an array to store the parameters for the query
+    const params = [];
+    params.push(user_id);
+    
+    query += ' group by propmaster.id';
+    const [result] = await db.query(query, params);
+    return result;
+
+  } catch (error) {
+    throw error;
+  }
+}
+
+
 module.exports = {
   saveUpdateProperty,
   getOwnerPropertyInfo,
@@ -224,5 +267,7 @@ module.exports = {
   getOwnerPropertyRoomInfoUsingPropertyId,
   getOwnersPropertyListForAdmin,
   AddRemovePropertyToWaitingList,
-  getWaitingListPropertyListing
+  getWaitingListPropertyListing,
+  saveBookingInfo,
+  getMyStayRequests
 };

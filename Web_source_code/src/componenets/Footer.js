@@ -12,7 +12,7 @@ function Footer() {
 					<ul className="connectinfo">
 						<li>
 							<i className="fa fa-solid fa fa-envelope"></i>
-							<a href="mailto:coliving@company.ca">coliving@company.ca</a>
+							<a href="mailto:hello@coliving.ca">hello@coliving.ca</a>
 						</li>
 						<li>
 							<i className="fa fa-solid fa fa-phone"></i>

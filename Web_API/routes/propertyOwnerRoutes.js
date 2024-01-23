@@ -6,4 +6,5 @@ router.post('/SaveProperty', propertyController.savePropertyInfo);
 router.post('/getOwnerProperty', propertyController.getOwnerPropertyInfo);
 router.post('/getOwnerPropertyByPropertyId', propertyController.getOwnerPropertyInfoByProertyId);
 router.post('/AddRemovePropertyToWaitingList', propertyController.AddRemovePropertyToWaitingList);
+
 module.exports = router;

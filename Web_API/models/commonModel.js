@@ -77,6 +77,8 @@ async function getPropertyDetail(property_id) {
 
 
 
+
+
 module.exports = {
     getPropertyListing,
     getPropertyDetail

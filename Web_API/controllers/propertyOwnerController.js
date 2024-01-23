@@ -90,12 +90,41 @@ async function savePropertyInfo(req, res) {
     }
   }
 
+  async function saveBookingInfo(req, res) {
+    try {
+    //   // Check if the email exists
+      const resp = await propertyModel.saveBookingInfo(req);
+      res
+        .status(200)
+        .json({ message: 'Success', resp: resp, status: 200 });
+    } catch (error) {
+      console.error("Error during adding waiting list:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
+  async function getMyStayRequests(req, res) {
+    try {
+    //   // Check if the email exists
+      const resp = await propertyModel.getMyStayRequests(req);
+      res
+        .status(200)
+        .json({ message: 'Success', resp: resp, status: 200 });
+    } catch (error) {
+      console.error("Error during getting stay request:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
+
   module.exports = {
     savePropertyInfo,
     getOwnerPropertyInfo,
     getOwnerPropertyInfoByProertyId,
     getOwnersPropertyListForAdmin,
     AddRemovePropertyToWaitingList,
-    getWaitingListPropertyListing
+    getWaitingListPropertyListing,
+    saveBookingInfo,
+    getMyStayRequests
   };
   

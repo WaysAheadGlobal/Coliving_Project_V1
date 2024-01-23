@@ -82,6 +82,7 @@ p{color:var(--co-grey); line-height:27px; font-size:16px;}
 .userloginbtn{color:#fff; font-size:20px; border-radius:5px; margin-right:10px;}
 
 .mobileMenus{width:270px; height:100%; position:fixed; left:-100%; top:0; background:#fff; padding:25px; z-index:999;}
+.mobileMenusShow{width:270px; height:100%; position:fixed; left:0; top:0; background:#fff; padding:25px; z-index:999;}
 .mobileMenus{box-shadow:0px 0px 40px rgba(0, 0, 0, 0.05); -webkit-transition:all 0.5s ease-in-out; -moz-transition:all 0.5s ease-in-out;}
 .mobileMenus{-o-transition:all 0.5s ease-in-out; transition:all 0.5s ease-in-out;}
 .mobileMenus.show{left:0px; -webkit-transition:all 0.5s ease-in-out; -moz-transition:all 0.5s ease-in-out;}
@@ -160,7 +161,7 @@ ul.nav-menu li a{font-size:14px; font-weight:500; letter-spacing:0.3px; color:#0
 
 .blogItem .img img{display:block;}
 .b-body{padding:20px 0px;}
-.b-body h4{font-size:26px; font-weight:600; line-height:40px; margin-bottom:10px;}
+.b-body h4{font-size:23px; font-weight:600; line-height:40px; margin-bottom:10px;}
 /* .b-body p{display:-webkit-box; max-width:100%; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;} */
 .date{width:100%; height:auto; overflow:hidden; margin-bottom:10px; color:#6C6C6C;}
 .readmore{font-size:18px; color:var(--co-black); font-weight:500; display:flex; align-items:center;}
@@ -193,7 +194,7 @@ ul.nav-menu li a{font-size:14px; font-weight:500; letter-spacing:0.3px; color:#0
 .teambody{background:var(--co-primary); padding:20px;}
 .teambody h4{margin:0px; font-size:24px; color:var(--co-white);}
 .teambody label{font-size:14px; font-weight:300; color:#fff;}
-.teambody p{color:var(--co-white); font-size:13px; line-height:normal; margin-top:10px;}
+.teambody p{color:var(--co-white); font-size:13px; line-height:normal; margin-top:10px; min-height: 85px;}
 
 .teamSlides .owl-nav{text-align:center; margin-top:25px; position:absolute; left:-52%; z-index:9999; top:45%;}
 .teamSlides .owl-nav button{width:40px; height:40px; background:transparent !important; border:1px solid var(--co-primary) !important;}
@@ -725,6 +726,7 @@ ul.aminew li:last-child:after{content:"";}
 
 .adminform .form-group label{color:#464646; font-size:14px; display:block; font-weight:500; margin-bottom:2px;}
 .adminform .form-group input{width:100%; height:auto; line-height:50px; border-radius:5px; border:1px solid #EBEDF4; padding:0px 15px;}
+.adminform .form-group select{width:100%; height:auto; line-height:50px; border-radius:5px; border:1px solid #EBEDF4; padding:0px 15px;}
 .adminform .buttonGrp{display:flex; gap:10px; justify-content:space-between;}
 .adminform .buttonGrp button{width:calc(50% - 5px);}
 
@@ -1421,13 +1423,19 @@ ol, ul {
 .sideMenu ul li a.active img.img-fluid {
     filter: brightness(0.5) !important;
 }
-/* .userloginbtn {
-    display: flex !important;
+@media screen and (max-width:800px) {
+    .userloginbtn {
+        display: flex !important;
+    }
+    .mobileIcon {
+        display: flex !important;
+    }
+    svg.svg-inline--fa.fa-bars-staggered {
+        padding:8px;
+    }
 }
-.mobileIcon {
-    display: flex !important;
-} */
-.b-body p{text-align :justify !important;}
+
+.b-body p{text-align :justify !important; min-height: 110px;}
 button.btn.btn-primary {
     background: var(--co-primary);
     border: var(--co-primary);

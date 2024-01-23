@@ -7,4 +7,6 @@ router.post('/Profile', userController.getUserProfile);
 router.post('/updateProfile', userController.updateUserProfile);
 router.post('/savePersonalDetail', userController.saveUpdatePersonalDetails);
 router.post('/myWaitingList', propertyController.getWaitingListPropertyListing);
+router.post('/getMyStayRequests', propertyController.getMyStayRequests);
+router.post('/saveBookingInfo', propertyController.saveBookingInfo);
 module.exports = router;

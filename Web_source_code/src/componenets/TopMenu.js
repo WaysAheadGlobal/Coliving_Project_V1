@@ -120,6 +120,25 @@ const TopMenu = () => {
 	const [RegisterOTPSent, setRegisterOTPSent] = useState(false);
 	const [LoginOTPSent, setLoginOTPSent] = useState(false);
 	const [SelectedUserType, SetSelectedUserType] = useState(0);
+	const wrapperRef = useRef(null);
+	function useOutsideAlerter(ref) {
+		useEffect(() => {
+		  /**
+		   * Alert if clicked on outside of element
+		   */
+		  function handleClickOutside(event) {
+			if (ref.current && !ref.current.contains(event.target)) {
+				SetshowSideMenu(false)
+			}
+		  }
+		  // Bind the event listener
+		  document.addEventListener("mousedown", handleClickOutside);
+		  return () => {
+			// Unbind the event listener on clean up
+			document.removeEventListener("mousedown", handleClickOutside);
+		  };
+		}, [ref]);
+	  }
 	// const [userName, setUserName] = useState('');
 	const gotoListing = (e) => {
 		if (localStorage.getItem("usertoken") != "" && localStorage.getItem("usertoken") != null) {
@@ -152,6 +171,16 @@ const TopMenu = () => {
 
 	const modalSignUpClose = () => setSignUpshow(false);
 	const modalUserSelectionClose = () => setuserSelection(false);
+	const [showSideMenu, SetshowSideMenu] = useState(false);
+	const SetshowSideMenuToggle = (e) => {
+		e.preventDefault();
+		if(showSideMenu){
+			SetshowSideMenu(false)
+		}
+		else{
+			SetshowSideMenu(true)
+		}
+	};
 	const modalUserSelectionShow = (e) => {
 		e.preventDefault();
 		setuserSelection(true);
@@ -499,8 +528,10 @@ const TopMenu = () => {
 		}
 		return errors;
 	}
+	useOutsideAlerter(wrapperRef);
 	return (
 		<>
+		
 			<header className="header">
 				<ToastContainer />
 				<link
@@ -520,25 +551,25 @@ const TopMenu = () => {
 							<div className="userloginbtn" onClick={modalUserSelectionShow}>
 								<i className="fa fa-solid fa-user"></i>
 							</div>
-							<div className="mobileIcon">
+							<div className="mobileIcon" onClick={SetshowSideMenuToggle}>
 								<svg class="svg-inline--fa fa-bars-staggered" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars-staggered" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM64 256c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path></svg>
 							</div>
-							<div className="mobileMenus" style={{ display: 'block' }}>
+							<div ref={wrapperRef} className={showSideMenu ? "mobileMenus mobileMenusShow": "mobileMenus"}>
 								<div className="logo-m">
-									<a href="index">
+									<a href="/">
 										<img src={require('./../../src/img/logo.png')} alt="Co-living logo missing" title="Co-living" />
 									</a>
 								</div>
 								<ul className="nav-menu">
 									<li>
-										<Link to={"/#aboutus"}>
+										<Link ref={wrapperRef} to={"/#aboutus"}>
 											About Us
 										</Link>
 									</li>
 									<li><a href="#whyus">Why Us</a></li>
-									<li><Link to={"/listing"}>
+									<li><a href="javascript:(0);" onClick={gotoListing}>
 										Find my Home
-									</Link></li>
+									</a></li>
 									<li><Link to={"/blogs"}>
 										Blogs
 									</Link></li>
@@ -551,14 +582,14 @@ const TopMenu = () => {
 									<ul>
 										<li>
 											<i className="fa fa-solid fa-envelope"></i>
-											<a href="mailto:coliving@company.ca">coliving@company.ca</a>
+											<a href="mailto:hello@coliving.ca">hello@coliving.ca</a>
 										</li>
 										<li>
 											<i className="fa fa-solid fa-phone"></i>
 											<a href="tel:+1-416-839-6023">+1-416-839-6023</a>
 										</li>
 										<li>
-											<i className="fa fa-solid fa-location-dot"></i>
+											<i className="fa fa-solid fa fa-map-marker"></i>
 											2366 Merton Street, Toronto Canada
 										</li>
 									</ul>
@@ -576,9 +607,12 @@ const TopMenu = () => {
 									<li><a href="/#team">Team</a></li>
 									<li><a href="/#faq">Faq</a></li>
 									<li><a href="/#cta">Contact</a></li>
-									<li className="lastnavbtn2">
+									
 										{localStorage.getItem("username") == "" ?
-											<a href="javascript:void(0);" onClick={modalUserSelectionShow}><span>Login/Signup</span></a> :
+											<li className="lastnavbtn">
+											<a href="javascript:void(0);" onClick={modalUserSelectionShow}><span>Login/Signup</span></a>
+											</li> :
+											<li className="lastnavbtn2">
 											<div class="postuser">
 												<i class="fa fa-solid  fa-circle-user"></i>
 												<span>{localStorage.getItem("username")}</span>
@@ -612,7 +646,8 @@ const TopMenu = () => {
 													</ul>
 												</div>
 											</div>
-										}</li>
+											</li>
+										}
 								</ul>
 							</nav>
 						</div>
@@ -622,18 +657,6 @@ const TopMenu = () => {
 
 
 			<Modal show={show} onHide={modalClose} className="modal-xl">
-				{/* <Modal.Header closeButton>  
-    <Modal.Title>Title for Modal</Modal.Title>  
-  </Modal.Header>  
-  
-  <Modal.Body>  
-    <p>Body Content.</p>  
-  </Modal.Body>  
-  
-  <Modal.Footer>  
-    <Button variant="secondary" onClick={modalClose}>Close Modal</Button>  
-    <Button variant="primary">Save changes</Button>  
-  </Modal.Footer>   */}
 				<div class="">
 					<div class="modal-content">
 						<div class="row">
@@ -772,7 +795,7 @@ const TopMenu = () => {
 						<div class="row">
 							<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 d-flex align-items-center justify-content-center">
 								<div class="modalForms">
-									<a href="#" class="redirectBtn">X</a>
+									<a href="#" class="redirectBtn" onClick={modalUserSelectionClose}>X</a>
 									<div class="formArea">
 										<h4 id="selectionModal">Select Your Profile</h4>
 										<div>

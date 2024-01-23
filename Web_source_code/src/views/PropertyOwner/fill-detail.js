@@ -895,7 +895,11 @@ function FillDetail() {
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Province</label>
-                                        <input type="text" name="province" value={propertyValues.province} placeholder="Province" onChange={handleInputChange} />
+                                        {/* <input type="text" name="province" value={propertyValues.province} placeholder="Province" onChange={handleInputChange} /> */}
+                                        <select name="province" className='form-control' value={propertyValues.province} onChange={handleInputChange}>
+                                            <option value="0">Select</option>
+                                            {master.Province.map((result) => (<option value={result.id}>{result.name}</option>))}
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">

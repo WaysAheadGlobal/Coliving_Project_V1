@@ -72,7 +72,8 @@ const Home = () => {
 				<div className="container">
 					<div className="heading1 mb-5 text-center">
 						<h2>Why stay with us</h2>
-						<p className="mt-3">Discover the Difference: Our Co-Living Experience Experience a Unique <br />Blend of Comfort, Community, and Convenience.</p>
+						<p className="mt-3">Discover the Difference: Our Co-Living Experience <br/>a Unique Blend of Comfort, Community, and Convenience.
+</p>
 					</div>
 
 					<OwlCarousel {...options} className="whyBlocks owl-carousel" >
@@ -84,8 +85,8 @@ const Home = () => {
 								</svg>
 
 							</div>
-							<h4>Affordable Housing 1</h4>
-							<p>Accessible Living, Sensible Prices: Affordable Co-Living Solutions Unlock Affordable Housing Without Compromising Comfort or Community.</p>
+							<h4>Smart Matching</h4>
+							<p>Our advanced AI algorithm ensures compatibility based on shared interests and lifestyles, fostering genuine connections among co-living residents.</p>
 						</div>
 						<div className="whyItem text-center">
 							<div className="icon">
@@ -95,8 +96,8 @@ const Home = () => {
 								</svg>
 
 							</div>
-							<h4>Affordable Housing 2</h4>
-							<p>Accessible Living, Sensible Prices: Affordable Co-Living Solutions Unlock Affordable Housing Without Compromising Comfort or Community.</p>
+							<h4>Comprehensive Listings</h4>
+							<p>Landlords showcase properties with vivid photos, videos, and detailed descriptions, empowering users to make informed decisions about their potential living spaces.</p>
 						</div>
 						<div className="whyItem text-center">
 							<div className="icon">
@@ -107,8 +108,8 @@ const Home = () => {
 								</svg>
 
 							</div>
-							<h4>Affordable Housing 3</h4>
-							<p>Accessible Living, Sensible Prices: Affordable Co-Living Solutions Unlock Affordable Housing Without Compromising Comfort or Community.</p>
+							<h4>Seamless User Experience</h4>
+							<p>A user-centric design simplifies the housing search process with an intuitive interface, supported by a responsive team dedicated to ensuring a stress-free experience.</p>
 						</div>
 						<div className="whyItem text-center">
 							<div className="icon">
@@ -117,8 +118,28 @@ const Home = () => {
 								</svg>
 
 							</div>
-							<h4>Affordable Housing 4</h4>
-							<p>Accessible Living, Sensible Prices: Affordable Co-Living Solutions Unlock Affordable Housing Without Compromising Comfort or Community.</p>
+							<h4>Personalized Profiles</h4>
+							<p>Users create profiles highlighting preferences and interests, aiding our matching algorithm and allowing authentic connections with like-minded co-livers.</p>
+						</div>
+						<div className="whyItem text-center">
+							<div className="icon">
+								<svg width="59" height="56" viewBox="0 0 59 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="img-fluid" alt="why icon missing">
+									<path d="M4.85495 0.324707H54.0628C56.7782 0.324707 59 2.43485 59 5.11311V36.116C59 38.7943 56.7782 41.0667 54.0628 41.0667H34.8898V49.1015H48.8787C50.9358 49.1015 51.1004 55.7566 51.3473 56.0001H7.65272C7.65272 56.0001 7.65272 49.1015 10.1213 49.1015H24.1102V41.0667H4.85495C2.13947 41.0667 0 38.7943 0 36.116V5.11311C0 2.43485 2.13947 0.324707 4.85495 0.324707ZM4.85495 36.116H54.0628V5.11311H4.85495V36.116Z" fill="#FAB54E" />
+								</svg>
+
+							</div>
+							<h4>Waitlist Efficiency</h4>
+							<p>In a high-demand market, our waitlist feature keeps users informed about upcoming availability, enabling proactive planning for the ideal living situation.</p>
+						</div>
+						<div className="whyItem text-center">
+							<div className="icon">
+								<svg width="59" height="56" viewBox="0 0 59 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="img-fluid" alt="why icon missing">
+									<path d="M4.85495 0.324707H54.0628C56.7782 0.324707 59 2.43485 59 5.11311V36.116C59 38.7943 56.7782 41.0667 54.0628 41.0667H34.8898V49.1015H48.8787C50.9358 49.1015 51.1004 55.7566 51.3473 56.0001H7.65272C7.65272 56.0001 7.65272 49.1015 10.1213 49.1015H24.1102V41.0667H4.85495C2.13947 41.0667 0 38.7943 0 36.116V5.11311C0 2.43485 2.13947 0.324707 4.85495 0.324707ZM4.85495 36.116H54.0628V5.11311H4.85495V36.116Z" fill="#FAB54E" />
+								</svg>
+
+							</div>
+							<h4>Precision Search Filters</h4>
+							<p>Tailor your search with advanced filters – location, room size, amenities, and compatibility preferences – ensuring you find a co-living space that suits your lifestyle perfectly.</p>
 						</div>
 					</OwlCarousel>
 
@@ -158,7 +179,8 @@ const Home = () => {
 				<div className="container">
 					<div className="heading1 mb-5 text-center">
 						<h2>Frequently Asked Questions</h2>
-						<p className="mt-3">Answers to Common Queries: Frequently Asked Questions <br />Find Quick Solutions to Your Inquiries Here.</p>
+						<p className="mt-3">Answers to Common Queries: Frequently Asked Questions <br />Find Quick Solutions to Your Inquiries Here.
+</p>
 					</div>
 					<div className="col-xxl-10 col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12 mx-auto">
 						<div className="accordion" id="accordionExample">
@@ -172,7 +194,7 @@ const Home = () => {
 								<div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne"
 									data-bs-parent="#accordionExample">
 									<div className="accordion-body">
-										Alutric Technologies Inc. communities often handle roommate matching, ensuring compatibility among residents based on preferences and lifestyle.
+									Utilize our advanced AI matching algorithm to connect with compatible individuals based on shared interests, lifestyles, and preferences.
 									</div>
 								</div>
 							</div>
@@ -186,7 +208,7 @@ const Home = () => {
 								<div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo"
 									data-bs-parent="#accordionExample">
 									<div className="accordion-body">
-										Alutric Technologies Inc. communities often handle roommate matching, ensuring compatibility among residents based on preferences and lifestyle.
+										We prioritize your safety with robust security measures, including secure user profiles, encrypted communication, and thorough vetting processes for both landlords and tenants.
 									</div>
 								</div>
 							</div>
@@ -200,7 +222,7 @@ const Home = () => {
 								<div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree"
 									data-bs-parent="#accordionExample">
 									<div className="accordion-body">
-										Alutric Technologies Inc. communities often handle roommate matching, ensuring compatibility among residents based on preferences and lifestyle.
+									Yes, our platform offers personalized choices. You can refine your search based on location, room size, amenities, and compatibility preferences, ensuring you find the perfect co-living space with the right roommates.
 									</div>
 								</div>
 							</div>
@@ -209,28 +231,28 @@ const Home = () => {
 							<div className="accordion-item">
 								<h2 className="accordion-header" id="headingFour">
 									<button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-										data-bs-target="#headingFour" aria-expanded="false" aria-controls="headingFour">
-										Are alutric technologies Inc. spaces pet-friendly?
+										data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+										Are Alutric Technologies Inc. spaces pet-friendly?
 									</button>
 								</h2>
-								<div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingThree"
+								<div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour"
 									data-bs-parent="#accordionExample">
 									<div className="accordion-body">
-										Alutric Technologies Inc. communities often handle roommate matching, ensuring compatibility among residents based on preferences and lifestyle.
+									Yes, we understand the importance of furry companions. Many of our spaces are pet-friendly, providing a welcoming environment for you and your pets.
 									</div>
 								</div>
 							</div>
 							<div className="accordion-item">
 								<h2 className="accordion-header" id="headingFive">
 									<button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-										data-bs-target="#headingFive" aria-expanded="false" aria-controls="headingFive">
-										Are alutric technologies Inc. spaces furnished?
+										data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+										Are Alutric Technologies Inc. spaces furnished?
 									</button>
 								</h2>
-								<div id="collapseFive" className="accordion-collapse collapse" aria-labelledby="headingThree"
+								<div id="collapseFive" className="accordion-collapse collapse" aria-labelledby="headingFive"
 									data-bs-parent="#accordionExample">
 									<div className="accordion-body">
-										Alutric Technologies Inc. communities often handle roommate matching, ensuring compatibility among residents based on preferences and lifestyle.
+									Absolutely. Our co-living spaces come fully furnished, offering convenience and comfort so you can move in hassle-free and focus on building meaningful connections with your housemates.
 									</div>
 								</div>
 							</div>
@@ -252,37 +274,37 @@ const Home = () => {
 
 							<OwlCarousel {...options} className="teamSlides owl-carousel" >
 								<div className="teamItem">
-									<img src={require('../../../src/img/t1.png')} className="img-fluid" alt="team img missing" />
+									<img src={require('../../../src/img/team1.png')} className="img-fluid" alt="team img missing" />
 									<div className="teambody text-center">
 										<h4>John H. Doe</h4>
 										<label>Chief Executive Officer</label>
-										<p className="mb-0">Highest-ranking in company, Managed all of segmen in company and making big decisionfor company.</p>
+										<p className="mb-0">Forward-thinking CEO, guiding the company with a visionary approach, driving innovation, and ensuring overall success.</p>
 									</div>
 								</div>
 								<div className="teamItem">
-									<img src={require('../../../src/img/t2.png')} className="img-fluid" alt="team img missing" />
+									<img src={require('../../../src/img/team2.png')} className="img-fluid" alt="team img missing" />
 									<div className="teambody text-center">
 										<h4>Emma Russel</h4>
 										<label>Senior Director</label>
-										<p className="mb-0">Highest-ranking in company, Managed all of segmen in company and making big decisionfor company.</p>
+										<p className="mb-0">Seasoned Senior Director, orchestrating strategic initiatives, fostering collaboration across teams, and contributing to the company's long-term goals.</p>
 									</div>
 								</div>
 								<div className="teamItem">
-									<img src={require('../../../src/img/t3.png')} className="img-fluid" alt="team img missing" />
+									<img src={require('../../../src/img/team3.png')} className="img-fluid" alt="team img missing" />
 									<div className="teambody text-center">
 										<h4>Michael Angelo</h4>
 										<label>Director</label>
-										<p className="mb-0">Highest-ranking in company, Managed all of segmen in company and making big decisionfor company.</p>
+										<p className="mb-0">Diligent Director, managing and optimizing operational functions, implementing efficiency measures, and playing a key role in the organization's day-to-day success.</p>
 									</div>
 								</div>
-								<div className="teamItem">
+								{/* <div className="teamItem">
 									<img src={require('../../../src/img/t1.png')} className="img-fluid" alt="team img missing" />
 									<div className="teambody text-center">
 										<h4>John H. Doe</h4>
 										<label>Chief Executive Officer</label>
 										<p className="mb-0">Highest-ranking in company, Managed all of segmen in company and making big decisionfor company.</p>
 									</div>
-								</div>
+								</div> */}
 							</OwlCarousel>
 						</div>
 					</div>

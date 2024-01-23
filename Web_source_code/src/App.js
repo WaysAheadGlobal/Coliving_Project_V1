@@ -119,6 +119,10 @@ function App() {
                 {
                     path: "/owner/thanks",
                     element: <OwnerThankYou />,
+                },
+                {
+                    path: "/user/bookingconfirm",
+                    element: <OwnerThankYou />,
                 }
             ],
         }, 
@@ -163,6 +167,7 @@ function App() {
                     path: "/user/reward-history",
                     element: <RewardHistory />,
                 },
+                
             ],
         },
         {

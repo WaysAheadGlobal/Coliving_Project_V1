@@ -1,5 +1,9 @@
+import { useEffect } from 'react';
 
 function ThankYou() {
+    useEffect(()=> {
+        window.scrollTo(0, 0)
+    },[])
     return (
         <section class="thankyoupage padd80">
             <div class="container">

@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import master from '../../data/masterData.json';
 
 function Profile() {
     const history = useNavigate();
@@ -191,7 +192,7 @@ function Profile() {
 			SetErrorAvailable(true);
 		}
 
-        if (!values.province) {
+        if (values.province == "0") {
 			errors.province = "Province is required!";
 			SetErrorAvailable(true);
 		}
@@ -274,7 +275,11 @@ function Profile() {
                             <div class="adminform">
                                 <div class="form-group">
                                     <label>Province</label>
-                                    <input type="text" name="province" id="province" value={formValues.province} onChange={handleInputChange} placeholder="Ontario" />
+                                    {/* <input type="text" name="province" id="province" value={formValues.province} onChange={handleInputChange} placeholder="Ontario" /> */}
+                                    <select name="province" className='form-control' value={formValues.province} onChange={handleInputChange}>
+                                        <option value="0">Select</option>
+                                        {master.Province.map((result) => (<option value={result.id}>{result.name}</option>))}
+                                    </select>
                                     <span className="error">{formErrors.province}</span>
                                 </div>
                             </div>

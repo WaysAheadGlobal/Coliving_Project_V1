@@ -146,7 +146,7 @@ const PersonalDetail = () => {
 			SetErrorFound(true);
 		}
 
-        if (!values.province) {
+        if (values.province == "0") {
 			errors.province = "Province is required!";
 			SetErrorFound(true);
 		}
