@@ -20,7 +20,7 @@ function StayView() {
                         <div class="row g-4">
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                                 <div class="userimglg">
-                                    <img src="../img/userimg.png" class="img-fluid" alt="User uploaded image" />
+                                    <img src={require('../../img/userimg.png')} class="img-fluid" alt="User uploaded image" />
                                 </div>
                             </div>
                             <div class="col-xxl-9 col-xl-8 col-lg-8 col-md-8 col-sm-6 col-12 ps-xxl-5 ps-xl-5 ps-lg-5 ps-md-4 ps-sm-2 ps-2 ">

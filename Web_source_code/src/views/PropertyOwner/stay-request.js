@@ -21,7 +21,7 @@ function StayRequest() {
                                 <tr>
                                     <td class="text-center">
                                         <div class="tbleimg">
-                                            <img src="../img/tableimg1.png" class="img-fluid" alt="Table Image" />
+                                            <img src={require('../../img/tableimg1.png')} class="img-fluid" alt="Table Image" />
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -39,7 +39,7 @@ function StayRequest() {
                                     <td class="text-center">
                                         <div class="tablebtngrp">
                                             <button class="eye" onclick="window.location.href='stay-view.html'"><i class="fa fa-regular fa-eye"></i></button>
-                                            <button class="delete"><i class="fa fa-regular fa-trash-can"></i></button>
+                                            <button class="delete"><i class="fa fa-regular fa-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>

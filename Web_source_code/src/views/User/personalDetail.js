@@ -11,7 +11,7 @@ const PersonalDetail = () => {
     const history = useNavigate();
     const [selectedTab, SetSelectedTab] = useState(1);
     const initialValues = { Fullname: '', email: '', mobileNo: '', communityType: 0, address:'', city: '', province: '', ZipCode: '',
- country: 0, userType: 0, profilePic: '', gender: 0, DateOfBirth: new Date(), maritalstatus: 0, idproof: '', language: '', community: 0, 
+ country: 0, userType: 0, profilePic: '', gender: 0, DateOfBirth: '', maritalstatus: 0, idproof: '', language: '', community: 0, 
  domain: '', universitydetails: '', universityidproof: '', sleepinghabits_from: 0, sleepinghabits_to: 0, dietarypreference: 0,
  householdchores: 0, doyoucook: 0, smoke: 0, drink: 0, cannabits: 0, telluswhymoving: '', userdetailscol: '', sizeofroom: 0, bedroom: 0, bathroom: 0, closetinside: 0, fullyfurnished: 0, howmanyfan: 0, howmanylights: 0
  , outsidelocks: 0, parking: 0, backpatio: 0, frontpatio: 0, evchargeravailable: 0, swimmingpool: 0, budget: 0, languagepreference: 0,
@@ -79,16 +79,162 @@ const PersonalDetail = () => {
       };
     const GotoNext = (e) => {
         e.preventDefault();
-        SetSelectedTab(selectedTab + 1);
+        
+        SetErrorFound(false);
         console.log('selectedTab', selectedTab)
         window.scrollTo(0, 0)
-        // const err = validate(personalDetail);
-        // SetFormErrors(err);
-        //  alert(selectedTab);
-        // if(selectedTab == 4){
-        //     // setTimeout(()=> history("/user/profile"),3000);
-        // }
+        
+        var values = personalDetail;
+
+        const errors = {};
+        var checkError = false;
+        var checkErrorTab2 = false;
+        var checkErrorTab3 = false;
+        if(selectedTab == 1){
+        
+		if (!values.Fullname) {
+			errors.Fullname = "FullName is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+
+		if (!values.email) {
+			errors.email = "Email is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+
+        if (!values.mobileNo) {
+			errors.mobileNo = "MobileNo is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+
+        if (values.gender == 0) {
+			errors.gender = "Gender is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+
+        if (values.communityType == 0) {
+			errors.communityType = "Community Type is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+
+        if (!values.address) {
+			errors.address = "Address is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+        if (!values.city) {
+			errors.city = "City is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+        if (!values.province) {
+			errors.province = "Province is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+        if (!values.ZipCode) {
+			errors.ZipCode = "ZipCode is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+        if (values.country == 0) {
+			errors.country = "Country is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+        if (values.gender == 0) {
+			errors.gender = "Gender is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+        if (!values.DateOfBirth) {
+			errors.DateOfBirth = "DateOfBirth is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+        if (values.maritalstatus == 0) {
+			errors.maritalstatus = "Marital Status is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+        if (!values.idproof) {
+			errors.idproof = "Id Proof is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+        if (!values.universitydetails) {
+			errors.universitydetails = "University detail is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+        if (!values.universityidproof) {
+			errors.universityidproof = "University Id Proof is required!";
+			SetErrorFound(true);
+            checkError = true;
+		}
+        SetFormErrors(errors);
+        }
+
+        if(selectedTab == 2){
+        
+            if (values.sizeofroom == 0) {
+                errors.sizeofroom = "Size of room is required!";
+                SetErrorFound(true);
+                checkErrorTab2 = true;
+            }
+            if (values.bedroom == 0) {
+                errors.bedroom = "Bedroom is required!";
+                SetErrorFound(true);
+                checkErrorTab2 = true;
+            }
+            if (values.bathroom == 0) {
+                errors.bathroom = "Bathroom is required!";
+                SetErrorFound(true);
+                checkErrorTab2 = true;
+            }
+            if (values.fullyfurnished == 0) {
+                errors.fullyfurnished = "FUlly furnished is required!";
+                SetErrorFound(true);
+                checkErrorTab2 = true;
+            }
+            if (values.parking == 0) {
+                errors.parking = "Parking is required!";
+                SetErrorFound(true);
+                checkErrorTab2 = true;
+            }
+            if (values.budget == "0" || values.budget == "") {
+                errors.budget = "Budget is required!";
+                SetErrorFound(true);
+                checkErrorTab2 = true;
+            }
+            SetFormErrors(errors);
+        }
         if(selectedTab == 3){
+        
+            if (values.coed == 0) {
+                errors.coed = "coed is required!";
+                SetErrorFound(true);
+                checkErrorTab3 = true;
+            }
+            if (values.agegrouppreference == 0) {
+                errors.agegrouppreference = "Age group preference is required!";
+                SetErrorFound(true);
+                checkErrorTab3 = true;
+            }
+            SetFormErrors(errors);
+        }
+        if(selectedTab == 1 && !checkError ){
+            SetSelectedTab(selectedTab + 1);
+        }
+        else if(selectedTab == 2 && !checkErrorTab2){
+            SetSelectedTab(selectedTab + 1);
+        }
+        if(selectedTab == 3 && !checkErrorTab3){
             let formData = JSON.stringify(personalDetail);
             const apiUrl = `${config.Url}api/user/savePersonalDetail`;
             fetch(apiUrl, {
@@ -107,7 +253,7 @@ const PersonalDetail = () => {
                                 position: toast.POSITION.TOP_RIGHT,
                             });
                         }, 300);
-
+                        SetSelectedTab(selectedTab + 1);
 
                         //this.setState({ postData: data.data });
                     }
@@ -121,6 +267,7 @@ const PersonalDetail = () => {
     const validate = (values) => {
 		const errors = {};
 		const regex = /^[^\\$@]+@[^\\$@]+\\.[^\\$@]{2,}$/i;
+        var checkError = false;
 		if (!values.Fullname) {
 			errors.Fullname = "FullName is required!";
 			SetErrorFound(true);
@@ -141,17 +288,45 @@ const PersonalDetail = () => {
 			SetErrorFound(true);
 		}
 
+        if (values.communityType == 0) {
+			errors.communityType = "Community Type is required!";
+			SetErrorFound(true);
+		}
+
+        if (!values.address) {
+			errors.address = "Address is required!";
+			SetErrorFound(true);
+		}
         if (!values.city) {
 			errors.city = "City is required!";
 			SetErrorFound(true);
 		}
-
-        if (values.province == "0") {
+        if (!values.province) {
 			errors.province = "Province is required!";
 			SetErrorFound(true);
 		}
-        if (!values.zipcode) {
-			errors.zipcode = "Zipcode is required!";
+        if (!values.ZipCode) {
+			errors.ZipCode = "ZipCode is required!";
+			SetErrorFound(true);
+		}
+        if (values.country == 0) {
+			errors.country = "Country is required!";
+			SetErrorFound(true);
+		}
+        if (values.gender == 0) {
+			errors.gender = "Gender is required!";
+			SetErrorFound(true);
+		}
+        if (!values.DateOfBirth) {
+			errors.DateOfBirth = "DateOfBirth is required!";
+			SetErrorFound(true);
+		}
+        if (values.maritalstatus == 0) {
+			errors.maritalstatus = "Marital Status is required!";
+			SetErrorFound(true);
+		}
+        if (!values.idproof) {
+			errors.idproof = "Id Proof is required!";
 			SetErrorFound(true);
 		}
 		return errors;
@@ -271,7 +446,7 @@ const PersonalDetail = () => {
                                 <h2 style={{ textAlign: 'center' }}>Help Us match you to the right Home</h2>
                             </div>
                             <div className="personaldetailform">
-                                <DetailTab2 detail={personalDetail} handleInputChange={handleInputChange} />
+                                <DetailTab2 detail={personalDetail} handleInputChange={handleInputChange} FormErrors={FormErrors} />
 
                             </div>
                         </div>
@@ -280,7 +455,7 @@ const PersonalDetail = () => {
                                 <h2 style={{ textAlign: 'center' }}>Help Us match you to the right Home</h2>
                             </div>
                             <div className="personaldetailform">
-                                <DetailTab3 detail={personalDetail} handleInputChange={handleInputChange} />
+                                <DetailTab3 detail={personalDetail} handleInputChange={handleInputChange} FormErrors={FormErrors} />
 
                             </div>
                         </div>

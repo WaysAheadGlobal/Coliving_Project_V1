@@ -8,30 +8,33 @@ function DetailTab2(props) {
                 <div className="row g-4">
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Size of room</label>
+                            <label>Size of room <span className='mandatory'>*</span></label>
                             {/* <input type="text" name="sizeofroom" placeholder="70 - 80 sqft " value={props.detail.sizeofroom} onChange={props.handleInputChange} /> */}
                             <select name="sizeofroom" value={props.detail.sizeofroom} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.ApartmentSize.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.sizeofroom}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Bedroom</label>
+                            <label>Bedroom <span className='mandatory'>*</span></label>
                             <select name="bedroom" value={props.detail.bedroom} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.BedroomType.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.bedroom}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Bathroom</label>
+                            <label>Bathroom <span className='mandatory'>*</span></label>
                             <select name="bathroom" value={props.detail.bathroom} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.BedroomType.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.bathroom}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
@@ -45,11 +48,12 @@ function DetailTab2(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Full Furnitured</label>
+                            <label>Full Furnitured <span className='mandatory'>*</span></label>
                             <select name="fullyfurnished" value={props.detail.fullyfurnished} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.Furniture.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.fullyfurnished}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
@@ -81,11 +85,12 @@ function DetailTab2(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Parking</label>
+                            <label>Parking <span className='mandatory'>*</span></label>
                             <select name="parking" value={props.detail.parking} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.Parking.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.Parking}</span>
                         </div>
                     </div>
 
@@ -127,8 +132,9 @@ function DetailTab2(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Budget</label>
+                            <label>Budget <span className='mandatory'>*</span></label>
                             <input type="text" name="budget" placeholder="$1500" value={props.detail.budget} onChange={props.handleInputChange} />
+                            <span className='error'>{props.FormErrors.budget}</span>
                         </div>
                     </div>
                 </div>

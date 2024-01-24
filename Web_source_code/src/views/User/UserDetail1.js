@@ -42,21 +42,21 @@ function DetailTab1(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Email Id</label>
+                            <label>Email Id <span className='mandatory'>*</span></label>
                             <input type="text" name="email" placeholder="john.mark@gmail.com" value={props.detail.email} onChange={props.handleInputChange} />
                             <span className='error'>{props.FormErrors.email}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Mobile No.</label>
+                            <label>Mobile No. <span className='mandatory'>*</span></label>
                             <input type="text" name="mobileNo" maxLength={10} placeholder="60 7234 4327" value={props.detail.mobileNo} onChange={props.handleInputChange} />
                             <span className='error'>{props.FormErrors.mobileNo}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Gender</label>
+                            <label>Gender <span className='mandatory'>*</span></label>
                             <select name="gender" value={props.detail.gender} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.Gender.map((result) => (<option value={result.id}>{result.name}</option>))}
@@ -66,7 +66,7 @@ function DetailTab1(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Date of Birth</label>
+                            <label>Date of Birth <span className='mandatory'>*</span></label>
                             <div className="input-group date" id="datepicker">
                                 <input type="date" name="DateOfBirth" className="form-control" id="DateOfBirth" placeholder="Jan-01-1999" selected={props.detail.DateOfBirth} onChange={props.handleInputChange} />
                                 {/* <DatePicker name='DateOfBirth' className='form-control' id="date" selected={props.detail.DateOfBirth} onChange={props.handleInputChange} /> */}
@@ -78,65 +78,73 @@ function DetailTab1(props) {
                                         <i className="fa fa-calendar"></i>
                                     </span>
                                 </span> */}
+                                <span className='error'>{props.FormErrors.DateOfBirth}</span>
                             </div>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Your Marital Status</label>
+                            <label>Your Marital Status <span className='mandatory'>*</span></label>
                             <select name="maritalstatus" value={props.detail.maritalstatus} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.MaritalStatus.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.maritalstatus}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Address</label>
+                            <label>Address <span className='mandatory'>*</span></label>
                             <input type="text" name="address" placeholder="1090 Adelaide St" value={props.detail.address} onChange={props.handleInputChange} />
+                            <span className='error'>{props.FormErrors.address}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>City</label>
+                            <label>City <span className='mandatory'>*</span></label>
                             <input type="text" name="city" placeholder="Toronto" value={props.detail.city} onChange={props.handleInputChange} />
+                            <span className='error'>{props.FormErrors.city}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Province</label>
+                            <label>Province <span className='mandatory'>*</span></label>
                             {/* <input type="text" name="province" placeholder="Ontario" value={props.detail.province} onChange={props.handleInputChange} /> */}
                             <select name="province" className='form-control' value={props.detail.province} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.Province.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.province}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Zip code</label>
+                            <label>Zip code <span className='mandatory'>*</span></label>
                             <input type="text" name="ZipCode" placeholder="M1L 3K7" value={props.detail.ZipCode} onChange={props.handleInputChange} />
+                            <span className='error'>{props.FormErrors.ZipCode}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Country</label>
+                            <label>Country <span className='mandatory'>*</span></label>
                             <select name="country" value={props.detail.country} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.Country.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.country}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                     <div className="input-group date" id="datepicker">
                                 {/* <input type="date" name="DateOfBirth" className="form-control" id="DateOfBirth" placeholder="Jan-01-1999" selected={props.detail.DateOfBirth} onChange={props.handleInputChange} /> */}
-                                <label>ID proof</label>
-                            <input type="text" name="idproof" placeholder="Yes" className="form-control" value={props.detail.idproof} />
+                                <label>ID proof <span className='mandatory'>*</span></label>
+                            <input type="text" name="idproof" placeholder="" className="form-control" value={props.detail.idproof} />
                             <span className="input-group-append">
                                     <span className="input-group-text bg-light d-block" onClick={props.handleDocumentClick(1)}>
                                         <i className="fa fa-upload"></i>
                                     </span>
                             </span>
+                            <span className='error'>{props.FormErrors.idproof}</span>
                             </div>
                     </div>
 
@@ -155,11 +163,12 @@ function DetailTab1(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Community</label>
-                            <select name="community" value={props.detail.community} onChange={props.handleInputChange}>
+                            <label>Community <span className='mandatory'>*</span></label>
+                            <select name="communityType" value={props.detail.communityType} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.CommunityType.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.communityType}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
@@ -170,8 +179,9 @@ function DetailTab1(props) {
                     </div>
                     <div className="col-xxl-8 col-xl-8 col-lg-8 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>University Details</label>
+                            <label>University Details <span className='mandatory'>*</span></label>
                             <input type="text" name="universitydetails" placeholder="Business Analyst Student at University of Toronto, Scarborough" value={props.detail.universitydetails} onChange={props.handleInputChange} />
+                            <span className='error'>{props.FormErrors.universitydetails}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
@@ -181,13 +191,14 @@ function DetailTab1(props) {
                         </div> */}
                         <div className="input-group date" id="datepicker">
                                 {/* <input type="date" name="DateOfBirth" className="form-control" id="DateOfBirth" placeholder="Jan-01-1999" selected={props.detail.DateOfBirth} onChange={props.handleInputChange} /> */}
-                                <label>University Id Proof</label>
-                            <input type="text" name="universityidproof" placeholder="Yes" value={props.detail.universityidproof} className="form-control" />
+                                <label>University Id Proof <span className='mandatory'>*</span></label>
+                            <input type="text" name="universityidproof" placeholder="" value={props.detail.universityidproof} className="form-control" />
                             <span className="input-group-append">
                                     <span className="input-group-text bg-light d-block" onClick={props.handleDocumentClick(2)}>
                                         <i className="fa fa-upload"></i>
                                     </span>
                             </span>
+                            <span className='error'>{props.FormErrors.universityidproof}</span>
                             </div>
                     </div>
                     <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-sm-6 col-12">

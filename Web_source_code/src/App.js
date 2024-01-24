@@ -231,7 +231,7 @@ function App() {
                     element: <OwnerStayRequest />,
                 },
                 {
-                    path: "/owner/stayview",
+                    path: "/owner/stayview/:id",
                     element: <OwnerStayView />,
                 },
                 {

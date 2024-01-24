@@ -17,20 +17,22 @@ function DetailTab3(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Co-ed</label>
+                            <label>Co-ed <span className='mandatory'>*</span></label>
                             <select name="coed" value={props.detail.coed} onChange={props.handleInputChange}>
                             <option value={0}>Select</option>
                                 {master.CoEdTypes.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.coed}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Age Group Preferences</label>
+                            <label>Age Group Preferences <span className='mandatory'>*</span></label>
                             <select name="agegrouppreference" value={props.detail.agegrouppreference} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.AgePreference.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.agegrouppreference}</span>
                         </div>
                     </div>
 

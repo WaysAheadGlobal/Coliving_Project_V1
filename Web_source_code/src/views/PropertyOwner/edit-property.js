@@ -18,6 +18,7 @@ function AddProperty() {
     country: 0, province: '', address:'', landmark: '', zipcode: '', markongoogle: '', cancellantionpolicy: 0, description: '',
     host_name: '', host_emailid: '', host_mobileno: '', host_dob: '', host_gender: 0, host_location: '', host_aboutyourself: ''};
     const [propertyValues, setPropertyValues] = useState({});
+    const [isSubmit, SetIsSubmit] = useState(false);
 	const [formErrors, setFormErrors] = useState({});
     const [ErrorAvailable, setErrorAvailable] = useState(false);
     const hiddenFileInput = useRef(null); 
@@ -352,8 +353,113 @@ function AddProperty() {
 
     const handleSaveProperty = (e) => {
         e.preventDefault();
-        //setFormErrors(validate(formValues));
-        if(!ErrorAvailable){
+        const errors = {};
+        var checkError = false;
+        if (!propertyValues.propertyname) {
+			errors.propertyname = "Property Name is required!";
+            checkError = true;
+		}
+        if (propertyValues.housetype == 0) {
+			errors.housetype = "House Type is required!";
+            checkError = true;
+		}
+        if (propertyValues.totalrooms == 0) {
+			errors.totalrooms = "Total rooms is required!";
+            checkError = true;
+		}
+        if (propertyValues.bathroom == 0) {
+			errors.bathroom = "Bathroom is required!";
+            checkError = true;
+		}
+        if (propertyValues.livingroom == 0) {
+			errors.livingroom = "Living room is required!";
+            checkError = true;
+		}
+        if (propertyValues.kitchen == 0) {
+			errors.kitchen = "Kitchen is required!";
+            checkError = true;
+		}
+        if (propertyValues.residants == 0) {
+			errors.residants = "Residant is required!";
+            checkError = true;
+		}
+        if (propertyValues.apartmentsize == 0) {
+			errors.apartmentsize = "Apartment size is required!";
+            checkError = true;
+		}
+        if (propertyValues.fireextinguisher == 0) {
+			errors.fireextinguisher = "Fire extinguisher is required!";
+            checkError = true;
+		}
+        if (propertyValues.country == 0) {
+			errors.country = "Country is required!";
+            checkError = true;
+		}
+        if (propertyValues.province == "0") {
+			errors.province = "Province is required!";
+            checkError = true;
+		}
+        if (!propertyValues.address) {
+			errors.address = "Address is required!";
+            checkError = true;
+		}
+        if (!propertyValues.landmark) {
+			errors.landmark = "Landmark is required!";
+            checkError = true;
+		}
+        if (!propertyValues.zipcode) {
+			errors.zipcode = "Zipcode is required!";
+            checkError = true;
+		}
+        if (!propertyValues.markongoogle) {
+			errors.markongoogle = "Mark on google is required!";
+            checkError = true;
+		}
+
+        if (propertyValues.host_name == 0) {
+			errors.host_name = "Name is required!";
+            checkError = true;
+		}
+        if (propertyValues.host_emailid == 0) {
+			errors.host_emailid = "Email Id is required!";
+            checkError = true;
+		}
+        if (propertyValues.host_mobileno == 0) {
+			errors.host_mobileno = "Mobile No is required!";
+            checkError = true;
+		}
+        if (propertyValues.host_dob == 0) {
+			errors.host_dob = "Date of Birth is required!";
+            checkError = true;
+		}
+        if (propertyValues.host_gender == 0) {
+			errors.host_gender = "Gender is required!";
+            checkError = true;
+		}
+        if (!propertyValues.host_location) {
+			errors.host_location = "Location is required!";
+            checkError = true;
+		}
+        if (!propertyValues.host_idproof) {
+			errors.host_idproof = "Id Proof is required!";
+            checkError = true;
+		}
+        if (!propertyValues.host_propertyOwnershopdocument) {
+			errors.host_propertyOwnershopdocument = "Property document is required!";
+            checkError = true;
+		}
+        if (!propertyValues.host_employmentdetails) {
+			errors.host_employmentdetails = "Employment Details is required!";
+            checkError = true;
+		}
+        if (!propertyValues.host_companyidproof) {
+			errors.host_companyidproof = "Company Id Proof is required!";
+            checkError = true;
+		}
+
+        
+        setFormErrors(errors);
+        if(!checkError){
 				let formData = JSON.stringify(propertyValues);
 				const apiUrl = `${config.Url}api/property/SaveProperty`;
 				fetch(apiUrl, {
@@ -403,71 +509,79 @@ function AddProperty() {
                         <div class="row g-4">
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Enter home/Property name</label>
+                                    <label>Enter home/Property name <span className='mandatory'>*</span></label>
                                     <input type="text" name="propertyname" id="propertyname" value={propertyValues && propertyValues.propertyname} onChange={handleInputChange} placeholder="Urban Styled" />
+                                    <span className='error'>{formErrors.propertyname}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>House type</label>
+                                    <label>House type <span className='mandatory'>*</span></label>
                                     <select name='housetype' value={propertyValues && propertyValues.housetype} onChange={handleInputChange}>
                                             <option value={0}>Select</option>
                                         {master.HouseType.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{formErrors.housetype}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Total Rooms</label>
+                                    <label>Total Rooms <span className='mandatory'>*</span></label>
                                     <select name='totalrooms' value={propertyValues && propertyValues.totalrooms} onChange={handleInputChange}>
                                         <option value={0}>Select</option>
                                         {master.NumbersUpto15.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{formErrors.totalrooms}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Bathroom</label>
+                                    <label>Bathroom <span className='mandatory'>*</span></label>
                                     <select name="noOfBed" value={propertyValues && propertyValues.noOfBed} onChange={handleInputChange}>
                                         <option value={0}>Select</option>
                                         {master.NumbersUpto15.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{formErrors.bathroom}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Living room</label>
+                                    <label>Living room <span className='mandatory'>*</span></label>
                                     <select name="livingroom" value={propertyValues && propertyValues.livingroom} onChange={handleInputChange}>
                                         <option value={0}>Select</option>
                                         {master.NumbersUpto15.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{formErrors.livingroom}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Kitchen</label>
+                                    <label>Kitchen <span className='mandatory'>*</span></label>
                                     <select name="kitchen" value={propertyValues && propertyValues.kitchen} onChange={handleInputChange}>
                                         <option value={0}>Select</option>
                                         {master.NumbersUpto15.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{formErrors.kitchen}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Residents</label>
+                                    <label>Residents <span className='mandatory'>*</span></label>
                                     <select name="residants" value={propertyValues && propertyValues.residants} onChange={handleInputChange}>
                                         <option value={0}>Select</option>
                                         {master.NumbersUpto15.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{formErrors.residants}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Apartment size (Sq ft)</label>
+                                    <label>Apartment size (Sq ft) <span className='mandatory'>*</span></label>
                                     <select name="apartmentsize" value={propertyValues && propertyValues.apartmentsize} onChange={handleInputChange}>
                                         <option value={0}>Select</option>
                                         {master.ApartmentSize.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{formErrors.apartmentsize}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -481,11 +595,12 @@ function AddProperty() {
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Fire extinguisher</label>
+                                    <label>Fire extinguisher <span className='mandatory'>*</span></label>
                                     <select name="fireextinguisher" value={propertyValues && propertyValues.fireextinguisher} onChange={handleInputChange}>
                                         <option value={0}>Select</option>
                                         {master.YesNo.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{formErrors.fireextinguisher}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -508,7 +623,7 @@ function AddProperty() {
                             </div>
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="form-group">
-                                    <label>Add photos (max 5)</label>
+                                    <label>Add photos (max 5) <span className='mandatory'>*</span></label>
                                     <div class="imgupblocks">
                                         <div class="imgupitem">
                                         <div class="imgprev">
@@ -642,7 +757,7 @@ function AddProperty() {
                         <div class="row g-4">
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
                                 <div class="form-group">
-                                    <label>Add photos (min 5)</label>
+                                    <label>Add photos (min 5) <span className='mandatory'>*</span></label>
                                     <div class="imgupblocks">
                                     <div class="imgupitem">
                                                 <div class="imgprev">
@@ -710,68 +825,76 @@ function AddProperty() {
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Room Name</label>
+                                    <label>Room Name <span className='mandatory'>*</span></label>
                                     <input type="text" name="roomname" id="roomname" value={result.roomname} onChange={(evnt) => handleInputRoomChange(index, evnt)} placeholder="#101 Twin Bedroom" />
+                                    <span className='error'>{isSubmit && !result.roomname ? "Room name is required !" : ""}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Room type</label>
+                                    <label>Room type <span className='mandatory'>*</span></label>
                                     <select name="roomtype" value={result.roomtype} onChange={(evnt) => handleInputRoomChange(index, evnt)} >
                                         <option value={0}>Select</option>
                                         {master.RoomType.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{isSubmit && result.roomtype == 0 ? "Room type is required !" : ""}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Room size (Sq ft)</label>
+                                    <label>Room size (Sq ft) <span className='mandatory'>*</span></label>
                                     <select name="roomsize" value={result.roomsize} onChange={(evnt) => handleInputRoomChange(index, evnt)} >
                                         <option value={0}>Select</option>
                                         {master.ApartmentSize.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{isSubmit && result.roomsize == 0 ? "Room size is required !" : ""}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>No. of Bed</label>
+                                    <label>No. of Bed <span className='mandatory'>*</span></label>
                                     <select name="noOfBed" value={result.noOfBed} onChange={(evnt) => handleInputRoomChange(index, evnt)} >
                                         <option value={0}>Select</option>
                                         {master.NumbersUpto15.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{isSubmit && result.noOfBed == 0 ? "No. of Bed is required !" : ""}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Bedroom Type</label>
+                                    <label>Bedroom Type <span className='mandatory'>*</span></label>
                                     <select name="bedroomtype" value={result.bedroomtype} onChange={(evnt) => handleInputRoomChange(index, evnt)} >
                                         <option value={0}>Select</option>
                                         {master.BedroomType.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{isSubmit && result.bedroomtype == 0 ? "Bedroom Type is required !" : ""}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Furniture</label>
+                                    <label>Furniture <span className='mandatory'>*</span></label>
                                     <select name="furniture" value={result.furniture} onChange={(evnt) => handleInputRoomChange(index, evnt)} >
                                         <option value={0}>Select</option>
                                         {master.Furniture.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{isSubmit && result.furniture == 0 ? "Furniture is required !" : ""}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Room rent ($)</label>
-                                    <input type="text" name="size" placeholder="$2,156" />
+                                    <label>Room rent ($) <span className='mandatory'>*</span></label>
+                                    <input type="text" name="roomrent" placeholder="$" value={result.roomrent} onChange={(evnt) => handleInputRoomChange(index, evnt)} />
+                                    <span className='error'>{isSubmit && (result.roomrent == 0 || result.roomrent == "") ? "Room rent is required !" : ""}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Current status of rooms</label>
+                                    <label>Current status of rooms <span className='mandatory'>*</span></label>
                                     <select name="currentstatus" value={result.currentstatus} onChange={(evnt) => handleInputRoomChange(index, evnt)} >
                                         <option value={0}>Select</option>
                                         {master.AvailableNotAvailable.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{isSubmit && result.currentstatus == 0 ? "Current status of room is required !" : ""}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -821,11 +944,12 @@ function AddProperty() {
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Age group preference</label>
+                                    <label>Age group preference <span className='mandatory'>*</span></label>
                                     <select name="agegrouppreference" value={result.agegrouppreference} onChange={(evnt) => handleInputRoomChange(index, evnt)} >
                                         <option value={0}>Select</option>
                                         {master.AgePreference.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{isSubmit && result.agegrouppreference == 0 ? "Age group preference is required !" : ""}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -839,11 +963,12 @@ function AddProperty() {
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Max. Residents</label>
+                                    <label>Max. Residents <span className='mandatory'>*</span></label>
                                     <select name="maxresidants" value={result.maxresidants} onChange={(evnt) => handleInputRoomChange(index, evnt)} >
                                         <option value={0}>Select</option>
                                         {master.NumbersUpto15.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{isSubmit && result.maxresidants == 0 ? "Max. Residents is required !" : ""}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -887,7 +1012,7 @@ function AddProperty() {
                         <div class="row g-xxl-4 g-xl-4 g-lg-4 g-md-4 g-sm-3 g-3">
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Country</label>
+                                    <label>Country <span className='mandatory'>*</span></label>
                                     <select>
                                         <option value={0}>Select</option>
                                         {master.Country.map((result)=> (<option value={result.id}>{result.name}</option>))}
@@ -896,7 +1021,7 @@ function AddProperty() {
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Province</label>
+                                    <label>Province <span className='mandatory'>*</span></label>
                                     {/* <input type="text" name="province" value={propertyValues.province} placeholder="Province" onChange={handleInputChange} /> */}
                                     <select name="province" className='form-control' value={propertyValues.province} onChange={handleInputChange}>
                                             <option value="0">Select</option>
@@ -906,25 +1031,25 @@ function AddProperty() {
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Address</label>
+                                    <label>Address <span className='mandatory'>*</span></label>
                                     <input type="text" name="address" onChange={handleInputChange} value={propertyValues.address} placeholder="West 109th Street Ontario" />
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
-                                        <label>Landmark</label>
+                                        <label>Landmark <span className='mandatory'>*</span></label>
                                         <input type="text" name="landmark" onChange={handleInputChange} value={propertyValues.landmark} placeholder="Morningside Park" />
                                     </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
-                                        <label>Zip Code</label>
+                                        <label>Zip Code <span className='mandatory'>*</span></label>
                                         <input type="text" name="zipcode" onChange={handleInputChange} value={propertyValues.zipcode} placeholder="K2H 5B6" />
                                     </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
-                                        <label>Mark on google</label>
+                                        <label>Mark on google <span className='mandatory'>*</span></label>
                                         <input type="text" name="markongoogle" onChange={handleInputChange} value={propertyValues.markongoogle} placeholder="Enter google map link" />
                                     </div>
                             </div>
@@ -978,25 +1103,25 @@ function AddProperty() {
                             <div class="row g-xxl-4 g-xl-4 g-lg-4 g-md-4 g-sm-3 g-3">
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Name</label>
+                                        <label>Name <span className='mandatory'>*</span></label>
                                         <input type="text" name="host_name" id="host_name" onChange={handleInputChange} value={propertyValues.host_name} placeholder="David Oliver" />
                                     </div>
                                 </div>
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Email ID</label>
+                                        <label>Email ID <span className='mandatory'>*</span></label>
                                         <input type="text" name="host_emailid" id="host_emailid" onChange={handleInputChange} value={propertyValues.host_emailid} placeholder="david.oliver@gmail.com" />
                                     </div>
                                 </div>
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Mobile Number</label>
+                                        <label>Mobile Number <span className='mandatory'>*</span></label>
                                         <input type="text" name="host_mobileno" id="host_mobileno" onChange={handleInputChange} value={propertyValues.host_mobileno} placeholder="+1 85 8963 5523" />
                                     </div>
                                 </div>
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Date of Birth</label>
+                                        <label>Date of Birth <span className='mandatory'>*</span></label>
                                         <div class="input-group date" id="datepicker">
                                             <input type="date" name="host_dob" onChange={handleInputChange} value={propertyValues.host_dob} class="form-control" id="host_dob" placeholder="Jan-01-1999" />
                                                
@@ -1005,7 +1130,7 @@ function AddProperty() {
                                 </div>
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Gender</label>
+                                        <label>Gender <span className='mandatory'>*</span></label>
                                         <select name="host_gender" onChange={handleInputChange} value={propertyValues.host_gender}>
                                         <option value={0}>Select</option>
                                         {master.Gender.map((result)=> (<option value={result.id}>{result.name}</option>))}
@@ -1014,7 +1139,7 @@ function AddProperty() {
                                 </div>
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Location</label>
+                                        <label>Location <span className='mandatory'>*</span></label>
                                         <input type="text" name="host_location" id="host_location" onChange={handleInputChange} value={propertyValues.host_location} placeholder="Ontario" />
                                     </div>
                                 </div>
