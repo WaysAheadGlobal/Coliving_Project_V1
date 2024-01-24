@@ -1,0 +1,245 @@
+@media only screen and (max-width:1299px)
+{
+	.highlights{top:20%;}
+	.highlights h1{    font-size: 55px; line-height: 75px;}
+	.highlights p{margin: 25px 0px;}
+	.searchForm{width: 65%;}
+	.teambody h4{font-size: 20px;}
+	.paymentSec .form-wrapper .articleItem .aImg img{height: auto;}
+	.paymentSec .form-wrapper .articleItem .typerommi{padding: 0px 0px 0px 10px;}
+	.paymentSec .form-wrapper .articleItem .typerommi .tleft{width: 70%;} 
+	.valueGrid .adminCard{height: 100%;}
+	.card-pre {    position: relative;    width: 90%;    margin: 0 auto;}
+	.carddet{width: 80%;}
+	.cvvnumber > div.w-50, .cvvnumber > input, .expdate > div.w-50 {    width: 100% !important;}
+	.expdate > div.w-50:nth-child(2){width: 50% !important;}
+}
+
+@media only screen and (max-width:1199px)
+{
+	.header .navigation ul{gap: 25px;}
+	.highlights h1 {    font-size: 45px;    line-height:55px; margin: 0px;}
+	.highlights p {    margin: 10px 0px 20px;}
+	.searchForm {    width: 55%;}
+	.whyItem{padding: 50px 25px 30px;}
+	.whyItem h4{font-size: 20px;}
+	.whyItem p{line-height: 24px; font-size: 14px;}
+	.b-body h4{font-size: 20px; line-height: 30px;}
+	.teamSlides .owl-nav{top: 52%;}
+	.foot p{font-size: 14px; line-height: 22px;}
+	.blogdetailpage .heading1{max-width: 70%;}
+	.aImg img{height: 217px;}
+	.articalBody{padding: 10px;}
+	.articalBody h4{font-size: 16px; line-height: 24px; margin: 5px 0px 7px;}
+	.artf1{top: 20px;}
+	ul.detailMenu{gap: 15px;}
+	.artdet h2.maintitle{font-size: 28px; line-height: 40px;}
+	.aminities1 li{width: calc(33% - 20px) !important;}
+	.typerommi{padding: 20px 20px 20px 10px;}
+	.typerommi .tleft{width: 100%;}
+	.typerommi .tright{width: 100%; text-align: left; margin-top: 20px;}
+	.paymentSec .form-wrapper .articleItem .typerommi .tleft{width: 100%;} 
+	.rigthroom .typerommi .tleft h3 {    margin-bottom: 15px;    font-size: 14px;}
+
+	.table-layout1 table tr th, .table-layout1 table tr td{white-space: nowrap;}
+	.selectaminities.amilists ul, .amilists ul{gap:7px;}
+	.selectaminities.amilists ul li{padding: 6px 18px; font-size: 14px;}
+	.amilists ul li{padding: 6px 18px; font-size: 14px;}
+	.valueGrid .adminCard{gap: 20px;}
+	.b-title h4{font-size: 16px;}
+	.payment-method{padding: 30px;}
+
+	.myStayPage .bodydet h4 + div.d-flex{flex-wrap: wrap;}
+	.myStayPage .bodydet h4 + div.d-flex p{width: 100%; padding-bottom: 10px;}
+	.myStayPage .bodydet button.btn {    line-height: normal !important;    padding: 10px 10px;}
+	.imgupblocks{justify-content: flex-start;}
+
+	.highlights{padding-top: 0px !important;}
+	.banner > img {		height: auto;		width: 100%;		max-width: none;	}
+
+}
+
+@media only screen and (max-width:991px)
+{
+	.navigation{display: none;}
+	.mobileIcon{display: flex;}
+	.highlights h1{font-size: 38px; line-height:50px;}
+	.banner{overflow: hidden;}
+	.banner > img{height: 450px; width: auto; max-width:none;}
+	.searchForm{width: 75%;}
+	.banner:before{height: 160%;}
+	.padd80{padding:50px 0px;}
+	.heading1 h2{font-size: 30px;}
+	.heading1 p{font-size: 18px;}
+	.heading1 p br{display: none;}
+	.faq .accordion{padding: 30px;}
+	.teamSlides .owl-nav {    left: -54%;    top: 55%;}
+	.ctaarea h2{font-size: 32px; margin-bottom: 7px;}
+	.ctaarea p{font-size: 18px; margin-bottom: 20px;}
+	.ctaarea p br{display: none;}
+	.ctaarea{min-height:auto; padding:40px 40px;}
+	.pagetitle .highlights p {    margin: 10px 0px 0px 0px;}
+	.sideallblogs{gap: 0px;}
+	.sidebitem .b-img{width: 28%;}
+	.b-title{width: 68%;}
+	.blogdetailpage .heading1{max-width: 80%;}
+	.articalBody {    padding: 15px 15px 15px 0px;}
+	.mapview{margin-top:30px;}
+	.headSearch{display: none;}
+	.mobileSearch {display: block;}
+	.page .heading1 {    padding-top: 15px;}
+	.modal-dialog{max-width: 700px;}
+	ul.detailMenu{gap: 30px;}
+	.userloginbtn{display: flex;}
+	.paymentSec .form-wrapper .articleItem .typerommi {    padding: 20px 0px 20px;}
+	.paymentSec .form-wrapper .articleItem .daterow p, .paymentSec .form-wrapper .articleItem .daterow a{font-size: 14px;}
+	.paymentSec .form-wrapper .articleItem .daterow{margin-top: 10px;}
+	.rigthroom .typerommi{padding: 15px 0px 15px;}
+	.rigthroom .secrutiydep li span, .rigthroom .secrutiydep li label{font-size: 14px !important;}
+
+	.adminsidebar{left: -100%;}
+	.adminContent{width: 100%; margin-left: 0px;}
+	.adminsidebar .sideMenu ul li a span, .adminsidebar.active .sideMenu ul li a span{opacity: 0px; display:none;}
+	.adminsidebar .adminlogo .logofull{display: none; opacity:0;}
+	.profileform{padding: 25px;}
+
+	.imgupblocks{    justify-content: flex-start; gap: 20px;}
+	.imgupitem{width: calc(33% - 20px); }
+	.imgupitem .imgprev{width: 100%; height: 180px;}
+	.imgupitem .imgprev img{width: 100%; height:180px;}
+	.b-title h4{font-size: 18px;}
+	.payment-method button.nav-link{padding: 0px 20px; font-size: 14px; height: 50px;}
+	.card-form .form-group label{font-size: 18px;}
+	.card-pre{width: 300px;}
+
+	.table-layout1 table tr td{padding: 15px;}
+	.user-area .innerarea .sidebar {    position: fixed;    left:-100%;    width: 250px;    top: 0;    z-index: 999;    border-radius: 0px;}
+	.user-area .innerarea .sidebar{-webkit-transition:all 0.4s ease-in-out; -moz-transition:all 0.4s ease-in-out; -o-transition:all 0.4s ease-in-out; transition:all 0.4s ease-in-out;}
+	.user-area .innerarea .sidebar.show {    left:0; -webkit-transition:all 0.4s ease-in-out; -moz-transition:all 0.4s ease-in-out; -o-transition:all 0.4s ease-in-out; transition:all 0.4s ease-in-out;}
+	.mobileMenuBtn{display: flex;}
+
+	.mangePropView .imgupblocks{gap:30px;}
+
+	
+}
+
+@media only screen and (max-width:767px)
+{
+	.highlights p br{display: none;}
+	.teamSlides .owl-nav{position: unset;}
+	.b-body h4{font-size: 18px; line-height: 26px;}
+	.blogdetailpage .heading1{max-width: 100%;}
+	.fm-area{padding: 15px;}
+	.aImg img{height: auto;}
+	.articalBody{padding: 15px;}
+	.artf1 {    top: 0;    margin-top: 20px;}
+	.articalBody ul {    gap: 8px;    margin: 14px 0px 0px;}
+	.articalBody ul li{padding-left: 15px; line-height: normal;}
+	.articalBody ul li:after{left: 0;}
+	.allsideArticle .articleItem{width:calc(50% - 10px);}
+	.co-filter ul{gap:5px;}
+	.co-filter ul li{line-height: 34px; padding: 0px 15px; font-size: 14px;}
+	.articalBody ul li:last-child:after{content: "";}
+	.header{height: auto;}
+	.userdropdown{padding-top: 49px;}
+	.postuser span{display: none;}
+	.modal-dialog{max-width: 515px;}
+	.modalForms .formArea{padding: 30px; margin: 60px 40px 40px 45px;}
+	ul.detailMenu{gap: 15px;}
+	.artdet h2.maintitle {    font-size: 22px;    line-height: 30px;}
+	ul.amiitems li{width: 45%;}
+	.aImg img{width: 100%;}
+	.typerommi{padding: 25px;}
+	#contacthost .modal-content h4{font-size: 22px;}
+	.heading1 h2 {    font-size: 24px;}
+
+
+	.searchbtn{align-items: flex-start; flex-direction: column-reverse; gap: 20px;}
+	.notiItem{align-items: flex-start;}
+	.notiItem p {    font-size: 16px;    color: #6C6C6C;    width: calc(100% - 85px);    line-height: 24px;}
+	.profileform{padding: 20px;}
+	.searchbtn form.ntySearch span{display:none;}
+	.messageItem{position: relative;}
+	.detleft{flex-wrap: wrap; width: 83%;}
+	.dettime{width: 15%; text-align: end;}
+	.detleft h5{font-size: 16px;	}
+	.verifiedhost{padding: 4px 6px 6px 6px; width: 30px;   height: 30px;    overflow: hidden;}
+	.adminContent.active{margin-left: 0px; width: 100%;}
+	.adminContent.active .adminHeader {    margin-left: 80px;    width: calc(100% - 80px);  -webkit-transition: all 0.4s ease-in-out;  -moz-transition: all 0.4s ease-in-out; -o-transition: all 0.4s ease-in-out;  transition: all 0.4s ease-in-out;}
+	.mangePropView .imgupblocks{gap: 20px;}
+	.imgupitem{width: 145px;}
+	.imgupitem .imgprev{width: 145px; height: 145px;}
+	.imgupitem .imgprev img{height: 143px;}
+
+	.myStayPage .bodydet h4 + div.d-flex{flex-wrap: unset;}
+	.myStayPage .bodydet h4 + div.d-flex p{width: auto;}
+	.buttonGrp button.btn{min-width:auto;}
+
+	.paymentSec{min-height: 1600px;}
+	.thankyoupage{padding-left:20px; padding-right:20px; }
+	.thankyoupage h4{font-size: 24px;}
+	.thankyoupage img.thankimg, .thankyoupage img{height: 200px;}
+
+
+}
+
+@media only screen and (max-width:575px)
+{
+	.highlights h1{font-size: 24px; line-height: normal;}
+	.highlights p {    margin:25px 0px;    font-size: 16px;    padding: 0px 25px;    line-height: normal;}
+	.searchForm{width: 90%;}
+	.banner > img {		height: auto;		width: 100%;	}
+	.highlights{top:0px; padding-top: 0px !important;}
+	.heading1 h2{font-size: 24px;}
+	.heading1 p{font-size: 16px;}
+	.ctaarea{padding: 50px 30px; background-size: auto 100%; background-position: left top;}
+	.ctaarea p{font-size: 16px; line-height: normal;}
+	.sidebitem .b-img{width: 45%;}
+	.b-title{width: 52%;}
+	.b-title h4{font-size:15px;}
+	.allsideArticle .articleItem {    width: 100%;}
+	.userdropdown{right: 0;}
+	.modalForms .formArea{padding:20px; margin:60px 25px 25px 25px;}
+	.modalForms .formArea h4{font-size: 22px;}
+	.otpValue > input {    width: 30px;    line-height: 30px;    height: 30px;}
+	ul.detailMenu {    gap: 10px; padding-bottom: 0px;}
+	.aminities1 li{width: calc(50% - 20px) !important;}
+	#roomtype > div{flex-wrap: wrap;}
+	#roomtype > div button{margin-top: 20px;}
+	#things ul.amiitems li{width: 100%;}
+	#contacthost .modal-content{padding:40px 20px 20px;}
+	.buttonGrp button{min-width:auto}
+
+
+	.notiItem p{font-size: 14px; line-height: 20px;}
+	.adminTitle h4{font-size: 16px; letter-spacing: 0.7px;}
+	.detleft{width: 100%;}
+	.dettime {	    width: 100%;	    text-align: start;	    padding-left: 67px;	    margin-top: -7px;	}
+	.adminContentbody{padding: 20px;}
+	.backitem{flex-wrap: wrap; gap: 10px;}
+	.backitem span{display: block; width: 100%;}
+
+	.imgupitem { width: calc(50% - 20px);}
+	.imgupitem .imgprev {    width: 100%;    height: 132px;}
+	.imgupitem .imgprev img{height: 130px;}
+	.selectedMeals ul{gap: 15px; flex-wrap: wrap;}
+	.selectedMeals ul li{width:calc(50% - 15px);}
+	.payment-method .nav-tabs{gap: 10px;}
+	.card-pre{width: 265px;}
+	.adpgr.adminform .buttonGrp{flex-wrap: wrap;}
+	.adpgr.adminform .buttonGrp button.btn{min-width: 100%;}
+	.buttonGrp button.btn{width: 100%; margin-bottom: 10px;}
+
+	.proppage .stayview .nav-tabs li.nav-item{margin-right:10px;}
+	.proppage .stayview .nav-tabs li.nav-item:last-child{margin-right: 0px;}
+	.proppage .stayview .nav-tabs li.nav-item button{font-size: 14px; padding: 0px 10px;}
+
+	.optSec{flex-wrap: wrap;}
+	.otpValue{justify-content:center; margin-bottom:10px; width: 100%;}
+	.countdowntime{justify-content: center; width: 100%;}
+
+	.notiItem{align-items: center;}
+	.homeBanner > img{height: 385px; width: auto;}
+	.homeBanner .highlights{top: 20%;}
+	.content-area h4.content-title{padding: 10px 20px 10px 20px;}
+}

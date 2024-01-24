@@ -46,7 +46,7 @@ import Filldetail from './views/Admin/Fill-detail';
 //Property user pages
 import OwnerStayRequest from './views/PropertyOwner/stay-request';
 import OwnerStayView from './views/PropertyOwner/stay-view';
-import OwnerEvents from './views/PropertyOwner/add-event';
+import OwnerEvents from './views/PropertyOwner/Events';
 import AddEvent from './views/PropertyOwner/add-event';
 import OwnerMeal from './views/PropertyOwner/meal';
 import OwnerMealAdd from './views/PropertyOwner/edit-meal';
@@ -239,7 +239,7 @@ function App() {
                     element: <OwnerEvents />,
                 },
                 {
-                    path: "/owner/addevent",
+                    path: "/owner/addevents/:id",
                     element: <AddEvent />,
                 },
                 {

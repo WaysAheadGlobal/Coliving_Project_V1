@@ -1,5 +1,6 @@
 import { Outlet, Link, NavLink } from "react-router-dom"
 import UserTopMenu from './../componenets/UserTopMenu';
+import './../../src/assets/responsive.css';
 
 export default function UserLayout() {
     return (

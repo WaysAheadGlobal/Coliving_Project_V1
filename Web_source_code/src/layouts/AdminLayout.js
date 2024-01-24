@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom"
 import AdminMenu from './../componenets/AdminMenu';
+import './../../src/assets/responsive.css';
 
 export default function AdminLayout() {
     return (
