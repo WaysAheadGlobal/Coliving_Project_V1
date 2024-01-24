@@ -10,4 +10,9 @@ router.post('/myWaitingList', propertyController.getWaitingListPropertyListing);
 router.post('/getMyStayRequests', propertyController.getMyStayRequests);
 router.post('/GetMyNotifications', userController.GetMyNotifications);
 router.post('/saveBookingInfo', propertyController.saveBookingInfo);
+router.post('/getPaymentsInfo', userController.getPaymentsInfo);
+router.post('/getPropertyOwnerStayRequest', userController.getmyStayRequest);
+router.post('/getUserInfoForPropertyOwner', userController.getUserInfoForPropertyOwner);
+
+
 module.exports = router;

@@ -133,6 +133,21 @@ async function getOwnerPropertyInfoUsingPropertyId(property_id, user_id) {
   }
 }
 
+async function getPropertyInfoUsingPropertyId(property_id) {
+  try {
+
+
+    const propertyinfo = await db.query(
+      "SELECT *, id as property_id from propertymaster WHERE Id= ?",
+      [property_id]
+    );
+    const property = propertyinfo[0];
+    return property;
+  } catch (error) {
+    throw error;
+  }
+}
+
 async function getOwnerPropertyRoomInfoUsingPropertyId(property_id) {
   try {
 
@@ -230,8 +245,19 @@ var date = nowDate.getFullYear()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getDate(
         [user_id, property_id, room_id, date, (amount/2), monthlyrent, bookingfrom, bookingto]
       );
 
-      commonModel.AddUserNotifications(user_id, "New Stay request booked Successfully.");
+      const propertyinfo = await db.query(
+        "SELECT * from propertymaster WHERE Id= ?",
+        [property_id]
+      );
+      const property = propertyinfo[0];
+      console.log(property)
+      const propertyOwnerId = property[0].user_id;
+      console.log(propertyOwnerId)
       commonModel.AddUserNotifications(user_id, "$" + (amount/2) + " paid successfully.");
+      commonModel.AddUserNotifications(user_id, "New Stay request booked Successfully.");
+      commonModel.AddUserNotifications(propertyOwnerId, "$" + (amount/2) + " received successfully for property " + property[0].propertyname);
+      commonModel.AddUserNotifications(propertyOwnerId, "New Stay request received Successfully for property " + property[0].propertyname);
+
       return result;
 
   } catch (error) {
@@ -273,5 +299,6 @@ module.exports = {
   AddRemovePropertyToWaitingList,
   getWaitingListPropertyListing,
   saveBookingInfo,
-  getMyStayRequests
+  getMyStayRequests,
+  getPropertyInfoUsingPropertyId
 };

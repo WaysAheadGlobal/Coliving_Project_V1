@@ -160,6 +160,56 @@ async function getUserProfile(req, res) {
       res.status(500).json({ message: "Internal Server Error", status: 500 });
     }
   }
+
+  async function getPaymentsInfo(req, res) {
+    try {
+      const user_id = req.user.userId;
+      const result = await userModel.getPaymentsInfo(user_id);
+      
+      res
+        .status(200)
+        .json({ message: "Users fetched!!!", res: result, status: 200 });
+    } catch (error) {
+      console.error("Error during userinfo:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
+  async function getmyStayRequest(req, res) {
+    try {
+      const user_id = req.user.userId;
+      const result = await userModel.getmyStayRequest(user_id);
+      console.log('result', result)
+      
+      res
+        .status(200)
+        .json({ message: "Users fetched!!!", res: result, status: 200 });
+    } catch (error) {
+      console.error("Error during userinfo:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
+  async function getUserInfoForPropertyOwner(req, res) {
+    try {
+      const {booking_id} = req.body;
+      const result = await userModel.getUserByBookingId(booking_id);
+      const result2 = await userModel.getUserDetailByBookingID(booking_id);
+      const result3 = await userModel.getbookingPropertyInfo(booking_id);
+      const result4 = await userModel.getbookingPropertyStayUsersInfo(booking_id);
+
+      console.log('result', result)
+      
+      res
+        .status(200)
+        .json({ message: "Users fetched!!!", res: result[0], detail: result2[0], propInfo: result3[0], usersInfo: result4, status: 200 });
+    } catch (error) {
+      console.error("Error during userinfo:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+  
+  
   
 module.exports = {
     getUserProfile,
@@ -171,6 +221,9 @@ module.exports = {
     updateUniveristyIDProofDocument,
     updateUserStatus,
     DeleteUser,
-    GetMyNotifications
+    GetMyNotifications,
+    getPaymentsInfo,
+    getmyStayRequest,
+    getUserInfoForPropertyOwner
   };
   

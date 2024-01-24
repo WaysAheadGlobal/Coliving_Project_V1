@@ -11,7 +11,7 @@ function AddMeal() {
                     <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                         <label>Upload Image</label>
                         <div class="userimglg">
-                            <img src="../img/editmealimg.png" class="img-fluid" alt="Add Events" />
+                            <img src={require('../../img/editmealimg.png')} class="img-fluid" alt="Add Events" />
                                 {/* <!-- <div class="delete">
                                     <img src="../img/icons/deleteCircle.png" alt="Delete" class="img-fluid">
                                 </div> --> */}
@@ -40,10 +40,10 @@ function AddMeal() {
                         <div class="form-group">
                             <label>Time</label>
                             <select>
-                                <option>7 - 8 AM</option>
-                                <option>7 - 8 AM</option>
-                                <option>7 - 8 AM</option>
-                                <option>7 - 8 AM</option>
+                            <option>7 - 8 PM</option>
+                                <option>8 - 9 PM</option>
+                                <option>9 - 10 PM</option>
+                                <option>10 - 11 PM</option>
                             </select>
                         </div>
                     </div>

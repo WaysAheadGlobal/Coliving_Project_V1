@@ -1,12 +1,17 @@
-
+import { Link, useNavigate } from 'react-router-dom';
 function Meals() {
+    const history = useNavigate();
+
+    const editMeal = (id) => {
+        history("/owner/mealsAdd/"+id);
+    }
     return (
         <div class="content-area">
             <h4 class="content-title">Meal</h4>
             <div class="profileform">
                 <div class="row">
                     <div class="col-12 text-end mb-2">
-                        <button class="btn btn-primary text-capitalize" onclick="window.location.href='edit-meal.html'"><i class="fa fa-solid fa-plus"></i>&nbsp; add meal</button>
+                        <button class="btn btn-primary text-capitalize" onClick={()=> editMeal(0)}><i class="fa fa-solid fa-plus"></i>&nbsp; add meal</button>
                     </div>
                 </div>
                 <div class="table-layout1">
@@ -26,7 +31,7 @@ function Meals() {
                                 <tr>
                                     <td class="text-center">
                                         <div class="tbleimg">
-                                            <img src="../img/mealimg1.png" class="img-fluid" alt="Meal Image" />
+                                            <img src={require('../../img/mealimg1.png')} class="img-fluid" alt="Meal Image" />
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -43,15 +48,15 @@ function Meals() {
                                     </td>
                                     <td class="text-center">
                                         <div class="tablebtngrp">
-                                            <button class="delete"><i class="fa fa-solid fa-pencil"></i></button>
-                                            <button class="delete"><i class="fa fa-regular fa-trash-can"></i></button>
+                                            <button class="delete" onClick={()=> editMeal(1)}><i class="fa fa-solid fa-pencil"></i></button>
+                                            <button class="delete"><i class="fa fa-regular fa-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">
                                         <div class="tbleimg">
-                                            <img src="../img/mealimg1.png" class="img-fluid" alt="Meal Image" />
+                                            <img src={require('../../img/mealimg1.png')} class="img-fluid" alt="Meal Image" />
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -68,15 +73,15 @@ function Meals() {
                                     </td>
                                     <td class="text-center">
                                         <div class="tablebtngrp">
-                                            <button class="delete"><i class="fa fa-solid fa-pencil"></i></button>
-                                            <button class="delete"><i class="fa fa-regular fa-trash-can"></i></button>
+                                            <button class="delete" onClick={()=> editMeal(2)}><i class="fa fa-solid fa-pencil"></i></button>
+                                            <button class="delete"><i class="fa fa-regular fa-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">
                                         <div class="tbleimg">
-                                            <img src="../img/mealimg1.png" class="img-fluid" alt="Meal Image" />
+                                            <img src={require('../../img/mealimg1.png')} class="img-fluid" alt="Meal Image" />
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -93,15 +98,15 @@ function Meals() {
                                     </td>
                                     <td class="text-center">
                                         <div class="tablebtngrp">
-                                            <button class="delete"><i class="fa fa-solid fa-pencil"></i></button>
-                                            <button class="delete"><i class="fa fa-regular fa-trash-can"></i></button>
+                                            <button class="delete" onClick={()=> editMeal(3)}><i class="fa fa-solid fa-pencil"></i></button>
+                                            <button class="delete"><i class="fa fa-regular fa-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">
                                         <div class="tbleimg">
-                                            <img src="../img/mealimg1.png" class="img-fluid" alt="Meal Image" />
+                                            <img src={require('../../img/mealimg1.png')} class="img-fluid" alt="Meal Image" />
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -118,8 +123,8 @@ function Meals() {
                                     </td>
                                     <td class="text-center">
                                         <div class="tablebtngrp">
-                                            <button class="delete"><i class="fa fa-solid fa-pencil"></i></button>
-                                            <button class="delete"><i class="fa fa-regular fa-trash-can"></i></button>
+                                            <button class="delete" onClick={()=> editMeal(4)}><i class="fa fa-solid fa-pencil"></i></button>
+                                            <button class="delete"><i class="fa fa-regular fa-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>

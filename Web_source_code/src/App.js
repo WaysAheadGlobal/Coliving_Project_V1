@@ -247,7 +247,7 @@ function App() {
                     element: <OwnerMeal />,
                 },
                 {
-                    path: "/owner/mealsAdd",
+                    path: "/owner/mealsAdd/:id",
                     element: <OwnerMealAdd />,
                 },
                 {

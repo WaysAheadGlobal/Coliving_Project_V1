@@ -10,11 +10,11 @@
  --co-black:#000000;
  --co-grey:#636363;
  --co-grey1:#f6f6f6;
- --co-font1:'Poppins', sans-serif;
+ --co-font1:'Poppins', sans-serif !important;
 }
 
 *{margin:0; padding:0; box-sizing:border-box;}
-body{font-family:'Poppins', sans-serif; background:var(--co-white);}
+body{font-family:'Poppins', sans-serif !important; background:var(--co-white);}
 
 .padd40{padding:40px 0px;}
 .padd60{padding:60px 0px;}

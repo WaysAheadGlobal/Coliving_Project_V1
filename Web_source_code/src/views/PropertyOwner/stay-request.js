@@ -1,5 +1,62 @@
-
+import React, { useEffect, useState, useRef  } from "react";
+import config from "../../Config/config";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { Link, useNavigate } from 'react-router-dom';
+import ListItem from '../Home/ListingItem';
+import master from './../../data/masterData.json';
+//
 function StayRequest() {
+    const history = useNavigate();
+    const [MyStayRequest, SetMyStayRequest] = useState([]);
+	const [filterValues, SetFilterValues]= useState({country: 0, moveInDate: '', apartment: 0, roomtype: 0, kitchen: 0, evcharger: 0, 
+	agepreference: 0, furniture: 0});
+	const [recordsPerPage] = useState(10);
+    const [viewPage, SetViewPage] = useState(1);
+	const [currentPage, setCurrentPage] = useState(1);
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+	
+
+    const currentRecords = MyStayRequest && MyStayRequest.length > 0 && MyStayRequest.slice(indexOfFirstRecord,
+        indexOfLastRecord);
+
+    const nPages = Math.ceil(MyStayRequest && MyStayRequest.length / recordsPerPage)
+
+    const SetPage = (i) => (e) => {
+        setCurrentPage(i);
+    }
+    const viewRequest = (id) => (e) => {
+        history("/owner/stayview/"+id);
+    }
+    useEffect(()=> {
+        getListing()
+    }, [filterValues])
+
+	function getListing() {
+		const apiUrl = `${config.Url}api/user/getPropertyOwnerStayRequest`;
+        fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("usertoken")
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === 200) {
+                    SetMyStayRequest(data.res);
+                } else {
+                    toast.error(data.message, {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                    console.error("Error fetching user data");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+	}
     return (
         <div class="content-area">
             <h4 class="content-title">Stay request</h4>
@@ -11,6 +68,7 @@ function StayRequest() {
                                 <tr>
                                     <th class="text-center">image</th>
                                     <th class="text-center">name</th>
+                                    <th class="text-center">Property Name</th>
                                     <th class="text-center">Location</th>
                                     <th class="text-center">Community</th>
                                     <th class="text-center">Charges ($)</th>
@@ -18,31 +76,36 @@ function StayRequest() {
                                 </tr>
                             </thead>
                             <tbody>
+                            {currentRecords && currentRecords.length > 0 && currentRecords.map((item, index)=> (
                                 <tr>
                                     <td class="text-center">
                                         <div class="tbleimg">
-                                            <img src={require('../../img/tableimg1.png')} class="img-fluid" alt="Table Image" />
+                                        <img src={`${config.ImageUrl}images/users/` + item.profilePic} alt="My Stay" class="img-fluid" />
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        John Mark
+                                        {item.Fullname}
                                     </td>
                                     <td class="text-center">
-                                        Ontario
+                                        {item.propertyname}
+                                    </td>
+                                    <td class="text-center">
+                                    {item.province}
                                     </td>
                                     <td class="text-center">
                                         Student
                                     </td>
                                     <td class="text-center">
-                                        $2,156
+                                        ${item.monthlyrent}
                                     </td>
                                     <td class="text-center">
                                         <div class="tablebtngrp">
-                                            <button class="eye" onclick="window.location.href='stay-view.html'"><i class="fa fa-regular fa-eye"></i></button>
+                                            <button class="eye" onClick={viewRequest(item.id)}><i class="fa fa-regular fa-eye"></i></button>
                                             <button class="delete"><i class="fa fa-regular fa-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>
+                            ))}
                             </tbody>
                         </table>
                     </div>

@@ -211,6 +211,89 @@ async function getUserById(userid) {
     }
   }
 
+  async function getPaymentsInfo(user_id) {
+    try {
+  
+  
+      const res = await db.query(
+        "SELECT usr.Fullname, book.bookingfrom, book.bookingto, book.paymentmode, book.monthlyrent, book.amount, book.securitydeposit FROM userbooking book LEFT JOIN users usr on book.user_id = usr.user_id LEFT JOIN propertymaster prop on book.property_id = prop.id WHERE prop.user_id = ?",
+        [user_id]
+      );
+      return res[0];
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function getmyStayRequest(user_id) {
+    try {
+  
+  
+      const res = await db.query(
+        "SELECT distinct booking.id, u1.profilePic, u1.Fullname, prop.propertyname, u1.province, u1.communityType, booking.monthlyrent FROM colivingappdb.userbooking booking "+
+        "LEFT JOIN propertymaster prop on booking.property_id = prop.id "+
+        "LEFT JOIN users u1 on booking.user_id = u1.user_id "+
+        "LEFT JOIN userdetails det on u1.user_id = det.user_id "+
+        "WHERE prop.user_id = ?",
+        [user_id]
+      );
+      return res[0];
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
+  async function getUserByBookingId(booking_id) {
+    try {
+      const [rows] = await db.query("SELECT a1.* FROM users a1 LEFT JOIN userbooking b1 on a1.user_id = b1.user_id WHERE b1.id = ?", [
+        booking_id
+      ]);
+      console.log('rows------>',rows)
+      return rows;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function getUserDetailByBookingID(booking_id) {
+    try {
+      const [rows] = await db.query("SELECT a1.* FROM userdetails a1 LEFT JOIN userbooking b1 on a1.user_id = b1.user_id WHERE b1.id = ?", [booking_id]);
+      return rows;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function getbookingPropertyInfo(booking_id) {
+    try {
+      const [rows] = await db.query("select prop.propertyphoto1, prop.propertyname, room.roomname, booking.monthlyrent, booking.securitydeposit,"+
+      " booking.bookingfrom, booking.bookingto, room.roomtype, prop.province from userbooking booking"+
+      " LEFT JOIN propertymaster prop on booking.property_id = prop.id"+
+      " LEFT join property_roommaster room on booking.room_id = room.id"+
+      " WHERE booking.id = ?"
+      , [booking_id]);
+      return rows;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function getbookingPropertyStayUsersInfo(booking_id) {
+    try {
+      const [rows] = await db.query("select u1.Fullname, u1.profilepic, booking.bookingfrom, booking.bookingto, booking.isbookingconfirmed,"+
+      " detail.languagepreference, detail.coed, detail.agegrouppreference, detail.roommate_dietarypreference, "+
+      " detail.roommate_sharehouseholdchores, detail.roommate_drinkingcomfort, detail.roommate_smokingcomfort, detail.roommate_cannabitscomfort "+
+      " from userbooking booking"+
+      " LEFT JOIN users u1 on booking.user_id = u1.user_id"+
+      " LEFT JOIN userdetails detail on booking.user_id = detail.user_id"+
+      " WHERE booking.id = ?"
+      , [booking_id]);
+      return rows;
+    } catch (error) {
+      throw error;
+    }
+  }
 module.exports = {
     updateUserProfile,
     getUserById,
@@ -224,6 +307,12 @@ module.exports = {
     updateUniversityIdProofDocument,
     updateUserStatus,
     DeleteUser,
-    getMyNotifications
+    getMyNotifications,
+    getPaymentsInfo,
+    getmyStayRequest,
+    getUserByBookingId,
+    getUserDetailByBookingID,
+    getbookingPropertyInfo,
+    getbookingPropertyStayUsersInfo
   };
   
