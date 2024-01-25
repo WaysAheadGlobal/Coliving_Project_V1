@@ -185,16 +185,16 @@
 
 @media only screen and (max-width:575px)
 {
-	.highlights h1{font-size: 24px; line-height: normal;}
+	.highlights h1{font-size: 24px !important; line-height: normal;}
 	.highlights p {    margin:25px 0px;    font-size: 16px;    padding: 0px 25px;    line-height: normal;}
 	.searchForm{width: 90%;}
 	.banner > img {		height: auto;		width: 100%;	}
 	.highlights{top:0px; padding-top: 0px !important;}
-	.heading1 h2{font-size: 24px;}
-	.heading1 p{font-size: 16px;}
-	.ctaarea{padding: 50px 30px; background-size: auto 100%; background-position: left top;}
+	.heading1 h2{font-size: 24px !important; }
+	.heading1 p{font-size: 16px !important;}
+	.ctaarea{padding: 50px 30px !important; background-size: auto 100%; background-position: left top;}
 	.ctaarea p{font-size: 16px; line-height: normal;}
-	.sidebitem .b-img{width: 45%;}
+	.sidebitem .b-img{width: 45% !important;}
 	.b-title{width: 52%;}
 	.b-title h4{font-size:15px;}
 	.allsideArticle .articleItem {    width: 100%;}

@@ -10,5 +10,6 @@ router.post('/UpdateUniversityIDProof', userController.updateUniveristyIDProofDo
 router.post('/updateUserStatus', userController.updateUserStatus);
 router.post('/PropertyList', propertyController.getOwnersPropertyListForAdmin);
 router.post('/DeleteUser', userController.DeleteUser);
+router.post('/getDashboardDetails', userController.getDashboardDetails);
 
 module.exports = router;

@@ -1,8 +1,39 @@
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Chart from "react-apexcharts";
+import master from '../../data/masterData.json'
+import React, { useEffect, useState, useRef } from "react";
+import config from "../../Config/config";
+import { Link, useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 function AdminDashboard() {
+    const [DashboardData, SetDashboardData] = useState([]);
+    useEffect(()=> {
+        getDashboardData();
+    }, {})
+
+    function getDashboardData(){
+        const apiUrl = `${config.Url}api/admin/getDashboardDetails`;
+        fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("usertoken")
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                if (data.status === 200) {
+                    SetDashboardData(data.result);
+                } 
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+    }
     const percentage = 66;
     const chart1 = {
         options: {
@@ -56,7 +87,7 @@ function AdminDashboard() {
                         <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="adminCard">
                                 <div class="totalValues">
-                                    <span>90</span>
+                                    <span>{DashboardData && DashboardData.data && (DashboardData.data.totalUsers)}</span>
                                     <label>Total User</label>
                                 </div>
                                 <div class="chartArea">
@@ -64,14 +95,14 @@ function AdminDashboard() {
                                         <div class="inner-circle"></div>
                                         <p class="percentage">0%</p>
                                     </div> */}
-                                    <CircularProgressbar  value={percentage} className='circular-progress' text={`${percentage}%`} />;
+                                    <CircularProgressbar  value={percentage} className='circular-progress' text={`${DashboardData && DashboardData.data && (DashboardData.data.totalUsers)}%`} />;
                                 </div>
                             </div>
                         </div>
                         <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="adminCard">
                                 <div class="totalValues">
-                                    <span>75</span>
+                                    <span>{DashboardData && DashboardData.data && (DashboardData.data.totalPropertyowners)}</span>
                                     <label>Total Property Owner</label>
                                 </div>
                                 <div class="chartArea">
@@ -83,51 +114,51 @@ function AdminDashboard() {
                                         pathColor: `#000, ${percentage / 100})`,
                                         textColor: '#f88',
                                         backgroundColor: '#E1E5FF',
-                                    })} value={percentage} className='circular-progress' text={`${percentage}%`} />
+                                    })} value={percentage} className='circular-progress' text={`${DashboardData && DashboardData.data && (DashboardData.data.totalPropertyowners)}%`} />
                                 </div>
                             </div>
                         </div>
                         <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="adminCard">
                                 <div class="totalValues">
-                                    <span>60</span>
+                                    <span>{DashboardData && DashboardData.data && (DashboardData.data.totalBookings)}</span>
                                     <label>Total Booking</label>
                                 </div>
                                 <div class="chartArea">
-                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${percentage}%`} />;
+                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${DashboardData && DashboardData.data && (DashboardData.data.totalBookings)}%`} />;
                                 </div>
                             </div>
                         </div>
                         <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="adminCard">
                                 <div class="totalValues">
-                                    <span>40</span>
+                                    <span>{DashboardData && DashboardData.data && (DashboardData.data.totalBookingsPending)}</span>
                                     <label>Total Request For Booking</label>
                                 </div>
                                 <div class="chartArea">
-                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${percentage}%`} />;
+                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${DashboardData && DashboardData.data && (DashboardData.data.totalBookingsPending)}%`} />;
                                 </div>
                             </div>
                         </div>
                         <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="adminCard">
                                 <div class="totalValues">
-                                    <span>85</span>
+                                    <span>4</span>
                                     <label>Total Meal</label>
                                 </div>
                                 <div class="chartArea">
-                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${percentage}%`} />;
+                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${4}%`} />;
                                 </div>
                             </div>
                         </div>
                         <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="adminCard">
                                 <div class="totalValues">
-                                    <span>48</span>
-                                    <label>Total User</label>
+                                    <span>2</span>
+                                    <label>Total Events</label>
                                 </div>
                                 <div class="chartArea">
-                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${percentage}%`} />;
+                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${2}%`} />;
                                 </div>
                             </div>
                         </div>

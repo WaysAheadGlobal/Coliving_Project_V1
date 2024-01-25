@@ -24,7 +24,7 @@ const ListingItem =(props) => {
                             <label>{props.item.province}</label>
                             <h4><a href={`ListingDetail/`+props.item.id}>{props.item.propertyname}</a></h4>
                             <ul>
-                                <li>4 Bedroom</li>
+                                <li>{props.item.roomcount} Rooms</li>
                                 <li>1 shared Bathroom</li>
                                 <li>Fast WiFi</li>
                             </ul>

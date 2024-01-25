@@ -67,7 +67,7 @@ function Property() {
                                 </tr>
                             </thead>
                             <tbody>
-                            {MyProperty.length > 0 &&  MyProperty.map((result, index)=> (
+                            {MyProperty && MyProperty.length > 0 &&  MyProperty.map((result, index)=> (
                                 <tr key={index}>
                                 <td class="text-center">
                                     <div class="tbleimg">
@@ -78,10 +78,10 @@ function Property() {
                                     {result.propertyname}
                                 </td>
                                 <td class="text-center">
-                                    {master.HouseType.find(e => e.id == result.housetype).name}
+                                    {result.housetype == 0 ? "---" : master.HouseType.find(e => e.id == result.housetype).name}
                                 </td>
                                 <td class="text-center">
-                                {master.Country.find(e => e.id == result.country).name}
+                                {result.country == 0 ? "---" : master.Country.find(e => e.id == result.country).name}
                                 </td>
                                 <td class="text-center">
                                 {result.province}

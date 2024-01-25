@@ -176,6 +176,11 @@ const Listing = () => {
 					{currentRecords && currentRecords.length > 0 && currentRecords.map((item, index)=> (
                         <ListItem  item={item} updateWaitingList= {updateWaitingList} />
                     ))}
+					{currentRecords.length == 0 ? 
+					<>
+						<h3>No Property as per your preference</h3>
+					</>
+					: null }
 				</div>
 				<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-5 text-center">
                             <div class="pagi">

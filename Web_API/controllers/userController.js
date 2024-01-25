@@ -1,4 +1,5 @@
 const userModel = require("../models/userModel");
+const adminModel = require("../models/adminModel");
 const sendMail = require("../utils/utils");
 
 async function getUserProfile(req, res) {
@@ -209,6 +210,20 @@ async function getUserProfile(req, res) {
     }
   }
   
+  async function getDashboardDetails(req, res) {
+    try {
+      
+      // Check if the email exists
+      const result = await adminModel.getDashboardDetails();
+      
+      res
+        .status(200)
+        .json({ message: "Dashboard data fetched!!", result: result, status: 200 });
+    } catch (error) {
+      console.error("Error during Document update:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
   
   
 module.exports = {
@@ -224,6 +239,7 @@ module.exports = {
     GetMyNotifications,
     getPaymentsInfo,
     getmyStayRequest,
-    getUserInfoForPropertyOwner
+    getUserInfoForPropertyOwner,
+    getDashboardDetails
   };
   

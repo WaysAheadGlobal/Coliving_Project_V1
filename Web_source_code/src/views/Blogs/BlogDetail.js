@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function BlogDetails() {
     const params = useParams();
+    const history = useNavigate();
     const [blogData, SetBlogData] = useState({});
     useEffect(() => {
         if (params.id != "") {
@@ -42,6 +43,11 @@ function BlogDetails() {
                                     <p>{blogData.Para3}</p>
                                 </div>
                             </div>
+                            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="buttonGrp text-center mt-4">
+                                <button class="btn btn-secondary ms-2" onClick={()=> history("/blogs")}>Back</button>
+                            </div>
+                        </div>
                         </div>
                         <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
                             <div class="sideallblogs">

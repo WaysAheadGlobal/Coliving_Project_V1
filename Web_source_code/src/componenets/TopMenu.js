@@ -25,6 +25,11 @@ const TopMenu = () => {
 	const ref2 = useRef(null);
 	const ref3 = useRef(null);
 	const ref4 = useRef(null);
+
+	const Rref = useRef(null);
+	const Rref2 = useRef(null);
+	const Rref3 = useRef(null);
+	const Rref4 = useRef(null);
 	const getTimeRemaining = (e) => {
 		const total =
 			Date.parse(e) - Date.parse(new Date());
@@ -216,6 +221,17 @@ const TopMenu = () => {
 		const { name, value } = e.target;
 		setFormValues({ ...formValues, [name]: value });
 		console.log(formValues);
+
+		if (name == "otp1") {
+			Rref2.current.focus();
+		}
+		if (name == "otp2") {
+			Rref3.current.focus();
+		}
+		if (name == "otp3") {
+			Rref4.current.focus();
+		}
+
 	}
 	const handleLoginInputChange = (e) => {
 
@@ -763,10 +779,10 @@ const TopMenu = () => {
 											<div class="form-group mb-4">
 												<div class="optSec" style={{ display: showRegisterOTP ? "block" : "none" }}>
 													<div class="otpValue">
-														<input type="text" name="otp1" id="otp1" value={formValues.otp1} maxlength="1" minlength="1" onChange={handleInputChange} />
-														<input type="text" name="otp2" id="otp2" value={formValues.otp2} maxlength="1" minlength="1" onChange={handleInputChange} />
-														<input type="text" name="otp3" id="otp3" value={formValues.otp3} maxlength="1" minlength="1" onChange={handleInputChange} />
-														<input type="text" name="otp4" id="otp4" value={formValues.otp4} maxlength="1" minlength="1" onChange={handleInputChange} />
+														<input type="text" name="otp1" id="otp1" ref={Rref} value={formValues.otp1} maxlength="1" minlength="1" onChange={handleInputChange} />
+														<input type="text" name="otp2" id="otp2" ref={Rref2} value={formValues.otp2} maxlength="1" minlength="1" onChange={handleInputChange} />
+														<input type="text" name="otp3" id="otp3" ref={Rref3} value={formValues.otp3} maxlength="1" minlength="1" onChange={handleInputChange} />
+														<input type="text" name="otp4" id="otp4" ref={Rref4} value={formValues.otp4} maxlength="1" minlength="1" onChange={handleInputChange} />
 														<div class="countdowntime">
 															<span>{Registertimer}</span>
 															{Registertimer == "00:00" ?

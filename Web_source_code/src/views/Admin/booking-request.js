@@ -47,8 +47,8 @@ function BookingRequest() {
                                         </td>
                                         <td class="text-center">
                                             <div class="tablebtngrp">
-                                                <button class="eye" onclick="window.location.href='booking-view.html'"><i class="fa-regular fa-eye"></i></button>
-                                                <button class="delete"><i class="fa-regular fa-trash-can"></i></button>
+                                                <button class="eye" onclick="window.location.href='booking-view.html'"><i class="fa fa-regular fa-eye"></i></button>
+                                                <button class="delete"><i class="fa fa-regular fa-trash"></i></button>
                                             </div>
                                         </td>
                                     </tr>

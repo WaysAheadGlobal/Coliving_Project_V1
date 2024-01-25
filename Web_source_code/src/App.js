@@ -29,6 +29,8 @@ import WishList from './views/User/wishlist';
 import PersonalDetail from './views/User/personalDetail';
 import LoyaltyPoints from './views/User/LoyaltyPoints';
 import RewardHistory from './views/User/RewardHistory';
+import MessageChat from './views/User/messageChat';
+import WaitList from './views/User/waitlist';
 
 //admin pages
 import AdminLogin from './views/Admin/Login';
@@ -123,7 +125,12 @@ function App() {
                 {
                     path: "/user/bookingconfirm",
                     element: <OwnerThankYou />,
+                },
+                {
+                    path: "/user/messagechat",
+                    element: <MessageChat />,
                 }
+
             ],
         }, 
         {
@@ -167,7 +174,10 @@ function App() {
                     path: "/user/reward-history",
                     element: <RewardHistory />,
                 },
-                
+                {
+                    path: "/user/waitlist/:id",
+                    element: <WaitList />,
+                },
             ],
         },
         {
@@ -260,7 +270,7 @@ function App() {
                 },
                 {
                     path: "/owner/messages",
-                    element: <Messages />,
+                    element: <OwnerMessages />,
                 },
                 {
                     path: "/owner/payments",
