@@ -12,11 +12,11 @@ async function getPropertyListing(req) {
     ISNULL((select id from user_waitinglist where property_id=propmaster.id and user_id=?)) WaitingId
     from propertymaster propmaster
     JOIN property_roommaster roommaster on propmaster.id = roommaster.property_id
-    LEFT OUTER JOIN (select user_id, agegrouppreference,dietarypreference,smoke,drink,cannabits from userdetails where user_id = 27) usr on roommaster.agegrouppreference = usr.agegrouppreference
+    LEFT OUTER JOIN (select user_id, agegrouppreference,dietarypreference,smoke,drink,cannabits from userdetails where user_id = ?) usr on roommaster.agegrouppreference = usr.agegrouppreference
     LEFT OUTER JOIN (select property_id, count(*) as roomcount from property_roommaster group by property_id) roomcount on propmaster.id = roomcount.property_id
     and roommaster.dietarypreference = usr.dietarypreference and roommaster.drinking = usr.smoke and roommaster.smoking = usr.smoke and roommaster.cannabits = usr.cannabits
     and roommaster.agegrouppreference = usr.agegrouppreference
-    WHERE 1 = 1  and usr.user_id > 0
+    WHERE 1 = 1  and usr.user_id > 0 and roomcount.roomcount > 0 
     `;
     
     // Create an array to store the parameters for the query
@@ -70,7 +70,7 @@ async function getPropertyDetail(property_id) {
 
 
     const [result] = await db.query(
-      "SELECT * from propertymaster where id=?",
+      "SELECT p1.*, room.MinPrice from propertymaster p1 LEFT OUTER JOIN (select property_id, min(roomrent) as MinPrice from property_roommaster group by property_id) room on p1.id = room.property_id where id=?",
       [property_id]
     );
     return result;

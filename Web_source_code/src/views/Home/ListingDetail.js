@@ -10,6 +10,7 @@ import Modal from 'react-bootstrap/Modal';
 
 const ListingDetail = () => {
     const [PropertyInfo, SetPropertyListing] = useState({});
+    const [ErrorInfo, SetErrorInfo] = useState({});
     const [RoomInfo, SetRoomInfo] = useState([]);
     const [connectWithHost, SetConnectWIthHost] = useState(false);
     const [BookingInfo, SetBookingInfo] = useState({ MoveInDate: '', MoveOutDate: '', RoomType: 0, MonthlyRent: 0, property_id: 0 });
@@ -45,7 +46,19 @@ const ListingDetail = () => {
             // console.log('BookingInfo', BookingInfo)
         }
         else{
-		SetBookingInfo({ ...BookingInfo, [name]: value });
+            if(name == "RoomType"){
+                var rent = 0;
+                rent = value == 0 ? 0 : RoomInfo.find(e => e.id == value).roomrent;
+                SetBookingInfo(prevState => ({
+                    ...BookingInfo,
+                    RoomType : value,
+                    MonthlyRent: rent
+                }));
+            }
+            else{
+                SetBookingInfo({ ...BookingInfo, [name]: value });
+            }
+		
         }
         
         console.log('BookingInfo', BookingInfo)
@@ -61,8 +74,26 @@ const ListingDetail = () => {
     }
 
     const BookMyStay = (e) => {
+        //{ MoveInDate: '', MoveOutDate: '', RoomType: 0 }
+        var error = {};
+        var IsError = false;
+        if(!BookingInfo.MoveInDate){
+            error.MoveInDate = "Required";
+            IsError = true;
+        }
+        if(!BookingInfo.MoveOutDate){
+            error.MoveOutDate = "Required";
+            IsError = true;
+        }
+        if(BookingInfo.RoomType == ""){
+            error.RoomType = "Required";
+            IsError = true;
+        }
+        SetErrorInfo(error);
+        if(IsError == false){
 		localStorage.setItem("myBooking", JSON.stringify(BookingInfo));
         history("/payment")
+        }
     }
     
     useEffect(() => {
@@ -109,7 +140,7 @@ const ListingDetail = () => {
     return (
         <>
             <section class="page articledesc padd80 mt-5" id="photos">
-                {console.log('PropertyInfo', RoomInfo)}
+                {console.log('PropertyInfo', PropertyInfo)}
                 <div class="container">
                     <div class="artical-gal">
                         <div class="row g-3">
@@ -205,11 +236,11 @@ const ListingDetail = () => {
                                     <ul class="amiitems aminities1" id="aminities1">
                                         <li>
                                             <img src={require('./../../img/icons/bed.png')} class="img-fluid" alt="bedrooms" />
-                                            {PropertyInfo.totalrooms} bedrooms
+                                            {PropertyInfo && PropertyInfo.livingroom && master.NumbersUpto15.find(e => e.id == PropertyInfo.livingroom).name} bedrooms
                                         </li>
                                         <li>
                                             <img src={require('./../../img/icons/bath.png')} class="img-fluid" alt="Bathroom" />
-                                            {PropertyInfo.bathroom} Bathroom
+                                            {PropertyInfo && PropertyInfo.bathroom && master.NumbersUpto15.find(e => e.id == PropertyInfo.bathroom).name} Bathroom
                                         </li>
                                         <li>
                                             <img src={require('./../../img/icons/resi.png')} class="img-fluid" alt="Residents" />
@@ -217,7 +248,7 @@ const ListingDetail = () => {
                                         </li>
                                         <li>
                                             <img src={require('./../../img/icons/living.png')} class="img-fluid" alt="living room" />
-                                            {PropertyInfo.bathroom} living room
+                                            {PropertyInfo && PropertyInfo.livingroom && master.NumbersUpto15.find(e => e.id == PropertyInfo.livingroom).name} living room
                                         </li>
                                         <li>
                                             <img src={require('./../../img/icons/calmnt.png')} class="img-fluid" alt="1 month min." />
@@ -225,58 +256,41 @@ const ListingDetail = () => {
                                         </li>
                                         <li>
                                             <img src={require('./../../img/icons/hme.png')} class="img-fluid" alt="687 sqft" />
-                                            {/* {master.Country.find(e => e.id == PropertyInfo.country).name}sq ft */}
+                                            {PropertyInfo && PropertyInfo.apartmentsize && master.ApartmentSize.find(e => e.id == PropertyInfo.apartmentsize).name} sq. ft.
                                         </li>
                                         <li>
                                             <img src={require('./../../img/icons/ktch.png')} class="img-fluid" alt="1 kitchen" />
-                                            {PropertyInfo.kitchen} kitchen
+                                            {PropertyInfo && PropertyInfo.kitchen && master.NumbersUpto15.find(e => e.id == PropertyInfo.kitchen).name} kitchen
                                         </li>
                                     </ul>
-                                    <p class="mb-0">{PropertyInfo.description}</p>
+                                    <p class="mb-0">{PropertyInfo && PropertyInfo.description}</p>
                                 </div>
                                 <div class="cardsec mb-4" id="community">
                                     <h4>Community</h4>
                                     <p class="mb-0">Our residents are primarily local and international students and young professionals in their twenties who see their homes as a safe space to unwind from the daily grind. If you're looking for an environment where relaxation comes first, these are your people. And remember, some flatmate friendships last forever!</p>
                                 </div>
                                 <div class="cardsec mb-4" id="amenities">
-                                    <h4>Amenities</h4>
+                                    <h4>Apartment Amenities</h4>
                                     <ul class="amiitems">
+                                        {PropertyInfo && PropertyInfo.apartmentamenities && PropertyInfo.apartmentamenities.split(',').map((item, index)=> (
                                         <li>
-                                            <img src={require('./../../img/icons/tv.png')} class="img-fluid" alt="tv" />
-                                            Cable TV
+                                            <img src={(item < 20 && item != "") && require(`./../../img/icons/` + master.ApartmentAmeneties.find(e => e.id == item).icon)} class="img-fluid" alt="" />
+                                            {item < 20 && item != "" && master.ApartmentAmeneties.find(e => e.id == item).name}
                                         </li>
+                                        ))}
+                                        
+                                    </ul>
+                                </div>
+                                <div class="cardsec mb-4" id="community_amenities">
+                                    <h4>Community Amenities</h4>
+                                    <ul class="amiitems">
+                                        {PropertyInfo && PropertyInfo.communityamenities && PropertyInfo.communityamenities.split(',').map((item, index)=> (
                                         <li>
-                                            <img src={require('./../../img/icons/diswahser.png')} class="img-fluid" alt="Dishwasher" />
-                                            Dishwasher
+                                            <img src={(item < 20 && item != "") && require(`./../../img/icons/` + master.CommunityAmenities.find(e => e.id == item).icon)} class="img-fluid" alt="" />
+                                            {item < 20 && item != "" && master.CommunityAmenities.find(e => e.id == item).name}
                                         </li>
-                                        <li>
-                                            <img src={require('./../../img/icons/dryer.png')} class="img-fluid" alt="Dryer" />
-                                            Dryer
-                                        </li>
-                                        <li>
-                                            <img src={require('./../../img/icons/wifi.png')} class="img-fluid" alt="Fast WiFi" />
-                                            Fast WiFi
-                                        </li>
-                                        <li>
-                                            <img src={require('./../../img/icons/heater.png')} class="img-fluid" alt="Heating" />
-                                            Heating
-                                        </li>
-                                        <li>
-                                            <img src={require('./../../img/icons/parking.png')} class="img-fluid" alt="Parking (free on street)" />
-                                            Parking (free on street)
-                                        </li>
-                                        <li>
-                                            <img src={require('./../../img/icons/washer.png')} class="img-fluid" alt="Washer" />
-                                            Washer
-                                        </li>
-                                        <li>
-                                            <img src={require('./../../img/icons/ac.png')} class="img-fluid" alt="Cooling" />
-                                            Cooling
-                                        </li>
-                                        <li>
-                                            <img src={require('./../../img/icons/fridge.png')} class="img-fluid" alt="Refrigerator" />
-                                            Refrigerator
-                                        </li>
+                                        ))}
+                                        
                                     </ul>
                                 </div>
                                 <div class="cardsec mb-4" id="roomtype">
@@ -348,9 +362,9 @@ const ListingDetail = () => {
                                             <div>
                                                 <div class="reviewItem">
                                                     <div class="hostimg mb-3">
-                                                        <img src={require('./../../img/user2.png')} class="img-fluid" alt="Host" />
+                                                        <img src={require('./../../img/user4.png')} class="img-fluid" alt="Host" />
                                                         <label>
-                                                            Anusha H <br />
+                                                            Vishal S <br />
                                                             <small>Oct 2023</small>
                                                         </label>
                                                         <div class="rating">
@@ -359,7 +373,7 @@ const ListingDetail = () => {
                                                         </div>
                                                     </div>
                                                     <p>Easy living in a lively area of Ontario. Worth the cost! All amenities provided with reliable security and customer service. Just be aware that street parking in North End</p>
-                                                    <a href="#/" class="showmore">Show more</a>
+                                                    {/* <a href="#/" class="showmore">Show more</a> */}
                                                 </div>
                                                 <div class="reviewItem">
                                                     <div class="hostimg mb-3">
@@ -373,20 +387,20 @@ const ListingDetail = () => {
                                                             5.0
                                                         </div>
                                                     </div>
-                                                    <p>Easy living in a lively area of Ontario. Worth the cost! All amenities provided with reliable security and customer service. Just be aware that street parking in North End</p>
-                                                    <a href="#/" class="showmore">Show more</a>
+                                                    <p>Sweet memories while stay. Good for family.</p>
+                                                    {/* <a href="#/" class="showmore">Show more</a> */}
                                                 </div>
                                             </div>
-                                            <button class="hostbtn mt-4">Show more reviews</button>
+                                            {/* <button class="hostbtn mt-4">Show more reviews</button> */}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="cardsec mb-4" id="location">
                                     <h4>Location</h4>
-                                    <h5>West 109th Street Ontario</h5>
+                                    <h5>{PropertyInfo && PropertyInfo.address}, {PropertyInfo && PropertyInfo.province}</h5>
                                     <p>The exact location is provided after the booking is confirmed.</p>
                                     <div class="maploc">
-                                        <img src={require('./../../img/detailmap.png')} class="img-fluid" alt="Detail Map" />
+                                        <iframe src={PropertyInfo && PropertyInfo.markongoogle} style={{width: '800px', height: '500px'}} />
                                     </div>
                                 </div>
                                 <div class="cardsec mb-4" id="mealplan">
@@ -438,6 +452,7 @@ const ListingDetail = () => {
                                             Hire Travel guide
                                         </li>
                                     </ul>
+                                    {PropertyInfo && PropertyInfo.cancellantionpolicy == 2 ? 
                                     <div class="cancellation">
                                         <h5>Cancellation policy: Non-refundable</h5>
                                         <div>
@@ -448,24 +463,26 @@ const ListingDetail = () => {
                                             </div>
                                         </div>
                                     </div>
+                                    :
+                                    null }
                                 </div>
                                 <div class="cardsec mb-4" id="hostinfo">
                                     <h4>Host information</h4>
                                     <div class="hostinfo">
                                         <div class="hostimg mb-4">
                                             <img src={require('./../../img/icons/user.png')} class="img-fluid" alt="Host" />
-                                            <label>David Oliver</label>
+                                            <label>{PropertyInfo && PropertyInfo.host_name}</label>
                                             <div class="badge3 text-uppercase">
                                                 <img src={require('./../../img/icons/verified.png')} class="img-fluid" alt="Verified" />
                                                 Verified host
                                             </div>
                                         </div>
-                                        <p>David Oliver manages this listing in agreement with Coliving.com. Every property is vetted for quality, and hosts are pre-qualified to meet Coliving.com's standards. They are open to any questions anytime before and during your stay.</p>
+                                        <p>{PropertyInfo && PropertyInfo.host_aboutyourself}</p>
                                         <ul class="amiitems" id="hosttime">
-                                            <li>
+                                            {/* <li>
                                                 <img src={require('./../../img/icons/calend.png')} class="img-fluid" alt="Calender" />
                                                 Joined in <span>August 2019</span>
-                                            </li>
+                                            </li> */}
                                             <li>
                                                 <img src={require('./../../img/icons/response.png')} class="img-fluid" alt="Calender" />
                                                 Response rate: <span>92%</span>
@@ -484,7 +501,7 @@ const ListingDetail = () => {
                             <div class="checkInOut">
                                 <div class="checkprice d-flex align-items-center justify-content-between">
                                     <div class="price">
-                                        From <span>$2,156</span>
+                                        From <span>${PropertyInfo && PropertyInfo.MinPrice}</span>
                                     </div>
                                     <div class="rating">
                                         <i class="fa fa-solid fa-star"></i>
@@ -499,6 +516,7 @@ const ListingDetail = () => {
                                             {/* <div>
                                             <img src={require('./../../img/icons/calender1.png')} class="img-fluid" alt="Calender" />
                                         </div> */}
+                                            <span className="error">{ErrorInfo && ErrorInfo.MoveInDate }</span>
                                         </div>
                                     </div>
                                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -508,6 +526,7 @@ const ListingDetail = () => {
                                             {/* <div>
                                             <img src={require('./../../img/icons/calender1.png')} class="img-fluid" alt="Calender" />
                                         </div> */}
+                                        <span className="error">{ErrorInfo && ErrorInfo.MoveOutDate }</span>
                                         </div>
                                     </div>
                                 </div>
@@ -517,6 +536,7 @@ const ListingDetail = () => {
                                         <option value={0}>Select</option>
                                         {RoomInfo && RoomInfo.map((result) => (<option value={result.id}>{result.roomname}</option>))}
                                     </select>
+                                    <span className="error">{ErrorInfo && ErrorInfo.RoomType }</span>
                                 </div>
                                 <ul class="secrutiydep mb-4">
                                     <li>
@@ -542,12 +562,12 @@ const ListingDetail = () => {
                         <div class="closeBtn" onClick={()=> SetConnectWIthHost(false)}>
                             <i class="fa fa-solid fa-xmark"></i>
                         </div>
-                        <h4 id="hostModalLabel">Connect with David Oliver</h4>
+                        <h4 id="hostModalLabel">Connect with {PropertyInfo && PropertyInfo.host_name}</h4>
                         <div class="to mb-4">
                             <label>To:</label>
                             <div class="hostimg">
                                 <img src={require('../../img/icons/user.png')} class="img-fluid" alt="Host" />
-                                    <label>David Oliver</label>
+                                    <label>{PropertyInfo && PropertyInfo.host_name}</label>
                                     <div class="badge3 text-uppercase">
                                         <img src={require('../../img/icons/verified.png')} class="img-fluid" alt="Verified" />
                                             Verified host

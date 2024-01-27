@@ -7,7 +7,7 @@ export default function AdminLayout() {
         <>
             <div class="adminWrapper">
                 <div class="adminsidebar">
-                    <a class="adminlogo" href="index.html">
+                    <a class="adminlogo" href="/admin">
                         <img src={require('./../img/adminLogo.png')} class="img-fluid logofull" alt="Co-living" />
                         <img src={require('./../img/sidebarIcon.png')} class="img-fluid logoicon" alt="Co-living" />
                     </a>

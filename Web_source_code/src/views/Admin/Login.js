@@ -113,7 +113,7 @@ function AdminLogin() {
 					<div class="row align-items-center">
 						<div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-7">
 							<div class="logo">
-								<a href="index.html">
+								<a href="/">
 									<img src={require('../../img/logo.png')} alt="Co-living logo missing" title="Co-living" class="img-fluid" />
 								</a>
 							</div>
@@ -127,7 +127,7 @@ function AdminLogin() {
 							</div>
 							<div class="mobileMenus">
 								<div class="logo-m">
-									<a href="index.html">
+									<a href="/">
 										<img src="../img/logo.png" alt="Co-living logo missing" title="Co-living" />
 									</a>
 								</div>

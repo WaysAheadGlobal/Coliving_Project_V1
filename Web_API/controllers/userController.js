@@ -215,10 +215,10 @@ async function getUserProfile(req, res) {
       
       // Check if the email exists
       const result = await adminModel.getDashboardDetails();
-      
+      const bookingInfo = await adminModel.getBookingInfo();
       res
         .status(200)
-        .json({ message: "Dashboard data fetched!!", result: result, status: 200 });
+        .json({ message: "Dashboard data fetched!!", result: result,bookingInfo: bookingInfo, status: 200 });
     } catch (error) {
       console.error("Error during Document update:", error);
       res.status(500).json({ message: "Internal Server Error", status: 500 });

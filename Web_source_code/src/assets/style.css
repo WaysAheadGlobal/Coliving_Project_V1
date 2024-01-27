@@ -1439,6 +1439,7 @@ ol, ul {
 button.btn.btn-primary {
     background: var(--co-primary);
     border: var(--co-primary);
+    color: white !important;
 }
 .wait i.fa.fa-regular.fa-heart {
     color: red;

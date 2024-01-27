@@ -7,6 +7,7 @@ import ListItem from '../Home/ListingItem';
 import master from './../../data/masterData.json';
 
 function MyStay() {
+    const history = useNavigate();
     const [PropertyList, SetPropertyListing] = useState([]);
 	const [filterValues, SetFilterValues]= useState({country: 0, moveInDate: '', apartment: 0, roomtype: 0, kitchen: 0, evcharger: 0, 
 	agepreference: 0, furniture: 0});
@@ -61,7 +62,12 @@ function MyStay() {
                 console.error("Error fetching user data:", error);
             });
 	}
-
+    const checkWaitingList = (id)=> (e) => {
+        history("/user/waitlist/" + id)
+    }
+    const checkResidantsList = (id)=> (e) => {
+        history("/user/property-residantlist/" + id)
+    }
 	function removeFromList(property_id) {
 		const apiUrl = `${config.Url}api/property/AddRemovePropertyToWaitingList`;
 		let formData = JSON.stringify({
@@ -117,13 +123,14 @@ function MyStay() {
                             <label>{item.province}</label>
                             <h4>{item.propertyname}</h4>
                             <div class="d-flex align-items-center justify-content-between my-3">
-                                <p class="mb-0">Fri, Dec 01 - Thu, Feb 01 2024</p>
+                                <p class="mb-0">{item.bookingfrom} to {item.bookingto}</p>
                                 <div class="rating">
                                     <img src={require('../../img/icons/star.png')} class="img-fluid" alt="Star" />
                                         5.0
                                 </div>
                             </div>
-                            <button class="btn btn-primary text-uppercase w-100">check waitlist for this property</button>
+                            <button class="btn btn-primary text-uppercase" onClick={checkWaitingList(item.id)} style={{marginRight: '15px'}}>check waitlist</button>
+                            <button class="btn btn-primary text-uppercase" onClick={checkResidantsList(item.id)}>check Residants</button>
                         </div>
                     </div>
                 </div>

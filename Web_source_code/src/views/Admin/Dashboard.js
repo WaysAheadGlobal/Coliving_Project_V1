@@ -10,6 +10,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 function AdminDashboard() {
     const [DashboardData, SetDashboardData] = useState([]);
+    const [BookingData, SetBookingData] = useState([]);
     useEffect(()=> {
         getDashboardData();
     }, {})
@@ -28,6 +29,7 @@ function AdminDashboard() {
                 console.log(data);
                 if (data.status === 200) {
                     SetDashboardData(data.result);
+                    SetBookingData(data.bookingInfo)
                 } 
             })
             .catch((error) => {
@@ -95,7 +97,7 @@ function AdminDashboard() {
                                         <div class="inner-circle"></div>
                                         <p class="percentage">0%</p>
                                     </div> */}
-                                    <CircularProgressbar  value={percentage} className='circular-progress' text={`${DashboardData && DashboardData.data && (DashboardData.data.totalUsers)}%`} />;
+                                    <CircularProgressbar  value={DashboardData && DashboardData.data && (DashboardData.data.totalUsers)} className='circular-progress' text={`${DashboardData && DashboardData.data && (DashboardData.data.totalUsers)}%`} />;
                                 </div>
                             </div>
                         </div>
@@ -114,7 +116,7 @@ function AdminDashboard() {
                                         pathColor: `#000, ${percentage / 100})`,
                                         textColor: '#f88',
                                         backgroundColor: '#E1E5FF',
-                                    })} value={percentage} className='circular-progress' text={`${DashboardData && DashboardData.data && (DashboardData.data.totalPropertyowners)}%`} />
+                                    })} value={DashboardData && DashboardData.data && (DashboardData.data.totalPropertyowners)} className='circular-progress' text={`${DashboardData && DashboardData.data && (DashboardData.data.totalPropertyowners)}%`} />
                                 </div>
                             </div>
                         </div>
@@ -125,7 +127,7 @@ function AdminDashboard() {
                                     <label>Total Booking</label>
                                 </div>
                                 <div class="chartArea">
-                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${DashboardData && DashboardData.data && (DashboardData.data.totalBookings)}%`} />;
+                                <CircularProgressbar  value={DashboardData && DashboardData.data && (DashboardData.data.totalBookings)} className='circular-progress' text={`${DashboardData && DashboardData.data && (DashboardData.data.totalBookings)}%`} />;
                                 </div>
                             </div>
                         </div>
@@ -136,7 +138,7 @@ function AdminDashboard() {
                                     <label>Total Request For Booking</label>
                                 </div>
                                 <div class="chartArea">
-                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${DashboardData && DashboardData.data && (DashboardData.data.totalBookingsPending)}%`} />;
+                                <CircularProgressbar  value={DashboardData && DashboardData.data && (DashboardData.data.totalBookingsPending)} className='circular-progress' text={`${DashboardData && DashboardData.data && (DashboardData.data.totalBookingsPending)}%`} />;
                                 </div>
                             </div>
                         </div>
@@ -147,7 +149,7 @@ function AdminDashboard() {
                                     <label>Total Meal</label>
                                 </div>
                                 <div class="chartArea">
-                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${4}%`} />;
+                                <CircularProgressbar  value={4} className='circular-progress' text={`${4}%`} />;
                                 </div>
                             </div>
                         </div>
@@ -158,7 +160,7 @@ function AdminDashboard() {
                                     <label>Total Events</label>
                                 </div>
                                 <div class="chartArea">
-                                <CircularProgressbar  value={percentage} className='circular-progress' text={`${2}%`} />;
+                                <CircularProgressbar  value={2} className='circular-progress' text={`${2}%`} />;
                                 </div>
                             </div>
                         </div>
@@ -214,46 +216,16 @@ function AdminDashboard() {
                                 </tr>
                             </thead>
                             <tbody>
+                            {BookingData && BookingData.length > 0 &&  BookingData.map((result, index)=> (
                                 <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">John Mark</td>
-                                    <td class="text-center">john.mark@gmail.com</td>
-                                    <td class="text-center">Urban Styled Apt.</td>
-                                    <td class="text-center">25/11/2024</td>
-                                    <td class="text-center">Visa</td>
+                                    <td class="text-center">{index + 1}</td>
+                                    <td class="text-center">{result.Fullname}</td>
+                                    <td class="text-center">{result.email}</td>
+                                    <td class="text-center">{result.propertyname}</td>
+                                    <td class="text-center">{result.bookingfrom}</td>
+                                    <td class="text-center">{result.paymentmode}</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center">2</td>
-                                    <td class="text-center">Callan Rose</td>
-                                    <td class="text-center">callan.rose@gmail.com</td>
-                                    <td class="text-center">Amazing Cozy Apt.</td>
-                                    <td class="text-center">12/11/2024</td>
-                                    <td class="text-center">Visa</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">3</td>
-                                    <td class="text-center">Nylah Hood</td>
-                                    <td class="text-center">nylah.hood@gmail.com</td>
-                                    <td class="text-center">Beautiful Elegant Apt.</td>
-                                    <td class="text-center">29/10/2024</td>
-                                    <td class="text-center">Visa</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">4</td>
-                                    <td class="text-center">Eliza Yates</td>
-                                    <td class="text-center">eliza.yates@gmail.com</td>
-                                    <td class="text-center">Classic Elegant House</td>
-                                    <td class="text-center">22/10/2024</td>
-                                    <td class="text-center">Visa</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">5</td>
-                                    <td class="text-center">Kyson Blake</td>
-                                    <td class="text-center">kyson.blake@gmail.com</td>
-                                    <td class="text-center">Elegant Vibrant House</td>
-                                    <td class="text-center">10/10/2024</td>
-                                    <td class="text-center">Visa</td>
-                                </tr>
+                            ))}
                             </tbody>
                         </table>
                     </div>

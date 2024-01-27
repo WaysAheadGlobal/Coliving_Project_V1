@@ -92,6 +92,12 @@ const PersonalDetail = () => {
         var checkErrorTab3 = false;
         if(selectedTab == 1){
         
+        if (!values.profilePic) {
+            errors.profilePic = "Profile Pic is required!";
+            SetErrorFound(true);
+            checkError = true;
+        }
+
 		if (!values.Fullname) {
 			errors.Fullname = "FullName is required!";
 			SetErrorFound(true);
@@ -419,16 +425,16 @@ const PersonalDetail = () => {
                 <div className="personaltabs">
                     <ul className="nav nav-tabs" id="myTab" role="tablist">
                         <li className="nav-item" role="presentation">
-                            <button className={selectedTab >= 1 ? "nav-link active" : "nav-link"} id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected={selectedTab == 1 ? "true" : 'false'}>1</button>
+                            <button className={selectedTab >= 1 ? "nav-link active" : "nav-link"} id="home-tab" aria-selected={selectedTab == 1 ? "true" : 'false'}>1</button>
                         </li>
                         <li className="nav-item" role="presentation">
-                            <button className={selectedTab >= 2 ? "nav-link active" : "nav-link"} id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected={selectedTab == 2 ? "true" : 'false'}>2</button>
+                            <button className={selectedTab >= 2 ? "nav-link active" : "nav-link"} id="profile-tab" aria-selected={selectedTab == 2 ? "true" : 'false'}>2</button>
                         </li>
                         <li className="nav-item" role="presentation">
-                            <button className={selectedTab >= 3 ? "nav-link active" : "nav-link"} id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected={selectedTab == 3 ? "true" : 'false'}>3</button>
+                            <button className={selectedTab >= 3 ? "nav-link active" : "nav-link"} id="contact-tab" aria-selected={selectedTab == 3 ? "true" : 'false'}>3</button>
                         </li>
                         <li className="nav-item" role="presentation">
-                            <button className={selectedTab >= 4 ? "nav-link active" : "nav-link"} id="fourth-tab" data-bs-toggle="tab" data-bs-target="#fourthform" type="button" role="tab" aria-controls="fourthform" aria-selected={selectedTab == 4 ? "true" : 'false'}><i class="fa fa-check" aria-hidden="true"></i></button>
+                            <button className={selectedTab >= 4 ? "nav-link active" : "nav-link"} id="fourth-tab" aria-selected={selectedTab == 4 ? "true" : 'false'}><i class="fa fa-check" aria-hidden="true"></i></button>
                         </li>
                     </ul>
                     <div className="tab-content" id="myTabContent">
@@ -476,7 +482,7 @@ const PersonalDetail = () => {
                             <button className="btn btn-secondary text-uppercase" onClick={GotoBack} style={{ marginRight: '15px' }}>Back</button>
                             : null}
                             {selectedTab != 4 ?
-                            <button className="btn btn-primary text-uppercase" onClick={GotoNext}>{selectedTab == 3 ? "Save" : "Next"}</button>
+                            <button className="btn btn-primary text-uppercase" onClick={GotoNext}>{selectedTab == 3 ? "Submit for Approval" : "Save & Continue"}</button>
                             : null}
                         
                     </div>

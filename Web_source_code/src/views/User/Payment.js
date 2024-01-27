@@ -10,11 +10,12 @@ import svg from "../../img/icons/bankGrey.svg";
 const Payments = () => {
 
     const [PropertyInfo, SetPropertyListing] = useState({});
+    const [ErrorInfo, SetErrorInfo] = useState({});
     const [stepCount, SetStep] = useState(1);
     const [RoomInfo, SetRoomInfo] = useState([]);
     const [connectWithHost, SetConnectWIthHost] = useState(false);
     const [BookingInfo, SetBookingInfo] = useState({ MoveInDate: '', MoveOutDate: '', RoomType: 0, MonthlyRent: 0, property_id: 0 });
-    const [PaymentInfo, SetPaymentInfo] = useState({ CardNumber: '4111 1111 1111 1111', CardHolderName: 'Test Card', cvvno: 258, expmonth: 11, expyear: 2025 });
+    const [PaymentInfo, SetPaymentInfo] = useState({ CardNumber: '4111111111111111', CardHolderName: 'Test Card', cvvno: 258, expmonth: 11, expyear: 2025 });
 
     const params = useParams();
     const history = useNavigate();
@@ -22,7 +23,7 @@ const Payments = () => {
 
     const BackToListing =(e) => {
         let userObj = JSON.parse(localStorage.getItem("myBooking"));
-        history("/ListingDetail/"+userObj.property_id)
+        history("/ListingDetail/"+userObj.property_id);
     }
 
     const HandleInputChange = (e) => {
@@ -79,15 +80,44 @@ const Payments = () => {
     }
 
     function MakePayment() {
-        let userObj = JSON.parse(localStorage.getItem("myBooking"));
+        var error = {};
+        var isValid = true;
+        if(PaymentInfo.CardNumber == ""){
+            error.CardNumber = "Card No is required.";
+            isValid=false;
+        }
+        if(PaymentInfo.CardNumber.length != "16"){
+            error.CardNumber = "Card No is invalid.";
+            isValid=false;
+        }
+        if(PaymentInfo.CardHolderName == ""){
+            error.CardHolderName = "CardHolder Name is required.";
+            isValid=false;
+        }
+        if(PaymentInfo.cvvno == ""){
+            error.cvvno = "Cvv no is required.";
+            isValid=false;
+        }
+        if(PaymentInfo.expmonth == ""){
+            error.expmonth = "Exp. month is required.";
+            isValid=false;
+        }
+        if(PaymentInfo.expyear == ""){
+            error.expyear = "Exp. year is required.";
+            isValid=false;
+        }
+        SetErrorInfo(error);
 
+        if(isValid){
+        let userObj = JSON.parse(localStorage.getItem("myBooking"));
         let formData = JSON.stringify({
             "property_id": userObj.property_id,
             "room_id": userObj.RoomType,
             "amount": BookingInfo.MonthlyRent,
             "monthlyrent": BookingInfo.MonthlyRent,
             "bookingfrom": userObj.MoveInDate,
-            "bookingto": userObj.MoveOutDate
+            "bookingto": userObj.MoveOutDate,
+            "bookingconfirmed": 0
         });
         const apiUrl = `${config.Url}api/user/saveBookingInfo`;
         fetch(apiUrl, {
@@ -118,6 +148,7 @@ const Payments = () => {
             .catch((error) => {
                 console.error("Error fetching user data:", error);
             });
+        }
     }
 
     return (
@@ -257,6 +288,7 @@ const Payments = () => {
                                                         :
                                                         null }
                                                     </div>
+                                                    <span className="error">{ErrorInfo.CardNumber}</span>
                                                 </div>
                                                 <div class="form-group mb-4">
                                                     <label>Card Holder Name</label>
@@ -268,6 +300,7 @@ const Payments = () => {
                                                         :
                                                         null }
                                                     </div>
+                                                    <span className="error">{ErrorInfo.CardHolderName}</span>
                                                 </div>
                                                 <div class="form-group mb-4">
                                                     <div class="d-flex flex-wrap align-items-center justfy-content-between cvvnumber">
@@ -277,6 +310,7 @@ const Payments = () => {
                                                         </div>
                                                         <input type="text" name="cvvno" value={PaymentInfo.cvvno} maxLength={3} onChange={HandleInputChange} class="w-50" placeholder="" />
                                                     </div>
+                                                    <span className="error">{ErrorInfo.cvvno}</span>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="d-flex flex-wrap align-items-center justfy-content-between expdate">
@@ -289,6 +323,8 @@ const Payments = () => {
                                                             <span class="px-3">/</span>
                                                             <input type="text" name="expyear" class="" placeholder="" maxLength={4} value={PaymentInfo.expyear} onChange={HandleInputChange} />
                                                         </div>
+                                                        <span className="error">{ErrorInfo.expmonth} / </span>
+                                                        <span className="error">{ErrorInfo.expyear}</span>
                                                     </div>
                                                 </div>
                                             </div>

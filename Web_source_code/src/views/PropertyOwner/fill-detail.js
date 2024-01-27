@@ -305,6 +305,10 @@ function FillDetail() {
 			errors.kitchen = "Kitchen is required!";
             checkError = true;
 		}
+        if (!propertyValues.propertyphoto1) {
+			errors.propertyphoto1 = "At least 1 Property Photo is required!";
+            checkError = true;
+		}
         if (propertyValues.residants == 0) {
 			errors.residants = "Residant is required!";
             checkError = true;
@@ -532,7 +536,7 @@ function FillDetail() {
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Bathroom <span className='mandatory'>*</span></label>
-                                        <select name="noOfBed" value={propertyValues.noOfBed} onChange={handleInputChange}>
+                                        <select name="bathroom" value={propertyValues.bathroom} onChange={handleInputChange}>
                                             <option value={0}>Select</option>
                                             {master.NumbersUpto15.map((result) => (<option value={result.id}>{result.name}</option>))}
                                         </select>
@@ -619,7 +623,7 @@ function FillDetail() {
                                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>Add photos (max 5) <span className='mandatory'>*</span></label>
-
+                                        <span className='error'>{formErrors.propertyphoto1}</span>
                                         <div class="imgupblocks">
                                             <div class="imgupitem">
                                                 <div class="imgprev">

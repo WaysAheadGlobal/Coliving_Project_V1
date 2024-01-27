@@ -31,6 +31,7 @@ import LoyaltyPoints from './views/User/LoyaltyPoints';
 import RewardHistory from './views/User/RewardHistory';
 import MessageChat from './views/User/messageChat';
 import WaitList from './views/User/waitlist';
+import ResidantsList from './views/User/ResidantsList';
 
 //admin pages
 import AdminLogin from './views/Admin/Login';
@@ -177,6 +178,10 @@ function App() {
                 {
                     path: "/user/waitlist/:id",
                     element: <WaitList />,
+                },
+                {
+                    path: "/user/property-residantlist/:id",
+                    element: <ResidantsList />,
                 },
             ],
         },

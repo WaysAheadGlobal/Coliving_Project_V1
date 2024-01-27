@@ -235,14 +235,14 @@ async function getWaitingListPropertyListing(req) {
 
 async function saveBookingInfo(req) {
   try {
-    const {property_id, room_id, amount, monthlyrent, bookingfrom, bookingto} = req.body;
+    const {property_id, room_id, amount, monthlyrent, bookingfrom, bookingto, bookingconfirmed} = req.body;
     const user_id = req.user.userId;
     var nowDate = new Date(); 
 var date = nowDate.getFullYear()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getDate();
       const [result] = await db.query(
-        "INSERT INTO userbooking (user_id, property_id, room_id, createdate, amount, paymentmode, monthlyrent, bookingfrom, bookingto)" +
-        " values (?,?,?,?,?,'VISA',?,?,?)",
-        [user_id, property_id, room_id, date, (amount/2), monthlyrent, bookingfrom, bookingto]
+        "INSERT INTO userbooking (user_id, property_id, room_id, createdate, amount, paymentmode, monthlyrent, bookingfrom, bookingto, isbookingconfirmed)" +
+        " values (?,?,?,?,?,'VISA',?,?,?,?)",
+        [user_id, property_id, room_id, date, (amount/2), monthlyrent, bookingfrom, bookingto, bookingconfirmed]
       );
 
       const propertyinfo = await db.query(
@@ -270,7 +270,7 @@ async function getMyStayRequests(req) {
     const user_id = req.user.userId;
 
     let query = `
-    SELECT  propmaster.*
+    SELECT  propmaster.*, booking.bookingfrom, booking.bookingto
     from propertymaster propmaster
     LEFT JOIN userbooking booking on propmaster.id = booking.property_id
     WHERE 1 = 1 and booking.user_id=?

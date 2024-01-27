@@ -11,7 +11,8 @@ function DetailTab1(props) {
             <div className="fm-area">
                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style={{marginBottom: '20px'}}>
                     <div class="form-group">
-                        <label>Your Photo</label>
+                        <label>Your Photo <span className='mandatory'>*</span></label>
+                        <span className='error'>{props.FormErrors.profilePic}</span>
                         <div class="imgupblocks">
                             <div class="imgupitem">
                                 <div class="imgprev" onClick={props.handleClick}>

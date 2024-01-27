@@ -14,7 +14,7 @@ async function getDashboardDetails() {
       );
       
       const [totalBookings] = await db.query(
-        'select count(*) as u3 from userbooking'
+        'select count(*) as u3 from userbooking where isbookingconfirmed = 1'
       );
   
       const [totalBookingsPending] = await db.query(
@@ -41,7 +41,24 @@ async function getDashboardDetails() {
     }
   }
 
+  async function getBookingInfo() {
+    try {
+      const [totalBookins] = await db.query(
+        "select  usr.Fullname, usr.email, prop.propertyname, booking.bookingfrom, booking.paymentmode from userbooking booking "+
+        "LEFT JOIN users usr on booking.user_id = usr.user_id "+
+        " LEFT JOIN propertymaster prop on booking.property_id = prop.id"+
+        " ORDER by booking.id desc  LIMIT 10"
+      );
+  
+      // Total count
+  
+      return  totalBookins;
+    } catch (error) {
+    }
+  }
+
   module.exports = {
-    getDashboardDetails
+    getDashboardDetails,
+    getBookingInfo
   };
   

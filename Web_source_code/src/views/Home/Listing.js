@@ -81,11 +81,11 @@ const Listing = () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                if (data.resp === 0) {
+                if (data.resp == 0) {
                     const element = document.getElementById('prop'+property_id);
 					if (element) {
 						element.classList.add('wait');
-						toast.success('Property removed from waiting list.', {
+						toast.success('Property added to waiting list.', {
 							position: toast.POSITION.TOP_RIGHT,
 						});
 					  }
