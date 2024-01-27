@@ -1,4 +1,5 @@
 import config from "../../Config/config";
+import master from "../../data/masterData.json";
 
 const ListingItem =(props) => {
     return (
@@ -22,11 +23,16 @@ const ListingItem =(props) => {
                     <div class="articalBody">
                         <div>
                             <label>{props.item.province}</label>
-                            <h4><a href={`ListingDetail/`+props.item.id}>{props.item.propertyname}</a></h4>
+                            <h4><a href={`/ListingDetail/`+props.item.id}>{props.item.propertyname}</a></h4>
                             <ul>
                                 <li>{props.item.roomcount} Rooms</li>
-                                <li>1 shared Bathroom</li>
-                                <li>Fast WiFi</li>
+                                <li>{props.item.apartmentsize == "0" ? "" : master.ApartmentSize.find(e => e.id == props.item.apartmentsize).name}</li>
+                                {/* <li>Fast WiFi</li> */}
+                                {props && props.item && props.item.apartmentamenities && props.item.apartmentamenities.split(',').map((item, index)=> (
+                                        <li>
+                                            {item < 20 && item != "" && master.ApartmentAmeneties.find(e => e.id == item).name}
+                                        </li>
+                                        ))}
                             </ul>
                         </div>
                         <div class="artf1">

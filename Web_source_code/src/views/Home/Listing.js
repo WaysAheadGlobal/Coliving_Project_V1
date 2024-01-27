@@ -2,16 +2,17 @@ import React, { useEffect, useState, useRef  } from "react";
 import config from "../../Config/config";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import ListItem from './ListingItem';
 import master from './../../data/masterData.json';
 
 
 
 const Listing = () => {
+	const params = useParams();
     const [PropertyList, SetPropertyListing] = useState([]);
-	const [filterValues, SetFilterValues]= useState({country: 0, moveInDate: '', apartment: 0, roomtype: 0, kitchen: 0, evcharger: 0, 
-	agepreference: 0, furniture: 0});
+	const [filterValues, SetFilterValues]= useState({province: '0', moveInDate: '', apartment: 0, roomtype: 0, kitchen: 0, evcharger: 0, 
+	agepreference: 0, apartmentsize: 0});
 	const [recordsPerPage] = useState(10);
     const [viewPage, SetViewPage] = useState(1);
 	const [currentPage, setCurrentPage] = useState(1);
@@ -35,7 +36,20 @@ const Listing = () => {
 		//getListing();
     }
 
+	useEffect(() => {
+        if ((params.id != "") && params.id != undefined) {
+            SetFilterValues(prevState => ({
+                ...filterValues,
+                province: params.id
+            }));
+        }
+		else{
+			// getListing();
+		}
+    }, []);
+
     useEffect(()=> {
+		console.log('filterValues', filterValues)
         getListing()
     }, [filterValues])
 
@@ -114,20 +128,22 @@ const Listing = () => {
 				></link>
 	<div class="container">
 		<div  class="heading1 mb-4 text-start">
-			<h2>Coliving in Canada</h2>
+			{(filterValues.province != "0") && (filterValues.province != "") && (filterValues.province != null) ? 
+			<h2>Coliving in {filterValues.province}</h2>
+			: null }
 		</div>
 		<div class="co-filter">
 		<form action="" method="">
 				<ul>
 					<li>
-						<select name="country" class="minimal" value={filterValues.country} onChange={handleInputChange}>
-							<option value={0}>Country</option>
-                            {master.Country.map((result) => (<option value={result.id}>{result.name}</option>))}
+						<select name="province" class="minimal" value={filterValues.province && filterValues.province.toLowerCase()} onChange={handleInputChange}>
+							<option value={0}>Province</option>
+                            {master.Province.map((result) => (<option value={result.id}>{result.name}</option>))}
 						</select>
 					</li>
-					<li>
+					{/* <li>
 						<input type="date" name="moveInDate" className="minimal" placeholder="Move-In Date" value={filterValues.moveInDate} onChange={handleInputChange}></input>
-					</li>
+					</li> */}
 					<li>
 						<select name="apartment" class="minimal" value={filterValues.apartment} onChange={handleInputChange}>
 							<option value={0}>House Type</option>
@@ -140,6 +156,12 @@ const Listing = () => {
 							{master.RoomType.map((result) => (<option value={result.id}>{result.name}</option>))}
 						</select>
 					</li>
+					{/* <li>
+						<select name="community" class="minimal" value={filterValues.community} onChange={handleInputChange}>
+							<option value={0}>Community</option>
+							{master.CommunityType.map((result) => (<option value={result.id}>{result.name}</option>))}
+						</select>
+					</li> */}
 					<li>
 						<select name="kitchen" class="minimal" value={filterValues.kitchen} onChange={handleInputChange}>
 							<option value={0}>Kitchen</option>
@@ -159,9 +181,9 @@ const Listing = () => {
 						</select>
 					</li>
 					<li>
-						<select name="furniture" class="minimal" value={filterValues.furniture} onChange={handleInputChange}>
-							<option value={0}>Parking</option>
-							{master.Furniture.map((result) => (<option value={result.id}>{result.name}</option>))}
+						<select name="apartmentsize" class="minimal" value={filterValues.apartmentsize} onChange={handleInputChange}>
+							<option value={0}>Arartment Size</option>
+							{master.ApartmentSize.map((result) => (<option value={result.id}>{result.name}</option>))}
 						</select>
 					</li>
 				</ul>

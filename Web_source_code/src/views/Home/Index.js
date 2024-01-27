@@ -7,7 +7,30 @@ import BlogsAPI from '../../data/blogs.json'
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import { useState } from 'react';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import {useNavigate} from 'react-router-dom';
+
 const Home = () => {
+	const history = useNavigate();
+	const [province, SetProvince] = useState('');
+	const SaveProvince = (e) => {
+		const {name, value} = e.target;
+		SetProvince(value);
+	}
+
+	const GotoSearch = (e) => {
+		if(province){
+			history("/listing/"+province.toLowerCase())
+		}
+		else{
+			toast.error("Please enter Province to search", {
+				position: toast.POSITION.TOP_RIGHT,
+			});
+		}
+	}
+
 	const options = {
 		margin: 30,
 		responsiveClass: true,
@@ -38,14 +61,22 @@ const Home = () => {
 	};
 	return (
 		<>
+		<ToastContainer />
+				<link
+					rel="stylesheet"
+					href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap"
+				></link>
 			<section className="banner homeBanner">
 				<img src={require('../../../src/img/banner.png')} className="img-fluid" alt="Banner" />
 				<div className="highlights">
 					<h1>Sharing a living space is <br />more beneficial.</h1>
 					<p>Find flexible, convenient, and affordable coliving homes with <br />friends included</p>
 					<div className="searchForm">
-						<input type="text" placeholder="Search by Province.." />
-						<div className="bannBtn">
+						<input type="text" placeholder="Search by Province.." value={province} onChange={SaveProvince} />
+						{/* <select>
+							<option value="0">Select</option>
+						</select> */}
+						<div className="bannBtn" onClick={GotoSearch}>
 							<img src={require('../../../src/img/searchBtn.png')} className="img-fluid" alt="search btn" />
 						</div>
 					</div>

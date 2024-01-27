@@ -81,6 +81,10 @@ function App() {
                     element: <Listing />,
                 },
                 {
+                    path: "/Listing/:id",
+                    element: <Listing />,
+                },
+                {
                     path: "/ListingDetail/:id",
                     element: <ListingDetail />,
                 },

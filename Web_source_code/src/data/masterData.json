@@ -222,19 +222,19 @@
         {"id": 2, "name": "Other"}
     ],
     "Province":[
-        {"id": "Alberta", "name": "Alberta"},
-        {"id": "British Columbia", "name": "British Columbia"},
-        {"id": "Manitoba", "name": "Manitoba"},
-        {"id": "New Brunswick", "name": "New Brunswick"},
-        {"id": "Newfoundland and Labrador", "name": "Newfoundland and Labrador"},
-        {"id": "Nova Scotia", "name": "Nova Scotia"},
-        {"id": "Ontario", "name": "Ontario"},
-        {"id": "Prince Edward Island", "name": "Prince Edward Island"},
-        {"id": "Quebec", "name": "Quebec"},
-        {"id": "Saskatchewan", "name": "Saskatchewan"},
-        {"id": "Northwest Territorie", "name": "Northwest Territories"},
-        {"id": "Nunavut", "name": "Nunavut"},
-        {"id": "Yukon", "name": "Yukon"}
+        {"id": "alberta", "name": "Alberta"},
+        {"id": "british columbia", "name": "British Columbia"},
+        {"id": "manitoba", "name": "Manitoba"},
+        {"id": "new brunswick", "name": "New Brunswick"},
+        {"id": "newfoundland and labrador", "name": "Newfoundland and Labrador"},
+        {"id": "nova scotia", "name": "Nova Scotia"},
+        {"id": "ontario", "name": "Ontario"},
+        {"id": "prince edward island", "name": "Prince Edward Island"},
+        {"id": "quebec", "name": "Quebec"},
+        {"id": "saskatchewan", "name": "Saskatchewan"},
+        {"id": "northwest territorie", "name": "Northwest Territories"},
+        {"id": "nunavut", "name": "Nunavut"},
+        {"id": "yukon", "name": "Yukon"}
     ],
     "BedroomType": [
         {"id": 1, "name": "Shared"},

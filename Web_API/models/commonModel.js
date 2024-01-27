@@ -3,8 +3,8 @@ const db = require("../config/dbConfig"); // Replace with your actual database c
 
 async function getPropertyListing(req) {
   try {
-    const {country, moveInDate, apartment, roomtype, kitchen, evcharger, 
-    agepreference, furniture,} = req.body;
+    const {country,province, moveInDate, apartment, roomtype, kitchen, evcharger, 
+    agepreference, apartmentsize} = req.body;
     const user_id = req.user.userId;
 
     let query = `
@@ -24,9 +24,13 @@ async function getPropertyListing(req) {
     params.push(user_id);
     params.push(user_id);
     // Add filter based on filter
-    if (country != 0) {
-      query += ' AND propmaster.country = ?';
-      params.push(country);
+    // if (country != 0) {
+    //   query += ' AND propmaster.country = ?';
+    //   params.push(country);
+    // }
+    if (province != "0") {
+      query += ' AND propmaster.province like ?';
+      params.push("%" + province + "%");
     }
     // if (moveInDate != '') {
     //   query += ' AND a.housetype = ?';
@@ -52,9 +56,9 @@ async function getPropertyListing(req) {
       query += ' AND roommaster.agegrouppreference = ?';
       params.push(agepreference);
     }
-    if (furniture != 0) {
-      query += ' AND propmaster.furniture = ?';
-      params.push(furniture);
+    if (apartmentsize != 0) {
+      query += ' AND propmaster.apartmentsize = ?';
+      params.push(apartmentsize);
     }
     query += ' group by propmaster.id';
     const [result] = await db.query(query, params);
@@ -70,7 +74,10 @@ async function getPropertyDetail(property_id) {
 
 
     const [result] = await db.query(
-      "SELECT p1.*, room.MinPrice from propertymaster p1 LEFT OUTER JOIN (select property_id, min(roomrent) as MinPrice from property_roommaster group by property_id) room on p1.id = room.property_id where id=?",
+      "SELECT p1.*, room.MinPrice, usr.profilepic from propertymaster p1 "+
+      "LEFT OUTER JOIN (select property_id, min(roomrent) as MinPrice from property_roommaster group by property_id) room on p1.id = room.property_id "+
+      "LEFT JOIN users usr on p1.user_id = usr.user_id "+
+      "where id=?",
       [property_id]
     );
     return result;

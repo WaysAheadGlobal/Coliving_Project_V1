@@ -226,7 +226,10 @@ const ListingDetail = () => {
                                         {PropertyInfo.propertyname}
                                     </h2>
                                     <div class="hostimg mb-4">
-                                        <img src={require('./../../img/icons/user.png')} class="img-fluid" alt="Host" />
+                                    {PropertyInfo.profilepic == null || PropertyInfo.profilepic == "" ? null :
+                                        <img src={`${config.ImageUrl}images/users/` + PropertyInfo.profilepic} class="img-fluid" alt="User uploaded image" />
+                                    }
+                                        {/* <img src={require('./../../img/icons/user.png')} class="img-fluid" alt="Host" /> */}
                                         <label>{PropertyInfo.host_name}</label>
                                         <div class="badge3 text-uppercase">
                                             <img src={require('./../../img/icons/verified.png')} class="img-fluid" alt="Verified" />
@@ -470,7 +473,9 @@ const ListingDetail = () => {
                                     <h4>Host information</h4>
                                     <div class="hostinfo">
                                         <div class="hostimg mb-4">
-                                            <img src={require('./../../img/icons/user.png')} class="img-fluid" alt="Host" />
+                                        {PropertyInfo.profilepic == null || PropertyInfo.profilepic == "" ? null :
+                                            <img src={`${config.ImageUrl}images/users/` + PropertyInfo.profilepic} class="img-fluid" alt="User uploaded image" />
+                                        }
                                             <label>{PropertyInfo && PropertyInfo.host_name}</label>
                                             <div class="badge3 text-uppercase">
                                                 <img src={require('./../../img/icons/verified.png')} class="img-fluid" alt="Verified" />
@@ -566,7 +571,9 @@ const ListingDetail = () => {
                         <div class="to mb-4">
                             <label>To:</label>
                             <div class="hostimg">
-                                <img src={require('../../img/icons/user.png')} class="img-fluid" alt="Host" />
+                            {PropertyInfo.profilepic == null || PropertyInfo.profilepic == "" ? null :
+                                        <img src={`${config.ImageUrl}images/users/` + PropertyInfo.profilepic} class="img-fluid" alt="User uploaded image" />
+                                    }
                                     <label>{PropertyInfo && PropertyInfo.host_name}</label>
                                     <div class="badge3 text-uppercase">
                                         <img src={require('../../img/icons/verified.png')} class="img-fluid" alt="Verified" />
