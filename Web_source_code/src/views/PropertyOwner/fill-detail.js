@@ -1030,7 +1030,7 @@ function FillDetail() {
                                     <div class="form-group">
                                         <label>Province <span className='mandatory'>*</span></label>
                                         {/* <input type="text" name="province" value={propertyValues.province} placeholder="Province" onChange={handleInputChange} /> */}
-                                        <select name="province" className='form-control' value={propertyValues.province} onChange={handleInputChange}>
+                                        <select name="province" className='form-control' value={propertyValues.province && propertyValues.province.toLowerCase()} onChange={handleInputChange}>
                                             <option value="0">Select</option>
                                             {master.Province.map((result) => (<option value={result.id}>{result.name}</option>))}
                                         </select>

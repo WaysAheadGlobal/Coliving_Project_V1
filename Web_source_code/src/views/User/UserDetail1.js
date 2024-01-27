@@ -111,7 +111,7 @@ function DetailTab1(props) {
                         <div className="form-group">
                             <label>Province <span className='mandatory'>*</span></label>
                             {/* <input type="text" name="province" placeholder="Ontario" value={props.detail.province} onChange={props.handleInputChange} /> */}
-                            <select name="province" className='form-control' value={props.detail.province} onChange={props.handleInputChange}>
+                            <select name="province" className='form-control' value={props.detail.province && props.detail.province.toLowerCase()} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.Province.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
