@@ -129,9 +129,39 @@ function Profile() {
     }
     const handleSaveProfile = (e) => {
         e.preventDefault();
-        setFormErrors(validate(formValues));
+        const errors = {};
+        var isValid = true;
+		const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+		SetErrorAvailable(false);
+		if (!formValues.Fullname) {
+			errors.Fullname = "FullName is required!";
+			isValid = false;
+		}
+
+		if (!formValues.email) {
+			errors.email = "Email is required!";
+			isValid = false;
+		}
+
+        if (!formValues.city) {
+			errors.city = "City is required!";
+			isValid = false;
+		}
+        if (formValues.province == "0") {
+			errors.province = "Province is required!";
+			isValid = false;
+		}
+        if (!formValues.zipcode) {
+			errors.zipcode = "Zipcode is required!";
+			isValid = false;
+		}
+		 else if(!formValues.email.match(isValidEmail)){
+		    errors.email = "Invalid email format!";
+            isValid = false;
+		}
+        setFormErrors(errors);
         console.log('ErrorAvailable', ErrorAvailable)
-        if(!ErrorAvailable){
+        if(isValid){
 				let formData = JSON.stringify({
 					"Fullname": formValues.Fullname,
 					"email": formValues.email,
@@ -173,38 +203,6 @@ function Profile() {
 
     
 
-    const validate = (values) => {
-		const errors = {};
-		const regex = /^[^\\$@]+@[^\\$@]+\\.[^\\$@]{2,}$/i;
-		SetErrorAvailable(false);
-		if (!values.Fullname) {
-			errors.Fullname = "FullName is required!";
-			SetErrorAvailable(true);
-		}
-
-		if (!values.email) {
-			errors.email = "Email is required!";
-			SetErrorAvailable(true);
-		}
-
-        if (!values.city) {
-			errors.city = "City is required!";
-			SetErrorAvailable(true);
-		}
-
-        if (values.province == "0") {
-			errors.province = "Province is required!";
-			SetErrorAvailable(true);
-		}
-        if (!values.zipcode) {
-			errors.zipcode = "Zipcode is required!";
-			SetErrorAvailable(true);
-		}
-		//  else if(!regex.test(values.email)){
-		//     errors.email = "This is not a valid email format!";
-		// }
-		return errors;
-	}
 
     return (
         <>
@@ -248,7 +246,7 @@ function Profile() {
                             <div class="adminform">
                                 <div class="form-group">
                                     <label>Email Id</label>
-                                    <input type="text" name="email" id="email" value={formValues.email} onChange={handleInputChange} placeholder="john.mark@gmail.com" />
+                                    <input type="text" name="email" id="email" value={formValues.email} onChange={handleInputChange} readOnly placeholder="john.mark@gmail.com" />
                                     <span className="error">{formErrors.email}</span>
                                 </div>
                             </div>
@@ -276,7 +274,7 @@ function Profile() {
                                 <div class="form-group">
                                     <label>Province</label>
                                     {/* <input type="text" name="province" id="province" value={formValues.province} onChange={handleInputChange} placeholder="Ontario" /> */}
-                                    <select name="province" className='form-control' value={formValues.province} onChange={handleInputChange}>
+                                    <select name="province" className='form-control' value={formValues.province && formValues.province.toLowerCase()} onChange={handleInputChange}>
                                         <option value="0">Select</option>
                                         {master.Province.map((result) => (<option value={result.id}>{result.name}</option>))}
                                     </select>

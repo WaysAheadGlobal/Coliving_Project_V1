@@ -1,75 +1,83 @@
-
-
+import { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
+import config from "../../Config/config";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 function WaitList() {
-    return(
-        <div class="content-area">
-				<h4 class="content-title backitem">
-					<span>my stay {">"} waitlist for this property</span>
-					<span><a href="/user/my-stay"><i class="fa fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
-				</h4>
-				<div class="profileform myStayPage">
-					<div class="row g-4">
-						<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-							<div class="waititem">
-								<div class="usrnme">
-									<img src={require("../../img/user4.png" )} />
-									<div class="nmepos">
-										<h4>Michael Gordon,</h4>
-										<span>26,</span>
-										<span>Lawyer</span>
-									</div>
-								</div>
-								<div class="matchedprof">
-									<img src={require('../../img/icons/Speed.png')} alt="Spped Icons" class="img-fluid" />
-									<span>71%</span>
-									<div class="profstatus">profile matched</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-							<div class="waititem">
-								<div class="usrnme">
-									<img src={require("../../img/user5.png" )} />
-									<div class="nmepos">
-										<h4>Annalise Keating,</h4>
-										<span>29,</span>
-										<span>Entrepreneur</span>
-									</div>
-								</div>
-								<div class="matchedprof">
-									<img src={require('../../img/icons/Speed.png')} alt="Spped Icons" class="img-fluid" />
-									<span>57%</span>
-									<div class="profstatus">profile matched</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-							<div class="waititem">
-								<div class="usrnme">
-									<img src={require("../../img/user6.png" )} />
-									<div class="nmepos">
-										<h4>Alex Kepner,</h4>
-										<span>21,</span>
-										<span>Student</span>
-									</div>
-								</div>
-								<div class="matchedprof">
-									<img src={require('../../img/icons/Speed.png')} alt="Spped Icons" class="img-fluid" />
-									<span>44%</span>
-									<div class="profstatus">profile matched</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+	const [WaitingList, SetWaitingList] = useState([]);
+	const params = useParams();
 
-                <div class="col-xxl-12 col-xl-12 col-lg-12 col-sm-12 col-12 my-5">
-                        <div class="loyalnote mt-xxl-4 mt-xl-4 mt-lg-4 mt-md-4 mt-sm-3 mt-3">
-                            <img src={require('../../img/icons/exclamination.png')} class="img-fluid" alt="VETO power" />
-                            Take a look at your Loyalty Points and check your power to VETO.
-                        </div>
-                    </div>
-</div>
-    );
+	useEffect(() => {
+		if (params.id != "0") {
+			getWaitingList();
+		}
+	}, [])
+	function getWaitingList() {
+		let formData = JSON.stringify({
+			"property_id": params.id
+		});
+		const apiUrl = `${config.Url}api/user/getPropertyWaitingList`;
+		fetch(apiUrl, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": localStorage.getItem("usertoken")
+			},
+			body: formData,
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.status === 200) {
+					SetWaitingList(data.resp);
+				} else {
+					toast.error("Error!!!!", {
+						position: toast.POSITION.TOP_RIGHT,
+					});
+					console.error("Error fetching user data");
+				}
+			})
+			.catch((error) => {
+				console.error("Error fetching user data:", error);
+			});
+	}
+
+	return (
+		<div class="content-area">
+			<ToastContainer />
+				<link
+					rel="stylesheet"
+					href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap"
+				></link>
+			<h4 class="content-title backitem">
+				<span>my stay {">"} waitlist for this property</span>
+				<span><a href="/user/my-stay"><i class="fa fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
+			</h4>
+			<div class="profileform myStayPage">
+				<div class="row g-4">
+					{WaitingList && WaitingList.length > 0 && WaitingList.map((item, index) => (
+						<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="waititem">
+								<div class="usrnme">
+									{item.profilePic == null || item.profilePic == "" ? null :
+                                            <img src={`${config.ImageUrl}images/users/` + item.profilePic} class="img-fluid" alt="User uploaded image" />
+                                            }
+									<div class="nmepos">
+										<h4>{item.Fullname}</h4>
+										<span>{item.city}</span>
+										<span>{item.province}</span>
+									</div>
+								</div>
+								<div class="matchedprof">
+									<img src={require('../../img/icons/Speed.png')} alt="Spped Icons" class="img-fluid" />
+									<span>{index == 0 ? "70" : index == 1 ? "40" : index == 2 ? "80" : "25"}%</span>
+									<div class="profstatus">profile matched</div>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	);
 }
 export default WaitList;

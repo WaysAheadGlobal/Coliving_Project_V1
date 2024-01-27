@@ -289,6 +289,51 @@ async function getMyStayRequests(req) {
   }
 }
 
+async function getPropertyResidants(req) {
+  try {
+    const {property_id} = req.body;
+
+    let query = `
+    select distinct u1.Fullname, u1.profilePic, u1.city, u1.province from userbooking booking
+    left join users u1 on booking.user_id = u1.user_id
+    where booking.isbookingconfirmed = 1 and booking.property_id=?
+    `;
+    
+    // Create an array to store the parameters for the query
+    const params = [];
+    params.push(property_id);
+    
+    const [result] = await db.query(query, params);
+    return result;
+
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getPropertyWaitingList(req) {
+  try {
+    const {property_id} = req.body;
+
+    let query = `
+    select distinct u1.Fullname, u1.profilePic, u1.city, u1.province from userbooking booking
+    left join users u1 on booking.user_id = u1.user_id
+    where booking.isbookingconfirmed != 1 and booking.property_id=?
+    `;
+    
+    // Create an array to store the parameters for the query
+    const params = [];
+    params.push(property_id);
+    
+    const [result] = await db.query(query, params);
+    return result;
+
+  } catch (error) {
+    throw error;
+  }
+}
+
+
 
 module.exports = {
   saveUpdateProperty,
@@ -300,5 +345,7 @@ module.exports = {
   getWaitingListPropertyListing,
   saveBookingInfo,
   getMyStayRequests,
-  getPropertyInfoUsingPropertyId
+  getPropertyInfoUsingPropertyId,
+  getPropertyResidants,
+  getPropertyWaitingList
 };

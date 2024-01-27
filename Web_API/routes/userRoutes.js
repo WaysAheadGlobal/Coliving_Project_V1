@@ -13,6 +13,9 @@ router.post('/saveBookingInfo', propertyController.saveBookingInfo);
 router.post('/getPaymentsInfo', userController.getPaymentsInfo);
 router.post('/getPropertyOwnerStayRequest', userController.getmyStayRequest);
 router.post('/getUserInfoForPropertyOwner', userController.getUserInfoForPropertyOwner);
+router.post('/getPropertyResidants', propertyController.getPropertyResidants);
+router.post('/getPropertyWaitingList', propertyController.getPropertyWaitingList);
+
 
 
 module.exports = router;
