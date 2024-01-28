@@ -53,6 +53,7 @@ const PersonalDetail = () => {
                         province: data.userinfo[0].province,
                         ZipCode: data.userinfo[0].ZipCode,
                         profilePic: data.userinfo[0].profilePic,
+                        communityType : data.userinfo[0].communityType
                     }));
                 } else {
                     toast.error(data.message, {

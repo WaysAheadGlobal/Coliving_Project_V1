@@ -42,6 +42,8 @@ import AdminManageUsers from './views/Admin/manager-user';
 import AdminManageUserView from './views/Admin/manager-user-view';
 import AdminManageoperty from './views/Admin/manage-property';
 import AdminManagePropertyView from './views/Admin/manage-property-view';
+import AdminManagePropertyDetail from './views/Admin/manage-property-details';
+import AdminManagePropertyApproveReject from './views/Admin/manage-property-ApproveReject';
 import AdminBookingRequest from './views/Admin/booking-request';
 import AdminBookingRequestView from './views/Admin/booking-view';
 import Filldetail from './views/Admin/Fill-detail';
@@ -203,7 +205,7 @@ function App() {
                     element: <AdminBookingRequest />,
                 },
                 {
-                    path: "/admin/booking-view",
+                    path: "/admin/bookingRequestview/:id",
                     element: <AdminBookingRequestView />,
                 },
                 {
@@ -215,8 +217,16 @@ function App() {
                     element: <Filldetail />,
                 },
                 {
-                    path: "/admin/manage-property-view",
+                    path: "/admin/manage-property-view/:id",
                     element: <AdminManagePropertyView />,
+                },
+                {
+                    path: "/admin/Property-details/:id",
+                    element: <AdminManagePropertyDetail />,
+                },
+                {
+                    path: "/admin/Property-details-approve-reject/:id",
+                    element: <AdminManagePropertyApproveReject />,
                 },
                 {
                     path: "/admin/manage-property",

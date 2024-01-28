@@ -251,10 +251,46 @@ const TopMenu = () => {
 	const CheckUserSignUp = (e) => {
 		e.preventDefault();
 		if (!RegisterOTPSent) {
-			setFormErrors(validate(formValues));
+			const errors = {};
+		const regex = /^[^\\$@]+@[^\\$@]+\\.[^\\$@]{2,}$/i;
+		SetErrorAvailable(false);
+		var isValid = true;
+
+		if (!formValues.Fullname) {
+			errors.Fullname = "FullName is required!";
+			SetErrorAvailable(true);
+			isValid = false;
+		}
+
+		if (!formValues.email) {
+			errors.email = "Email is required!";
+			SetErrorAvailable(true);
+			isValid = false;
+		}
+		else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formValues.email)) {
+			errors.email = 'Invalid email address';
+			SetErrorAvailable(true);
+			isValid = false;
+		}
+		//  else if(!regex.test(values.email)){
+		//     errors.email = "This is not a valid email format!";
+		// }
+
+		if (!formValues.mobileNo) {
+			errors.mobileNo = "Mobile Number is required!";
+			SetErrorAvailable(true);
+			isValid = false;
+		}
+
+		if (formValues.communityType == "0") {
+			errors.communityType = "Community Type is required!";
+			SetErrorAvailable(true);
+			isValid = false;
+		}
+			setFormErrors(errors);
 			setIsSubmit(true);
 
-			if (!isErrorAvailable) {
+			if (isValid) {
 				const val = localStorage.getItem("userType")
 				let formData = JSON.stringify({
 					"Fullname": formValues.Fullname,
@@ -756,7 +792,7 @@ const TopMenu = () => {
 											</div>
 											<div class="form-group mb-3">
 												<label>Mobile Number <span className="mandatory">*</span></label>
-												<input type="text" name="mobileNo" placeholder="Mobile Number" class="form-control" id="mobileNo" value={formValues.mobileNo} onChange={handleInputChange} />
+												<input type="text" name="mobileNo" maxLength={10} placeholder="Mobile Number" class="form-control" id="mobileNo" value={formValues.mobileNo} onChange={handleInputChange} />
 												<span className="error">{formErrors.mobileNo}</span>
 											</div>
 											{SelectedUserType == 1 ?

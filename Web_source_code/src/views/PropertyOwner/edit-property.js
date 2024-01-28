@@ -26,6 +26,8 @@ function AddProperty() {
     const hiddenFileInput3 = useRef(null); 
     const hiddenFileInput4 = useRef(null); 
     const hiddenFileInput5 = useRef(null); 
+    const hiddenFileDocumentRoom = useRef(null);
+    const [selectedDoc, SetSelectedDoc] = useState('');
 
     const hiddenFileInputRoom = useRef(null); 
     const hiddenFileVideoRoom = useRef(null); 
@@ -353,6 +355,8 @@ function AddProperty() {
 
     const handleSaveProperty = (e) => {
         e.preventDefault();
+        SetIsSubmit(true);
+
         const errors = {};
         var checkError = false;
         if (!propertyValues.propertyname) {
@@ -490,7 +494,68 @@ function AddProperty() {
         }
     };
 
+    const handleApartmentAmeneties = (id) => (e) => {
+        const name = 'apartmentamenities'
+        var apartmentamen = propertyValues.apartmentamenities;
+        if (propertyValues.apartmentamenities.includes(id + ",")) {
+            apartmentamen = apartmentamen.replace(id + ",", "");
+        }
+        else {
+            apartmentamen = apartmentamen + id + ",";
+        }
+        setPropertyValues({ ...propertyValues, [name]: apartmentamen });
+    }
 
+    const handleCommunityAmeneties = (id) => (e) => {
+        const name = 'communityamenities'
+        var communityamen = propertyValues.communityamenities;
+        if (propertyValues.communityamenities.includes(id + ",")) {
+            communityamen = communityamen.replace(id + ",", "");
+        }
+        else {
+            communityamen = communityamen + id + ",";
+        }
+        setPropertyValues({ ...propertyValues, [name]: communityamen });
+    }
+    const handleDocumentClick = (id) => event => {
+        if (id == 1) {
+            SetSelectedDoc('host_idproof');
+        }
+        if (id == 2) {
+            SetSelectedDoc('host_propertyOwnershopdocument');
+        }
+        if (id == 3) {
+            SetSelectedDoc('host_companyidproof');
+        }
+        hiddenFileDocumentRoom.current.click();
+    };
+    const handleDocumentChange = event => {
+        const fileUploaded = event.target.files[0];
+        var formdata = new FormData();
+        formdata.append("upload", event.target.files[0]);
+
+        var requestOptions = {
+            method: 'POST',
+            body: formdata,
+            redirect: 'follow'
+        };
+        const apiUrl = `${config.Url}api/savePropertyDocument`;
+        fetch(apiUrl, requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === 200) {
+                    setPropertyValues({ ...propertyValues, [selectedDoc]: data.filename });
+                } else {
+                    toast.error(data.message, {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                    console.error("Error fetching user data");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+    };
     return (
         <>
         <ToastContainer />
@@ -498,6 +563,12 @@ function AddProperty() {
 					rel="stylesheet"
 					href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap"
 				></link>
+                 <input
+                type="file"
+                onChange={handleDocumentChange}
+                ref={hiddenFileDocumentRoom}
+                style={{ display: 'none' }} // Make the file input element invisible
+            />
             <div class="content-area">
                 <h4 class="content-title backitem">
                     <span>Add Property</span>
@@ -537,7 +608,7 @@ function AddProperty() {
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Bathroom <span className='mandatory'>*</span></label>
-                                    <select name="noOfBed" value={propertyValues && propertyValues.noOfBed} onChange={handleInputChange}>
+                                    <select name="bathroom" value={propertyValues && propertyValues.bathroom} onChange={handleInputChange}>
                                         <option value={0}>Select</option>
                                         {master.NumbersUpto15.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
@@ -987,9 +1058,9 @@ function AddProperty() {
                 <div class="fm-area amilists editprop">
                     <label class="formlabel">Apartment Amenities</label>
                     <ul>
-                    {master.ApartmentAmeneties.map((result)=> 
+                    {master.ApartmentAmeneties.map((result) =>
                                 (
-                                <li value={result.id}>{result.name}</li>
+                                    <li value={result.id} className={propertyValues && propertyValues.apartmentamenities && propertyValues.apartmentamenities.includes(result.id + ",") ? "active" : ""} onClick={handleApartmentAmeneties(result.id)}>{result.name}</li>
                                 ))}
                     </ul>
                 </div>
@@ -998,9 +1069,9 @@ function AddProperty() {
                 <div class="fm-area amilists editprop">
                     <label class="formlabel">Community Amenities</label>
                     <ul>
-                    {master.CommunityAmenities.map((result)=> 
+                    {master.CommunityAmenities.map((result) =>
                                 (
-                                <li value={result.id}>{result.name}</li>
+                                    <li value={result.id} className={propertyValues && propertyValues.communityamenities && propertyValues.communityamenities.includes(result.id + ",") ? "active" : ""} onClick={handleCommunityAmeneties(result.id)}>{result.name}</li>
                                 ))}
                     </ul>
                 </div>
@@ -1013,10 +1084,11 @@ function AddProperty() {
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Country <span className='mandatory'>*</span></label>
-                                    <select>
+                                    <select name='country' value={propertyValues.country} onChange={handleInputChange}>
                                         <option value={0}>Select</option>
                                         {master.Country.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{formErrors.country}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -1027,30 +1099,35 @@ function AddProperty() {
                                             <option value="0">Select</option>
                                             {master.Province.map((result) => (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{formErrors.province}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Address <span className='mandatory'>*</span></label>
                                     <input type="text" name="address" onChange={handleInputChange} value={propertyValues.address} placeholder="West 109th Street Ontario" />
+                                    <span className='error'>{formErrors.address}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                         <label>Landmark <span className='mandatory'>*</span></label>
                                         <input type="text" name="landmark" onChange={handleInputChange} value={propertyValues.landmark} placeholder="Morningside Park" />
+                                        <span className='error'>{formErrors.landmark}</span>
                                     </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                         <label>Zip Code <span className='mandatory'>*</span></label>
                                         <input type="text" name="zipcode" onChange={handleInputChange} value={propertyValues.zipcode} placeholder="K2H 5B6" />
+                                        <span className='error'>{formErrors.zipcode}</span>
                                     </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                         <label>Mark on google <span className='mandatory'>*</span></label>
                                         <input type="text" name="markongoogle" onChange={handleInputChange} value={propertyValues.markongoogle} placeholder="Enter google map link" />
+                                        <span className='error'>{formErrors.markongoogle}</span>
                                     </div>
                             </div>
                         </div>
@@ -1091,7 +1168,7 @@ function AddProperty() {
                             <div class="form-group">
                                 <label>Write description about apartment.</label>
                                 <textarea maxLength={1000} name="description" onChange={handleInputChange} value={propertyValues.description}></textarea>
-                                        {propertyValues.description && (<div class="totalCount">{1000 - propertyValues.description.length} Words left</div>)}
+                                        {propertyValues.description && (<div class="totalCount">{1000 - (propertyValues.description && propertyValues.description.length)} Words left</div>)}
                             </div>
                         </div>
                     </div>
@@ -1105,18 +1182,21 @@ function AddProperty() {
                                     <div class="form-group">
                                         <label>Name <span className='mandatory'>*</span></label>
                                         <input type="text" name="host_name" id="host_name" onChange={handleInputChange} value={propertyValues.host_name} placeholder="David Oliver" />
+                                        <span className='error'>{formErrors.host_name}</span>
                                     </div>
                                 </div>
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Email ID <span className='mandatory'>*</span></label>
                                         <input type="text" name="host_emailid" id="host_emailid" onChange={handleInputChange} value={propertyValues.host_emailid} placeholder="david.oliver@gmail.com" />
+                                        <span className='error'>{formErrors.host_emailid}</span>
                                     </div>
                                 </div>
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Mobile Number <span className='mandatory'>*</span></label>
                                         <input type="text" name="host_mobileno" id="host_mobileno" onChange={handleInputChange} value={propertyValues.host_mobileno} placeholder="+1 85 8963 5523" />
+                                        <span className='error'>{formErrors.host_mobileno}</span>
                                     </div>
                                 </div>
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
@@ -1124,6 +1204,7 @@ function AddProperty() {
                                         <label>Date of Birth <span className='mandatory'>*</span></label>
                                         <div class="input-group date" id="datepicker">
                                             <input type="date" name="host_dob" onChange={handleInputChange} value={propertyValues.host_dob} class="form-control" id="host_dob" placeholder="Jan-01-1999" />
+                                            <span className='error'>{formErrors.host_dob}</span>
                                                
                                         </div>
                                     </div>
@@ -1135,21 +1216,67 @@ function AddProperty() {
                                         <option value={0}>Select</option>
                                         {master.Gender.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{formErrors.host_gender}</span>
                                     </div>
                                 </div>
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div className="input-group date" id="datepicker">
+                                        <label>ID proof <span className='mandatory'>*</span></label>
+                                        <input type="text" name="host_idproof" placeholder="" className="form-control" value={propertyValues.host_idproof} />
+                                        <span className="input-group-append">
+                                            <span className="input-group-text bg-light d-block" onClick={handleDocumentClick(1)}>
+                                                <i className="fa fa-upload"></i>
+                                            </span>
+                                        </span>
+                                        <span className='error'>{formErrors.host_idproof}</span>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Location <span className='mandatory'>*</span></label>
-                                        <input type="text" name="host_location" id="host_location" onChange={handleInputChange} value={propertyValues.host_location} placeholder="Ontario" />
+                                        <label>Permanent Address <span className='mandatory'>*</span></label>
+                                        <input type="text" name="host_location" id="host_location" onChange={handleInputChange} value={propertyValues.host_location} placeholder="" />
+                                        <span className='error'>{formErrors.host_location}</span>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div className="input-group date" id="datepicker">
+                                        <label>Property Ownership Document <span className='mandatory'>*</span></label>
+                                        <input type="text" name="host_propertyOwnershopdocument" placeholder="" className="form-control" value={propertyValues.host_propertyOwnershopdocument} />
+                                        <span className="input-group-append">
+                                            <span className="input-group-text bg-light d-block" onClick={handleDocumentClick(2)}>
+                                                <i className="fa fa-upload"></i>
+                                            </span>
+                                        </span>
+                                        <span className='error'>{formErrors.host_propertyOwnershopdocument}</span>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Employment Details <span className='mandatory'>*</span></label>
+                                        <input type="text" name="host_employmentdetails" id="host_location" onChange={handleInputChange} value={propertyValues.host_employmentdetails} placeholder="" />
+                                        <span className='error'>{formErrors.host_employmentdetails}</span>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div className="input-group date" id="datepicker">
+                                        <label>Company ID Proof <span className='mandatory'>*</span></label>
+                                        <input type="text" name="host_companyidproof" placeholder="" className="form-control" value={propertyValues.host_companyidproof} />
+                                        <span className="input-group-append">
+                                            <span className="input-group-text bg-light d-block" onClick={handleDocumentClick(3)}>
+                                                <i className="fa fa-upload"></i>
+                                            </span>
+                                        </span>
+                                        <span className='error'>{formErrors.host_companyidproof}</span>
                                     </div>
                                 </div>
                                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>About yourself</label>
                                         <textarea maxLength={500} name="host_aboutyourself" id="host_aboutyourself" onChange={handleInputChange} value={propertyValues.host_aboutyourself}></textarea>
-                                        {propertyValues.host_aboutyourself && (<div class="totalCount">{500 - propertyValues.host_aboutyourself.length} Words left</div>)}
+                                        <div class="totalCount">{500 - (propertyValues.host_aboutyourself && propertyValues.host_aboutyourself.length)} Words left</div>
                                     </div>
                                 </div>
+                                
                             </div>
                             <div class="mt-5 buttonGrp text-center">
                         <button class="btn btn-secondary text-uppercase" style={{marginRight: '15px'}}>Cancel</button>

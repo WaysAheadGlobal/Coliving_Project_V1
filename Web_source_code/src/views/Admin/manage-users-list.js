@@ -16,6 +16,7 @@ function AllUsers(props) {
                                         <th class="text-center">Mobile Number</th>
                                         <th class="text-center">community</th>
                                         <th class="text-center">Location</th>
+                                        <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -44,6 +45,9 @@ function AllUsers(props) {
                                             </td>
                                             <td class="text-center">
                                                 {user.province}
+                                            </td>
+                                            <td class="text-center">
+                                                {user.status == 1 ? "Approved" : "Pending"}
                                             </td>
                                             <td class="text-center">
                                                 <div class="tablebtngrp">

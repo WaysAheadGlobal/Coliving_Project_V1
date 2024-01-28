@@ -7,7 +7,7 @@ const ListingItem =(props) => {
             <div class="row">
                 <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 pe-xxl-0 pe-xl-0 pe-lg-0">
                     <div class="aImg">
-                        <img src={`${config.ImageUrl}images/Property/` + props.item.propertyphoto1} alt="artical img" class="img-fluid" />
+                        <img style={{width: '100%'}} src={`${config.ImageUrl}images/Property/` + props.item.propertyphoto1} alt="artical img" class="img-fluid" />
                         <div class="imgOvertext">
                             <div class="status">
                                 <div class="badge1">New</div>
@@ -24,13 +24,13 @@ const ListingItem =(props) => {
                         <div>
                             <label>{props.item.province}</label>
                             <h4><a href={`/ListingDetail/`+props.item.id}>{props.item.propertyname}</a></h4>
-                            <ul>
+                            <ul style={{marginBottom: '0px'}}>
                                 <li>{props.item.roomcount} Rooms</li>
                                 <li>{props.item.apartmentsize == "0" ? "" : master.ApartmentSize.find(e => e.id == props.item.apartmentsize).name}</li>
                                 {/* <li>Fast WiFi</li> */}
                                 {props && props.item && props.item.apartmentamenities && props.item.apartmentamenities.split(',').map((item, index)=> (
-                                        <li>
-                                            {item < 20 && item != "" && master.ApartmentAmeneties.find(e => e.id == item).name}
+                                        <li style={{display: index <=3 ? "block": "none"}}>
+                                            {item <= 20 && item != "" && master.ApartmentAmeneties.find(e => e.id == item).name}
                                         </li>
                                         ))}
                             </ul>

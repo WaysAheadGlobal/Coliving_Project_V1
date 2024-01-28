@@ -1,7 +1,11 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-
+import {Link, useNavigate} from 'react-router-dom';
 
 function PropertyList(props) {
+    const history = useNavigate();
+
+    
+
     return(
         <div class="adminCard">
                 <div class="profileform">
@@ -17,6 +21,7 @@ function PropertyList(props) {
                                         <th class="text-center">property type</th>
                                         <th class="text-center">property name</th>
                                         <th class="text-center">location</th>
+                                        <th class="text-center">status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -47,24 +52,19 @@ function PropertyList(props) {
                                         {property.host_location}
                                         </td>
                                         <td class="text-center">
+                                        {property.status == 1 ? "Approved" : property.status == 0 ? "Rejected" : "Pending"}
+                                        </td>
+                                        <td class="text-center">
                                             <div class="tablebtngrp">
-                                                <button class="eye" onclick="window.location.href='manage-property-view.html'"><i class="fa fa-regular fa-eye"></i></button>
+                                                <button class="eye" onClick={props.gotoDetail(property.id)}><i class="fa fa-regular fa-eye"></i></button>
                                                 <button class="delete"><i class="fa fa-regular fa-trash"></i></button>
-                                                {/* <button class="vDots" data-bs-toggle="modal" data-bs-target="#contacthost"><i class="fa fa fa-solid fa-ellipsis-vertical"></i></button> */}
                                                 <div class="dropdown">
-                                                    {/* <a class="dropdown-toggle vDots" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fa fa-solid fa-ellipsis-vertical"></i>
-                                                    </a>
-
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                        <a class="dropdown-item" href="#">Connect</a>
-                                                    </div> */}
                                                     <Dropdown>
                                                         <Dropdown.Toggle id="dropdown-basic">
                                                         <i class="fa fa fa-solid fa-ellipsis-vertical"></i>
                                                         </Dropdown.Toggle>
 
-                                                        <Dropdown.Menu>
+                                                        <Dropdown.Menu onClick={props.SetConnectWIthHostClick(1, property.host_name)}>
                                                             <Dropdown.Item href="#/action-1">Connect</Dropdown.Item>
                                                         </Dropdown.Menu>
                                                         </Dropdown>

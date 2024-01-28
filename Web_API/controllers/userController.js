@@ -122,7 +122,9 @@ async function getUserProfile(req, res) {
       const {user_id, status} = req.body;
       // Check if the email exists
       await userModel.updateUserStatus(user_id,status);
-      
+      const userinfo = await userModel.getUsersByIDForAdmin(user_id);
+      //sendUserApproveRejectEmail
+      sendMail.sendUserApproveRejectEmail(userinfo[0].email, userinfo[0].Fullname, status == 1 ? "Approved" : "Rejected");
       res
         .status(200)
         .json({ message: "Document updated!!", status: 200 });
@@ -225,7 +227,97 @@ async function getUserProfile(req, res) {
     }
   }
   
+  async function updatePropertyStatus(req, res) {
+    try {
+      
+      const {property_id, status} = req.body;
+      // Check if the email exists
+      await userModel.updatePropertyStatus(property_id,status);
+      
+      res
+        .status(200)
+        .json({ message: "Document updated!!", status: 200 });
+    } catch (error) {
+      console.error("Error during user update:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
   
+  async function getAdminStayRequest(req, res) {
+    try {
+      const result = await userModel.getAdminStayRequest();
+      console.log('result', result)
+      
+      res
+        .status(200)
+        .json({ message: "Users fetched!!!", res: result, status: 200 });
+    } catch (error) {
+      console.error("Error during userinfo:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
+  async function getUserInfoForPropertyOwnerForAdmin(req, res) {
+    try {
+      const {booking_id} = req.body;
+      const result = await userModel.getUserByBookingId(booking_id);
+      const result2 = await userModel.getUserDetailByBookingID(booking_id);
+      const result3 = await userModel.getbookingPropertyInfo(booking_id);
+      const result4 = await userModel.getbookingPropertyStayUsersInfo(booking_id);
+
+      console.log('result', result)
+      
+      res
+        .status(200)
+        .json({ message: "Users fetched!!!", res: result[0], detail: result2[0], propInfo: result3[0], usersInfo: result4, status: 200 });
+    } catch (error) {
+      console.error("Error during userinfo:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
+  async function getAdminNotifications(req, res) {
+    try {
+      
+      const result = await userModel.getAdminNotifications(req);
+      
+      res
+        .status(200)
+        .json({ message: "Users fetched!!!", res: result, status: 200 });
+    } catch (error) {
+      console.error("Error during userinfo:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
+  async function ApproveRejectStayRequest(req, res) {
+    try {
+      
+      const result = await userModel.ApproveRejectStayRequest(req);
+      
+      res
+        .status(200)
+        .json({ message: "Users fetched!!!", res: result, status: 200 });
+    } catch (error) {
+      console.error("Error during userinfo:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
+  async function CheckBookingSTatus(req, res) {
+    try {
+      
+      const result = await userModel.CheckBookingSTatus(req);
+      
+      res
+        .status(200)
+        .json({ message: "Users fetched!!!", res: result, status: 200 });
+    } catch (error) {
+      console.error("Error during userinfo:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
 module.exports = {
     getUserProfile,
     updateUserProfile,
@@ -240,6 +332,12 @@ module.exports = {
     getPaymentsInfo,
     getmyStayRequest,
     getUserInfoForPropertyOwner,
-    getDashboardDetails
+    getDashboardDetails,
+    updatePropertyStatus,
+    getAdminStayRequest,
+    getUserInfoForPropertyOwnerForAdmin,
+    getAdminNotifications,
+    ApproveRejectStayRequest,
+    CheckBookingSTatus
   };
   

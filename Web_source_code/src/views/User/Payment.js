@@ -39,7 +39,7 @@ const Payments = () => {
         SetBookingInfo(prevState => ({
             ...BookingInfo,
             MoveInDate: userObj.MoveInDate, 
-            MoveOutDate: userObj.MoveInDate, 
+            MoveOutDate: userObj.MoveOutDate, 
             RoomType: userObj.RoomType, 
             MonthlyRent: userObj.MonthlyRent, 
             property_id: userObj.property_id, 

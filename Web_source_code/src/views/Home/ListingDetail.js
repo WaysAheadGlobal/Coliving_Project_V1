@@ -13,12 +13,14 @@ const ListingDetail = () => {
     const [ErrorInfo, SetErrorInfo] = useState({});
     const [RoomInfo, SetRoomInfo] = useState([]);
     const [connectWithHost, SetConnectWIthHost] = useState(false);
-    const [BookingInfo, SetBookingInfo] = useState({ MoveInDate: '', MoveOutDate: '', RoomType: 0, MonthlyRent: 0, property_id: 0 });
-
+    const [BookingInfo, SetBookingInfo] = useState({ MoveInDate: '', MoveOutDate: '', RoomType: 0, MonthlyRent: 0, property_id: 0, IsConfirmed : 0 });
+    const [BookingAsWait, SetBookingAsWait] = useState(0);
     const params = useParams();
     const history = useNavigate();
     const HandleInputChange = (e) => {
 		const { name, value } = e.target;
+        alert(name)
+        alert(value)
        // SetBookingInfo({ ...BookingInfo, [name]: value });
         if(name == "MoveInDate"){
            // SetBookingInfo({ ...BookingInfo, [name]: value });
@@ -60,8 +62,8 @@ const ListingDetail = () => {
             }
 		
         }
-        
-        console.log('BookingInfo', BookingInfo)
+        console.log('BookingInfo',BookingInfo)
+        CheckStayDates(BookingInfo.MoveInDate, BookingInfo.property_id, BookingInfo.RoomType);
     }
 
     const selectRoom = (id, rent) => (e) => {
@@ -74,7 +76,7 @@ const ListingDetail = () => {
     }
 
     const BookMyStay = (e) => {
-        //{ MoveInDate: '', MoveOutDate: '', RoomType: 0 }
+        
         var error = {};
         var IsError = false;
         if(!BookingInfo.MoveInDate){
@@ -91,11 +93,140 @@ const ListingDetail = () => {
         }
         SetErrorInfo(error);
         if(IsError == false){
-		localStorage.setItem("myBooking", JSON.stringify(BookingInfo));
-        history("/payment")
+            BookStay();
+		
         }
     }
-    
+    function CheckStayDates(MoveInDate, property_id, RoomType){
+        if(MoveInDate != '' && property_id != 0 && RoomType != 0){
+        let formData = JSON.stringify({
+            "from_date": BookingInfo.MoveInDate,
+            "property_id": BookingInfo.property_id,
+            "room_id" : BookingInfo.RoomType
+        });
+        const apiUrl = `${config.Url}api/user/CheckBookingStatus`;
+        fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("usertoken")
+            },
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === 200) {
+                    if(data.res.length == 0){
+                        // SetBookingInfo(prevState => ({
+                        //     ...BookingInfo,
+                        //     RoomType : RoomType,
+                        //     IsConfirmed: 1
+                        // }));
+                        
+                    }
+                    else{
+                        if(data.res.length > 0){
+                            if(data.res[0].bookingcount < data.res[0].maxresidants){
+                                SetBookingInfo(prevState => ({
+                                    ...BookingInfo,
+                                    IsConfirmed: 1
+                                }));
+                                
+                            }
+                            else{
+                                if(BookingAsWait == 1){
+                                SetBookingInfo(prevState => ({
+                                    ...BookingInfo,
+                                    IsConfirmed: 0
+                                }));
+                               
+                            }
+                            SetBookingInfo(prevState => ({
+                                ...BookingInfo,
+                                IsConfirmed: 0,
+                                MonthlyRent: 2
+                            }));
+                            SetBookingAsWait(1);
+                            }
+                        }
+                    }
+                } else {
+                    toast.warning("Server is busy. Please try again later.", {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                    console.error("Error fetching user data");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+        }
+    }
+    function BookStay(){
+        let formData = JSON.stringify({
+            "from_date": BookingInfo.MoveInDate,
+            "property_id": BookingInfo.property_id,
+            "room_id" : BookingInfo.RoomType
+        });
+        const apiUrl = `${config.Url}api/user/CheckBookingStatus`;
+        fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("usertoken")
+            },
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === 200) {
+                    if(data.res.length == 0){
+                        SetBookingInfo(prevState => ({
+                            ...BookingInfo,
+                            IsConfirmed: 1
+                        }));
+                        localStorage.setItem("myBooking", JSON.stringify(BookingInfo));
+                        history("/payment")
+                    }
+                    else{
+                        if(data.res.length > 0){
+                            if(data.res[0].bookingcount < data.res[0].maxresidants){
+                                SetBookingInfo(prevState => ({
+                                    ...BookingInfo,
+                                    IsConfirmed: 1
+                                }));
+                                localStorage.setItem("myBooking", JSON.stringify(BookingInfo));
+                                history("/payment")
+                            }
+                            else{
+                                if(BookingAsWait == 1){
+                                SetBookingInfo(prevState => ({
+                                    ...BookingInfo,
+                                    IsConfirmed: 0
+                                }));
+                                localStorage.setItem("myBooking", JSON.stringify(BookingInfo));
+                                history("/payment")
+                            }
+                            SetBookingInfo(prevState => ({
+                                ...BookingInfo,
+                                IsConfirmed: 0,
+                                MonthlyRent: 2
+                            }));
+                            SetBookingAsWait(1);
+                            }
+                        }
+                    }
+                } else {
+                    toast.warning("Server is busy. Please try again later.", {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                    console.error("Error fetching user data");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+    }
     useEffect(() => {
         if (params.id != "0") {
             getpropertyInfo();
@@ -514,6 +645,9 @@ const ListingDetail = () => {
                                     </div>
                                 </div>
                                 <div class="row g-4 mb-3">
+                                    <p style={{color: 'Red'}}>
+                                    {BookingAsWait == 1 ? "There is no available selected room for selected dates. Please select different dates or reserve for waiting list." : ""}
+                                    </p>
                                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                         <div class="form-group">
                                             <label>Move in</label>
@@ -553,7 +687,7 @@ const ListingDetail = () => {
                                         <span>100% </span>
                                     </li>
                                 </ul>
-                                <button class="btn btn-primary w-100 text-uppercase" onClick={BookMyStay}>Reserve</button>
+                                <button class="btn btn-primary w-100 text-uppercase" onClick={BookMyStay}>{BookingAsWait == 0 ? "Book" : "Reserve as WaitList" }</button>
                                 <p class="mb-0 mt-3 text-center">You won't be charged yet</p>
                             </div>
                         </div>

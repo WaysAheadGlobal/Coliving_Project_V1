@@ -90,7 +90,7 @@ function Payments() {
                                         {item.bookingto}
                                     </td>
                                     <td class="text-center">
-                                        {item.securitydeposit}%
+                                        {item.isbookingconfirmed == 0 ? "2": "50"}%
                                     </td>
                                     <td class="text-center">
                                         {item.paymentmode}

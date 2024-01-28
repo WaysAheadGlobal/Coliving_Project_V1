@@ -69,9 +69,10 @@ function StayRequest() {
                                     <th class="text-center">image</th>
                                     <th class="text-center">name</th>
                                     <th class="text-center">Property Name</th>
-                                    <th class="text-center">Location</th>
+                                    {/* <th class="text-center">Location</th> */}
                                     <th class="text-center">Community</th>
                                     <th class="text-center">Charges ($)</th>
+                                    <th class="text-center">status</th>
                                     <th class="text-center">action</th>
                                 </tr>
                             </thead>
@@ -89,14 +90,17 @@ function StayRequest() {
                                     <td class="text-center">
                                         {item.propertyname}
                                     </td>
-                                    <td class="text-center">
+                                    {/* <td class="text-center">
                                     {item.province}
-                                    </td>
+                                    </td> */}
                                     <td class="text-center">
                                         Student
                                     </td>
                                     <td class="text-center">
                                         ${item.monthlyrent}
+                                    </td>
+                                    <td class="text-center">
+                                        {item.status == 1 ? "Booking Confirmed" : "pending"}
                                     </td>
                                     <td class="text-center">
                                         <div class="tablebtngrp">

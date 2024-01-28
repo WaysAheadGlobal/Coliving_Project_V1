@@ -65,7 +65,7 @@ function ResidantsList() {
                                     <tbody>
                                         {ResidantList && ResidantList.length > 0 && ResidantList.map((item, index) => (
                                             <tr>
-                                                <td class="text-center">
+                                                <td class="text-center tbleimg">
                                                     {item.profilePic == null || item.profilePic == "" ? null :
                                                         <img src={`${config.ImageUrl}images/users/` + item.profilePic} class="img-fluid" alt="User uploaded image" />
                                                     }

@@ -198,9 +198,10 @@ const Listing = () => {
 					{currentRecords && currentRecords.length > 0 && currentRecords.map((item, index)=> (
                         <ListItem  item={item} updateWaitingList= {updateWaitingList} />
                     ))}
-					{currentRecords.length == 0 ? 
+					
+					{PropertyList.length == 0 ? 
 					<>
-						<h3>No Property as per your preference</h3>
+						<p class="m-0 " style={{textAlign:"center", width:'100%', paddingTop: '80px'}}><h3>No Property as per your preference</h3></p>
 					</>
 					: null }
 				</div>

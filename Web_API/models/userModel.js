@@ -1,5 +1,7 @@
 // models/authModel.js
 const db = require("../config/dbConfig"); // Replace with your actual database connection
+const commonModel = require("../models/commonModel");
+const sendMail = require("../utils/utils");
 
 // Function to signup a user
 async function updateUserProfile(userid, Fullname, email, mobileno, city, province, zipcode, profilepic, address, communityType, country) {
@@ -90,6 +92,8 @@ async function getUserById(userid) {
         coed, agegrouppreference, communication
         , roommate_dietarypreference, roommate_sharehouseholdchores, roommate_drinkingcomfort, roommate_smokingcomfort, roommate_cannabitscomfort]
       );
+
+      commonModel.AddUserNotifications(-1, "New User Registered on Co-Living");
       
       return result;
         }
@@ -230,7 +234,7 @@ async function getUserById(userid) {
   
   
       const res = await db.query(
-        "SELECT distinct booking.id, u1.profilePic, u1.Fullname, prop.propertyname, u1.province, u1.communityType, booking.monthlyrent FROM colivingappdb.userbooking booking "+
+        "SELECT distinct booking.id, u1.profilePic, u1.Fullname, prop.propertyname, u1.province, u1.communityType, booking.monthlyrent, booking.status FROM colivingappdb.userbooking booking "+
         "LEFT JOIN propertymaster prop on booking.property_id = prop.id "+
         "LEFT JOIN users u1 on booking.user_id = u1.user_id "+
         "LEFT JOIN userdetails det on u1.user_id = det.user_id "+
@@ -281,7 +285,7 @@ async function getUserById(userid) {
 
   async function getbookingPropertyStayUsersInfo(booking_id) {
     try {
-      const [rows] = await db.query("select u1.Fullname, u1.profilepic, booking.bookingfrom, booking.bookingto, booking.isbookingconfirmed,"+
+      const [rows] = await db.query("select u1.Fullname, u1.profilepic, booking.bookingfrom, booking.bookingto, booking.isbookingconfirmed, booking.status,"+
       " detail.languagepreference, detail.coed, detail.agegrouppreference, detail.roommate_dietarypreference, "+
       " detail.roommate_sharehouseholdchores, detail.roommate_drinkingcomfort, detail.roommate_smokingcomfort, detail.roommate_cannabitscomfort "+
       " from userbooking booking"+
@@ -294,6 +298,105 @@ async function getUserById(userid) {
       throw error;
     }
   }
+
+  async function updatePropertyStatus(property_id, status) {
+    try {
+      const [result] = await db.query(
+        "UPDATE propertymaster set status=? where id=?",
+        [status, property_id]
+      );
+
+      const [user] = await db.query(
+        "Select * from propertymaster where id = ?",
+        [property_id]
+      );
+      const userinfo = await getUsersByIDForAdmin(user[0].user_id);
+      //sendUserApproveRejectEmail
+      sendMail.sendPropertyOwnerApproveRejectEmail(userinfo[0].email, userinfo[0].Fullname, status == 1 ? "Approved & Live" : "Rejected");
+
+      const [checkUser] = await db.query(
+        "Select u1.user_id from users u1 LEFT JOIN propertymaster prop on u1.user_id = prop.user_id where prop.id=? and u1.status = 0",
+        [property_id]
+      );
+
+      if(checkUser.length != 0)
+      {
+        const [result] = await db.query(
+          "UPDATE Users set status=1 where user_id = (select user_id from propertymaster where id = ? limit 1)",
+          [property_id]
+        );
+  
+      }
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function getAdminStayRequest() {
+    try {
+  
+  
+      const res = await db.query(
+        "SELECT distinct booking.id, u1.profilePic, u1.Fullname, prop.propertyname, u1.province, u1.communityType, booking.monthlyrent FROM colivingappdb.userbooking booking "+
+        "LEFT JOIN propertymaster prop on booking.property_id = prop.id "+
+        "LEFT JOIN users u1 on booking.user_id = u1.user_id "+
+        "LEFT JOIN userdetails det on u1.user_id = det.user_id "
+      );
+      return res[0];
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function getAdminNotifications(req) {
+    try {
+      let query = `
+      SELECT * FROM user_notifications where user_id = -1 ORDER BY id desc`;
+      
+      const [result] = await db.query(query);
+      return result;
+  
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function ApproveRejectStayRequest(req) {
+    try {
+      const {booking_id, status} = req.body;
+      let query = `
+      UPDATE userbooking SET status = ?, isbookingconfirmed = ? where id=?`;
+      
+      const [result] = await db.query(query,[status,status, booking_id]);
+      return result;
+  
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function CheckBookingSTatus(req) {
+    try {
+      const {from_date, property_id, room_id} = req.body;
+      console.log('from_date', from_date)
+      console.log('property_id', property_id)
+      console.log('room_id', room_id)
+      let query = `
+      select count(a.id) as bookingcount, c.maxresidants from userbooking a
+      LEFT JOIN propertymaster b on a.property_id = b.id
+      LEFT JOIN property_roommaster c on b.id = c.property_id where ? between bookingfrom and bookingto
+      and a.property_id = ? and a.room_id = ?
+      group by a.property_id`;
+      
+      const [result] = await db.query(query,[from_date,property_id, room_id]);
+      return result;
+  
+    } catch (error) {
+      throw error;
+    }
+  }
+
 module.exports = {
     updateUserProfile,
     getUserById,
@@ -313,6 +416,11 @@ module.exports = {
     getUserByBookingId,
     getUserDetailByBookingID,
     getbookingPropertyInfo,
-    getbookingPropertyStayUsersInfo
+    getbookingPropertyStayUsersInfo,
+    updatePropertyStatus,
+    getAdminStayRequest,
+    getAdminNotifications,
+    ApproveRejectStayRequest,
+    CheckBookingSTatus
   };
   

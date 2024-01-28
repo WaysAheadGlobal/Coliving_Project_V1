@@ -23,6 +23,15 @@ function UserProfileView(props) {
             SetshowUniversityID(false);
         }
     }
+    const updateIdProof = (e) => {
+        SetShowIDProof(false);
+        props.updateIdProof();
+    }
+    const updateUniversityProof = (e) => {
+        SetShowIDProof(false);
+        props.updateUniversityProof();
+    }
+    
     return (
         <>
             {console.log('asd', props.Detail)}
@@ -174,7 +183,7 @@ function UserProfileView(props) {
                                 </div>
                                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt-3">
                                     <div class="form-group">
-                                        <button class="btn btn-primary" onClick={props.updateIdProof}>Submit</button>
+                                        <button class="btn btn-primary" onClick={updateIdProof}>Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -213,7 +222,7 @@ function UserProfileView(props) {
                                 </div>
                                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt-3">
                                     <div class="form-group">
-                                        <button class="btn btn-primary" onClick={props.updateUniversityProof}>Submit</button>
+                                        <button class="btn btn-primary" onClick={updateUniversityProof}>Submit</button>
                                     </div>
                                 </div>
                             </div>

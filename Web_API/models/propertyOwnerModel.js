@@ -33,7 +33,7 @@ async function saveUpdateProperty(req) {
           saveUpdatePropertyRooms(item, user_id, propertyid);
         }
       }
-
+      commonModel.AddUserNotifications(-1, "New Property added on Co-Living.");
       return result;
     }
     else {
@@ -258,6 +258,9 @@ var date = nowDate.getFullYear()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getDate(
       commonModel.AddUserNotifications(propertyOwnerId, "$" + (amount/2) + " received successfully for property " + property[0].propertyname);
       commonModel.AddUserNotifications(propertyOwnerId, "New Stay request received Successfully for property " + property[0].propertyname);
 
+      commonModel.AddUserNotifications(-1, "$" + (amount/2) + " received successfully for property " + property[0].propertyname);
+      commonModel.AddUserNotifications(-1, "New Stay request received Successfully for property " + property[0].propertyname);
+
       return result;
 
   } catch (error) {
@@ -333,6 +336,19 @@ async function getPropertyWaitingList(req) {
   }
 }
 
+async function PropertyDetailByPropertyId(id) {
+  try {
+
+
+    const [result] = await db.query(
+      "SELECT * from propertymaster where id=? order by id desc",[id]
+    );
+    return result;
+
+  } catch (error) {
+    throw error;
+  }
+}
 
 
 module.exports = {
@@ -347,5 +363,6 @@ module.exports = {
   getMyStayRequests,
   getPropertyInfoUsingPropertyId,
   getPropertyResidants,
-  getPropertyWaitingList
+  getPropertyWaitingList,
+  PropertyDetailByPropertyId
 };

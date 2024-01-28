@@ -16,7 +16,7 @@ async function getPropertyListing(req) {
     LEFT OUTER JOIN (select property_id, count(*) as roomcount from property_roommaster group by property_id) roomcount on propmaster.id = roomcount.property_id
     and roommaster.dietarypreference = usr.dietarypreference and roommaster.drinking = usr.smoke and roommaster.smoking = usr.smoke and roommaster.cannabits = usr.cannabits
     and roommaster.agegrouppreference = usr.agegrouppreference
-    WHERE 1 = 1  and usr.user_id > 0 and roomcount.roomcount > 0 
+    WHERE 1 = 1  and usr.user_id > 0 and roomcount.roomcount > 0 and propmaster.status = 1 
     `;
     
     // Create an array to store the parameters for the query

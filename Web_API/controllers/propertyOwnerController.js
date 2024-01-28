@@ -64,6 +64,21 @@ async function savePropertyInfo(req, res) {
     }
   }
 
+  async function PropertyDetailByPropertyId(req, res) {
+    try {
+      const {property_id} = req.body;
+    //   // Check if the email exists
+      const propertyList = await propertyModel.PropertyDetailByPropertyId(property_id);
+      const roominfo = await propertyModel.getOwnerPropertyRoomInfoUsingPropertyId(property_id);
+      res
+        .status(200)
+        .json({ message: 'Success', property: propertyList, rooms: roominfo, status: 200 });
+    } catch (error) {
+      console.error("Error during signup:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
   async function AddRemovePropertyToWaitingList(req, res) {
     try {
       const {property_id} = req.body;
@@ -154,6 +169,7 @@ async function savePropertyInfo(req, res) {
     saveBookingInfo,
     getMyStayRequests,
     getPropertyResidants,
-    getPropertyWaitingList
+    getPropertyWaitingList,
+    PropertyDetailByPropertyId
   };
   

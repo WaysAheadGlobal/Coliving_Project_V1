@@ -76,11 +76,9 @@ function ManageUsers() {
             });
     }
     const updateIDProofStatus = (id) => (e) => {
-        alert(id)
         SetIDDocument({ ...IdDocument, ['status']: id });
     }
     const updateUniversityProofStatus = (id) => (e) => {
-        alert(id)
         SetUniivrsityIDDocument({ ...IdDocument, ['status']: id });
     }
     const handleInputChange = (e) => {
@@ -187,6 +185,7 @@ function ManageUsers() {
                             position: toast.POSITION.TOP_RIGHT,
                         });
                     }
+                    history("/admin/manage-user");
                 } else {
                     toast.error(data.message, {
                         position: toast.POSITION.TOP_RIGHT,
@@ -278,6 +277,7 @@ function ManageUsers() {
     }
     return (
         <>
+      
             <ToastContainer />
             <link
                 rel="stylesheet"

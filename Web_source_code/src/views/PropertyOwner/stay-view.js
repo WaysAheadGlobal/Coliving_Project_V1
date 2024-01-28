@@ -51,8 +51,54 @@ function StayView() {
             });
     }
 
+    const ApproveReject = (id) => (e) => {
+        const apiUrl = `${config.Url}api/user/ApproveRejectStayRequest`;
+        let formData = JSON.stringify({
+            "booking_id": params.id,
+            "status": id
+        });
+        fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("usertoken")
+            },
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                if (data.status === 200) {
+                    if(id == 1){
+                        toast.success("Request Approved successfully..", {
+                            position: toast.POSITION.TOP_RIGHT,
+                        });
+                    }
+                    else {
+                    toast.error("Request Rejected..", {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                }
+
+                } else {
+                    toast.error(data.message, {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                    console.error("Error fetching user data");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+    }
+
     return (
         <div class="content-area proppage">
+            <ToastContainer />
+				<link
+					rel="stylesheet"
+					href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap"
+				></link>
             <h4 class="content-title backitem">
                 <span>Stay request View</span>
                 <span><a href="/owner/stay-request"><i class="fa fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
@@ -422,8 +468,8 @@ function StayView() {
                             </div>
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="buttonGrp text-center mt-4">
-                                    <button class="btn btn-secondary text-uppercase">reject</button>
-                                    <button class="btn btn-primary text-uppercase">Approve</button>
+                                    <button class="btn btn-secondary text-uppercase" onClick={ApproveReject(0)}>reject</button>
+                                    <button class="btn btn-primary text-uppercase" onClick={ApproveReject(1)}>Approve</button>
                                 </div>
                             </div>
                         </div>
@@ -466,7 +512,7 @@ function StayView() {
                                                 {user.bookingto}
                                             </td>
                                             <td class="text-center">
-                                                {user.isbookingconfirmed == "1" ? "Confirmed" : "Waiting List"}
+                                                {user.status == "1" ? "Confirmed" : "Waiting List"}
                                             </td>
                                             <td class="text-center">
                                                 {user.languagepreference == "0" ? "---" : master.LanguagePreference.find(e => e.id == user.languagepreference)?.name}

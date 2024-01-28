@@ -11,5 +11,9 @@ router.post('/updateUserStatus', userController.updateUserStatus);
 router.post('/PropertyList', propertyController.getOwnersPropertyListForAdmin);
 router.post('/DeleteUser', userController.DeleteUser);
 router.post('/getDashboardDetails', userController.getDashboardDetails);
-
+router.post('/PropertyDetailByPropertyId', propertyController.PropertyDetailByPropertyId);
+router.post('/updatePropertyStatus', userController.updatePropertyStatus);
+router.post('/getPropertyStayRequest', userController.getAdminStayRequest);
+router.post('/getUserInfoForPropertyOwnerForAdmin', userController.getUserInfoForPropertyOwnerForAdmin);
+router.post('/GetAdminNotifications', userController.getAdminNotifications);
 module.exports = router;
