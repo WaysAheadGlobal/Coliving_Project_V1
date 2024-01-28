@@ -13,6 +13,44 @@ function ManagePropertyView() {
     const params = useParams();
     const [MyPropertyList, setMyPropertyList] = useState({});
     const [connectWithHost, SetConnectWIthHost] = useState(false);
+    const [showIdProof, SetShowIDProof] = useState(false);
+    const [showUniversityID, SetshowUniversityID] = useState(false);
+    const updateIDProofStatus = (id) => (e) => {
+        if (id == 1) {
+            SetShowIDProof(true);
+        }
+        else {
+            SetShowIDProof(false);
+        }
+    }
+    
+    const ShowHideIdProof = (id) => (e) => {
+        if (id == 1) {
+            SetShowIDProof(true);
+        }
+        else {
+            SetShowIDProof(false);
+        }
+    }
+    const ShowHideUniversityId = (id) => (e) => {
+        if (id == 1) {
+            SetshowUniversityID(true);
+        }
+        else {
+            SetshowUniversityID(false);
+        }
+    }
+    const updateUniversityProofStatus = (id) => (e) => {
+        //SetUniivrsityIDDocument({ ...IdDocument, ['status']: id });
+    }
+    const updateIdProof = (e) => {
+        SetShowIDProof(false);
+       // props.updateIdProof();
+    }
+    const updateUniversityProof = (e) => {
+        SetShowIDProof(false);
+       // props.updateUniversityProof();
+    }
     const SetConnectWIthHostClick = (id, name) => (e) => {
         SetConnectedHostName(name);
         if(id == 1){
@@ -154,7 +192,7 @@ function ManagePropertyView() {
                                     <label>ID proof</label>
                                     <input type="text" name="idproof" value={MyPropertyList && MyPropertyList.length > 0 && MyPropertyList[0].host_idproof} placeholder="" readonly />
                                         <div class="eyestatus">
-                                            <div class="viewid" data-bs-toggle="modal" data-bs-target="#viewID">
+                                            <div class="viewid" onClick={() => SetShowIDProof(true)}>
                                                 <i class="fa fa-solid fa-eye"></i>
                                             </div>
                                             <div class="badge">
@@ -181,7 +219,7 @@ function ManagePropertyView() {
                                     <label>Company ID Proof</label>
                                     <input type="text" name="idproof" value={MyPropertyList && MyPropertyList.length > 0 && MyPropertyList[0].host_companyidproof} placeholder="" readonly />
                                         <div class="eyestatus">
-                                            <div class="viewid">
+                                            <div class="viewid" onClick={()=> SetshowUniversityID(true)}>
                                                 <i class="fa fa-solid fa-eye"></i>
                                             </div>
                                             <div class="badge">
@@ -229,6 +267,72 @@ function ManagePropertyView() {
                         <div class="mt-4 buttonGrp text-end">
                             <button class="btn btn-secondary me-2" onClick={()=> SetConnectWIthHost(false)}>Cancel</button>
                             <button class="btn btn-primary" onClick={()=> SetConnectWIthHost(false)}>Send</button>
+                        </div>
+                    </div>
+                </div>
+            </Modal>
+            <Modal show={showIdProof} onHide={ShowHideIdProof(0)} className='modal-lg'>
+                <div class="">
+                    <div class="modal-content">
+                        <div class="idmodal">
+                            <div class="closebtn" onClick={ShowHideIdProof(0)}>
+                                <i class="fa fa-solid fa-circle-xmark"></i>
+                            </div>
+                            <div class="adminTitle">
+                                <h4 class="content-title justify-content-center backitem">
+                                    <span>Id Proof</span>
+                                </h4>
+                            </div>
+                            <div class="idpreview">
+                                <img src={MyPropertyList && MyPropertyList.length > 0 && MyPropertyList[0].host_idproof ? `${config.Url}images/documents/` + MyPropertyList[0].host_idproof : ''} class="img-fluid" alt="ID Image missing" />
+                                    {/* <div class="magnifier">
+                                        <i class="fa fa-solid fa-magnifying-glass-plus"></i>
+                                    </div> */}
+                            </div>
+                            <div class="selectionbtn text-center">
+                                <button class="btn btn-default" style={{marginRight: '15px'}} onClick={updateIDProofStatus(1)}>Approve</button>
+                                <button class="btn btn-primary" onClick={updateIDProofStatus(0)}>Disapprove</button>
+                            </div>
+                            <div class="fm-area py-5 px-0">
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt-3">
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" onClick={updateIdProof}>Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Modal>
+            <Modal show={showUniversityID} onHide={ShowHideUniversityId(0)} className='modal-lg'>
+                <div class="">
+                    <div class="modal-content">
+                        <div class="idmodal">
+                            <div class="closebtn" onClick={ShowHideUniversityId(0)}>
+                                <i class="fa fa-solid fa-circle-xmark"></i>
+                            </div>
+                            <div class="adminTitle">
+                                <h4 class="content-title justify-content-center backitem">
+                                    <span>University Id Proof</span>
+                                </h4>
+                            </div>
+                            <div class="idpreview">
+                                <img src={MyPropertyList && MyPropertyList.length > 0 && MyPropertyList[0].host_companyidproof != '' ? `${config.Url}images/documents/` + MyPropertyList[0].host_companyidproof : ''} class="img-fluid" alt="ID Image missing" />
+                                    {/* <div class="magnifier">
+                                        <i class="fa fa-solid fa-magnifying-glass-plus"></i>
+                                    </div> */}
+                            </div>
+                            <div class="selectionbtn text-center">
+                                <button class="btn btn-secondary" onClick={updateUniversityProofStatus(1)}>Approve</button>
+                                <button class="btn btn-primary" onClick={updateUniversityProofStatus(0)}>Disapprove</button>
+                            </div>
+                            <div class="fm-area py-5 px-0">
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt-3">
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" onClick={updateUniversityProof}>Submit</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
