@@ -1,7 +1,6 @@
 import BlogsAPI from '../../data/blogs.json'
 const Blogs = () => {
 	
-	console.log('BlogsAPI', BlogsAPI);
 	return (
 		<>
 			<section class="banner pagetitle">

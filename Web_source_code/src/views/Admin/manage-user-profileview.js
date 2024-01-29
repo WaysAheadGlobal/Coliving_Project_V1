@@ -34,7 +34,6 @@ function UserProfileView(props) {
     
     return (
         <>
-            {console.log('asd', props.Detail)}
             <div class="adminCard statusview fm-area">
                 <div class="table-layout1">
                     <div class="table-responsive">

@@ -39,7 +39,6 @@ function ManagePropertyView() {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 if (data.status === 200) {
                     if (id == 1) {
                         toast.success("Property Approved Successfully", {
@@ -85,7 +84,6 @@ function ManagePropertyView() {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 if (data.status === 200) {
                     setMyPropertyList(data.property);
                     SetRoomsInfo(data.rooms[0]);

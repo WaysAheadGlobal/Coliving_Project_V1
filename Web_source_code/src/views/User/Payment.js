@@ -29,13 +29,11 @@ const Payments = () => {
     const HandleInputChange = (e) => {
 		const { name, value } = e.target;
         SetPaymentInfo({ ...PaymentInfo, [name]: value });
-        console.log(PaymentInfo)
     }
 
     useEffect(() => {
         window.scrollTo(0, 0)
         let userObj = JSON.parse(localStorage.getItem("myBooking"));
-        console.log(userObj.MoveInDate)
         SetBookingInfo(prevState => ({
             ...BookingInfo,
             MoveInDate: userObj.MoveInDate, 

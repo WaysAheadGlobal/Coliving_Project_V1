@@ -141,7 +141,6 @@ async function login(req, res) {
     const user1 = users1[0];
     res.status(200).json({ message: "Login successful", user1, IsDetailsFill: IsDetailsFill,IsPropertyFill: IsPropertyFill,  status: 200 });
   } catch (error) {
-    console.error("Error during login:", error);
     res.status(500).json({ message: "Internal Server Error", status: 500 });
   }
 }
@@ -160,7 +159,6 @@ async function logout(req, res) {
     // Verify and decode the token
     const decodedToken = jwt.verify(token, JWT_SECRET);
 
-    console.log(decodedToken.userId);
 
     // Clear the token from the database
     await authModel.clearToken(decodedToken.userId);

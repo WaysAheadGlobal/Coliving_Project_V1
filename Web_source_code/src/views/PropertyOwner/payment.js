@@ -57,7 +57,6 @@ function Payments() {
 
     return (
         <div class="content-area">
-            {console.log('currentRecords', currentRecords)}
             <h4 class="content-title">Payment</h4>
             <div class="profileform">
                 <div class="table-layout1">

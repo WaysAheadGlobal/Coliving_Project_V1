@@ -91,11 +91,9 @@ const uploadDocument = multer({
 })
 
 app.post('/api/savePicture', upload.single('upload'), async (req, res) => {
-  console.log('The filename is ' + res.req.file.filename);
   try {
   res.status(200).json({ message: "File Uploaded", filename: res.req.file.filename,  status: 200 });
   } catch (error) {
-  console.log(error)
   res.status(400).send(error)
   }
   })
@@ -104,7 +102,6 @@ app.post('/api/savePicture', upload.single('upload'), async (req, res) => {
     try {
     res.status(200).json({ message: "File Uploaded", filename: res.req.file.filename,  status: 200 });
     } catch (error) {
-    console.log(error)
     res.status(400).send(error)
     }
     })
@@ -113,7 +110,6 @@ app.post('/api/savePicture', upload.single('upload'), async (req, res) => {
       try {
       res.status(200).json({ message: "File Uploaded", filename: res.req.file.filename,  status: 200 });
       } catch (error) {
-      console.log(error)
       res.status(400).send(error)
       }
       })
@@ -121,7 +117,6 @@ app.post('/api/savePicture', upload.single('upload'), async (req, res) => {
         try {
         res.status(200).json({ message: "File Uploaded", filename: res.req.file.filename,  status: 200 });
         } catch (error) {
-        console.log(error)
         res.status(400).send(error)
         }
         })

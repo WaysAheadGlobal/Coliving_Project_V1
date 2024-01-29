@@ -49,7 +49,6 @@ const Listing = () => {
     }, []);
 
     useEffect(()=> {
-		console.log('filterValues', filterValues)
         getListing()
     }, [filterValues])
 

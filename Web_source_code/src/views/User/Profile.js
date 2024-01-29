@@ -23,7 +23,6 @@ function Profile() {
     }
       const handleChange = event => {
         const fileUploaded = event.target.files[0];
-        console.log(fileUploaded)
         const name = "profilePic";
         //setFormValues({ ...formValues, [name]: URL.createObjectURL(event.target.files[0]) });
         var formdata = new FormData();
@@ -57,7 +56,6 @@ function Profile() {
     }, []);
 
     const handleInputChange = (e) => {
-        console.log(e.target);
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
     }
@@ -88,7 +86,6 @@ function Profile() {
                         zipcode: data.userinfo[0].ZipCode,
                         profilePic: data.userinfo[0].profilePic
                     };
-                    console.log(userinfo)
                     setFormValues(userinfo);
                 } else {
                     toast.error(data.message, {
@@ -160,7 +157,6 @@ function Profile() {
             isValid = false;
 		}
         setFormErrors(errors);
-        console.log('ErrorAvailable', ErrorAvailable)
         if(isValid){
 				let formData = JSON.stringify({
 					"Fullname": formValues.Fullname,
@@ -183,7 +179,6 @@ function Profile() {
 				})
 					.then((response) => response.json())
 					.then((data) => {
-						console.log(data)
 						if (data.status === 200) {
 							setTimeout(() => {
 								toast.success("Profile updated successfully", {

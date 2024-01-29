@@ -60,10 +60,8 @@ function AdminLogin() {
 		setuserSelection(false);
 	}
 	const handleInputChange = (e) => {
-		console.log(e.keyCode);
 		const { name, value } = e.target;
 		SetFormValues({ ...formValues, [name]: value });
-		console.log(formValues);
 		if(value != ""){
 		if(name == "otp1"){
 			ref2.current.focus();

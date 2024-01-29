@@ -60,7 +60,6 @@ function ManageUsers() {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 if (data.status === 200) {
                     SetCurrentUserInfo(data.user[0]);
                     SetCurrentUserDetail(data.detail[0]);
@@ -83,13 +82,11 @@ function ManageUsers() {
     }
     const handleInputChange = (e) => {
 
-        console.log(e.target);
         const { name, value } = e.target;
         SetIDDocument({ ...IdDocument, [name]: value });
     }
     const handleUniversityInputChange = (e) => {
 
-        console.log(e.target);
         const { name, value } = e.target;
         SetUniivrsityIDDocument({ ...IdDocument, [name]: value });
     }
@@ -110,7 +107,6 @@ function ManageUsers() {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 if (data.status === 200) {
                     SetCurrentUserInfo(data.user[0]);
                     SetCurrentUserDetail(data.detail[0]);
@@ -142,7 +138,6 @@ function ManageUsers() {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 if (data.status === 200) {
                     SetCurrentUserInfo(data.user[0]);
                     SetCurrentUserDetail(data.detail[0]);
@@ -173,7 +168,6 @@ function ManageUsers() {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 if (data.status === 200) {
                     if (status == 1) {
                         toast.success("User Profile Approved Successfully", {
@@ -208,7 +202,6 @@ function ManageUsers() {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 if (data.status === 200) {
                     //this.setState({ postData: data.data });
                     setMyUsers(data.users);
@@ -247,7 +240,6 @@ function ManageUsers() {
                         })
                             .then((response) => response.json())
                             .then((data) => {
-                                console.log(data);
                                 if (data.status === 200) {
                                     toast.success("User Account deleted successfully", {
                                         position: toast.POSITION.TOP_RIGHT,

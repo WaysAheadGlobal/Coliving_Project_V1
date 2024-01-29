@@ -161,9 +161,7 @@ const TopMenu = () => {
 	};
 
 	useEffect(() => {
-		console.log(formErrors);
 		if (Object.keys(formErrors).length === 0 && isSubmit) {
-			console.log(formErrors);
 		}
 	}, [])
 
@@ -217,10 +215,8 @@ const TopMenu = () => {
 
 	const handleInputChange = (e) => {
 
-		console.log(e.target);
 		const { name, value } = e.target;
 		setFormValues({ ...formValues, [name]: value });
-		console.log(formValues);
 
 		if (name == "otp1") {
 			Rref2.current.focus();
@@ -235,7 +231,6 @@ const TopMenu = () => {
 	}
 	const handleLoginInputChange = (e) => {
 
-		console.log(e.target);
 		const { name, value } = e.target;
 		setFormLoginValues({ ...formLoginValues, [name]: value });
 		if (name == "Lotp1") {
@@ -352,7 +347,6 @@ const TopMenu = () => {
 						localStorage.setItem("usertoken", data.user1.token)
 						localStorage.setItem("username", data.user1.Fullname)
 						if (localStorage.getItem("userType") == "1") {
-							console.log('data', data)
 							if (!data.IsDetailsFill) {
 								history("/user/personalDetail");
 							}
@@ -445,7 +439,6 @@ const TopMenu = () => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data)
 				if (data.status === 200) {
 					setTimeout(() => {
 						setLoginOTPSent(true);
@@ -499,7 +492,6 @@ const TopMenu = () => {
 						localStorage.setItem("usertoken", data.user1.token)
 						localStorage.setItem("username", data.user1.Fullname)
 						if (localStorage.getItem("userType") == "1") {
-							console.log('data', data)
 							if (!data.IsDetailsFill) {
 								history("/user/personalDetail");
 							}

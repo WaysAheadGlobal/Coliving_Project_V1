@@ -45,7 +45,6 @@ const ListingDetail = () => {
                 
             }));
             // SetBookingInfo({ ...BookingInfo, ['MoveOutDate']: dt2});
-            // console.log('BookingInfo', BookingInfo)
         }
         else{
             if(name == "RoomType"){
@@ -62,7 +61,6 @@ const ListingDetail = () => {
             }
 		
         }
-        console.log('BookingInfo',BookingInfo)
         CheckStayDates(BookingInfo.MoveInDate, BookingInfo.property_id, BookingInfo.RoomType);
     }
 
@@ -271,7 +269,6 @@ const ListingDetail = () => {
     return (
         <>
             <section class="page articledesc padd80 mt-5" id="photos">
-                {console.log('PropertyInfo', PropertyInfo)}
                 <div class="container">
                     <div class="artical-gal">
                         <div class="row g-3">

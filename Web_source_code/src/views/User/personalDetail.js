@@ -82,7 +82,6 @@ const PersonalDetail = () => {
         e.preventDefault();
         
         SetErrorFound(false);
-        console.log('selectedTab', selectedTab)
         window.scrollTo(0, 0)
         
         var values = personalDetail;

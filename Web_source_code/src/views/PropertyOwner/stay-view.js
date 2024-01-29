@@ -33,7 +33,6 @@ function StayView() {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 if (data.status === 200) {
                     SetCurrentUserInfo(data.res);
                     SetCurrentUserDetail(data.detail);
@@ -67,7 +66,6 @@ function StayView() {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 if (data.status === 200) {
                     if(id == 1){
                         toast.success("Request Approved successfully..", {
