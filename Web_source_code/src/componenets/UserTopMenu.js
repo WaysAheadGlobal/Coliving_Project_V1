@@ -34,7 +34,7 @@ const UserTopMenu = () => {
                                 {/* <input type="text" name="search" placeholder="Search For Coliving" />
                                 <div class="icon"><i class="fa fa-solid fa-magnifying-glass"></i></div> */}
                                 {/* <a href="/listing"><span>Find my Home </span></a> */}
-                                <a class="btn btn-primary" href="/listing">Find my Home</a>
+                                <a class="btn btn-secondary text-uppercase" href="/listing">Find my Home</a>
                             </div>
                         </div>
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-5 d-flex justify-content-end">

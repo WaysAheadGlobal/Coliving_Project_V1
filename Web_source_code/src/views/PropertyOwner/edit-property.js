@@ -16,7 +16,8 @@ function AddProperty() {
     propertyphoto1: '', propertyphoto2: '', propertyphoto3: '', propertyphoto4: '', propertyphoto5: '', propertyvideo: '',apartmentamenities: '',
     communityamenities: '', roomDetails: [roomvalues],
     country: 0, province: '', address:'', landmark: '', zipcode: '', markongoogle: '', cancellantionpolicy: 0, description: '',
-    host_name: '', host_emailid: '', host_mobileno: '', host_dob: '', host_gender: 0, host_location: '', host_aboutyourself: ''};
+    host_name: '', host_emailid: '', host_mobileno: '', host_dob: '', host_gender: 0, host_location: '', host_aboutyourself: '',
+    host_idproof: '', host_propertyOwnershopdocument: '', host_employmentdetails: '', host_companyidproof: ''};
     const [propertyValues, setPropertyValues] = useState({});
     const [isSubmit, SetIsSubmit] = useState(false);
 	const [formErrors, setFormErrors] = useState({});
@@ -103,6 +104,10 @@ function AddProperty() {
                         host_gender: data.property.host_gender,
                         host_location: data.property.host_location,
                         host_aboutyourself: data.property.host_aboutyourself,
+                        host_employmentdetails: data.property.host_employmentdetails,
+                        host_idproof: data.property.host_idproof,
+                        host_propertyOwnershopdocument: data.property.host_propertyOwnershopdocument,
+                        host_companyidproof: data.property.host_companyidproof,
                         roomDetails: data.rooms
                     }));
                 } else {
@@ -1125,7 +1130,7 @@ function AddProperty() {
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
-                                        <label>Mark on google <span className='mandatory'>*</span></label>
+                                        <label>Mark on google (Embeded URL) <span className='mandatory'>*</span></label>
                                         <input type="text" name="markongoogle" onChange={handleInputChange} value={propertyValues.markongoogle} placeholder="Enter google map link" />
                                         <span className='error'>{formErrors.markongoogle}</span>
                                     </div>

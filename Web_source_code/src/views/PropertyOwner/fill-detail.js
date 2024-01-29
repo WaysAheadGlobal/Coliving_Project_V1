@@ -1060,7 +1060,7 @@ function FillDetail() {
                                 </div>
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Mark on google <span className='mandatory'>*</span></label>
+                                        <label>Mark on google (Embeded URL) <span className='mandatory'>*</span></label>
                                         <input type="text" name="markongoogle" onChange={handleInputChange} value={propertyValues.markongoogle} placeholder="Enter google map link" />
                                         <span className='error'>{formErrors.markongoogle}</span>
                                     </div>

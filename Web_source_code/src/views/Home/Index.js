@@ -117,7 +117,7 @@ const Home = () => {
 
 							</div>
 							<h4>Smart Matching</h4>
-							<p>Our advanced AI algorithm ensures compatibility based on shared interests and lifestyles, fostering genuine connections among co-living residents.</p>
+							<p style={{width: '135px;'}}>Our advanced AI algorithm ensures compatibility based on shared interests and lifestyles, fostering genuine connections among co-living residents.</p>
 						</div>
 						<div className="whyItem text-center">
 							<div className="icon">
@@ -128,7 +128,7 @@ const Home = () => {
 
 							</div>
 							<h4>Comprehensive Listings</h4>
-							<p>Landlords showcase properties with vivid photos, videos, and detailed descriptions, empowering users to make informed decisions about their potential living spaces.</p>
+							<p style={{width: '135px;'}}>Landlords showcase properties with vivid photos, videos, and detailed descriptions, empowering users to make informed decisions about their potential living spaces.</p>
 						</div>
 						<div className="whyItem text-center">
 							<div className="icon">
@@ -140,7 +140,7 @@ const Home = () => {
 
 							</div>
 							<h4>Seamless User Experience</h4>
-							<p>A user-centric design simplifies the housing search process with an intuitive interface, supported by a responsive team dedicated to ensuring a stress-free experience.</p>
+							<p style={{width: '135px;'}}>A user-centric design simplifies the housing search process with an intuitive interface, supported by a responsive team dedicated to ensuring a stress-free experience.</p>
 						</div>
 						<div className="whyItem text-center">
 							<div className="icon">
@@ -150,7 +150,7 @@ const Home = () => {
 
 							</div>
 							<h4>Personalized Profiles</h4>
-							<p>Users create profiles highlighting preferences and interests, aiding our matching algorithm and allowing authentic connections with like-minded co-livers.</p>
+							<p style={{width: '135px;'}}>Users create profiles highlighting preferences and interests, aiding our matching algorithm and allowing authentic connections with like-minded co-livers.</p>
 						</div>
 						<div className="whyItem text-center">
 							<div className="icon">
@@ -160,7 +160,7 @@ const Home = () => {
 
 							</div>
 							<h4>Waitlist Efficiency</h4>
-							<p>In a high-demand market, our waitlist feature keeps users informed about upcoming availability, enabling proactive planning for the ideal living situation.</p>
+							<p style={{width: '135px;'}}>In a high-demand market, our waitlist feature keeps users informed about upcoming availability, enabling proactive planning for the ideal living situation.</p>
 						</div>
 						<div className="whyItem text-center">
 							<div className="icon">
@@ -170,7 +170,7 @@ const Home = () => {
 
 							</div>
 							<h4>Precision Search Filters</h4>
-							<p>Tailor your search with advanced filters – location, room size, amenities, and compatibility preferences – ensuring you find a co-living space that suits your lifestyle perfectly.</p>
+							<p style={{width: '135px;'}}>Tailor your search with advanced filters – location, room size, amenities, and compatibility preferences – ensuring you find a co-living space that suits your lifestyle perfectly.</p>
 						</div>
 					</OwlCarousel>
 
