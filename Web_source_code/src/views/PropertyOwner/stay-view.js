@@ -468,6 +468,7 @@ function StayView() {
                             </div>
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="buttonGrp text-center mt-4">
+                                    
                                     <button class="btn btn-secondary text-uppercase" onClick={ApproveReject(0)}>reject</button>
                                     <button class="btn btn-primary text-uppercase" onClick={ApproveReject(1)}>Approve</button>
                                 </div>

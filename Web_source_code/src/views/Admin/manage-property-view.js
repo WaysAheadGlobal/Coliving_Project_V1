@@ -195,10 +195,13 @@ function ManagePropertyView() {
                                             <div class="viewid" onClick={() => SetShowIDProof(true)}>
                                                 <i class="fa fa-solid fa-eye"></i>
                                             </div>
+                                            {MyPropertyList && MyPropertyList.length > 0 && MyPropertyList[0].status == 1 ?
                                             <div class="badge">
                                                 <img src={require('../../img/icons/bluecheck.png')} class="img-fluid" alt="Check Img" />
                                                     <label>Verified</label>
                                             </div>
+                                            :
+                                            null }
                                         </div>
                                 </div>
                             </div>
@@ -222,10 +225,12 @@ function ManagePropertyView() {
                                             <div class="viewid" onClick={()=> SetshowUniversityID(true)}>
                                                 <i class="fa fa-solid fa-eye"></i>
                                             </div>
+                                            {MyPropertyList && MyPropertyList.length > 0 && MyPropertyList[0].status == 1 ?
                                             <div class="badge">
                                                 <img src={require('../../img/icons/bluecheck.png')} class="img-fluid" alt="Check Img" />
                                                     <label>Verified</label>
                                             </div>
+                                            : null }
                                         </div>
                                 </div>
                             </div>

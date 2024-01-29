@@ -1,6 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 
 function Events() {
+	const history = useNavigate();
+    const gotoMeals = (id) => (e) => {
+        history("/owner/addEvents/"+id);
+    }
     return (
+		
         <div class="content-area">
 				<h4 class="content-title">
 					Event
@@ -49,7 +55,7 @@ function Events() {
 										</td>
 										<td class="text-center">
 											<div class="tablebtngrp">
-												<a class="delete" href="/owner/addEvents/1"><i class="fa fa-solid fa-pencil"></i></a>
+												<button class="delete"onClick={gotoMeals(1)}><i class="fa fa-solid fa-pencil"></i></button>
 												<button class="delete"><i class="fa fa-regular fa-trash"></i></button>
 											</div>
 										</td>
@@ -77,7 +83,7 @@ function Events() {
 										</td>
 										<td class="text-center">
 											<div class="tablebtngrp">
-                                            <button class="delete" href="/owner/addEvents/2"><i class="fa fa-solid fa-pencil"></i></button>
+                                            	<button class="delete" onClick={gotoMeals(2)}><i class="fa fa-solid fa-pencil"></i></button>
 												<button class="delete"><i class="fa fa-regular fa-trash"></i></button>
 											</div>
 										</td>

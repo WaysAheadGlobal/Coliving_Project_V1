@@ -272,7 +272,7 @@ async function getUserById(userid) {
   async function getbookingPropertyInfo(booking_id) {
     try {
       const [rows] = await db.query("select prop.propertyphoto1, prop.propertyname, room.roomname, booking.monthlyrent, booking.securitydeposit,"+
-      " booking.bookingfrom, booking.bookingto, room.roomtype, prop.province from userbooking booking"+
+      " booking.bookingfrom, booking.bookingto, room.roomtype, prop.province, booking.status from userbooking booking"+
       " LEFT JOIN propertymaster prop on booking.property_id = prop.id"+
       " LEFT join property_roommaster room on booking.room_id = room.id"+
       " WHERE booking.id = ?"

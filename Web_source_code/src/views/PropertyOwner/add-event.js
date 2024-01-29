@@ -1,5 +1,9 @@
-
+import { useNavigate } from 'react-router-dom';
 function AddEvents() {
+    const history = useNavigate();
+    const returntoMeals = (e) => {
+        history("/owner/events");
+    }
     return (
         <div class="content-area">
             <h4 class="content-title backitem">
@@ -62,8 +66,8 @@ function AddEvents() {
                     </div>
                     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="buttonGrp text-center mt-4">
-                            <button class="btn btn-secondary text-uppercase">cancel</button>
-                            <button class="btn btn-primary text-uppercase">Add</button>
+                            <button class="btn btn-secondary text-uppercase" onClick={returntoMeals}>cancel</button>
+                            <button class="btn btn-primary text-uppercase" onClick={returntoMeals}>Add</button>
                         </div>
                     </div>
                 </div>

@@ -14,7 +14,7 @@ const Payments = () => {
     const [stepCount, SetStep] = useState(1);
     const [RoomInfo, SetRoomInfo] = useState([]);
     const [connectWithHost, SetConnectWIthHost] = useState(false);
-    const [BookingInfo, SetBookingInfo] = useState({ MoveInDate: '', MoveOutDate: '', RoomType: 0, MonthlyRent: 0, property_id: 0 });
+    const [BookingInfo, SetBookingInfo] = useState({ MoveInDate: '', MoveOutDate: '', RoomType: 0, MonthlyRent: 0, property_id: 0, IsConfirmed : 0 });
     const [PaymentInfo, SetPaymentInfo] = useState({ CardNumber: '4111111111111111', CardHolderName: 'Test Card', cvvno: 258, expmonth: 11, expyear: 2025 });
 
     const params = useParams();
@@ -43,6 +43,7 @@ const Payments = () => {
             RoomType: userObj.RoomType, 
             MonthlyRent: userObj.MonthlyRent, 
             property_id: userObj.property_id, 
+            IsConfirmed: userObj.IsConfirmed
         }));
         
         getpropertyInfo(userObj.property_id, userObj.RoomType);
@@ -117,7 +118,7 @@ const Payments = () => {
             "monthlyrent": BookingInfo.MonthlyRent,
             "bookingfrom": userObj.MoveInDate,
             "bookingto": userObj.MoveOutDate,
-            "bookingconfirmed": 0
+            "bookingconfirmed": userObj.IsConfirmed
         });
         const apiUrl = `${config.Url}api/user/saveBookingInfo`;
         fetch(apiUrl, {
@@ -230,12 +231,12 @@ const Payments = () => {
                                     </ul>
                                     <ul class="secrutiydep">
                                         <li>
-                                            <label>Monthly Rent</label>
+                                            <label>{BookingInfo.IsConfirmed == 0 ? "Waiting Security Token" : "Monthly Rent" }</label>
                                             <span>${BookingInfo.MonthlyRent}</span>
                                         </li>
                                         <li>
                                             <label>Security Deposit</label>
-                                            <span>50% </span>
+                                            <span>100% </span>
                                         </li>
                                     </ul>
                                 </div>
@@ -350,12 +351,12 @@ const Payments = () => {
                                                 <div class="cardfees">
                                                     <ul>
                                                         <li>
-                                                            <label>Monthly Rent</label>
+                                                            <label>{BookingInfo.IsConfirmed == 0 ? "Waiting Security Token" : "Monthly Rent" }</label>
                                                             <span>${BookingInfo.MonthlyRent}</span>
                                                         </li>
                                                         <li>
                                                             <label>Security Deposit</label>
-                                                            <span>50%</span>
+                                                            <span>100%</span>
                                                         </li>
                                                     </ul>
                                                 </div>

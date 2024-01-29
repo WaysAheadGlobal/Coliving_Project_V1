@@ -10,9 +10,22 @@ import Modal from 'react-bootstrap/Modal';
 function PropertyDetails() {
     const history = useNavigate();
     const [ConnectedHostName, SetConnectedHostName] = useState('');
+    const [showIdProof, SetShowIDProof] = useState(false);
     const params = useParams();
     const [MyPropertyList, setMyPropertyList] = useState({});
     const [connectWithHost, SetConnectWIthHost] = useState(false);
+    const updateIdProof = (e) => {
+        SetShowIDProof(false);
+       // props.updateIdProof();
+    }
+    const updateIDProofStatus = (id) => (e) => {
+        if (id == 1) {
+            SetShowIDProof(true);
+        }
+        else {
+            SetShowIDProof(false);
+        }
+    }
     const SetConnectWIthHostClick = (id, name) => (e) => {
         SetConnectedHostName(name);
         if(id == 1){
@@ -20,6 +33,14 @@ function PropertyDetails() {
         }
         if(id == 0){
             SetConnectWIthHost(false);
+        }
+    }
+    const ShowHideIdProof = (id) => (e) => {
+        if (id == 1) {
+            SetShowIDProof(true);
+        }
+        else {
+            SetShowIDProof(false);
         }
     }
     useEffect(() => {
@@ -146,15 +167,18 @@ function PropertyDetails() {
                             <div class="col-xxl-4 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="form-group statuslabel">
                                     <label>Address Proof</label>
-                                    <input type="text" name="idproof" value="propertydeed.pdf" placeholder="" readonly />
+                                    <input type="text" name="idproof" value={MyPropertyList && MyPropertyList.length > 0 && MyPropertyList[0].host_propertyOwnershopdocument} placeholder="" readonly />
                                         <div class="eyestatus">
-                                            <div class="viewid" data-bs-toggle="modal" data-bs-target="#viewID">
-                                                <i class="fa-solid fa-eye"></i>
+                                            <div class="viewid" onClick={()=> SetShowIDProof(true)}>
+                                                <i class="fa fa-solid fa-eye"></i>
                                             </div>
+                                            {MyPropertyList && MyPropertyList.length > 0 && MyPropertyList[0].status == 1 ?
                                             <div class="badge">
-                                                <img src="../img/icons/bluecheck.png" class="img-fluid" alt="Check Img" />
+                                                <img src={require('../../img/icons/bluecheck.png')} class="img-fluid" alt="Check Img" />
                                                     <label>Verified</label>
                                             </div>
+                                            :
+                                            null }
                                         </div>
                                 </div>
                             </div>
@@ -300,6 +324,39 @@ function PropertyDetails() {
                         <div class="mt-4 buttonGrp text-end">
                             <button class="btn btn-secondary me-2" onClick={()=> SetConnectWIthHost(false)}>Cancel</button>
                             <button class="btn btn-primary" onClick={()=> SetConnectWIthHost(false)}>Send</button>
+                        </div>
+                    </div>
+                </div>
+            </Modal>
+            <Modal show={showIdProof} onHide={ShowHideIdProof(0)} className='modal-lg'>
+                <div class="">
+                    <div class="modal-content">
+                        <div class="idmodal">
+                            <div class="closebtn" onClick={ShowHideIdProof(0)}>
+                                <i class="fa fa-solid fa-circle-xmark"></i>
+                            </div>
+                            <div class="adminTitle">
+                                <h4 class="content-title justify-content-center backitem">
+                                    <span>Id Proof</span>
+                                </h4>
+                            </div>
+                            <div class="idpreview">
+                                <img src={MyPropertyList && MyPropertyList.length > 0 && MyPropertyList[0].host_propertyOwnershopdocument ? `${config.Url}images/documents/` + MyPropertyList[0].host_propertyOwnershopdocument : ''} class="img-fluid" alt="ID Image missing" />
+                                    {/* <div class="magnifier">
+                                        <i class="fa fa-solid fa-magnifying-glass-plus"></i>
+                                    </div> */}
+                            </div>
+                            <div class="selectionbtn text-center">
+                                <button class="btn btn-default" style={{marginRight: '15px'}} onClick={updateIDProofStatus(1)}>Approve</button>
+                                <button class="btn btn-primary" onClick={updateIDProofStatus(0)}>Disapprove</button>
+                            </div>
+                            <div class="fm-area py-5 px-0">
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt-3">
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" onClick={updateIdProof}>Submit</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

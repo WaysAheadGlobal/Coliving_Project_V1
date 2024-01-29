@@ -679,7 +679,7 @@ const ListingDetail = () => {
                                 </div>
                                 <ul class="secrutiydep mb-4">
                                     <li>
-                                        <label>Monthly Rent</label>
+                                        <label>{BookingAsWait == 1 ? "Waiting Security Token" : "Monthly Rent" }</label>
                                         <span>${BookingInfo.MonthlyRent}</span>
                                     </li>
                                     <li>

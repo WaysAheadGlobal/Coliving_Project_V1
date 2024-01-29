@@ -1,10 +1,14 @@
-
+import { useNavigate } from 'react-router-dom';
 function AddMeal() {
+    const history = useNavigate();
+    const backtoMeals = (e) => {
+        history("/owner/meals");
+    }
     return (
         <div class="content-area">
             <h4 class="content-title backitem">
                 <span>Add Meal</span>
-                <span><a href="meal.html"><i class="fa fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
+                <span><a href="/owner/meals"><i class="fa fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
             </h4>
             <div class="fm-area editmeal addevent profileform">
                 <div class="row g-4 align-items-center">
@@ -49,8 +53,8 @@ function AddMeal() {
                     </div>
                     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="buttonGrp text-center mt-4">
-                            <button class="btn btn-secondary text-uppercase">cancel</button>
-                            <button class="btn btn-primary text-uppercase">update</button>
+                            <button class="btn btn-secondary text-uppercase" onClick={backtoMeals}>cancel</button>
+                            <button class="btn btn-primary text-uppercase" onClick={backtoMeals}>update</button>
                         </div>
                     </div>
                 </div>
