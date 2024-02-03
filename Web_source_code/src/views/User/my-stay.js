@@ -129,8 +129,11 @@ function MyStay() {
                                         5.0
                                 </div>
                             </div>
-                            <button class="btn btn-primary text-uppercase" onClick={checkWaitingList(item.id)} style={{marginRight: '15px'}}>check waitlist</button>
-                            <button class="btn btn-primary text-uppercase" onClick={checkResidantsList(item.id)}>check Residants</button>
+                            <div className="btngrp">
+                                <button class="btn btn-primary text-uppercase" onClick={checkWaitingList(item.id)}>check waitlist</button>
+                                <button class="btn btn-primary text-uppercase" onClick={checkResidantsList(item.id)}>check Residants</button>
+                             </div>   
+                            
                         </div>
                     </div>
                 </div>

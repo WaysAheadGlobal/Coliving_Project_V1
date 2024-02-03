@@ -53,7 +53,10 @@ const Listing = () => {
     }, [filterValues])
 
 	function getListing() {
-		const apiUrl = `${config.Url}api/listing/getListing`;
+		var apiUrl = `${config.Url}api/listing/getListing`;
+		if(localStorage.getItem("usertoken") == "" || localStorage.getItem("usertoken") == null){
+			apiUrl = `${config.Url}api/list/getListing`;
+		}
         fetch(apiUrl, {
             method: "POST",
             headers: {
@@ -128,7 +131,7 @@ const Listing = () => {
 	<div class="container">
 		<div  class="heading1 mb-4 text-start">
 			{(filterValues.province != "0") && (filterValues.province != "") && (filterValues.province != null) ? 
-			<h2>Coliving in {filterValues.province}</h2>
+			<h2>Coliving in <span style={{textTransform: 'capitalize'}}>{filterValues.province}</span></h2>
 			: null }
 		</div>
 		<div class="co-filter">

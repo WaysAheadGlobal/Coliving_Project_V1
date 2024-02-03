@@ -312,7 +312,7 @@ async function getUserById(userid) {
       );
       const userinfo = await getUsersByIDForAdmin(user[0].user_id);
       //sendUserApproveRejectEmail
-      sendMail.sendPropertyOwnerApproveRejectEmail(userinfo[0].email, userinfo[0].Fullname, status == 1 ? "Approved & Live" : "Rejected");
+      sendMail.sendPropertyOwnerApproveRejectEmail(userinfo[0].email, userinfo[0].Fullname, status == 1 ? "We are pleased to inform you that your application for Co-Living has been thoroughly reviewed and approved by the Co-Living administration team. Congratulations on successfully passing our screening process." : "We regret to inform you that, following a thorough evaluation, your application for Co-Living has been unsuccessful.");
 
       const [checkUser] = await db.query(
         "Select u1.user_id from users u1 LEFT JOIN propertymaster prop on u1.user_id = prop.user_id where prop.id=? and u1.status = 0",

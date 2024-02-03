@@ -146,12 +146,13 @@ const TopMenu = () => {
 	  }
 	// const [userName, setUserName] = useState('');
 	const gotoListing = (e) => {
-		if (localStorage.getItem("usertoken") != "" && localStorage.getItem("usertoken") != null) {
-			history("/listing");
-		}
-		else {
-			setuserSelection(true);
-		}
+		history("/listing");
+		// if (localStorage.getItem("usertoken") != "" && localStorage.getItem("usertoken") != null) {
+		// 	history("/listing");
+		// }
+		// else {
+		// 	setuserSelection(true);
+		// }
 	}
 
 	const modalClose = () => setShow(false);
@@ -351,7 +352,7 @@ const TopMenu = () => {
 								history("/user/personalDetail");
 							}
 							else {
-								history("/user/profile");
+								history("/Listing");
 							}
 						}
 						else {
@@ -849,7 +850,7 @@ const TopMenu = () => {
 														<div class="imgtype">
 															<img src={require('./../../src/img/onboard/userself.png')} class="img-fluid" alt="Username" />
 														</div>
-														<h4>User</h4>
+														<h4>Home Seeker</h4>
 													</div>
 												</div>
 												<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
@@ -857,7 +858,7 @@ const TopMenu = () => {
 														<div class="imgtype">
 															<img src={require('./../../src/img/onboard/propowner.png')} class="img-fluid" alt="Username" />
 														</div>
-														<h4>Property Owner</h4>
+														<h4>Home Owner</h4>
 													</div>
 												</div>
 											</div>

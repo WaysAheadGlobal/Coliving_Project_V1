@@ -174,7 +174,7 @@ function DetailTab1(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Domain</label>
+                            <label>Profession</label>
                             <input type="text" name="domain" placeholder="Data Science" value={props.detail.domain} onChange={props.handleInputChange} />
                         </div>
                     </div>

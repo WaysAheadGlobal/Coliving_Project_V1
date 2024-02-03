@@ -277,7 +277,7 @@ function ManageUsers() {
             ></link>
             <div class="adminTitle">
                 <h4 class="content-title backitem">
-                    <span>Manage User</span>
+                    <span>Manage Membership</span>
                     {viewPage == 1 ? null :
                         <span><a href="/admin/manage-user"><i class="fa fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
                     }

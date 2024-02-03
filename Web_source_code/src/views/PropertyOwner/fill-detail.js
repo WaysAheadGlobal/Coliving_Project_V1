@@ -1177,7 +1177,7 @@ function FillDetail() {
                                 </div>
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <div className="input-group date" id="datepicker">
-                                        <label>Property Ownership Document <span className='mandatory'>*</span></label>
+                                        <label>Home Ownership Document <span className='mandatory'>*</span></label>
                                         <input type="text" name="host_propertyOwnershopdocument" placeholder="" className="form-control" value={propertyValues.host_propertyOwnershopdocument} />
                                         <span className="input-group-append">
                                             <span className="input-group-text bg-light d-block" onClick={handleDocumentClick(2)}>

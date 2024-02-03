@@ -196,12 +196,12 @@ function BookingView() {
                                     <input type="text" name="propname" value={PropertyInfo && PropertyInfo.province} readonly />
                                 </div>
                             </div>
-                            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            {/* <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="buttonGrp text-center mt-4">
                                     <button class="btn btn-secondary text-uppercase">reject</button>
                                     <button class="btn btn-primary text-uppercase">Approve</button>
                                 </div>
-                            </div>
+                            </div> */}
                     </div>
                 </div>
             </div>

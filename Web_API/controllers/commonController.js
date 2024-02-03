@@ -15,6 +15,20 @@ async function getPropertyListing(req, res) {
     }
   }
 
+  async function getPropertyListingWithoutLogin(req, res) {
+    try {
+      // Check if the email exists
+      const listing = await commonModel.getPropertyListingWithoutLogin(req);
+      
+      res
+        .status(200)
+        .json({ message: "", listing: listing, status: 200 });
+    } catch (error) {
+      console.error("Error while fetching property listing", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
   async function getPropertyListingDetail(req, res) {
     try {
       const { property_id } = req.body;
@@ -32,6 +46,7 @@ async function getPropertyListing(req, res) {
   
 module.exports = {
     getPropertyListing,
-    getPropertyListingDetail
+    getPropertyListingDetail,
+    getPropertyListingWithoutLogin
   };
   

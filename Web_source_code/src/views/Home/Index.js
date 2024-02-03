@@ -51,7 +51,7 @@ const Home = () => {
 				items: 2,
 			},
 			700: {
-				items: 3,
+				items: 2,
 			},
 			1000: {
 				items: 3,

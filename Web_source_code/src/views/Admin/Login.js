@@ -302,8 +302,8 @@ function AdminLogin() {
 									<i className="fa-regular fa-clock"></i>&nbsp;&nbsp;
 									16, Aug 2023
 								</div>
-								<h4>Financial Benefits of Co-Living for Property Owners</h4>
-								<p>Target property owners and investors by explaining how they can benefit from converting properties into co-living spaces.</p>
+								<h4>Financial Benefits of Co-Living for Home Owners</h4>
+								<p>Target home owners and investors by explaining how they can benefit from converting properties into co-living spaces.</p>
 								<a href="#/" className="readmore">Read More &nbsp;<i className="fa fa-solid fa-arrow-right"></i></a>
 							</div>
 						</div>

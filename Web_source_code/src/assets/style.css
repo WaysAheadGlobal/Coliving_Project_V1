@@ -61,7 +61,7 @@ p{color:var(--co-grey); line-height:27px; font-size:16px;}
 .header .logo{width:100%; height:auto;}
 .header .logo a{display:block;}
 .header .navigation{width:100%; height:auto;}
-.header .navigation ul{display:flex; align-items:center; justify-content:end; gap:40px;}
+.header .navigation ul{display:flex; align-items:center; justify-content:end; gap:25px;}
 .header .navigation ul a{color:var(--co-black); font-size:16px; font-weight:500; text-transform:uppercase; position:relative; overflow:hidden;}
 .header .navigation ul a.active{color:var(--co-primary);}
 .header .navigation ul a:after{position:absolute;}
@@ -134,14 +134,14 @@ ul.nav-menu li a{font-size:14px; font-weight:500; letter-spacing:0.3px; color:#0
 
 /* Why Us */
 
-.whyItem{background:#F0EDE5; padding:50px 40px 30px; border-radius:20px; position:relative;}
+.whyItem{background:#F0EDE5; padding:50px 40px 30px; border-radius:20px; position:relative;min-height: 425px;}
 .whyItem:after{width:200px; height:200px; position:absolute; top:-75px; right:-75px; content:""; background:url(../img/circle1.png) no-repeat; opacity:0;}
 .whyItem:before{width:124px; height:124px; position:absolute; bottom:-45px; left:-45px; content:"";}
 .whyItem:before{background:url(../img/circle2.png) no-repeat; opacity:0;}
 .whyItem .icon{width:100px; height:100px; border-radius:100px; display:flex; align-items:center; justify-content:center;}
 .whyItem .icon{margin:0 auto 0; padding:25px; background:var(--co-primary);}
 .whyItem .icon img{filter:brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7491%) hue-rotate(163deg) brightness(120%) contrast(97%);}
-.whyItem h4{font-size:22px; font-weight:600; margin:25px 0px 15px;}
+.whyItem h4{font-size:20px; font-weight:600; margin:25px 0px 15px;}
 .whyItem:hover{background:var(--co-bg1);}
 .whyItem:hover .icon{background:var(--co-white);}
 .whyItem:hover .icon img{filter:brightness(0) saturate(100%) invert(65%) sepia(66%) saturate(433%) hue-rotate(349deg) brightness(106%) contrast(96%);}
@@ -1423,9 +1423,7 @@ ol, ul {
     filter: brightness(0.5) !important;
 }
 @media screen and (max-width:800px) {
-    .userloginbtn {
-        display: flex !important;
-    }
+    
     .mobileIcon {
         display: flex !important;
     }
@@ -1963,7 +1961,19 @@ li.subsmile span{
     opacity: 0.6;
     font-size: 14px;
 }
-
+.btngrp {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+@media only screen and (max-width:1400px)
+{
+    .btngrp button {
+        width: 100%;
+    }
+}
 @media only screen and (max-width:1299px)
 {
 	.highlights{top:20%;}
@@ -1983,6 +1993,8 @@ li.subsmile span{
 
 @media only screen and (max-width:1199px)
 {
+    .navigation{display: none;}
+	.mobileIcon{display: flex;}
 	.header .navigation ul{gap: 25px;}
 	.highlights h1 {    font-size: 45px;    line-height:55px; margin: 0px;}
 	.highlights p {    margin: 10px 0px 20px;}
@@ -2022,13 +2034,14 @@ li.subsmile span{
 
 	.highlights{padding-top: 0px !important;}
 	.banner > img {		height: auto;		width: 100%;		max-width: none;	}
-
+    .userloginbtn {
+        display: flex !important;
+    }
 }
 
 @media only screen and (max-width:991px)
 {
-	.navigation{display: none;}
-	.mobileIcon{display: flex;}
+	
 	.highlights h1{font-size: 38px; line-height:50px;}
 	.banner{overflow: hidden;}
 	.banner > img{height: 450px; width: auto; max-width:none;}
@@ -2086,11 +2099,12 @@ li.subsmile span{
 
 	.mangePropView .imgupblocks{gap:30px;}
 
-	
+	.whyItem{min-height: 400px;}
 }
 
 @media only screen and (max-width:767px)
 {
+    
 	.highlights p br{display: none;}
 	.teamSlides .owl-nav{position: unset;}
 	.b-body h4{font-size: 18px; line-height: 26px;}
@@ -2146,7 +2160,9 @@ li.subsmile span{
 	.thankyoupage h4{font-size: 24px;}
 	.thankyoupage img.thankimg, .thankyoupage img{height: 200px;}
 
-
+    .whyItem {
+        min-height: 335px;
+    }
 }
 
 @media only screen and (max-width:575px)

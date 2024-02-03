@@ -211,7 +211,7 @@ async function getWaitingListPropertyListing(req) {
     const user_id = req.user.userId;
 
     let query = `
-    SELECT  distinct propmaster.*, MIN(roommaster.roomrent) MinRent,
+    SELECT  propmaster.*, MIN(roommaster.roomrent) MinRent,
     ISNULL((select id from user_waitinglist where property_id=propmaster.id and user_id=?)) WaitingId
     from propertymaster propmaster
     JOIN property_roommaster roommaster on propmaster.id = roommaster.property_id

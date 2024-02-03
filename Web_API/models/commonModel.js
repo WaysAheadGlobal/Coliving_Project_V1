@@ -101,10 +101,70 @@ async function AddUserNotifications(userid, messgae) {
   }
 }
 
+async function getPropertyListingWithoutLogin(req) {
+  try {
+    const {country,province, moveInDate, apartment, roomtype, kitchen, evcharger, 
+    agepreference, apartmentsize} = req.body;
 
+    let query = `
+    SELECT  distinct propmaster.*, MIN(roommaster.roomrent) MinRent,roomcount.roomcount, 1 WaitingId
+    from propertymaster propmaster
+    JOIN property_roommaster roommaster on propmaster.id = roommaster.property_id
+    LEFT OUTER JOIN (select property_id, count(*) as roomcount from property_roommaster group by property_id) roomcount on propmaster.id = roomcount.property_id
+    WHERE 1 = 1 and propmaster.status = 1 
+    `;
+    
+    // Create an array to store the parameters for the query
+    const params = [];
+    // Add filter based on filter
+    // if (country != 0) {
+    //   query += ' AND propmaster.country = ?';
+    //   params.push(country);
+    // }
+    if (province != "0") {
+      query += ' AND propmaster.province like ?';
+      params.push("%" + province + "%");
+    }
+    // if (moveInDate != '') {
+    //   query += ' AND a.housetype = ?';
+    //   params.push(moveInDate);
+    // }
+    if (apartment != "0") {
+      query += ' AND propmaster.housetype = ?';
+      params.push(apartment);
+    }
+    if (roomtype != 0) {
+      query += ' AND roommaster.roomtype = ?';
+      params.push(roomtype);
+    }
+    if (kitchen != 0) {
+      query += ' AND propmaster.kitchen = ?';
+      params.push(kitchen);
+    }
+    if (evcharger != 0) {
+      query += ' AND propmaster.evcharger = ?';
+      params.push(evcharger);
+    }
+    if (agepreference != 0) {
+      query += ' AND roommaster.agegrouppreference = ?';
+      params.push(agepreference);
+    }
+    if (apartmentsize != 0) {
+      query += ' AND propmaster.apartmentsize = ?';
+      params.push(apartmentsize);
+    }
+    query += ' group by propmaster.id';
+    const [result] = await db.query(query, params);
+    return result;
+
+  } catch (error) {
+    throw error;
+  }
+}
 
 module.exports = {
     getPropertyListing,
     getPropertyDetail,
-    AddUserNotifications
+    AddUserNotifications,
+    getPropertyListingWithoutLogin
 };

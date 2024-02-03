@@ -199,7 +199,6 @@ const TopWithoutMenu = () => {
 							// 	position: toast.POSITION.TOP_RIGHT,
 							// });
 							// console.error("Error fetching user data");
-							// alert('1')
 							const errors = {};
 
 							errors.email = "Email not found!!";

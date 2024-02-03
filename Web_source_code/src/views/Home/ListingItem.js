@@ -1,9 +1,43 @@
+import { useNavigate } from "react-router-dom";
 import config from "../../Config/config";
 import master from "../../data/masterData.json";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const ListingItem =(props) => {
+    const history = useNavigate();
+
+    const gotoListing = (id) => (e) => {
+		
+		if (localStorage.getItem("usertoken") != "" && localStorage.getItem("usertoken") != null) {
+			history("/ListingDetail/"+ id);
+		}
+		else {
+			toast.error("Please login first to check co-living property details", {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+		}
+	}
+
+    const chckUserLogin = (id) => (e) => {
+		
+		if (localStorage.getItem("usertoken") != "" && localStorage.getItem("usertoken") != null) {
+			props.updateWaitingList(id)
+		}
+		else {
+			toast.error("Please login first to save property in waiting list", {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+		}
+	}
     return (
         <div class="articleItem">
+            <ToastContainer />
+				<link
+					rel="stylesheet"
+					href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap"
+				></link>
             <div class="row">
                 <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 pe-xxl-0 pe-xl-0 pe-lg-0">
                     <div class="aImg">
@@ -13,7 +47,7 @@ const ListingItem =(props) => {
                                 <div class="badge1">New</div>
                                 <div class="badge2 mt-1">Available</div>
                             </div>
-                            <div id={`prop`+props.item.id} class={props.item.WaitingId == 1 ? "whishlist nowait" : "whishlist wait"} onClick={()=> props.updateWaitingList(props.item.id)}>
+                            <div id={`prop`+props.item.id} class={props.item.WaitingId == 1 ? "whishlist nowait" : "whishlist wait"} onClick={chckUserLogin(props.item.id)}>
                                 <i class="fa fa-regular fa-heart"></i>
                             </div>
                         </div>
@@ -23,7 +57,7 @@ const ListingItem =(props) => {
                     <div class="articalBody">
                         <div>
                             <label>{props.item.province}</label>
-                            <h4><a href={`/ListingDetail/`+props.item.id}>{props.item.propertyname}</a></h4>
+                            <h4><a href="javascript:void(0);" onClick={gotoListing(props.item.id)}>{props.item.propertyname}</a></h4>
                             <ul style={{marginBottom: '0px'}}>
                                 <li>{props.item.roomcount} Rooms</li>
                                 <li>{props.item.apartmentsize == "0" ? "" : master.ApartmentSize.find(e => e.id == props.item.apartmentsize).name}</li>

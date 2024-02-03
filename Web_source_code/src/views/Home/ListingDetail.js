@@ -19,8 +19,6 @@ const ListingDetail = () => {
     const history = useNavigate();
     const HandleInputChange = (e) => {
 		const { name, value } = e.target;
-        alert(name)
-        alert(value)
        // SetBookingInfo({ ...BookingInfo, [name]: value });
         if(name == "MoveInDate"){
            // SetBookingInfo({ ...BookingInfo, [name]: value });

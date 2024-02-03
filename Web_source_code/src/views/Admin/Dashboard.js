@@ -104,7 +104,7 @@ function AdminDashboard() {
                             <div class="adminCard">
                                 <div class="totalValues">
                                     <span>{DashboardData && DashboardData.data && (DashboardData.data.totalPropertyowners)}</span>
-                                    <label>Total Property Owner</label>
+                                    <label>Total Home Owner</label>
                                 </div>
                                 <div class="chartArea">
                                     {/* <div class="circular-progress" data-inner-circle-color="white" data-percentage="47" data-progress-color="" data-bg-color="#E1E5FF">
