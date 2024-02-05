@@ -12,7 +12,7 @@ const Listing = () => {
 	const params = useParams();
     const [PropertyList, SetPropertyListing] = useState([]);
 	const [filterValues, SetFilterValues]= useState({province: '0', moveInDate: '', apartment: 0, roomtype: 0, kitchen: 0, evcharger: 0, 
-	agepreference: 0, apartmentsize: 0});
+	agepreference: 0, apartmentsize: 0, listingtype: 1});
 	const [recordsPerPage] = useState(10);
     const [viewPage, SetViewPage] = useState(1);
 	const [currentPage, setCurrentPage] = useState(1);
@@ -55,6 +55,9 @@ const Listing = () => {
 	function getListing() {
 		var apiUrl = `${config.Url}api/listing/getListing`;
 		if(localStorage.getItem("usertoken") == "" || localStorage.getItem("usertoken") == null){
+			apiUrl = `${config.Url}api/list/getListing`;
+		}
+		if(filterValues && filterValues.listingtype == 2) {
 			apiUrl = `${config.Url}api/list/getListing`;
 		}
         fetch(apiUrl, {
@@ -184,10 +187,17 @@ const Listing = () => {
 					</li>
 					<li>
 						<select name="apartmentsize" class="minimal" value={filterValues.apartmentsize} onChange={handleInputChange}>
-							<option value={0}>Arartment Size</option>
+							<option value={0}>Apartment Size</option>
 							{master.ApartmentSize.map((result) => (<option value={result.id}>{result.name}</option>))}
 						</select>
 					</li>
+					{ localStorage.getItem("username") != "" ?
+					<li>
+						<select name="listingtype" class="minimal" value={filterValues.listingtype} onChange={handleInputChange}>
+							{master.ListingType.map((result) => (<option value={result.id}>{result.name}</option>))}
+						</select>
+					</li>
+					: null }
 				</ul>
 			</form>
 		</div>

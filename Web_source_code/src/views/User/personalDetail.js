@@ -232,6 +232,26 @@ const PersonalDetail = () => {
                 SetErrorFound(true);
                 checkErrorTab3 = true;
             }
+            if (values.roommate_smokingcomfort == 0) {
+                errors.roommate_smokingcomfort = "Smoking preference is required!";
+                SetErrorFound(true);
+                checkErrorTab3 = true;
+            }
+            if (values.roommate_drinkingcomfort == 0) {
+                errors.roommate_drinkingcomfort = "Drinking preference is required!";
+                SetErrorFound(true);
+                checkErrorTab3 = true;
+            }
+            if (values.roommate_sharehouseholdchores == 0) {
+                errors.roommate_sharehouseholdchores = "share household chores preference is required!";
+                SetErrorFound(true);
+                checkErrorTab3 = true;
+            }
+            if (values.roommate_dietarypreference == 0) {
+                errors.roommate_dietarypreference = "Dietary preference is required!";
+                SetErrorFound(true);
+                checkErrorTab3 = true;
+            }
             SetFormErrors(errors);
         }
         if(selectedTab == 1 && !checkError ){

@@ -300,5 +300,9 @@
         {"id": 22, "name": "09:00 PM"},
         {"id": 23, "name": "10:00 PM"},
         {"id": 24, "name": "11:00 PM"}
+    ],
+    "ListingType": [
+        {"id": 1, "name": "My Preference Listing"},
+        {"id": 2, "name": "All Listing"}
     ]
 }

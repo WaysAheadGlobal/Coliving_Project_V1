@@ -3,7 +3,7 @@ import master from './../../data/masterData.json'
 function DetailTab2(props) {
     return (
         <div className="detail-2 p-detail">
-            <h4>Apartment Detail</h4>
+            <h4>Apartment Preference</h4>
             <div className="fm-area">
                 <div className="row g-4">
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">

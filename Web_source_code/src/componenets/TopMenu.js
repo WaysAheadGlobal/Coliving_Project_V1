@@ -497,7 +497,8 @@ const TopMenu = () => {
 								history("/user/personalDetail");
 							}
 							else {
-								history("/user/profile");
+								// history("/Listing");
+								window.location.href="/Listing";
 							}
 						}
 						else {

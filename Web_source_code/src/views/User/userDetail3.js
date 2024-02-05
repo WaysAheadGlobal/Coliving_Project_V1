@@ -8,7 +8,7 @@ function DetailTab3(props) {
                 <div className="row g-4">
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Language Preferences</label>
+                            <label>Language Preferences <span className='mandatory'>*</span></label>
                             <select name="languagepreference" value={props.detail.languagepreference} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.LanguagePreference.map((result) => (<option value={result.id}>{result.name}</option>))}
@@ -43,42 +43,47 @@ function DetailTab3(props) {
                             <option value={0}>Select</option>
                                 {master.CommunicationType.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.communication}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Dietary preferences</label>
+                            <label>Dietary preferences <span className='mandatory'>*</span></label>
                             <select name="roommate_dietarypreference" value={props.detail.roommate_dietarypreference} onChange={props.handleInputChange}>
                             <option value={0}>Select</option>
                                 {master.DietPreference.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.roommate_dietarypreference}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Willing to share household chores</label>
+                            <label>Willing to share household chores <span className='mandatory'>*</span></label>
                             <select name="roommate_sharehouseholdchores" value={props.detail.roommate_sharehouseholdchores} onChange={props.handleInputChange}>
                             <option value={0}>Select</option>
                                 {master.YesNo.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.roommate_sharehouseholdchores}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Drinking Comfort Level</label>
+                            <label>Drinking Comfort Level <span className='mandatory'>*</span></label>
                             <select name="roommate_drinkingcomfort" value={props.detail.roommate_drinkingcomfort} onChange={props.handleInputChange}>
                             <option value={0}>Select</option>
                                 {master.YesNo.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.roommate_drinkingcomfort}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Smoking Comfort Level</label>
+                            <label>Smoking Comfort Level <span className='mandatory'>*</span></label>
                             <select name="roommate_smokingcomfort" value={props.detail.roommate_smokingcomfort} onChange={props.handleInputChange}>
                             <option value={0}>Select</option>
                                 {master.YesNo.map((result) => (<option value={result.id}>{result.name}</option>))}
                             </select>
+                            <span className='error'>{props.FormErrors.roommate_smokingcomfort}</span>
                         </div>
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">

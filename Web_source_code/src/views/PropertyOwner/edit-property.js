@@ -9,7 +9,8 @@ function AddProperty() {
     const params = useParams();
     const roomvalues = {room_id: 0, roomname: '', roomphoto1: '', roomphoto2: '', roomphoto3: '', roomphoto4: '', roomphoto5: '', 
     roomtype: 0, roomsize: 0, noOfBed: 0, bedroomtype: 0, furniture: 0, roomrent: 0, currentstatus: 0, petfriendly: 0, 
-    dietarypreference: 0, smoking: 0, drinking: 0, cannabits: 0, agegrouppreference: 0, communitytype: 0, maxresidants: 0};
+    dietarypreference: 0, smoking: 0, drinking: 0, cannabits: 0, agegrouppreference: 0, communitytype: 0, maxresidants: 0,
+    parking: 0, coed: 0, languagepreference: 0};
 
     const intialValues = { user_id: localStorage.getItem("userid"), property_id: 0, propertyname: "", housetype: 0, totalrooms: 0, bathroom: 0, livingroom: 0, kitchen: 0,
     residants:0, apartmentsize: 0, evcharger: 0, fireextinguisher: 0, travelguide: 0, events: 0, 
@@ -989,6 +990,7 @@ function AddProperty() {
                                         <option value={0}>Select</option>
                                         {master.DietPreference.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{isSubmit && result.dietarypreference == 0 ? "Dietary preferences is required !" : ""}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -998,6 +1000,7 @@ function AddProperty() {
                                         <option value={0}>Select</option>
                                         {master.AllowNotAllow.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{isSubmit && result.smoking == 0 ? "Smoking is required !" : ""}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -1007,6 +1010,7 @@ function AddProperty() {
                                         <option value={0}>Select</option>
                                         {master.AllowNotAllow.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{isSubmit && result.drinking == 0 ? "Drinking is required !" : ""}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -1035,6 +1039,7 @@ function AddProperty() {
                                         <option value={0}>Select</option>
                                         {master.CommunityType.map((result)=> (<option value={result.id}>{result.name}</option>))}
                                         </select>
+                                        <span className='error'>{isSubmit && result.communitytype == 0 ? "Community Type is required !" : ""}</span>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -1047,6 +1052,36 @@ function AddProperty() {
                                         <span className='error'>{isSubmit && result.maxresidants == 0 ? "Max. Residents is required !" : ""}</span>
                                 </div>
                             </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Parking <span className='mandatory'>*</span></label>
+                                                <select name="parking" value={result.parking} onChange={(evnt) => handleInputRoomChange(index, evnt)} >
+                                                    <option value={0}>Select</option>
+                                                    {master.Parking.map((result) => (<option value={result.id}>{result.name}</option>))}
+                                                </select>
+                                                <span className='error'>{isSubmit && result.parking == 0 ? "Parking is required !" : ""}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Co-ed <span className='mandatory'>*</span></label>
+                                                <select name="coed" value={result.coed} onChange={(evnt) => handleInputRoomChange(index, evnt)} >
+                                                    <option value={0}>Select</option>
+                                                    {master.CoEdTypes.map((result) => (<option value={result.id}>{result.name}</option>))}
+                                                </select>
+                                                <span className='error'>{isSubmit && result.coed == 0 ? "Co-ed is required !" : ""}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Language Preference <span className='mandatory'>*</span></label>
+                                                <select name="languagepreference" value={result.languagepreference} onChange={(evnt) => handleInputRoomChange(index, evnt)} >
+                                                    <option value={0}>Select</option>
+                                                    {master.LanguagePreference.map((result) => (<option value={result.id}>{result.name}</option>))}
+                                                </select>
+                                                <span className='error'>{isSubmit && result.languagepreference == 0 ? "Language preference is required !" : ""}</span>
+                                            </div>
+                                        </div>
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="addmorerooms float-end">
                                 <button class="minusbtn" onClick={()=>(DeleteRoom(index))}><i class="fa fa-solid fa-minus"></i></button>

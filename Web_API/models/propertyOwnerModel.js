@@ -71,18 +71,18 @@ async function saveUpdatePropertyRooms(req, user_id, property_id) {
     const {
       room_id, roomname, roomphoto1, roomphoto2, roomphoto3, roomphoto4, roomphoto5,
       roomtype, roomsize, noOfBed, bedroomtype, furniture, roomrent, currentstatus, petfriendly,
-      dietarypreference, smoking, drinking, cannabits, agegrouppreference, communitytype, maxresidants
+      dietarypreference, smoking, drinking, cannabits, agegrouppreference, communitytype, maxresidants,parking, coed, languagepreference
     } = req;
 
     if (room_id == 0) {
       const [result] = await db.query(
         "INSERT INTO property_roommaster (user_id, property_id, roomname, roomphoto1, roomphoto2, roomphoto3, roomphoto4, roomphoto5," +
         "roomtype, roomsize, noOfBed, bedroomtype, furniture, roomrent, currentstatus, petfriendly," +
-        "dietarypreference, smoking, drinking, cannabits, agegrouppreference, communitytype, maxresidants)" +
-        " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        "dietarypreference, smoking, drinking, cannabits, agegrouppreference, communitytype, maxresidants, parking, coed, languagepreference)" +
+        " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
         [user_id, property_id, roomname, roomphoto1, roomphoto2, roomphoto3, roomphoto4, roomphoto5,
           roomtype, roomsize, noOfBed, bedroomtype, furniture, roomrent, currentstatus, petfriendly,
-          dietarypreference, smoking, drinking, cannabits, agegrouppreference, communitytype, maxresidants]
+          dietarypreference, smoking, drinking, cannabits, agegrouppreference, communitytype, maxresidants, parking, coed, languagepreference]
       );
       return result;
     }
@@ -90,10 +90,11 @@ async function saveUpdatePropertyRooms(req, user_id, property_id) {
       const [result] = await db.query(
         "UPDATE property_roommaster SET roomname=?, roomphoto1=?, roomphoto2=?, roomphoto3=?, roomphoto4=?, roomphoto5=?," +
         "roomtype=?, roomsize=?, noOfBed=?, bedroomtype=?, furniture=?, roomrent=?, currentstatus=?, petfriendly=?," +
-        "dietarypreference=?, smoking=?, drinking=?, cannabits=?, agegrouppreference=?, communitytype=?, maxresidants=? WHERE id=?",
+        "dietarypreference=?, smoking=?, drinking=?, cannabits=?, agegrouppreference=?, communitytype=?, maxresidants=?," +
+        "parking=?, coed=?, languagepreference=? WHERE id=?",
         [roomname, roomphoto1, roomphoto2, roomphoto3, roomphoto4, roomphoto5,
           roomtype, roomsize, noOfBed, bedroomtype, furniture, roomrent, currentstatus, petfriendly,
-          dietarypreference, smoking, drinking, cannabits, agegrouppreference, communitytype, maxresidants, room_id]
+          dietarypreference, smoking, drinking, cannabits, agegrouppreference, communitytype, maxresidants, parking, coed, languagepreference, room_id]
       );
       return result;
     }
@@ -242,7 +243,7 @@ var date = nowDate.getFullYear()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getDate(
       const [result] = await db.query(
         "INSERT INTO userbooking (user_id, property_id, room_id, createdate, amount, paymentmode, monthlyrent, bookingfrom, bookingto, isbookingconfirmed)" +
         " values (?,?,?,?,?,'VISA',?,?,?,?)",
-        [user_id, property_id, room_id, date, (amount/2), monthlyrent, bookingfrom, bookingto, bookingconfirmed]
+        [user_id, property_id, room_id, date, (amount), monthlyrent, bookingfrom, bookingto, bookingconfirmed]
       );
 
       const propertyinfo = await db.query(
@@ -253,12 +254,12 @@ var date = nowDate.getFullYear()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getDate(
       console.log(property)
       const propertyOwnerId = property[0].user_id;
       console.log(propertyOwnerId)
-      commonModel.AddUserNotifications(user_id, "$" + (amount/2) + " paid successfully.");
+      commonModel.AddUserNotifications(user_id, "$" + (amount) + " paid successfully.");
       commonModel.AddUserNotifications(user_id, "New Stay request booked Successfully.");
-      commonModel.AddUserNotifications(propertyOwnerId, "$" + (amount/2) + " received successfully for property " + property[0].propertyname);
+      commonModel.AddUserNotifications(propertyOwnerId, "$" + (amount) + " received successfully for property " + property[0].propertyname);
       commonModel.AddUserNotifications(propertyOwnerId, "New Stay request received Successfully for property " + property[0].propertyname);
 
-      commonModel.AddUserNotifications(-1, "$" + (amount/2) + " received successfully for property " + property[0].propertyname);
+      commonModel.AddUserNotifications(-1, "$" + (amount) + " received successfully for property " + property[0].propertyname);
       commonModel.AddUserNotifications(-1, "New Stay request received Successfully for property " + property[0].propertyname);
 
       return result;

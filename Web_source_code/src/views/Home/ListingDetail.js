@@ -72,7 +72,12 @@ const ListingDetail = () => {
     }
 
     const BookMyStay = (e) => {
-        
+        if(localStorage.getItem("userType") == "2"){
+            toast.warning("You cananot book property as Home Owner.", {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+        }
+        else {
         var error = {};
         var IsError = false;
         if(!BookingInfo.MoveInDate){
@@ -93,6 +98,8 @@ const ListingDetail = () => {
 		
         }
     }
+    }
+    
     function CheckStayDates(MoveInDate, property_id, RoomType){
         if(MoveInDate != '' && property_id != 0 && RoomType != 0){
         let formData = JSON.stringify({
