@@ -175,7 +175,7 @@ const sendLoginOtp = async (email, otp, userName) => {
   });
 };
 
-const sendUserApproveRejectEmail = async (email, userName, status) => {
+const sendUserApproveRejectEmail = async (email, userName, status, message, id) => {
   const transporter = nodemailer.createTransport({
     service: "Outlook365",
     auth: {
@@ -217,9 +217,10 @@ const sendUserApproveRejectEmail = async (email, userName, status) => {
                
                 Dear Mr. ${userName}<br><br>
                 <br><br>
-                Congratulations!!!! <br><br>
+                ${id == 2 ? "" : "Congratulations!!!! <br><br>"}
                 Your account is <b color: #ff0000;>${status}</b><br><br>
-                                We are constantly working to improve and expand our platform to better serve you. If you have any questions or feedback, please do not hesitate to reach out to us.<br><br>
+                ${id == 2 ? "Please find the reason of rejection:<br/>" + message : ""}
+                                <br/><br/>We are constantly working to improve and expand our platform to better serve you. If you have any questions or feedback, please do not hesitate to reach out to us.<br><br>
                 Thank you for choosing Co-Living, and we look forward to working with you.<br><br>
                 Best regards,<br>
                 The Co-Living Team
@@ -261,7 +262,7 @@ const sendUserApproveRejectEmail = async (email, userName, status) => {
   });
 };
 
-const sendPropertyOwnerApproveRejectEmail = async (email, userName, status) => {
+const sendPropertyOwnerApproveRejectEmail = async (email, userName, status, message, id) => {
   const transporter = nodemailer.createTransport({
     service: "Outlook365",
     auth: {
@@ -303,9 +304,10 @@ const sendPropertyOwnerApproveRejectEmail = async (email, userName, status) => {
                
                 Dear Mr. ${userName}<br><br>
                 <br><br>
-                Congratulations!!!! <br><br>
-                Your Property is <b color: #ff0000;>${status}</b><br><br>
-                                We are constantly working to improve and expand our platform to better serve you. If you have any questions or feedback, please do not hesitate to reach out to us.<br><br>
+                ${id == 2 ? "" : "Congratulations!!!! <br><br>"}
+                <b color: #ff0000;>${status}</b><br><br>
+                ${id == 2 ? "Please find the reason of rejection:<br/>" + message : ""}
+                <br/><br/>We are constantly working to improve and expand our platform to better serve you. If you have any questions or feedback, please do not hesitate to reach out to us.<br><br>
                 Thank you for choosing Co-Living, and we look forward to working with you.<br><br>
                 Best regards,<br>
                 The Co-Living Team

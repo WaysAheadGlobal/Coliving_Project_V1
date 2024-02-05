@@ -14,7 +14,7 @@ const PersonalDetail = () => {
  country: 0, userType: 0, profilePic: '', gender: 0, DateOfBirth: '', maritalstatus: 0, idproof: '', language: '', community: 0, 
  domain: '', universitydetails: '', universityidproof: '', sleepinghabits_from: 0, sleepinghabits_to: 0, dietarypreference: 0,
  householdchores: 0, doyoucook: 0, smoke: 0, drink: 0, cannabits: 0, telluswhymoving: '', userdetailscol: '', sizeofroom: 0, bedroom: 0, bathroom: 0, closetinside: 0, fullyfurnished: 0, howmanyfan: 0, howmanylights: 0
- , outsidelocks: 0, parking: 0, backpatio: 0, frontpatio: 0, evchargeravailable: 0, swimmingpool: 0, budget: 0, languagepreference: 0,
+ , outsidelocks: 0, parking: 0, backpatio: 0, frontpatio: 0, evchargeravailable: 0, swimmingpool: 0, budget: 0, preffered_province: '', languagepreference: 0,
  coed: 0, agegrouppreference: 0, communication: 0, roommate_dietarypreference: 0, roommate_sharehouseholdchores: 0, roommate_drinkingcomfort: 0, roommate_smokingcomfort: 0, roommate_cannabitscomfort: 0};
 
     const [personalDetail, SetPersonalDetail] = useState(initialValues);
@@ -187,7 +187,11 @@ const PersonalDetail = () => {
         }
 
         if(selectedTab == 2){
-        
+            if (!values.preffered_province) {
+                errors.preffered_province = "Province is required!";
+                SetErrorFound(true);
+                checkError = true;
+            }
             if (values.sizeofroom == 0) {
                 errors.sizeofroom = "Size of room is required!";
                 SetErrorFound(true);

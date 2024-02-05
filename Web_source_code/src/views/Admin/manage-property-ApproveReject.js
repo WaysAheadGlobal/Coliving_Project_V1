@@ -8,6 +8,14 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from 'react-bootstrap/Modal';
 
 function ManagePropertyView() {
+    const [showMessage, SetshowMessage] = useState(false);
+    const [reasonofrejection, Setreasonofrejection] = useState('');
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+
+        Setreasonofrejection(value);
+
+    }
     const history = useNavigate();
     const [ConnectedHostName, SetConnectedHostName] = useState('');
     const params = useParams();
@@ -27,7 +35,8 @@ function ManagePropertyView() {
         const apiUrl = `${config.Url}api/admin/updatePropertyStatus`;
         let formData = JSON.stringify({
             "property_id": params.id,
-            "status": id
+            "status": id,
+            "message": reasonofrejection
         });
         fetch(apiUrl, {
             method: "POST",
@@ -50,6 +59,7 @@ function ManagePropertyView() {
                             position: toast.POSITION.TOP_RIGHT,
                         });
                     }
+                    window.location.href="/admin/manage-property";
                 } else {
                     toast.error(data.message, {
                         position: toast.POSITION.TOP_RIGHT,
@@ -452,7 +462,7 @@ function ManagePropertyView() {
                         </div>
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="buttonGrp text-center mt-4">
-                                <button class="btn btn-danger" onClick={updatePropertyStatus(0)}>Reject</button>
+                                <button class="btn btn-danger" onClick={()=> SetshowMessage(true)}>Reject</button>
                                 <button class="btn btn-secondary ms-2" onClick={updatePropertyStatus(1)}>Approve</button>
                             </div>
                         </div>
@@ -487,6 +497,23 @@ function ManagePropertyView() {
                         <div class="mt-4 buttonGrp text-end">
                             <button class="btn btn-secondary me-2" onClick={() => SetConnectWIthHost(false)}>Cancel</button>
                             <button class="btn btn-primary" onClick={() => SetConnectWIthHost(false)}>Send</button>
+                        </div>
+                    </div>
+                </div>
+            </Modal>
+            <Modal id="contacthost" show={showMessage} onHide={()=> SetshowMessage(false)} className="modal-xl">
+                <div>
+                    <div class="">
+                        <div class="closeBtn" onClick={()=> SetshowMessage(false)}>
+                            <i class="fa fa-solid fa-xmark"></i>
+                        </div>
+                        <div class="to messgebx">
+                            <label>Reason of Rejection:</label>
+                            <textarea name="reasonofrejection" value={reasonofrejection} onChange={handleInputChange} ></textarea>
+                        </div>
+                        <div class="mt-4 buttonGrp text-end">
+                            <button class="btn btn-secondary me-2" onClick={()=> SetshowMessage(false)}>Cancel</button>
+                            <button class="btn btn-primary" onClick={updatePropertyStatus(2)}>Reject</button>
                         </div>
                     </div>
                 </div>

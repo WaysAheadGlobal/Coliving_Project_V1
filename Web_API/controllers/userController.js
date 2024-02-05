@@ -119,12 +119,12 @@ async function getUserProfile(req, res) {
   async function updateUserStatus(req, res) {
     try {
       
-      const {user_id, status} = req.body;
+      const {user_id, status, message} = req.body;
       // Check if the email exists
       await userModel.updateUserStatus(user_id,status);
       const userinfo = await userModel.getUsersByIDForAdmin(user_id);
       //sendUserApproveRejectEmail
-      sendMail.sendUserApproveRejectEmail(userinfo[0].email, userinfo[0].Fullname, status == 1 ? "Approved" : "Rejected");
+      sendMail.sendUserApproveRejectEmail(userinfo[0].email, userinfo[0].Fullname, status == 1 ? "Approved" : "Rejected", message, status);
       res
         .status(200)
         .json({ message: "Document updated!!", status: 200 });
@@ -230,9 +230,9 @@ async function getUserProfile(req, res) {
   async function updatePropertyStatus(req, res) {
     try {
       
-      const {property_id, status} = req.body;
+      const {property_id, status, message} = req.body;
       // Check if the email exists
-      await userModel.updatePropertyStatus(property_id,status);
+      await userModel.updatePropertyStatus(property_id,status, message);
       
       res
         .status(200)

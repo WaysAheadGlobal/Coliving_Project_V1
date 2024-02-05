@@ -4,11 +4,20 @@ function DetailTab3(props) {
     return (
         <div className="detail-2 p-detail">
             <h4>Roommate Preferences</h4>
+            <div className="row" style={{ marginRight: '40px'}}>
+            <div className="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12">
+                        
+                    </div>
+                    <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                    <span style={{color:'red' , textAlign: 'left', float:'right',fontSize: '10px'}}>* is mandatory field.<br/>
+                  ** Field covered under matching criteria </span>
+                  </div>
+                    </div>
             <div className="fm-area">
                 <div className="row g-4">
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Language Preferences <span className='mandatory'>*</span></label>
+                            <label>Language Preferences <span className='mandatory'>**</span></label>
                             <select name="languagepreference" value={props.detail.languagepreference} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.LanguagePreference.map((result) => (<option value={result.id}>{result.name}</option>))}
@@ -17,7 +26,7 @@ function DetailTab3(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Co-ed <span className='mandatory'>*</span></label>
+                            <label>Co-ed <span className='mandatory'>**</span></label>
                             <select name="coed" value={props.detail.coed} onChange={props.handleInputChange}>
                             <option value={0}>Select</option>
                                 {master.CoEdTypes.map((result) => (<option value={result.id}>{result.name}</option>))}
@@ -27,7 +36,7 @@ function DetailTab3(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Age Group Preferences <span className='mandatory'>*</span></label>
+                            <label>Age Group Preferences <span className='mandatory'>**</span></label>
                             <select name="agegrouppreference" value={props.detail.agegrouppreference} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.AgePreference.map((result) => (<option value={result.id}>{result.name}</option>))}
@@ -48,7 +57,7 @@ function DetailTab3(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Dietary preferences <span className='mandatory'>*</span></label>
+                            <label>Dietary preferences <span className='mandatory'>**</span></label>
                             <select name="roommate_dietarypreference" value={props.detail.roommate_dietarypreference} onChange={props.handleInputChange}>
                             <option value={0}>Select</option>
                                 {master.DietPreference.map((result) => (<option value={result.id}>{result.name}</option>))}
@@ -68,7 +77,7 @@ function DetailTab3(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Drinking Comfort Level <span className='mandatory'>*</span></label>
+                            <label>Drinking Comfort Level <span className='mandatory'>**</span></label>
                             <select name="roommate_drinkingcomfort" value={props.detail.roommate_drinkingcomfort} onChange={props.handleInputChange}>
                             <option value={0}>Select</option>
                                 {master.YesNo.map((result) => (<option value={result.id}>{result.name}</option>))}
@@ -78,7 +87,7 @@ function DetailTab3(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Smoking Comfort Level <span className='mandatory'>*</span></label>
+                            <label>Smoking Comfort Level <span className='mandatory'>**</span></label>
                             <select name="roommate_smokingcomfort" value={props.detail.roommate_smokingcomfort} onChange={props.handleInputChange}>
                             <option value={0}>Select</option>
                                 {master.YesNo.map((result) => (<option value={result.id}>{result.name}</option>))}

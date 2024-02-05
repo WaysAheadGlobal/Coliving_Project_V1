@@ -191,7 +191,7 @@ const Listing = () => {
 							{master.ApartmentSize.map((result) => (<option value={result.id}>{result.name}</option>))}
 						</select>
 					</li>
-					{ localStorage.getItem("username") != "" ?
+					{ localStorage.getItem("username") != "" && localStorage.getItem("username") != null ?
 					<li>
 						<select name="listingtype" class="minimal" value={filterValues.listingtype} onChange={handleInputChange}>
 							{master.ListingType.map((result) => (<option value={result.id}>{result.name}</option>))}
@@ -244,7 +244,8 @@ const Listing = () => {
 			</div>
 			<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
 				<div class="mapview">
-					<img src={require('../../img/map.png')} alt="Map" class="img-fluid" />
+					{/* <img src={require('../../img/map.png')} alt="Map" class="img-fluid" /> */}
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9112156.353795458!2d-110.29244217752813!3d56.11131630622055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0d03d337cc6ad9%3A0x9968b72aa2438fa5!2sCanada!5e0!3m2!1sen!2sin!4v1707117786931!5m2!1sen!2sin" style={{width: '400px', height: '600px'}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 				</div>
 			</div>
 		</div>

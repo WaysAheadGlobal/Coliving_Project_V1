@@ -13,13 +13,14 @@ async function getPropertyListing(req) {
     from propertymaster propmaster
     JOIN property_roommaster roommaster on propmaster.id = roommaster.property_id
     LEFT OUTER JOIN (select property_id, count(*) as roomcount from property_roommaster group by property_id) roomcount on propmaster.id = roomcount.property_id
-    LEFT OUTER JOIN (select u1.user_id, u1.agegrouppreference,u1.dietarypreference,u1.smoke,u1.drink,u1.cannabits, u2.communitytype from userdetails u1
-    LEFT JOIN users u2 on u1.user_id = u2.user_id where u1.user_id = ?) usr on roommaster.communitytype = usr.communitytype
-    and roommaster.roomsize = usr.sizeofroom and roommaster.bedroomtype = usr.bedroom and roommaster.furniture = usr.fullyfurnished 
+    LEFT OUTER JOIN (select u1.user_id, u1.agegrouppreference,u1.dietarypreference,u1.smoke,u1.drink,u1.cannabits, u2.communitytype, u1.sizeofroom, u1.bedroom, u1.fullyfurnished,
+    u1.coed,u1.roommate_dietarypreference,u1.roommate_drinkingcomfort,u1.roommate_smokingcomfort, u1.languagepreference, u1.preffered_province from userdetails u1
+    LEFT JOIN users u2 on u1.user_id = u2.user_id where u1.user_id = ?) usr on roommaster.communitytype = usr.communitytype and propmaster.province = usr.preffered_province
+    and roommaster.roomtype = usr.sizeofroom and roommaster.bedroomtype = usr.bedroom and roommaster.furniture = usr.fullyfurnished 
     and roommaster.coed = usr.coed and roommaster.agegrouppreference = usr.agegrouppreference and 
     roommaster.dietarypreference = usr.roommate_dietarypreference and roommaster.smoking = usr.roommate_smokingcomfort and roommaster.drinking = usr.roommate_drinkingcomfort
     and roommaster.languagepreference = usr.languagepreference  
-    WHERE 1 = 1  and usr.user_id > 0 and roomcount.roomcount > 0 and propmaster.status = 1 
+    WHERE 1 = 1  and usr.user_id > 0 and roomcount.roomcount > 0 and propmaster.status = 1  
     `;
     
     // Create an array to store the parameters for the query

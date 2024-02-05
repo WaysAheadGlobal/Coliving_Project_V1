@@ -21,6 +21,7 @@ function ManageUsers() {
     const [currentUserId, setCurrentUserId] = useState(1);
     const [recordsPerPage] = useState(10);
     const [viewPage, SetViewPage] = useState(1);
+    const [reasonofrejection, Setreasonofrejection] = useState('');
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
@@ -156,7 +157,8 @@ function ManageUsers() {
         const apiUrl = `${config.Url}api/admin/updateUserStatus`;
         let formData = JSON.stringify({
             "user_id": IdDocument.userid,
-            "status": status
+            "status": status,
+            "message" : reasonofrejection
         });
         fetch(apiUrl, {
             method: "POST",
@@ -179,7 +181,7 @@ function ManageUsers() {
                             position: toast.POSITION.TOP_RIGHT,
                         });
                     }
-                    history("/admin/manage-user");
+                    window.location.href = "/admin/manage-user";
                 } else {
                     toast.error(data.message, {
                         position: toast.POSITION.TOP_RIGHT,
@@ -298,7 +300,7 @@ function ManageUsers() {
                         handleInputChange={handleInputChange} updateIdProof={updateIdProof} updateUniversityProof={updateUniversityProof}
                         handleUniversityInputChange={handleUniversityInputChange} updateUniversityProofStatus={updateUniversityProofStatus} />
                     :
-                    <UserMoreDetail CurrentUserInfo={CurrentUserInfo} Detail={CurrentUserDetail} updateUserStatus={updateUserStatus} />
+                    <UserMoreDetail reasonofrejection={reasonofrejection} Setreasonofrejection={Setreasonofrejection} CurrentUserInfo={CurrentUserInfo} Detail={CurrentUserDetail} updateUserStatus={updateUserStatus} />
             }
         </>
     );

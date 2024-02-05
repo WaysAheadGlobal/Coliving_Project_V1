@@ -298,7 +298,7 @@ async function getPropertyResidants(req) {
     const {property_id} = req.body;
 
     let query = `
-    select distinct u1.Fullname, u1.profilePic, u1.city, u1.province from userbooking booking
+    select distinct u1.Fullname, u1.profilePic, u1.city, u1.province, booking.bookingfrom, booking.bookingto from userbooking booking
     left join users u1 on booking.user_id = u1.user_id
     where booking.isbookingconfirmed = 1 and booking.property_id=?
     `;
@@ -314,6 +314,29 @@ async function getPropertyResidants(req) {
     throw error;
   }
 }
+
+async function getRoomResidants(req) {
+  try {
+    const {room_id} = req.body;
+
+    let query = `
+    select distinct u1.Fullname, u1.profilePic, u1.city, u1.province, booking.bookingfrom,booking.status,booking.isbookingconfirmed, booking.bookingto from userbooking booking
+    join users u1 on booking.user_id = u1.user_id
+    where  booking.room_id=? and booking.status != 2
+    `;
+    
+    // Create an array to store the parameters for the query
+    const params = [];
+    params.push(room_id);
+    
+    const [result] = await db.query(query, params);
+    return result;
+
+  } catch (error) {
+    throw error;
+  }
+}
+
 
 async function getPropertyWaitingList(req) {
   try {
@@ -365,5 +388,6 @@ module.exports = {
   getPropertyInfoUsingPropertyId,
   getPropertyResidants,
   getPropertyWaitingList,
-  PropertyDetailByPropertyId
+  PropertyDetailByPropertyId,
+  getRoomResidants
 };

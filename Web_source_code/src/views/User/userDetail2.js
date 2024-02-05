@@ -4,12 +4,31 @@ function DetailTab2(props) {
     return (
         <div className="detail-2 p-detail">
             <h4>Apartment Preference</h4>
+            <div className="row" style={{ marginRight: '40px'}}>
+            <div className="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12">
+                        
+                    </div>
+                    <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                    <span style={{color:'red' , textAlign: 'left', float:'right',fontSize: '10px'}}>* is mandatory field.<br/>
+                  ** Field covered under matching criteria </span>
+                  </div>
+                    </div>
+           
             <div className="fm-area">
                 <div className="row g-4">
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Size of room <span className='mandatory'>*</span></label>
-                            {/* <input type="text" name="sizeofroom" placeholder="70 - 80 sqft " value={props.detail.sizeofroom} onChange={props.handleInputChange} /> */}
+                            <label>Preffered Province <span className='mandatory'>**</span></label>
+                            <select name="preffered_province" className='form-control' value={props.detail.preffered_province && props.detail.preffered_province.toLowerCase()} onChange={props.handleInputChange}>
+                                <option value={0}>Select</option>
+                                {master.Province.map((result) => (<option value={result.id}>{result.name}</option>))}
+                            </select>
+                            <span className='error'>{props.FormErrors.preffered_province}</span>
+                        </div>
+                    </div>
+                    <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div className="form-group">
+                            <label>Size of room <span className='mandatory'>**</span></label>
                             <select name="sizeofroom" value={props.detail.sizeofroom} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.ApartmentSize.map((result) => (<option value={result.id}>{result.name}</option>))}
@@ -19,7 +38,7 @@ function DetailTab2(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Bedroom <span className='mandatory'>*</span></label>
+                            <label>Bedroom <span className='mandatory'>**</span></label>
                             <select name="bedroom" value={props.detail.bedroom} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.BedroomType.map((result) => (<option value={result.id}>{result.name}</option>))}
@@ -48,7 +67,7 @@ function DetailTab2(props) {
                     </div>
                     <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label>Full Furnitured <span className='mandatory'>*</span></label>
+                            <label>Full Furnitured <span className='mandatory'>**</span></label>
                             <select name="fullyfurnished" value={props.detail.fullyfurnished} onChange={props.handleInputChange}>
                                 <option value={0}>Select</option>
                                 {master.Furniture.map((result) => (<option value={result.id}>{result.name}</option>))}

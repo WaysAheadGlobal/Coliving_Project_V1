@@ -8,6 +8,15 @@ function DetailTab1(props) {
     return (
         <div className="detail-1 p-detail">
             <h4>Personal Detail</h4>
+            <div className="row" style={{ marginRight: '40px'}}>
+            <div className="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12">
+                        
+                    </div>
+                    <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                    <span style={{color:'red' , textAlign: 'left', float:'right',fontSize: '10px'}}>* is mandatory field.<br/>
+                  ** Field covered under matching criteria </span>
+                  </div>
+                    </div>
             <div className="fm-area">
                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style={{marginBottom: '20px'}}>
                     <div class="form-group">

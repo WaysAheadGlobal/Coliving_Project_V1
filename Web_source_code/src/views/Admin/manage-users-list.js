@@ -47,7 +47,7 @@ function AllUsers(props) {
                                                 {user.province}
                                             </td>
                                             <td class="text-center">
-                                                {user.status == 1 ? "Approved" : "Pending"}
+                                                {user.status == 1 ? "Approved" : user.status == 2 ? "Rejected" : "Pending"}
                                             </td>
                                             <td class="text-center">
                                                 <div class="tablebtngrp">

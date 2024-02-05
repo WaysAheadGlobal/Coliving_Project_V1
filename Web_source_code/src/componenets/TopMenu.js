@@ -654,7 +654,7 @@ const TopMenu = () => {
 									<li><a href="/#faq">Faq</a></li>
 									<li><a href="/#cta">Contact</a></li>
 									
-										{localStorage.getItem("username") == "" ?
+										{localStorage.getItem("username") == "" || localStorage.getItem("username") == null ?
 											<li className="lastnavbtn">
 											<a href="javascript:void(0);" onClick={modalUserSelectionShow}><span>Login/Signup</span></a>
 											</li> :

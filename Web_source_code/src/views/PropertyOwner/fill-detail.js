@@ -19,7 +19,7 @@ function FillDetail() {
         residants: 0, apartmentsize: 0, evcharger: 0, fireextinguisher: 0, travelguide: 0, events: 0,
         propertyphoto1: '', propertyphoto2: '', propertyphoto3: '', propertyphoto4: '', propertyphoto5: '', propertyvideo: '', apartmentamenities: '',
         communityamenities: '', roomDetails: [roomvalues],
-        country: 0, province: '0', address: '', landmark: '', zipcode: '', markongoogle: '', cancellantionpolicy: 0, description: '',
+        country: 0, province: '0', address: '', landmark: '', zipcode: '', markongoogle: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d156680.61048008857!2d-106.97620534000703!3d52.1500629570941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5304f6fe61fc8569%3A0x6c478c714b64ca20!2sSaskatoon%20Inn%20%26%20Conference%20Centre!5e0!3m2!1sen!2sin!4v1707111853223!5m2!1sen!2sin', cancellantionpolicy: 0, description: '',
         host_name: '', host_emailid: '', host_mobileno: '', host_dob: '', host_gender: 0, host_location: '', host_aboutyourself: '',
         host_idproof: '', host_propertyOwnershopdocument: '', host_employmentdetails: '', host_companyidproof: ''
     };
@@ -1162,7 +1162,7 @@ function FillDetail() {
                                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Mobile Number <span className='mandatory'>*</span></label>
-                                        <input type="text" name="host_mobileno" id="host_mobileno" onChange={handleInputChange} value={propertyValues.host_mobileno} placeholder="+1 85 8963 5523" />
+                                        <input type="text" name="host_mobileno" id="host_mobileno" maxLength={10} onChange={handleInputChange} value={propertyValues.host_mobileno} placeholder="+1 85 8963 5523" />
                                         <span className='error'>{formErrors.host_mobileno}</span>
                                     </div>
                                 </div>

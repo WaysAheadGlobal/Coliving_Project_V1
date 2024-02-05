@@ -145,6 +145,19 @@ async function savePropertyInfo(req, res) {
     }
   }
 
+  async function getRoomResidants(req, res) {
+    try {
+    //   // Check if the email exists
+      const resp = await propertyModel.getRoomResidants(req);
+      res
+        .status(200)
+        .json({ message: 'Success', resp: resp, status: 200 });
+    } catch (error) {
+      console.error("Error during getting stay request:", error);
+      res.status(500).json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
   async function getPropertyWaitingList(req, res) {
     try {
     //   // Check if the email exists
@@ -170,6 +183,7 @@ async function savePropertyInfo(req, res) {
     getMyStayRequests,
     getPropertyResidants,
     getPropertyWaitingList,
-    PropertyDetailByPropertyId
+    PropertyDetailByPropertyId,
+    getRoomResidants
   };
   

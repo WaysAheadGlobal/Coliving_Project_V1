@@ -52,7 +52,7 @@ function PropertyList(props) {
                                         {property.host_location}
                                         </td>
                                         <td class="text-center">
-                                        {property.status == 1 ? "Approved" : property.status == 0 ? "Rejected" : "Pending"}
+                                        {property.status == 1 ? "Approved" : property.status == 2 ? "Rejected" : "Pending"}
                                         </td>
                                         <td class="text-center">
                                             <div class="tablebtngrp">

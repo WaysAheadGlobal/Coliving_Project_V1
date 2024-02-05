@@ -238,8 +238,7 @@
     ],
     "BedroomType": [
         {"id": 1, "name": "Shared"},
-        {"id": 2, "name": "Single"},
-        {"id": 3, "name": "Family"}
+        {"id": 2, "name": "Single"}
     ],
     "Gender": [
         { "id": 1, "name": "Male"},
@@ -258,22 +257,20 @@
     ],
     "LanguagePreference": [
         {"id": 1, "name": "English"},
-        {"id": 2, "name": "Spanish"},
-        {"id": 3, "name": "Hindi"}
+        {"id": 2, "name": "Canadian"},
+        {"id": 3, "name": "Other"}
     ],
     "CoEdTypes": [
         {"id": 1, "name": "Uncomfortable"},
         {"id": 2, "name": "Comfortable"}
     ],
     "CommunicationType": [
-        {"id": 1, "name": "Introverts"},
-        {"id": 2, "name": "Introverts 2"}
+        {"id": 1, "name": "Introverts"}
     ],
     "MaritalStatus": [
         {"id": 1, "name": "Unmarried"},
         {"id": 2, "name": "Married"},
         {"id": 3, "name": "Divorced"}
-
     ],
     "SleepingHabitsTime": [
         {"id": 1, "name": "12:00 AM"},

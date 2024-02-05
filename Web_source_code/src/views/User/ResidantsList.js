@@ -59,6 +59,7 @@ function ResidantsList() {
                                             <th class="text-center">image</th>
                                             <th class="text-center">User name</th>
                                             <th class="text-center">Province</th>
+                                            <th class="text-center">Stay Period</th>
                                             <th class="text-center">City</th>
                                         </tr>
                                     </thead>
@@ -72,6 +73,7 @@ function ResidantsList() {
                                                 </td>
                                                 <td class="text-center">{item.Fullname}</td>
                                                 <td class="text-center">{item.province}</td>
+                                                <td class="text-center">{item.bookingfrom} to {item.bookingto}</td>
                                                 <td class="text-center">{item.city}</td>
                                             </tr>
                                         ))}

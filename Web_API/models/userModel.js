@@ -62,7 +62,7 @@ async function getUserById(userid) {
         , cannabits, telluswhymoving, userdetailscol, sizeofroom, bedroom, bathroom, closetinside, fullyfurnished, howmanyfan, howmanylights
         , outsidelocks, parking, backpatio, frontpatio, evchargeravailable, swimmingpool, budget, languagepreference,
         coed, agegrouppreference, communication
-        , roommate_dietarypreference, roommate_sharehouseholdchores, roommate_drinkingcomfort, roommate_smokingcomfort, roommate_cannabitscomfort} =
+        , roommate_dietarypreference, roommate_sharehouseholdchores, roommate_drinkingcomfort, roommate_smokingcomfort, roommate_cannabitscomfort, preffered_province} =
           req.body;
           const userid = req.user.userId;
 
@@ -82,15 +82,15 @@ async function getUserById(userid) {
           ", cannabits, telluswhymoving, userdetailscol, sizeofroom, bedroom, bathroom, closetinside, fullyfurnished, howmanyfan, howmanylights"+ 
           ", outsidelocks, parking, backpatio, frontpatio, evchargeravailable, swimmingpool, budget, languagepreference,"+ 
           "coed, agegrouppreference, communication"+ 
-          ", roommate_dietarypreference, roommate_sharehouseholdchores, roommate_drinkingcomfort, roommate_smokingcomfort, roommate_cannabitscomfort) "+
-          "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", 
+          ", roommate_dietarypreference, roommate_sharehouseholdchores, roommate_drinkingcomfort, roommate_smokingcomfort, roommate_cannabitscomfort, preffered_province) "+
+          "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", 
         [userid,gender, DateOfBirth, maritalstatus, idproof, language, community,
         domain, universitydetails, universityidproof, sleepinghabits_from, sleepinghabits_to, dietarypreference,
         householdchores, doyoucook, smoke, drink
         , cannabits, telluswhymoving, userdetailscol, sizeofroom, bedroom, bathroom, closetinside, fullyfurnished, howmanyfan, howmanylights
         , outsidelocks, parking, backpatio, frontpatio, evchargeravailable, swimmingpool, budget, languagepreference,
         coed, agegrouppreference, communication
-        , roommate_dietarypreference, roommate_sharehouseholdchores, roommate_drinkingcomfort, roommate_smokingcomfort, roommate_cannabitscomfort]
+        , roommate_dietarypreference, roommate_sharehouseholdchores, roommate_drinkingcomfort, roommate_smokingcomfort, roommate_cannabitscomfort, preffered_province]
       );
 
       commonModel.AddUserNotifications(-1, "New User Registered on Co-Living");
@@ -105,14 +105,14 @@ async function getUserById(userid) {
               ", cannabits=?, telluswhymoving=?, userdetailscol=?, sizeofroom=?, bedroom=?, bathroom=?, closetinside=?, fullyfurnished=?, howmanyfan=?, howmanylights=?"+ 
               ", outsidelocks=?, parking=?, backpatio=?, frontpatio=?, evchargeravailable=?, swimmingpool=?, budget=?, languagepreference=?,"+ 
               "coed=?, agegrouppreference=?, communication=?"+ 
-              ", roommate_dietarypreference=?, roommate_sharehouseholdchores=?, roommate_drinkingcomfort=?, roommate_smokingcomfort=?, roommate_cannabitscomfort=? WHERE user_id=?",
+              ", roommate_dietarypreference=?, roommate_sharehouseholdchores=?, roommate_drinkingcomfort=?, roommate_smokingcomfort=?, roommate_cannabitscomfort=?, preffered_province= ? WHERE user_id=?",
             [gender, DateOfBirth, maritalstatus, idproof, language, community,
             domain, universitydetails, universityidproof, sleepinghabits_from, sleepinghabits_to, dietarypreference,
             householdchores, doyoucook, smoke, drink
             , cannabits, telluswhymoving, userdetailscol, sizeofroom, bedroom, bathroom, closetinside, fullyfurnished, howmanyfan, howmanylights
             , outsidelocks, parking, backpatio, frontpatio, evchargeravailable, swimmingpool, budget, languagepreference,
             coed, agegrouppreference, communication
-            , roommate_dietarypreference, roommate_sharehouseholdchores, roommate_drinkingcomfort, roommate_smokingcomfort, roommate_cannabitscomfort, userid]
+            , roommate_dietarypreference, roommate_sharehouseholdchores, roommate_drinkingcomfort, roommate_smokingcomfort, roommate_cannabitscomfort, preffered_province, userid]
           );
           return result;
         }
@@ -299,7 +299,7 @@ async function getUserById(userid) {
     }
   }
 
-  async function updatePropertyStatus(property_id, status) {
+  async function updatePropertyStatus(property_id, status, message) {
     try {
       const [result] = await db.query(
         "UPDATE propertymaster set status=? where id=?",
@@ -312,7 +312,7 @@ async function getUserById(userid) {
       );
       const userinfo = await getUsersByIDForAdmin(user[0].user_id);
       //sendUserApproveRejectEmail
-      sendMail.sendPropertyOwnerApproveRejectEmail(userinfo[0].email, userinfo[0].Fullname, status == 1 ? "We are pleased to inform you that your application for Co-Living has been thoroughly reviewed and approved by the Co-Living administration team. Congratulations on successfully passing our screening process." : "We regret to inform you that, following a thorough evaluation, your application for Co-Living has been unsuccessful.");
+      sendMail.sendPropertyOwnerApproveRejectEmail(userinfo[0].email, userinfo[0].Fullname, status == 1 ? "We are pleased to inform you that your application for Co-Living has been thoroughly reviewed and approved by the Co-Living administration team. Congratulations on successfully passing our screening process." : "We regret to inform you that, following a thorough evaluation, your application for Co-Living has been unsuccessful.", message, status);
 
       const [checkUser] = await db.query(
         "Select u1.user_id from users u1 LEFT JOIN propertymaster prop on u1.user_id = prop.user_id where prop.id=? and u1.status = 0",
@@ -385,6 +385,7 @@ async function getUserById(userid) {
       let query = `
       select count(a.id) as bookingcount, c.maxresidants from userbooking a
       LEFT JOIN propertymaster b on a.property_id = b.id
+      JOIN users usr on a.user_id = usr.user_id
       LEFT JOIN property_roommaster c on b.id = c.property_id where ? between bookingfrom and bookingto
       and a.property_id = ? and a.room_id = ?
       group by a.property_id`;

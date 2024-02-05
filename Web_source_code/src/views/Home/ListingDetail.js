@@ -13,8 +13,10 @@ const ListingDetail = () => {
     const [ErrorInfo, SetErrorInfo] = useState({});
     const [RoomInfo, SetRoomInfo] = useState([]);
     const [connectWithHost, SetConnectWIthHost] = useState(false);
+    const [showResidants, SetshowResidants] = useState(false);
     const [BookingInfo, SetBookingInfo] = useState({ MoveInDate: '', MoveOutDate: '', RoomType: 0, MonthlyRent: 0, property_id: 0, IsConfirmed : 0 });
     const [BookingAsWait, SetBookingAsWait] = useState(0);
+    const [ResidantList, SetResidantList] = useState([]);
     const params = useParams();
     const history = useNavigate();
     const HandleInputChange = (e) => {
@@ -61,8 +63,46 @@ const ListingDetail = () => {
         }
         CheckStayDates(BookingInfo.MoveInDate, BookingInfo.property_id, BookingInfo.RoomType);
     }
-
+    const viewdetail = (e) => {
+        toast.error("You are not authorized to view detail", {
+            position: toast.POSITION.TOP_RIGHT,
+        });
+    }
+    const viewResidants = (id) => (e) => {
+        SetResidantList([])
+        getWaitingList(id);
+        SetshowResidants(true);
+    }
+    function getWaitingList(id) {
+        let formData = JSON.stringify({
+            "room_id": id
+        });
+        const apiUrl = `${config.Url}api/list/getRoomResidants`;
+        fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("usertoken")
+            },
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === 200) {
+                    SetResidantList(data.resp);
+                } else {
+                    toast.error("Error!!!!", {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                    console.error("Error fetching user data");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+    }
     const selectRoom = (id, rent) => (e) => {
+        SetBookingAsWait(0);
         SetBookingInfo(prevState => ({
             ...BookingInfo,
             RoomType: id,
@@ -466,6 +506,9 @@ const ListingDetail = () => {
                                                                     <div class="availItem mb-3">
                                                                         Available now
                                                                     </div>
+                                                                    <div class="availItem mb-3">
+                                                                        <a href="javascript:void(0);" onClick={viewResidants(item.id)} >Current Residants</a>
+                                                                    </div>
                                                                     <button class="btn btn-secondary" onClick={selectRoom(item.id, item.roomrent)}>Select</button>
                                                                 </div>
                                                             </div>
@@ -638,9 +681,15 @@ const ListingDetail = () => {
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
                             <div class="checkInOut">
                                 <div class="checkprice d-flex align-items-center justify-content-between">
+                                    {BookingInfo && BookingInfo.MonthlyRent == 0 ?
                                     <div class="price">
                                         From <span>${PropertyInfo && PropertyInfo.MinPrice}</span>
                                     </div>
+                                    :
+                                    <div class="price">
+                                        Rent <span>${BookingInfo.MonthlyRent}</span>
+                                    </div>
+                                    }
                                     <div class="rating">
                                         <i class="fa fa-solid fa-star"></i>
                                         5.0
@@ -726,6 +775,51 @@ const ListingDetail = () => {
                             <button class="btn btn-primary" onClick={()=> SetConnectWIthHost(false)}>Send</button>
                         </div>
                     </div>
+                </div>
+            </Modal>
+
+            <Modal id="contacthost" show={showResidants} onHide={()=> SetshowResidants(false)} className="modal-xl">
+                <div>
+                <div class="table-layout1">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">image</th>
+                                            <th class="text-center">User name</th>
+                                            <th class="text-center">Province</th>
+                                            <th class="text-center">Stay Period</th>
+                                            <th class="text-center">City</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {ResidantList && ResidantList.length > 0 && ResidantList.map((item, index) => (
+                                            <tr>
+                                                <td class="text-center tbleimg">
+                                                    {item.profilePic == null || item.profilePic == "" ? null :
+                                                        <img src={`${config.ImageUrl}images/users/` + item.profilePic} class="img-fluid" alt="User uploaded image" />
+                                                    }
+                                                </td>
+                                                <td class="text-center">{item.Fullname}</td>
+                                                <td class="text-center">{item.province}</td>
+                                                <td class="text-center">{item.bookingfrom} to {item.bookingto}</td>
+                                                <td class="text-center">{item.city}</td>
+                                                <td class="text-center">{item.isbookingconfirmed == 1 ? "Booked" : "Waiting List"}</td>
+                                                <td class="text-center"><a href="javascript:void(0);" onClick={()=> viewdetail()}>View detail</a></td>
+                                            </tr>
+                                        ))}
+                                        {ResidantList && ResidantList.length == 0 ?
+                                            <tr>
+                                                <td class="text-center" colSpan={4}>
+                                                    No Residants </td>
+                                            </tr>
+                                            : ""}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                 </div>
             </Modal>
         </>
