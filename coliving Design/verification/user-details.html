@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Manage user view - Co-Living</title>
+	<link rel="icon" type="image/x-icon" href="../img/favicon.png">
+
+	<!-- CSS -->
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/all.min.css" rel="stylesheet">
+	<link href="../css/owl.carousel.min.css" rel="stylesheet">
+	<link href="../css/style.css" rel="stylesheet">
+	<link href="../css/responsive.css" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="adminWrapper">
+	<div class="adminsidebar">
+		<a class="adminlogo" href="index.html">
+			<img src="../img/adminLogo.png" class="img-fluid logofull" alt="Co-living">
+			<img src="../img/sidebarIcon.png" class="img-fluid logoicon" alt="Co-living">
+		</a>
+		<nav class="sideMenu">
+			<ul>
+				<li>
+					<a href="dashboard.html">
+						<img src="../img/icons/dashboard.png" class="img-fluid" alt="Dashboard">
+						<span>Dashboard</span>
+					</a>
+				</li>
+				<li class="active">
+					<a href="manager-user.html">
+						<img src="../img/icons/manageuser.png" class="img-fluid" alt="Manage User">
+						<span>Manage User</span>
+					</a>
+				</li>
+				<li>
+					<a href="manage-property.html">
+						<img src="../img/icons/manageproperty.png" class="img-fluid" alt="Manage Property">
+						<span>Manage Property</span>
+					</a>
+				</li>
+				<li>
+					<a href="booking-request.html">
+						<img src="../img/icons/booking.png" class="img-fluid" alt="Booking Requests">
+						<span>Booking Requests</span>
+					</a>
+				</li>
+				<li>
+					<a href="notifications.html">
+						<img src="../img/icons/ntfy.png" class="img-fluid" alt="Notification">
+						<span>Notification</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<div class="adminContent">
+		<div class="adminHeader">
+			<div class="mobileBar">
+				<span class="hidebar"><i class="fa-solid fa-bars"></i></span>
+				<span class="showbar"><i class="fa-solid fa-arrow-right-long"></i></span>
+			</div>		
+			<div class="postuser">
+				<i class="fa-solid fa-circle-user"></i>
+				<span>Admin</span>
+				<i class="fa-solid fa-caret-down"></i>
+				<div class="userdropdown">
+					<ul>
+						<li><a href="#/">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="adminContentbody">
+			<div class="adminTitle">
+				<h4 class="content-title backitem">
+					<span>Manage User</span>
+					<span><a href="manager-user.html"><i class="fa-solid fa-angles-left"></i>&nbsp; Back</a></span>
+				</h4>
+			</div>
+			<div class="adminCard statusview fm-area">
+				<div class="table-layout1">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="text-center">image</th>
+									<th class="text-center">User name</th>
+									<th class="text-center">Email ID</th>
+									<th class="text-center">Mobile Number</th>
+									<th class="text-center">community</th>
+									<th class="text-center">Location</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="text-center">
+										<div class="tbleimg">
+											<img src="../img/userimg.png" class="img-fluid" alt="User uploaded image">
+										</div>
+									</td>
+									<td class="text-center">
+										John Mark
+									</td>
+									<td class="text-center">
+										john.mark@gmail.com
+									</td>
+									<td class="text-center">
+										60 7234 4327
+									</td>
+									<td class="text-center">
+										Student
+									</td>
+									<td class="text-center">
+										Ontario
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="profileform px-2 py-3 mt-4">
+					<div class="verHead">
+						<h4>Verification Details</h4>
+					</div>
+					<div class="row g-4 mt-2">
+			  			<div class="col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-6 col-12">
+							<div class="form-group">
+								<label>Date of Birth</label>
+								<input type="text" name="dob" value="01-Jan-1999" placeholder="" readonly>
+							</div>
+						</div>
+						<div class="col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-6 col-12">
+							<div class="form-group">
+								<label>Gender</label>
+								<input type="text" name="gender" value="Male" placeholder="" readonly>
+							</div>
+						</div>
+						<div class="col-xxl-4 col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
+							<div class="form-group statuslabel">
+								<label>ID proof</label>
+								<input type="text" name="idproof" value="driverslicense.jpg" placeholder="" readonly>
+								<div class="eyestatus">
+									<div class="viewid" data-bs-toggle="modal" data-bs-target="#viewID">
+										<i class="fa-solid fa-eye"></i>
+									</div>
+									<div class="badge">
+										<img src="../img/icons/bluecheck.png" class="img-fluid" alt="Check Img">
+										<label>Verified</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xxl-8 col-xl-8 col-lg-10 col-md-6 col-sm-12 col-12">
+							<div class="form-group">
+								<label>Permanent Address</label>
+								<input type="text" name="address" value="Idcard.jpg" placeholder="" readonly>
+							</div>
+						</div>
+						<div class="col-xxl-8 col-xl-8 col-lg-10 col-md-6 col-sm-12 col-12">
+							<div class="form-group">
+								<label>University Details</label>
+								<input type="text" name="university" value="Male" placeholder="" readonly>
+							</div>
+						</div>
+						<div class="col-xxl-4 col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
+							<div class="form-group statuslabel">
+								<label>University ID Proof</label>
+								<input type="text" name="idproof" value="Idcard.jpg" placeholder="" readonly>
+								<div class="eyestatus">
+									<div class="viewid">
+										<i class="fa-solid fa-eye"></i>
+									</div>
+									<div class="badge">
+										<img src="../img/icons/bluecheck.png" class="img-fluid" alt="Check Img">
+										<label>Verified</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-5 text-start">
+							<div class="form-group">
+								<button class="btn btn-secondary text-uppercase">View more Details</button>
+							</div>
+						</div>
+			  		</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- View ID Modal -->
+<div class="modal fade" id="viewID" tabindex="-1" aria-labelledby="viewIDModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+    	<div class="idmodal">
+    		<div class="closebtn" data-bs-dismiss="modal" aria-label="Close">
+    			<i class="fa-solid fa-circle-xmark"></i>
+    		</div>
+    		<div class="adminTitle">
+				<h4 class="content-title justify-content-center backitem">
+					<span>Id Proof</span>
+				</h4>
+			</div>
+			<div class="idpreview">
+				<img src="../img/pancard.png" class="img-fluid" alt="ID Image missing">
+				<div class="magnifier">
+					<i class="fa-solid fa-magnifying-glass-plus"></i>
+				</div>
+			</div>
+			<div class="selectionbtn text-center">
+				<button class="btn btn-secondary">Approve</button>
+				<button class="btn btn-primary" disabled="disabled">Disapprove</button>
+			</div>
+			<div class="fm-area py-5 px-0">
+				<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<div class="form-group">
+						<label>Remarks</label>
+						<textarea name="remarks" placeholder="Please send another document for more information"></textarea>
+					</div>
+				</div>
+				<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt-3">
+					<div class="form-group">
+						<button class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+			</div>
+    	</div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Scripts -->
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/all.min.js"></script>
+<script src="../js/script.js"></script>
+
+</body>
+</html>

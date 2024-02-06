@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Notifications - Co-Living</title>
+	<link rel="icon" type="image/x-icon" href="../img/favicon.png">
+
+	<!-- CSS -->
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/all.min.css" rel="stylesheet">
+	<link href="../css/owl.carousel.min.css" rel="stylesheet">
+	<link href="../css/style.css" rel="stylesheet">
+	<link href="../css/responsive.css" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="adminWrapper">
+	<div class="adminsidebar">
+		<a class="adminlogo" href="index.html">
+			<img src="../img/adminLogo.png" class="img-fluid logofull" alt="Co-living">
+			<img src="../img/sidebarIcon.png" class="img-fluid logoicon" alt="Co-living">
+		</a>
+		<nav class="sideMenu">
+			<ul>
+				<li>
+					<a href="dashboard.html">
+						<img src="../img/icons/dashboard.png" class="img-fluid" alt="Dashboard">
+						<span>Dashboard</span>
+					</a>
+				</li>
+				<li>
+					<a href="manager-user.html">
+						<img src="../img/icons/manageuser.png" class="img-fluid" alt="Manage User">
+						<span>Manage User</span>
+					</a>
+				</li>
+				<li>
+					<a href="manage-property.html">
+						<img src="../img/icons/manageproperty.png" class="img-fluid" alt="Manage Property">
+						<span>Manage Property</span>
+					</a>
+				</li>
+				<li>
+					<a href="booking-request.html">
+						<img src="../img/icons/booking.png" class="img-fluid" alt="Booking Requests">
+						<span>Booking Requests</span>
+					</a>
+				</li>
+				<li>
+					<a href="communicate.html">
+						<img src="../img/icons/communicate.png" class="img-fluid" alt="Communicate Users">
+						<span>Communicate Users</span>
+					</a>
+				</li>
+				<li class="active">
+					<a href="notifications.html">
+						<img src="../img/icons/ntfy.png" class="img-fluid" alt="Notification">
+						<span>Notification</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<div class="adminContent">
+		<div class="adminHeader">
+			<div class="mobileBar">
+				<span class="hidebar"><i class="fa-solid fa-bars"></i></span>
+				<span class="showbar"><i class="fa-solid fa-arrow-right-long"></i></span>
+			</div>
+			<div class="postuser">
+				<i class="fa-solid fa-circle-user"></i>
+				<span>Admin</span>
+				<i class="fa-solid fa-caret-down"></i>
+				<div class="userdropdown">
+					<ul>
+						<li><a href="#/">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="adminContentbody">
+			<div class="adminTitle">
+				<h4 class="content-title">
+					Notification
+				</h4>
+			</div>
+			<div class="adminCard">
+				<div class="profileform notify">
+					<div class="searchbtn">
+						<ul class="nav nav-tabs" id="myTab" role="tablist">
+						  	<li class="nav-item" role="presentation">
+						    	<button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">All</button>
+						  	</li>
+						  	<li class="nav-item" role="presentation">
+						    	<button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Unread</button>
+						  	</li>
+						</ul>
+						<form class="ntySearch" action="" method="">
+							<span>Search</span>
+							<div>
+								<input type="text" name="search" placeholder="Search">
+								<span><i class="fa-solid fa-magnifying-glass"></i></span>
+							</div>
+						</form>
+					</div>
+					<div class="tab-content" id="myTabContent">
+					  	<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+					  		<label class="catwise">Today</label>
+					  		<div class="notiItem">
+					  			<div class="ntfydate">
+					  				22<br>Nov
+					  			</div>
+					  			<p class="mb-0">You have received a message form John Mark</p>
+					  		</div>
+					  		<div class="notiItem">
+					  			<div class="ntfydate">
+					  				18<br>Nov
+					  			</div>
+					  			<p class="mb-0">You have received a message for booking confirmation</p>
+					  		</div>
+					  	</div>
+					  	<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+					  		<label class="catwise">Today</label>
+					  		<div class="notiItem">
+					  			<div class="ntfydate">
+					  				22<br>Nov
+					  			</div>
+					  			<p class="mb-0 fw-500 text-black">You have received a message form John Mark</p>
+					  		</div>
+					  		<div class="notiItem">
+					  			<div class="ntfydate">
+					  				18<br>Nov
+					  			</div>
+					  			<p class="mb-0 fw-500 text-black">You have received a message for booking confirmation</p>
+					  		</div>
+					  	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- Scripts -->
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/all.min.js"></script>
+<script src="../js/script.js"></script>
+
+</body>
+</html>
